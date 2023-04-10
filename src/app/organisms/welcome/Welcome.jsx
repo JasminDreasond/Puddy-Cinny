@@ -14,7 +14,7 @@ function Welcome() {
           Welcome to Puddy Cinny
         </Text>
         <Text className="app-welcome__subheading" variant="s1">
-          Yet another matrix client
+          The tiny Puddy Club matrix client
         </Text>
       </div>
     </div>
