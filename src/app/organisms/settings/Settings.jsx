@@ -284,10 +284,10 @@ function AboutSection() {
             <Text>The tiny Puddy Club matrix client</Text>
 
             <div className="settings-about__btns">
-              <Button onClick={() => window.open('https://github.com/ajbura/cinny')}>
+              <Button onClick={() => window.open('https://github.com/JasminDreasond/Puddy-Cinny')}>
                 Source code
               </Button>
-              <Button onClick={() => window.open('https://cinny.in/#sponsor')}>Support</Button>
+              <Button onClick={() => window.open('https://puddy.club/')}>Support</Button>
               <Button onClick={() => initMatrix.clearCacheAndReload()} variant="danger">
                 Clear cache & reload
               </Button>
@@ -371,6 +371,16 @@ function AboutSection() {
                   CC-BY 4.0
                 </a>
                 .
+              </Text>
+            </li>
+            <li>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              <Text>
+                The Puddy Cinny is a private fork from the {' '}
+                <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">
+                  Cinny
+                </a>
+                . All source code base credits go to this group.
               </Text>
             </li>
           </ul>

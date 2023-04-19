@@ -507,7 +507,7 @@ function AuthCard() {
   return (
     <>
       <Homeserver onChange={handleHsChange} />
-      { hsConfig !== null && (
+      {hsConfig !== null && (
         type === 'login'
           ? <Login loginFlow={hsConfig.login.flows} baseUrl={hsConfig.baseUrl} />
           : (
@@ -518,7 +518,7 @@ function AuthCard() {
             />
           )
       )}
-      { hsConfig !== null && (
+      {hsConfig !== null && (
         <Text variant="b2" className="auth-card__switch flex--center">
           {`${(type === 'login' ? 'Don\'t have' : 'Already have')} an account?`}
           <button
@@ -526,7 +526,7 @@ function AuthCard() {
             style={{ color: 'var(--tc-link)', cursor: 'pointer', margin: '0 var(--sp-ultra-tight)' }}
             onClick={() => setType((type === 'login') ? 'register' : 'login')}
           >
-            { type === 'login' ? ' Register' : ' Login' }
+            {type === 'login' ? ' Register' : ' Login'}
           </button>
         </Text>
       )}
@@ -564,7 +564,7 @@ function Auth() {
               <Header>
                 <Avatar size="extra-small" imageSrc={CinnySvg} />
                 <TitleWrapper>
-                  <Text variant="h2" weight="medium">Cinny</Text>
+                  <Text variant="h2" weight="medium">Puddy Cinny</Text>
                 </TitleWrapper>
               </Header>
               <div className="auth-card__content">
@@ -579,10 +579,10 @@ function Auth() {
             <a href="https://cinny.in" target="_blank" rel="noreferrer">About</a>
           </Text>
           <Text variant="b2">
-            <a href="https://github.com/ajbura/cinny/releases" target="_blank" rel="noreferrer">{`v${cons.version}`}</a>
+            <a href="https://github.com/JasminDreasond/Puddy-Cinny/releases" target="_blank" rel="noreferrer">{`v${cons.version}`}</a>
           </Text>
           <Text variant="b2">
-            <a href="https://twitter.com/cinnyapp" target="_blank" rel="noreferrer">Twitter</a>
+            <a href="https://twitter.com/JasminDreasond" target="_blank" rel="noreferrer">Twitter</a>
           </Text>
           <Text variant="b2">
             <a href="https://matrix.org" target="_blank" rel="noreferrer">Powered by Matrix</a>
