@@ -162,6 +162,7 @@
 }
 .message__body {
   word-break: break-word;
+  padding-top: 7px;
 
   & > .text > .message__body-plain {
     white-space: pre-wrap;
