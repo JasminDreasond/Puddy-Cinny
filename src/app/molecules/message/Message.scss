@@ -286,15 +286,15 @@
   }
 
   &--active {
-    background-color: var(--bg-caution-active);
+    background-color: var(--bg-reaction-active);
 
     @media (hover: hover) {
       &:hover {
-        background-color: var(--bg-caution-hover);
+        background-color: var(--bg-reaction-hover);
       }
     }
     &:active {
-      background-color: var(--bg-caution-active);
+      background-color: var(--bg-reaction-active);
     }
   }
 }
