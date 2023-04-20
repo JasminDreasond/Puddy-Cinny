@@ -23,7 +23,6 @@ import ContextMenu, { MenuItem, MenuHeader } from '../../atoms/context-menu/Cont
 import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import EyeIC from '../../../../public/res/ic/outlined/eye.svg';
 import EyeBlindIC from '../../../../public/res/ic/outlined/eye-blind.svg';
-import CinnySvg from '../../../../public/res/svg/cinny.svg';
 import SSOButtons from '../../molecules/sso-buttons/SSOButtons';
 
 const LOCALPART_SIGNUP_REGEX = /^[a-z0-9_\-.=/]+$/;
@@ -562,7 +561,7 @@ function Auth() {
           {!loginToken && (
             <div className="auth-card">
               <Header>
-                <Avatar size="extra-small" imageSrc={CinnySvg} />
+                <Avatar size="extra-small" imageSrc="/public/favicon.ico" />
                 <TitleWrapper>
                   <Text variant="h2" weight="medium">Puddy Cinny</Text>
                 </TitleWrapper>
