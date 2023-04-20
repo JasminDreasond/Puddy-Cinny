@@ -1,9 +1,7 @@
 {
   "defaultHomeserver": 3,
   "homeserverList": [
-    "converser.eu",
-    "envs.net",
-    "halogen.city",
+    "mlp.chat",
     "matrix.org",
     "mozilla.org"
   ],
