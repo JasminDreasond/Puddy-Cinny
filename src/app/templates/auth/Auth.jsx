@@ -555,7 +555,7 @@ function Auth() {
 
   return (
     <ScrollView invisible>
-      <div className="auth__base">
+      <div className="auth__base puddy_background">
         <div className="auth__wrapper">
           {loginToken && <LoadingScreen message="Redirecting..." />}
           {!loginToken && (

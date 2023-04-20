@@ -1,7 +1,7 @@
 {
-  "name": "Cinny",
-  "short_name": "Cinny",
-  "description": "Yet another matrix client",
+  "name": "Puddy Cinny",
+  "short_name": "PCinny",
+  "description": "The tiny Puddy Club matrix client",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
