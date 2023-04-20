@@ -62,7 +62,7 @@ function FileHeader({
   return (
     <div className="file-header">
       <Text className="file-name" variant="b3">{name}</Text>
-      { link !== null && (
+      {link !== null && (
         <>
           {
             external && (
@@ -156,8 +156,8 @@ function Image({
           onClick={toggleLightbox}
           onKeyDown={toggleLightbox}
         >
-          { blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
-          { url !== null && (
+          {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
+          {url !== null && (
             <img
               style={{ display: blur ? 'none' : 'unset' }}
               onLoad={() => setBlur(false)}
@@ -214,8 +214,8 @@ function Sticker({
   }, []);
 
   return (
-    <div className="sticker-container" style={{ height: width !== null ? getNativeHeight(width, height, 128) : 'unset' }}>
-      { url !== null && <img src={url || link} title={name} alt={name} />}
+    <div className="sticker-container" style={{ height: width !== null ? getNativeHeight(width, height, 170) : 'unset' }}>
+      {url !== null && <img src={url || link} title={name} alt={name} />}
     </div>
   );
 }
@@ -254,9 +254,9 @@ function Audio({
     <div className="file-container">
       <FileHeader name={name} link={file !== null ? url : url || link} type={type} external />
       <div className="audio-container">
-        { url === null && isLoading && <Spinner size="small" /> }
-        { url === null && !isLoading && <IconButton onClick={handlePlayAudio} tooltip="Play audio" src={PlaySVG} />}
-        { url !== null && (
+        {url === null && isLoading && <Spinner size="small" />}
+        {url === null && !isLoading && <IconButton onClick={handlePlayAudio} tooltip="Play audio" src={PlaySVG} />}
+        {url !== null && (
           /* eslint-disable-next-line jsx-a11y/media-has-caption */
           <audio autoPlay controls>
             <source src={url} type={getBlobSafeMimeType(type)} />
@@ -319,10 +319,10 @@ function Video({
         }}
         className="video-container"
       >
-        { url === null ? (
+        {url === null ? (
           <>
-            { blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
-            { thumbUrl !== null && (
+            {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
+            {thumbUrl !== null && (
               <img style={{ display: blur ? 'none' : 'unset' }} src={thumbUrl} onLoad={() => setBlur(false)} alt={name} />
             )}
             {isLoading && <Spinner size="small" />}
