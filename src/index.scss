@@ -207,7 +207,7 @@
 
 @mixin dark-mode() {
   /* background color | --bg-[background type]: value */
-  --bg-surface: hsl(0, 2%, 8%);
+  --bg-surface: hsl(0deg 0% 14.83%);
   --bg-surface-transparent: hsla(0, 0%, 21%, 0);
   --bg-surface-low: hsl(0, 0%, 13%);
   --bg-surface-low-transparent: hsla(0, 0%, 18%, 0);
