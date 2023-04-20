@@ -1,6 +1,10 @@
 @use '../../partials/flex';
 @use '../../partials/dir';
 
+.drawer-breadcrumb img {
+  height: 21px !important;
+}
+
 .drawer-header__btn {
   min-width: 0;
   @extend .cp-fx__row--s-c;
@@ -14,7 +18,7 @@
   }
 
   & .header__title-wrapper img {
-    height: 21px;
+    height: 21px !important;
   }
 
   @media (hover: hover) {
