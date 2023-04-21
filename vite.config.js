@@ -32,7 +32,7 @@ export default defineConfig({
   publicDir: false,
   base: "",
   server: {
-    port: 8080,
+    port: 8469,
     host: true,
   },
   plugins: [
@@ -43,16 +43,16 @@ export default defineConfig({
   ],
   optimizeDeps: {
     esbuildOptions: {
-        define: {
-          global: 'globalThis'
-        },
-        plugins: [
-          // Enable esbuild polyfill plugins
-          NodeGlobalsPolyfillPlugin({
-            process: false,
-            buffer: true,
-          }),
-        ]
+      define: {
+        global: 'globalThis'
+      },
+      plugins: [
+        // Enable esbuild polyfill plugins
+        NodeGlobalsPolyfillPlugin({
+          process: false,
+          buffer: true,
+        }),
+      ]
     }
   },
   build: {
