@@ -147,6 +147,18 @@ function FeaturedTab() {
   return (
     <>
       <SidebarAvatar
+        tooltip="Direct Messages"
+        active={selectedTab === cons.tabs.DIRECTS}
+        onClick={() => selectTab(cons.tabs.DIRECTS)}
+        avatar={<Avatar iconSrc={UserIC} size="normal" />}
+        notificationBadge={dmsNoti ? (
+          <NotificationBadge
+            alert={dmsNoti?.highlight > 0}
+            content={abbreviateNumber(dmsNoti.total) || null}
+          />
+        ) : null}
+      />
+      <SidebarAvatar
         tooltip="Home"
         active={selectedTab === cons.tabs.HOME}
         onClick={() => selectTab(cons.tabs.HOME)}
@@ -155,18 +167,6 @@ function FeaturedTab() {
           <NotificationBadge
             alert={homeNoti?.highlight > 0}
             content={abbreviateNumber(homeNoti.total) || null}
-          />
-        ) : null}
-      />
-      <SidebarAvatar
-        tooltip="People"
-        active={selectedTab === cons.tabs.DIRECTS}
-        onClick={() => selectTab(cons.tabs.DIRECTS)}
-        avatar={<Avatar iconSrc={UserIC} size="normal" />}
-        notificationBadge={dmsNoti ? (
-          <NotificationBadge
-            alert={dmsNoti?.highlight > 0}
-            content={abbreviateNumber(dmsNoti.total) || null}
           />
         ) : null}
       />
@@ -371,7 +371,7 @@ function SideBar() {
             onClick={() => openSearch()}
             avatar={<Avatar iconSrc={SearchIC} size="normal" />}
           />
-          { totalInvites !== 0 && (
+          {totalInvites !== 0 && (
             <SidebarAvatar
               tooltip="Invites"
               onClick={() => openInviteList()}
