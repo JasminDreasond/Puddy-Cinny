@@ -24,6 +24,7 @@ import RoomOptions from '../../molecules/room-options/RoomOptions';
 import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
+import PhoneIC from '../../../../public/res/ic/outlined/phone-call-svgrepo-com.svg';
 import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
 import BackArrowIC from '../../../../public/res/ic/outlined/chevron-left.svg';
 
@@ -95,6 +96,7 @@ function RoomViewHeader({ roomId }) {
         <RawIcon src={ChevronBottomIC} />
       </button>
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" src={SearchIC} />}
+      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="Start VC" src={PhoneIC} />
       <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" src={UserIC} />
       <IconButton className="room-header__members-btn" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" src={UserIC} />
       <IconButton
