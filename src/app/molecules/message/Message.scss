@@ -101,6 +101,11 @@
   }
 }
 
+.message__reply,
+.message__header {
+  padding-bottom: 7px;
+}
+
 .message__header {
   display: flex;
   align-items: baseline;
@@ -162,7 +167,6 @@
 }
 .message__body {
   word-break: break-word;
-  padding-top: 7px;
 
   & > .text > .message__body-plain {
     white-space: pre-wrap;
