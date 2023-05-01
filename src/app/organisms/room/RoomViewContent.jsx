@@ -607,7 +607,7 @@ function RoomViewContent({ eventId, roomTimeline }) {
     <ScrollView onScroll={handleTimelineScroll} ref={timelineSVRef} autoHide>
       <div className="room-view__content" onClick={handleOnClickCapture}>
         <div className="timeline__wrapper">
-          { roomTimeline.initialized ? renderTimeline() : loadingMsgPlaceholders('loading', 3) }
+          {roomTimeline.initialized ? renderTimeline() : loadingMsgPlaceholders('loading', 3)}
         </div>
       </div>
     </ScrollView>

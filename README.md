@@ -10,6 +10,11 @@ A Matrix client focusing primarily on simple, elegant and secure interface. The 
 
 <img align="center" src="https://raw.githubusercontent.com/cinnyapp/cinny-site/main/assets/preview2-light.png" height="380">
 
+## Motivation
+I am someone who is definitely tired of seeing censorship spread across the internet. As I write this message on May 01 2023, it has been one of the most difficult days to have privacy, especially in Brazil due to the current political scenario.
+
+I see the Matrix project as one of the best alternatives to maintain at least try to keep communities and groups of friends on the internet. So my goal is to make this fork as good as possible so that not only can I be happy, but also all the people who are having a similar situation to me.
+
 ## Getting started
 Web app is available at https://app.cinny.in and gets updated on each new release.
 
@@ -34,3 +39,14 @@ To build the app:
 ```sh
 npm run build # Compiles the app into the dist/ directory
 ```
+
+<hr/>
+
+# Edit Help
+
+If you are a developer interested in contributing to the project, I'll leave the PATH of the recommended files to be modified below.
+
+## Message Data
+
+    src/app/molecules/message
+    src/app/molecules/media

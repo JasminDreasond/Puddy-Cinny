@@ -257,16 +257,16 @@ const MessageBody = React.memo(({
   return (
     <div className="message__body">
       <div dir="auto" className={`text ${emojiOnly ? 'text-h1' : 'text-b1'}`}>
-        { msgType === 'm.emote' && (
+        {msgType === 'm.emote' && (
           <>
             {'* '}
             {twemojify(senderName)}
             {' '}
           </>
         )}
-        { content }
+        {content}
       </div>
-      { isEdited && <Text className="message__body-edited" variant="b3">(edited)</Text>}
+      {isEdited && <Text className="message__body-edited" variant="b3">(edited)</Text>}
     </div>
   );
 });
@@ -616,11 +616,17 @@ MessageOptions.propTypes = {
   reply: PropTypes.func.isRequired,
 };
 
+// Media Generator
 function genMediaContent(mE) {
+
+  // Client
   const mx = initMatrix.matrixClient;
   const mContent = mE.getContent();
+
+  // Bad Content
   if (!mContent || !mContent.body) return <span style={{ color: 'var(--bg-danger)' }}>Malformed event</span>;
 
+  // Content URL
   let mediaMXC = mContent?.url;
   const isEncryptedFile = typeof mediaMXC === 'undefined';
   if (isEncryptedFile) mediaMXC = mContent?.file?.url;
@@ -704,6 +710,7 @@ function genMediaContent(mE) {
   }
 }
 
+// Get Edit Body
 function getEditedBody(editedMEvent) {
   const newContent = editedMEvent.getContent()['m.new_content'];
   if (typeof newContent === 'undefined') return [null, false, null];
@@ -716,10 +723,14 @@ function getEditedBody(editedMEvent) {
   return [parsedContent.body, isCustomHTML, newContent.formatted_body ?? null];
 }
 
+// Message
 function Message({
   mEvent, isBodyOnly, roomTimeline,
   focus, fullTime, isEdit, setEdit, cancelEdit,
 }) {
+
+  console.log('');
+
   const roomId = mEvent.getRoomId();
   const { editedTimeline, reactionTimeline } = roomTimeline ?? {};
 
