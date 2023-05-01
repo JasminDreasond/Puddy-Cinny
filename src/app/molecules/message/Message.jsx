@@ -61,6 +61,7 @@ function PlaceholderMessage() {
   );
 }
 
+// Avatar Generator
 const MessageAvatar = React.memo(({
   roomId, avatarSrc, userId, username,
 }) => (
@@ -71,6 +72,7 @@ const MessageAvatar = React.memo(({
   </div>
 ));
 
+// Message Header
 const MessageHeader = React.memo(({
   userId, username, timestamp, fullTime,
 }) => (
@@ -92,9 +94,11 @@ const MessageHeader = React.memo(({
     </div>
   </div>
 ));
+
 MessageHeader.defaultProps = {
   fullTime: false,
 };
+
 MessageHeader.propTypes = {
   userId: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
@@ -102,6 +106,7 @@ MessageHeader.propTypes = {
   fullTime: PropTypes.bool,
 };
 
+// Message Reply
 function MessageReply({ name, color, body }) {
   return (
     <div className="message__reply">
@@ -197,6 +202,7 @@ MessageReplyWrapper.propTypes = {
   eventId: PropTypes.string.isRequired,
 };
 
+// Message Body
 const MessageBody = React.memo(({
   senderName,
   body,
@@ -283,6 +289,7 @@ MessageBody.propTypes = {
   msgType: PropTypes.string,
 };
 
+// Message Edit
 function MessageEdit({ body, onSave, onCancel }) {
   const editInputRef = useRef(null);
 
@@ -328,6 +335,7 @@ MessageEdit.propTypes = {
   onCancel: PropTypes.func.isRequired,
 };
 
+// Get Emoji
 function getMyEmojiEvent(emojiKey, eventId, roomTimeline) {
   const mx = initMatrix.matrixClient;
   const rEvents = roomTimeline.reactionTimeline.get(eventId);
@@ -361,6 +369,7 @@ function pickEmoji(e, roomId, eventId, roomTimeline) {
   });
 }
 
+// Reaction Generator
 function genReactionMsg(userIds, reaction, shortcode) {
   return (
     <>
@@ -380,6 +389,7 @@ function genReactionMsg(userIds, reaction, shortcode) {
   );
 }
 
+// Reaction Manager
 function MessageReaction({
   reaction, shortcode, count, users, isActive, onClick,
 }) {
@@ -501,6 +511,7 @@ MessageReactionGroup.propTypes = {
   mEvent: PropTypes.shape({}).isRequired,
 };
 
+// Detect Media
 function isMedia(mE) {
   return (
     mE.getContent()?.msgtype === 'm.file'
@@ -523,6 +534,7 @@ function handleOpenViewSource(mEvent, roomTimeline) {
   openViewSource(editedMEvent !== undefined ? editedMEvent : mEvent);
 }
 
+// Message Options
 const MessageOptions = React.memo(({
   roomTimeline, mEvent, edit, reply,
 }) => {
@@ -609,6 +621,8 @@ const MessageOptions = React.memo(({
     </div>
   );
 });
+
+// Options Default
 MessageOptions.propTypes = {
   roomTimeline: PropTypes.shape({}).isRequired,
   mEvent: PropTypes.shape({}).isRequired,
@@ -623,7 +637,7 @@ function genMediaContent(mE) {
   const mx = initMatrix.matrixClient;
   const mContent = mE.getContent();
 
-  // Bad Content
+  // Bad Event
   if (!mContent || !mContent.body) return <span style={{ color: 'var(--bg-danger)' }}>Malformed event</span>;
 
   // Content URL
@@ -631,21 +645,32 @@ function genMediaContent(mE) {
   const isEncryptedFile = typeof mediaMXC === 'undefined';
   if (isEncryptedFile) mediaMXC = mContent?.file?.url;
 
+  // Thumbnail
   let thumbnailMXC = mContent?.info?.thumbnail_url;
 
+  // Bad Event Again
   if (typeof mediaMXC === 'undefined' || mediaMXC === '') return <span style={{ color: 'var(--bg-danger)' }}>Malformed event</span>;
 
+  // Content Type
   let msgType = mE.getContent()?.msgtype;
   const safeMimetype = getBlobSafeMimeType(mContent.info?.mimetype);
+
+  // Sticker
   if (mE.getType() === 'm.sticker') {
     msgType = 'm.sticker';
-  } else if (safeMimetype === 'application/octet-stream') {
+  }
+
+  // File
+  else if (safeMimetype === 'application/octet-stream') {
     msgType = 'm.file';
   }
 
+  // Blurhash
   const blurhash = mContent?.info?.['xyz.amorgan.blurhash'];
 
   switch (msgType) {
+
+    // File
     case 'm.file':
       return (
         <Media.File
@@ -655,6 +680,8 @@ function genMediaContent(mE) {
           file={mContent.file || null}
         />
       );
+
+    // Image
     case 'm.image':
       return (
         <Media.Image
@@ -667,6 +694,8 @@ function genMediaContent(mE) {
           blurhash={blurhash}
         />
       );
+
+    // Sticker
     case 'm.sticker':
       return (
         <Media.Sticker
@@ -678,6 +707,8 @@ function genMediaContent(mE) {
           type={mContent.info?.mimetype}
         />
       );
+
+    // Audio
     case 'm.audio':
       return (
         <Media.Audio
@@ -687,6 +718,8 @@ function genMediaContent(mE) {
           file={mContent.file || null}
         />
       );
+
+    // Video
     case 'm.video':
       if (typeof thumbnailMXC === 'undefined') {
         thumbnailMXC = mContent.info?.thumbnail_file?.url || null;
@@ -705,8 +738,11 @@ function genMediaContent(mE) {
           blurhash={blurhash}
         />
       );
+
+    // Bad Event Again?
     default:
       return <span style={{ color: 'var(--bg-danger)' }}>Malformed event</span>;
+
   }
 }
 
@@ -723,60 +759,81 @@ function getEditedBody(editedMEvent) {
   return [parsedContent.body, isCustomHTML, newContent.formatted_body ?? null];
 }
 
-// Message
+// Message Receive
 function Message({
   mEvent, isBodyOnly, roomTimeline,
   focus, fullTime, isEdit, setEdit, cancelEdit,
 }) {
 
-  console.log('');
-
+  // Get Room Data
   const roomId = mEvent.getRoomId();
   const { editedTimeline, reactionTimeline } = roomTimeline ?? {};
 
+  // Content Body
   const className = ['message', (isBodyOnly ? 'message--body-only' : 'message--full')];
   if (focus) className.push('message--focus');
   const content = mEvent.getContent();
   const eventId = mEvent.getId();
   const msgType = content?.msgtype;
   const senderId = mEvent.getSender();
+
   let { body } = content;
+
+  // User Data
   const username = mEvent.sender ? getUsernameOfRoomMember(mEvent.sender) : getUsername(senderId);
   const avatarSrc = mEvent.sender?.getAvatarUrl(initMatrix.matrixClient.baseUrl, 36, 36, 'crop') ?? null;
+
+  // Content Data
   let isCustomHTML = content.format === 'org.matrix.custom.html';
   let customHTML = isCustomHTML ? content.formatted_body : null;
 
+  // Edit Data
   const edit = useCallback(() => {
     setEdit(eventId);
   }, []);
+
+  // Reply Data
   const reply = useCallback(() => {
     replyTo(senderId, mEvent.getId(), body, customHTML);
   }, [body, customHTML]);
 
+  // Emoji Type
   if (msgType === 'm.emote') className.push('message--type-emote');
 
+  // Is Edit
   const isEdited = roomTimeline ? editedTimeline.has(eventId) : false;
+
+  // Get Reactions
   const haveReactions = roomTimeline
     ? reactionTimeline.has(eventId) || !!mEvent.getServerAggregatedRelation('m.annotation')
     : false;
+
+  // Is Reply
   const isReply = !!mEvent.replyEventId;
 
+  // Is Edit
   if (isEdited) {
     const editedList = editedTimeline.get(eventId);
     const editedMEvent = editedList[editedList.length - 1];
     [body, isCustomHTML, customHTML] = getEditedBody(editedMEvent);
   }
 
+  // Is Reply
   if (isReply) {
     body = parseReply(body)?.body ?? body;
     customHTML = trimHTMLReply(customHTML);
   }
 
+  // Fix Body String
   if (typeof body !== 'string') body = '';
 
+  // Return Data
   return (
+
     <div className={className.join(' ')}>
+
       {
+        // User Avatar
         isBodyOnly
           ? <div className="message__avatar-container" />
           : (
@@ -788,7 +845,9 @@ function Message({
             />
           )
       }
+
       <div className="message__main-container">
+
         {!isBodyOnly && (
           <MessageHeader
             userId={senderId}
@@ -797,12 +856,14 @@ function Message({
             fullTime={fullTime}
           />
         )}
+
         {roomTimeline && isReply && (
           <MessageReplyWrapper
             roomTimeline={roomTimeline}
             eventId={mEvent.replyEventId}
           />
         )}
+
         {!isEdit && (
           <MessageBody
             senderName={username}
@@ -812,6 +873,7 @@ function Message({
             isEdited={isEdited}
           />
         )}
+
         {isEdit && (
           <MessageEdit
             body={(customHTML
@@ -826,9 +888,11 @@ function Message({
             onCancel={cancelEdit}
           />
         )}
+
         {haveReactions && (
           <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
         )}
+
         {roomTimeline && !isEdit && (
           <MessageOptions
             roomTimeline={roomTimeline}
@@ -837,10 +901,13 @@ function Message({
             reply={reply}
           />
         )}
+
       </div>
     </div>
   );
 }
+
+// Message Default Data
 Message.defaultProps = {
   isBodyOnly: false,
   focus: false,
@@ -850,6 +917,7 @@ Message.defaultProps = {
   setEdit: null,
   cancelEdit: null,
 };
+
 Message.propTypes = {
   mEvent: PropTypes.shape({}).isRequired,
   isBodyOnly: PropTypes.bool,
@@ -861,4 +929,5 @@ Message.propTypes = {
   cancelEdit: PropTypes.func,
 };
 
+// Send Export
 export { Message, MessageReply, PlaceholderMessage };
