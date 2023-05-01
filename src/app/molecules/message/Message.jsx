@@ -779,6 +779,8 @@ function Message({
 
   let { body } = content;
 
+  // console.log(content);
+
   // User Data
   const username = mEvent.sender ? getUsernameOfRoomMember(mEvent.sender) : getUsername(senderId);
   const avatarSrc = mEvent.sender?.getAvatarUrl(initMatrix.matrixClient.baseUrl, 36, 36, 'crop') ?? null;
@@ -827,7 +829,91 @@ function Message({
   // Fix Body String
   if (typeof body !== 'string') body = '';
 
-  // Return Data
+  // Normal Message
+  if (msgType !== 'm.bad.encrypted') {
+
+    // Return Data
+    return (
+
+      <div className={className.join(' ')}>
+
+        {
+          // User Avatar
+          isBodyOnly
+            ? <div className="message__avatar-container" />
+            : (
+              <MessageAvatar
+                roomId={roomId}
+                avatarSrc={avatarSrc}
+                userId={senderId}
+                username={username}
+              />
+            )
+        }
+
+        <div className="message__main-container">
+
+          {!isBodyOnly && (
+            <MessageHeader
+              userId={senderId}
+              username={username}
+              timestamp={mEvent.getTs()}
+              fullTime={fullTime}
+            />
+          )}
+
+          {roomTimeline && isReply && (
+            <MessageReplyWrapper
+              roomTimeline={roomTimeline}
+              eventId={mEvent.replyEventId}
+            />
+          )}
+
+          {!isEdit && (
+            <MessageBody
+              senderName={username}
+              isCustomHTML={isCustomHTML}
+              body={isMedia(mEvent) ? genMediaContent(mEvent) : customHTML ?? body}
+              msgType={msgType}
+              isEdited={isEdited}
+            />
+          )}
+
+          {isEdit && (
+            <MessageEdit
+              body={(customHTML
+                ? html(customHTML, { kind: 'edit', onlyPlain: true }).plain
+                : plain(body, { kind: 'edit', onlyPlain: true }).plain)}
+              onSave={(newBody, oldBody) => {
+                if (newBody !== oldBody) {
+                  initMatrix.roomsInput.sendEditedMessage(roomId, mEvent, newBody);
+                }
+                cancelEdit();
+              }}
+              onCancel={cancelEdit}
+            />
+          )}
+
+          {haveReactions && (
+            <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
+          )}
+
+          {roomTimeline && !isEdit && (
+            <MessageOptions
+              roomTimeline={roomTimeline}
+              mEvent={mEvent}
+              edit={edit}
+              reply={reply}
+            />
+          )}
+
+        </div>
+      </div>
+    );
+
+  }
+
+  // Bad Message
   return (
 
     <div className={className.join(' ')}>
@@ -857,37 +943,13 @@ function Message({
           />
         )}
 
-        {roomTimeline && isReply && (
-          <MessageReplyWrapper
-            roomTimeline={roomTimeline}
-            eventId={mEvent.replyEventId}
-          />
-        )}
-
-        {!isEdit && (
-          <MessageBody
-            senderName={username}
-            isCustomHTML={isCustomHTML}
-            body={isMedia(mEvent) ? genMediaContent(mEvent) : customHTML ?? body}
-            msgType={msgType}
-            isEdited={isEdited}
-          />
-        )}
-
-        {isEdit && (
-          <MessageEdit
-            body={(customHTML
-              ? html(customHTML, { kind: 'edit', onlyPlain: true }).plain
-              : plain(body, { kind: 'edit', onlyPlain: true }).plain)}
-            onSave={(newBody, oldBody) => {
-              if (newBody !== oldBody) {
-                initMatrix.roomsInput.sendEditedMessage(roomId, mEvent, newBody);
-              }
-              cancelEdit();
-            }}
-            onCancel={cancelEdit}
-          />
-        )}
+        <MessageBody
+          senderName={username}
+          isCustomHTML={isCustomHTML}
+          body={body}
+          msgType={msgType}
+          isEdited={isEdited}
+        />
 
         {haveReactions && (
           <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
@@ -905,6 +967,7 @@ function Message({
       </div>
     </div>
   );
+
 }
 
 // Message Default Data
