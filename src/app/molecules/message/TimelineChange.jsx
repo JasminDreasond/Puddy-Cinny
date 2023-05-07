@@ -6,42 +6,36 @@ import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import Time from '../../atoms/time/Time';
 
-import JoinArraowIC from '../../../../public/res/ic/outlined/join-arrow.svg';
-import LeaveArraowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
-import InviteArraowIC from '../../../../public/res/ic/outlined/invite-arrow.svg';
-import InviteCancelArraowIC from '../../../../public/res/ic/outlined/invite-cancel-arrow.svg';
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
-
 function TimelineChange({
   variant, content, timestamp, onClick,
 }) {
-  let iconSrc;
+  let faSrc;
 
   switch (variant) {
     case 'join':
-      iconSrc = JoinArraowIC;
+      faSrc = "fa-solid fa-arrow-right-to-bracket";
       break;
     case 'leave':
-      iconSrc = LeaveArraowIC;
+      faSrc = "fa-solid fa-right-from-bracket";
       break;
     case 'invite':
-      iconSrc = InviteArraowIC;
+      faSrc = "fa-solid fa-user-plus";
       break;
     case 'invite-cancel':
-      iconSrc = InviteCancelArraowIC;
+      faSrc = "fa-solid fa-user-minus";
       break;
     case 'avatar':
-      iconSrc = UserIC;
+      faSrc = "fa-regular fa-id-badge";
       break;
     default:
-      iconSrc = JoinArraowIC;
+      faSrc = "fa-solid fa-arrow-right-to-bracket";
       break;
   }
 
   return (
     <button style={{ cursor: onClick === null ? 'default' : 'pointer' }} onClick={onClick} type="button" className="timeline-change">
       <div className="timeline-change__avatar-container">
-        <RawIcon src={iconSrc} size="extra-small" />
+        <RawIcon fa={faSrc} size="extra-small" />
       </div>
       <div className="timeline-change__content">
         <Text variant="b2">
