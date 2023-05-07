@@ -10,7 +10,6 @@ import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
 import ImageLightbox from '../image-lightbox/ImageLightbox';
 
-import DownloadSVG from '../../../../public/res/ic/outlined/download.svg';
 import ExternalSVG from '../../../../public/res/ic/outlined/external.svg';
 import PlaySVG from '../../../../public/res/ic/outlined/play.svg';
 
@@ -78,7 +77,7 @@ function FileHeader({
             <IconButton
               size="extra-small"
               tooltip="Download"
-              src={DownloadSVG}
+              fa="fa-solid fa-download"
               onClick={handleDownload}
             />
           </a>

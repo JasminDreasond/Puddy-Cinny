@@ -7,7 +7,6 @@ import Text from '../../atoms/text/Text';
 import RawModal from '../../atoms/modal/RawModal';
 import IconButton from '../../atoms/button/IconButton';
 
-import DownloadSVG from '../../../../public/res/ic/outlined/download.svg';
 import ExternalSVG from '../../../../public/res/ic/outlined/external.svg';
 
 function ImageLightbox({
@@ -28,7 +27,7 @@ function ImageLightbox({
       <div className="image-lightbox__header">
         <Text variant="b2" weight="medium">{alt}</Text>
         <IconButton onClick={() => window.open(url)} size="small" src={ExternalSVG} />
-        <IconButton onClick={handleDownload} size="small" src={DownloadSVG} />
+        <IconButton onClick={handleDownload} size="small" fa="fa-solid fa-download" />
       </div>
       <div className="image-lightbox__content">
         <img src={url} alt={alt} />
