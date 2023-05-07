@@ -273,18 +273,23 @@ function RoomViewInput({
 
   // Command
   const processCommand = (cmdBody) => {
+
     const spaceIndex = cmdBody.indexOf(' ');
     const cmdName = cmdBody.slice(1, spaceIndex > -1 ? spaceIndex : undefined);
     const cmdData = spaceIndex > -1 ? cmdBody.slice(spaceIndex + 1) : '';
+
     if (!commands[cmdName]) {
       confirmDialog('Invalid Command', `"${cmdName}" is not a valid command.`, 'Alright');
       return;
     }
+
     if (['me', 'shrug', 'plain'].includes(cmdName)) {
       commands[cmdName].exe(roomId, cmdData, sendBody);
       return;
     }
+
     commands[cmdName].exe(roomId, cmdData);
+
   };
 
   // Send Message
@@ -315,15 +320,18 @@ function RoomViewInput({
 
   // Typing Progress
   function processTyping(msg) {
+
     const isEmptyMsg = msg === '';
 
     if (isEmptyMsg && isTyping) {
       sendIsTyping(false);
       return;
     }
+
     if (!isEmptyMsg && !isTyping) {
       sendIsTyping(true);
     }
+
   }
 
   // Get Cursor
@@ -333,6 +341,7 @@ function RoomViewInput({
 
   // Cmd
   function recognizeCmd(rawInput) {
+
     const cursor = getCursorPosition();
     const targetInput = rawInput.slice(0, cursor);
 
@@ -341,6 +350,7 @@ function RoomViewInput({
       if (isCmdActivated) deactivateCmdAndEmit();
       return;
     }
+
     const cmdPrefix = cmdParts[1];
     const cmdSlug = cmdParts[2];
 
@@ -358,16 +368,20 @@ function RoomViewInput({
       activateCmd(cmdPrefix);
       return;
     }
+
     if (!isCmdActivated) activateCmd(cmdPrefix);
     viewEvent.emit('cmd_process', cmdPrefix, cmdSlug);
+
   }
 
+  // Msg Typing
   const handleMsgTyping = (e) => {
     const msg = e.target.value;
     recognizeCmd(e.target.value);
     if (!isCmdActivated) processTyping(msg);
   };
 
+  // Keydown
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
       e.preventDefault();
@@ -380,6 +394,7 @@ function RoomViewInput({
     }
   };
 
+  // Handle Paste
   const handlePaste = (e) => {
     if (e.clipboardData === false) {
       return;
@@ -424,9 +439,14 @@ function RoomViewInput({
     if (file !== null) roomsInput.setAttachment(roomId, file);
   }
 
+  // Render Inputs
   function renderInputs() {
+
+    // Check Perm
     const canISend = roomTimeline.room.currentState.maySendMessage(mx.getUserId());
     const tombstoneEvent = roomTimeline.room.currentState.getStateEvents('m.room.tombstone')[0];
+
+    // Nope
     if (!canISend || tombstoneEvent) {
       return (
         <Text className="room-input__alert">
@@ -438,12 +458,16 @@ function RoomViewInput({
         </Text>
       );
     }
+
+    // Complete
     return (
       <>
+
         <div className={`room-input__option-container${attachment === null ? '' : ' room-attachment__option'}`}>
           <input onChange={uploadFileChange} style={{ display: 'none' }} ref={uploadInputRef} type="file" />
           <IconButton onClick={handleUploadClick} tooltip={attachment === null ? 'Upload' : 'Cancel'} fa="fa-solid fa-circle-plus" />
         </div>
+
         <div ref={inputBaseRef} className="room-input__input-container">
           {roomTimeline.isEncrypted() && <RawIcon size="extra-small" fa="bi bi-shield-lock-fill" />}
           <ScrollView autoHide>
@@ -460,7 +484,9 @@ function RoomViewInput({
             </Text>
           </ScrollView>
         </div>
+
         <div ref={rightOptionsRef} className="room-input__option-container">
+
           <IconButton
             onClick={(e) => {
               openReusableContextMenu(
@@ -484,6 +510,7 @@ function RoomViewInput({
             tooltip="Sticker"
             fa="fa-solid fa-note-sticky"
           />
+
           <IconButton
             onClick={(e) => {
               const cords = getEventCords(e);
@@ -494,12 +521,16 @@ function RoomViewInput({
             tooltip="Emoji"
             fa="fa-solid fa-face-smile"
           />
+
           <IconButton onClick={sendMessage} tooltip="Send" fa="fa-solid fa-paper-plane" />
+
         </div>
+
       </>
     );
   }
 
+  // Insert File
   function attachFile() {
     const fileType = attachment.type.slice(0, attachment.type.indexOf('/'));
     return (
