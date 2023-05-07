@@ -21,7 +21,6 @@ import Input from '../../atoms/input/Input';
 import SegmentedControl from '../../atoms/segmented-controls/SegmentedControls';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 
-import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 
 function simplyfiMembers(members) {
@@ -132,7 +131,7 @@ function PeopleDrawer({ roomId }) {
             <Text className="people-drawer__member-count" variant="b3">{`${room.getJoinedMemberCount()} members`}</Text>
           </Text>
         </TitleWrapper>
-        <IconButton onClick={() => openInviteUser(roomId)} tooltip="Invite" src={AddUserIC} disabled={!canInvite} />
+        <IconButton onClick={() => openInviteUser(roomId)} tooltip="Invite" fa="fa-solid fa-user-plus" disabled={!canInvite} />
       </Header>
       <div className="people-drawer__content-wrapper">
         <div className="people-drawer__scrollable">

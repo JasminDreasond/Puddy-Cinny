@@ -11,7 +11,6 @@ import { markAsRead } from '../../../client/action/notifications';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 import RoomNotification from '../room-notification/RoomNotification';
 
-import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
@@ -47,7 +46,7 @@ function RoomOptions({ roomId, afterOptionSelect }) {
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
       <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
-        iconSrc={AddUserIC}
+        faSrc="fa-solid fa-user-plus"
         onClick={handleInviteClick}
         disabled={!canInvite}
       >

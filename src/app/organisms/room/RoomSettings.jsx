@@ -32,7 +32,6 @@ import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
 import LockIC from '../../../../public/res/ic/outlined/lock.svg';
-import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 import ChevronTopIC from '../../../../public/res/ic/outlined/chevron-top.svg';
 
@@ -86,7 +85,7 @@ function GeneralSettings({ roomId }) {
         <MenuItem
           disabled={!canInvite}
           onClick={() => openInviteUser(roomId)}
-          iconSrc={AddUserIC}
+          faSrc="fa-solid fa-user-plus"
         >
           Invite
         </MenuItem>

@@ -18,7 +18,6 @@ import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 
 import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
 import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
-import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
@@ -96,7 +95,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
         {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
       </MenuItem>
       <MenuItem
-        iconSrc={AddUserIC}
+        faSrc="fa-solid fa-user-plus"
         onClick={handleInviteClick}
         disabled={!canInvite}
       >
