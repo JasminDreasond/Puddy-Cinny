@@ -46,11 +46,11 @@ const tabText = {
 };
 
 const tabItems = [{
-  iconSrc: SettingsIC,
+  faSrc: "fa-solid fa-gear",
   text: tabText.GENERAL,
   disabled: false,
 }, {
-  iconSrc: UserIC,
+  faSrc: "fa-solid fa-user",
   text: tabText.MEMBERS,
   disabled: false,
 }, {
@@ -58,7 +58,7 @@ const tabItems = [{
   text: tabText.EMOJIS,
   disabled: false,
 }, {
-  iconSrc: ShieldUserIC,
+  faSrc: "fa-solid fa-shield",
   text: tabText.PERMISSIONS,
   disabled: false,
 }];

@@ -21,8 +21,6 @@ import Header, { TitleWrapper } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import RoomOptions from '../../molecules/room-options/RoomOptions';
 
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
-import PhoneIC from '../../../../public/res/ic/outlined/phone-call-svgrepo-com.svg';
 import BackArrowIC from '../../../../public/res/ic/outlined/chevron-left.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -93,9 +91,9 @@ function RoomViewHeader({ roomId }) {
         <RawIcon fa="fa-solid fa-chevron-down" />
       </button>
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
-      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="Start VC" src={PhoneIC} />
-      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" src={UserIC} />
-      <IconButton className="room-header__members-btn" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" src={UserIC} />
+      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="Start VC" fa="fa-solid fa-phone" />
+      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />
+      <IconButton className="room-header__members-btn" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" />
       <IconButton
         onClick={openRoomOptions}
         tooltip="Options"

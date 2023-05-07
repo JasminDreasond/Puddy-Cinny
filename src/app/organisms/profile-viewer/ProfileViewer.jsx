@@ -26,8 +26,6 @@ import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 import PowerLevelSelector from '../../molecules/power-level-selector/PowerLevelSelector';
 import Dialog from '../../molecules/dialog/Dialog';
 
-import ShieldEmptyIC from '../../../../public/res/ic/outlined/shield-empty.svg';
-
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
@@ -120,7 +118,7 @@ function SessionInfo({ userId }) {
         {devices !== null && (devices.map((device) => (
           <Chip
             key={device.deviceId}
-            iconSrc={ShieldEmptyIC}
+            faSrc="fa-solid fa-shield"
             text={device.getDisplayName() || device.deviceId}
           />
         )))}

@@ -16,8 +16,6 @@ import Input from '../../atoms/input/Input';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import RoomTile from '../../molecules/room-tile/RoomTile';
 
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
-
 function InviteUser({
   isOpen, roomId, searchTerm, onRequestClose,
 }) {
@@ -233,7 +231,7 @@ function InviteUser({
       <div className="invite-user">
         <form className="invite-user__form" onSubmit={(e) => { e.preventDefault(); searchUser(usernameRef.current.value); }}>
           <Input value={searchTerm} forwardRef={usernameRef} label="Name or userId" />
-          <Button disabled={isSearching} iconSrc={UserIC} variant="primary" type="submit">Search</Button>
+          <Button disabled={isSearching} faSrc="fa-solid fa-user" variant="primary" type="submit">Search</Button>
         </form>
         <div className="invite-user__search-status">
           {

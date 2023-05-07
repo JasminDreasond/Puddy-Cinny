@@ -23,7 +23,6 @@ import SidebarAvatar from '../../molecules/sidebar-avatar/SidebarAvatar';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
 import HomeIC from '../../../../public/res/ic/outlined/home.svg';
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import AddPinIC from '../../../../public/res/ic/outlined/add-pin.svg';
 import InviteIC from '../../../../public/res/ic/outlined/invite.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
@@ -149,7 +148,7 @@ function FeaturedTab() {
         tooltip="Direct Messages"
         active={selectedTab === cons.tabs.DIRECTS}
         onClick={() => selectTab(cons.tabs.DIRECTS)}
-        avatar={<Avatar iconSrc={UserIC} size="normal" />}
+        avatar={<Avatar faSrc="fa-solid fa-user" size="normal" />}
         notificationBadge={dmsNoti ? (
           <NotificationBadge
             alert={dmsNoti?.highlight > 0}
