@@ -23,7 +23,6 @@ import { MessageReply } from '../../molecules/message/Message';
 import StickerBoard from '../sticker-board/StickerBoard';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
-import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
 import SendIC from '../../../../public/res/ic/outlined/send.svg';
 import StickerIC from '../../../../public/res/ic/outlined/sticker.svg';
 import ShieldIC from '../../../../public/res/ic/outlined/shield.svg';
@@ -411,7 +410,7 @@ function RoomViewInput({
               openEmojiBoard(cords, addEmoji);
             }}
             tooltip="Emoji"
-            src={EmojiIC}
+            fa="fa-regular fa-face-smile"
           />
           <IconButton onClick={sendMessage} tooltip="Send" src={SendIC} />
         </div>

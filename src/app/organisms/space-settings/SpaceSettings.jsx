@@ -35,7 +35,6 @@ import PinIC from '../../../../public/res/ic/outlined/pin.svg';
 import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
 import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
 import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
-import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -56,7 +55,7 @@ const tabItems = [{
   text: tabText.MEMBERS,
   disabled: false,
 }, {
-  iconSrc: EmojiIC,
+  faSrc: "fa-regular fa-face-smile",
   text: tabText.EMOJIS,
   disabled: false,
 }, {

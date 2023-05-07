@@ -34,7 +34,6 @@ import KeyBackup from './KeyBackup';
 import DeviceManage from './DeviceManage';
 
 import SunIC from '../../../../public/res/ic/outlined/sun.svg';
-import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
 import LockIC from '../../../../public/res/ic/outlined/lock.svg';
 import BellIC from '../../../../public/res/ic/outlined/bell.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
@@ -287,7 +286,7 @@ const tabItems = [{
   render: () => <NotificationsSection />,
 }, {
   text: tabText.EMOJI,
-  iconSrc: EmojiIC,
+  faSrc: "fa-regular fa-face-smile",
   disabled: false,
   render: () => <EmojiSection />,
 }, {

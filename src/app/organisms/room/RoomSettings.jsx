@@ -29,7 +29,6 @@ import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
-import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
 import LockIC from '../../../../public/res/ic/outlined/lock.svg';
@@ -62,7 +61,7 @@ const tabItems = [{
   text: tabText.MEMBERS,
   disabled: false,
 }, {
-  iconSrc: EmojiIC,
+  faSrc: "fa-regular fa-face-smile",
   text: tabText.EMOJIS,
   disabled: false,
 }, {

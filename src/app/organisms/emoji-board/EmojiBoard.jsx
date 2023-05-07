@@ -23,14 +23,6 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import RecentClockIC from '../../../../public/res/ic/outlined/recent-clock.svg';
-import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
-import DogIC from '../../../../public/res/ic/outlined/dog.svg';
-import CupIC from '../../../../public/res/ic/outlined/cup.svg';
-import BallIC from '../../../../public/res/ic/outlined/ball.svg';
-import PhotoIC from '../../../../public/res/ic/outlined/photo.svg';
-import BulbIC from '../../../../public/res/ic/outlined/bulb.svg';
-import PeaceIC from '../../../../public/res/ic/outlined/peace.svg';
-import FlagIC from '../../../../public/res/ic/outlined/flag.svg';
 
 const ROW_EMOJIS_COUNT = 7;
 
@@ -293,19 +285,19 @@ function EmojiBoard({ onSelect, searchRef }) {
           </div>
           <div className="emoji-board__nav-twemoji">
             {[
-              [0, EmojiIC, 'Smilies'],
-              [1, DogIC, 'Animals'],
-              [2, CupIC, 'Food'],
-              [3, BallIC, 'Activities'],
-              [4, PhotoIC, 'Travel'],
-              [5, BulbIC, 'Objects'],
-              [6, PeaceIC, 'Symbols'],
-              [7, FlagIC, 'Flags'],
+              [0, "fa-regular fa-face-smile", 'Smilies'],
+              [1, "fa-solid fa-paw", 'Animals'],
+              [2, "fa-solid fa-mug-saucer", 'Food'],
+              [3, "fa-solid fa-futbol", 'Activities'],
+              [4, "fa-solid fa-image", 'Travel'],
+              [5, "fa-solid fa-lightbulb", 'Objects'],
+              [6, "fa-solid fa-peace", 'Symbols'],
+              [7, "fa-solid fa-flag", 'Flags'],
             ].map(([indx, ico, name]) => (
               <IconButton
                 onClick={() => openGroup(recentOffset + availableEmojis.length + indx)}
                 key={indx}
-                src={ico}
+                fa={ico}
                 tooltip={name}
                 tooltipPlacement="left"
               />
