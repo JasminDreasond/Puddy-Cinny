@@ -20,8 +20,6 @@ import navigation from '../../../client/state/navigation';
 import cons from '../../../client/state/cons';
 import DragDrop from '../../organisms/drag-drop/DragDrop';
 
-import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
-
 function Client() {
   const [isLoading, changeLoading] = useState(true);
   const [loadingMsg, setLoadingMsg] = useState('Heating up');
@@ -88,7 +86,7 @@ function Client() {
                 <MenuItem onClick={() => initMatrix.logout()}>Logout</MenuItem>
               </>
             )}
-            render={(toggle) => <IconButton size="extra-small" onClick={toggle} src={VerticalMenuIC} />}
+            render={(toggle) => <IconButton size="extra-small" onClick={toggle} fa="fa-solid fa-ellipsis-vertical" />}
           />
         </div>
         <Spinner />

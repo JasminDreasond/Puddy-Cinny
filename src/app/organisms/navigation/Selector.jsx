@@ -14,8 +14,6 @@ import RoomSelector from '../../molecules/room-selector/RoomSelector';
 import RoomOptions from '../../molecules/room-options/RoomOptions';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
-import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
-
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 
 function Selector({
@@ -71,7 +69,7 @@ function Selector({
           size="extra-small"
           tooltip="Options"
           tooltipPlacement="right"
-          src={VerticalMenuIC}
+          fa="fa-solid fa-ellipsis-vertical"
           onClick={openOptions}
         />
       )}

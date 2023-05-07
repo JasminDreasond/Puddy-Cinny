@@ -31,7 +31,6 @@ import Time from '../../atoms/time/Time';
 import ContextMenu, { MenuHeader, MenuItem, MenuBorder } from '../../atoms/context-menu/ContextMenu';
 import * as Media from '../media/Media';
 
-import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
 
@@ -609,7 +608,7 @@ const MessageOptions = React.memo(({
         render={(toggleMenu) => (
           <IconButton
             onClick={toggleMenu}
-            src={VerticalMenuIC}
+            fa="fa-solid fa-ellipsis-vertical"
             size="extra-small"
             tooltip="Options"
           />

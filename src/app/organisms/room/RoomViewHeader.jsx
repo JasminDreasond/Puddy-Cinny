@@ -24,7 +24,6 @@ import RoomOptions from '../../molecules/room-options/RoomOptions';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import PhoneIC from '../../../../public/res/ic/outlined/phone-call-svgrepo-com.svg';
-import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
 import BackArrowIC from '../../../../public/res/ic/outlined/chevron-left.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -101,7 +100,7 @@ function RoomViewHeader({ roomId }) {
       <IconButton
         onClick={openRoomOptions}
         tooltip="Options"
-        src={VerticalMenuIC}
+        fa="fa-solid fa-ellipsis-vertical"
       />
     </Header>
   );
