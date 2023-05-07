@@ -21,8 +21,6 @@ import Input from '../../atoms/input/Input';
 import SegmentedControl from '../../atoms/segmented-controls/SegmentedControls';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-
 function simplyfiMembers(members) {
   const mx = initMatrix.matrixClient;
   return members.map((member) => ({
@@ -193,7 +191,7 @@ function PeopleDrawer({ roomId }) {
         </div>
         <div className="people-drawer__sticky">
           <form onSubmit={(e) => e.preventDefault()} className="people-search">
-            <RawIcon size="small" src={SearchIC} />
+            <RawIcon size="small" fa="fa-solid fa-magnifying-glass" />
             <Input forwardRef={searchRef} type="text" onChange={handleSearch} placeholder="Search" required />
             {
               searchedMembers !== null

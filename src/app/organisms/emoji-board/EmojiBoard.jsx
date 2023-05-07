@@ -21,7 +21,6 @@ import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import ScrollView from '../../atoms/scroll/ScrollView';
 
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import RecentClockIC from '../../../../public/res/ic/outlined/recent-clock.svg';
 
 const ROW_EMOJIS_COUNT = 7;
@@ -307,7 +306,7 @@ function EmojiBoard({ onSelect, searchRef }) {
       </ScrollView>
       <div className="emoji-board__content">
         <div className="emoji-board__content__search">
-          <RawIcon size="small" src={SearchIC} />
+          <RawIcon size="small" fa="fa-solid fa-magnifying-glass" />
           <Input onChange={handleSearchChange} forwardRef={searchRef} placeholder="Search" />
         </div>
         <div className="emoji-board__content__emojis">

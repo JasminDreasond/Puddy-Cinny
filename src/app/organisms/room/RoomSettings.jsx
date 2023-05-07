@@ -27,11 +27,6 @@ import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
-import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
-import LockIC from '../../../../public/res/ic/outlined/lock.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 import ChevronTopIC from '../../../../public/res/ic/outlined/chevron-top.svg';
 
@@ -48,15 +43,15 @@ const tabText = {
 };
 
 const tabItems = [{
-  iconSrc: SettingsIC,
+  faSrc: "fa-solid fa-gear",
   text: tabText.GENERAL,
   disabled: false,
 }, {
-  iconSrc: SearchIC,
+  faSrc: "fa-solid fa-magnifying-glass",
   text: tabText.SEARCH,
   disabled: false,
 }, {
-  iconSrc: UserIC,
+  faSrc: "fa-solid fa-users",
   text: tabText.MEMBERS,
   disabled: false,
 }, {
@@ -64,11 +59,11 @@ const tabItems = [{
   text: tabText.EMOJIS,
   disabled: false,
 }, {
-  iconSrc: ShieldUserIC,
+  faSrc: "fa-solid fa-shield",
   text: tabText.PERMISSIONS,
   disabled: false,
 }, {
-  iconSrc: LockIC,
+  faSrc: "fa-solid fa-lock",
   text: tabText.SECURITY,
   disabled: false,
 }];

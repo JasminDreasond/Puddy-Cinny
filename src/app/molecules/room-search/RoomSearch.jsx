@@ -14,8 +14,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import { Message } from '../message/Message';
 
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-
 import { useStore } from '../../hooks/useStore';
 
 const roomIdToBackup = new Map();
@@ -117,7 +115,7 @@ function RoomSearch({ roomId }) {
 
   const renderTimeline = (timeline) => (
     <div className="room-search__result-item" key={timeline[0].getId()}>
-      { timeline.map((mEvent) => {
+      {timeline.map((mEvent) => {
         const id = mEvent.getId();
         return (
           <React.Fragment key={id}>
@@ -144,7 +142,7 @@ function RoomSearch({ roomId }) {
             disabled={isRoomEncrypted}
             autoFocus
           />
-          <Button iconSrc={SearchIC} variant="primary" type="submit">Search</Button>
+          <Button faSrc="fa-solid fa-magnifying-glass" variant="primary" type="submit">Search</Button>
         </div>
         {searchData?.results.length > 0 && (
           <Text>{`${searchData.count} results for "${searchTerm}"`}</Text>
@@ -153,7 +151,7 @@ function RoomSearch({ roomId }) {
           <div className="room-search__help">
             {status.type === cons.status.IN_FLIGHT && <Spinner />}
             {status.type === cons.status.IN_FLIGHT && <Text>Searching room messages...</Text>}
-            {status.type === cons.status.PRE_FLIGHT && <RawIcon src={SearchIC} size="large" />}
+            {status.type === cons.status.PRE_FLIGHT && <RawIcon fa="fa-solid fa-magnifying-glass" size="large" />}
             {status.type === cons.status.PRE_FLIGHT && <Text>Search room messages</Text>}
             {status.type === cons.status.ERROR && <Text>Failed to search messages</Text>}
           </div>

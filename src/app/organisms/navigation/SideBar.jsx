@@ -25,7 +25,6 @@ import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 import HomeIC from '../../../../public/res/ic/outlined/home.svg';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import AddPinIC from '../../../../public/res/ic/outlined/add-pin.svg';
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import InviteIC from '../../../../public/res/ic/outlined/invite.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
 
@@ -369,7 +368,7 @@ function SideBar() {
           <SidebarAvatar
             tooltip="Search"
             onClick={() => openSearch()}
-            avatar={<Avatar iconSrc={SearchIC} size="normal" />}
+            avatar={<Avatar faSrc="fa-solid fa-magnifying-glass" size="normal" />}
           />
           {totalInvites !== 0 && (
             <SidebarAvatar

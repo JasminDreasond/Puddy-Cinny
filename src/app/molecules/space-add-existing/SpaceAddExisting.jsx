@@ -20,8 +20,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import RoomSelector from '../room-selector/RoomSelector';
 import Dialog from '../dialog/Dialog';
 
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-
 import { useStore } from '../../hooks/useStore';
 
 function SpaceAddExistingContent({ roomId }) {
@@ -114,7 +112,7 @@ function SpaceAddExistingContent({ roomId }) {
   return (
     <>
       <form onSubmit={(ev) => { ev.preventDefault(); }}>
-        <RawIcon size="small" src={SearchIC} />
+        <RawIcon size="small" fa="fa-solid fa-magnifying-glass" />
         <Input
           name="searchInput"
           onChange={handleSearch}

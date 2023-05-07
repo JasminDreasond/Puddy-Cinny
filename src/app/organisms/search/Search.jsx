@@ -17,8 +17,6 @@ import RawModal from '../../atoms/modal/RawModal';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import RoomSelector from '../../molecules/room-selector/RoomSelector';
 
-import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-
 function useVisiblityToggle(setResult) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -204,7 +202,7 @@ function Search() {
     >
       <div className="search-dialog">
         <form className="search-dialog__input" onSubmit={(e) => { e.preventDefault(); openFirstResult(); }}>
-          <RawIcon src={SearchIC} size="small" />
+          <RawIcon fa="fa-solid fa-magnifying-glass" size="small" />
           <Input
             onChange={handleOnChange}
             forwardRef={searchRef}
