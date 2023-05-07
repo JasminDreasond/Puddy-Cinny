@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import EventEmitter from 'events';
 import * as sdk from 'matrix-js-sdk';
 import Olm from '@matrix-org/olm';

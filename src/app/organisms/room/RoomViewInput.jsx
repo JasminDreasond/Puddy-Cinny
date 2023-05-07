@@ -57,6 +57,7 @@ function RoomViewInput({
       roomsInput.removeListener(cons.events.roomsInput.ATTACHMENT_SET, setAttachment);
       viewEvent.removeListener('focus_msg_input', requestFocusInput);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sendIsTyping = (isT) => {
@@ -163,7 +164,9 @@ function RoomViewInput({
       if (textAreaRef?.current === null) return;
 
       const msg = textAreaRef.current.value;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       textAreaRef.current.style.height = 'unset';
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       inputBaseRef.current.style.backgroundImage = 'unset';
       if (msg.trim() === '') {
         roomsInput.setMessage(roomId, '');
@@ -171,6 +174,7 @@ function RoomViewInput({
       }
       roomsInput.setMessage(roomId, msg);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   const sendBody = async (body, options) => {
@@ -186,7 +190,9 @@ function RoomViewInput({
     }
     textAreaRef.current.disabled = true;
     textAreaRef.current.style.cursor = 'not-allowed';
-    await roomsInput.sendInput(roomId, opt);
+    await roomsInput.sendInput(roomId, opt).catch(err => {
+      alert(err.message);
+    });
     textAreaRef.current.disabled = false;
     textAreaRef.current.style.cursor = 'unset';
     focusInput();

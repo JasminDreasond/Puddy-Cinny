@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, {
   useState, useEffect, useCallback, useRef,
@@ -167,6 +168,7 @@ const MessageReplyWrapper = React.memo(({ roomTimeline, eventId }) => {
     return () => {
       isMountedRef.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const focusReply = (ev) => {
@@ -290,6 +292,7 @@ function MessageEdit({ body, onSave, onCancel }) {
     // makes the cursor end up at the end of the line instead of the beginning
     editInputRef.current.value = '';
     editInputRef.current.value = body;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleKeyDown = (e) => {
@@ -785,11 +788,13 @@ function Message({
   // Edit Data
   const edit = useCallback(() => {
     setEdit(eventId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Reply Data
   const reply = useCallback(() => {
     replyTo(senderId, mEvent.getId(), body, customHTML);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [body, customHTML]);
 
   // Emoji Type
