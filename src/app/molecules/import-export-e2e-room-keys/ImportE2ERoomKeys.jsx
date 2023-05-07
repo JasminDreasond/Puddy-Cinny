@@ -11,8 +11,6 @@ import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import Spinner from '../../atoms/spinner/Spinner';
 
-import CirclePlusIC from '../../../../public/res/ic/outlined/circle-plus.svg';
-
 import { useStore } from '../../hooks/useStore';
 
 function ImportE2ERoomKeys() {
@@ -108,9 +106,9 @@ function ImportE2ERoomKeys() {
       <input ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} type="file" />
 
       <form className="import-e2e-room-keys__form" onSubmit={(e) => { e.preventDefault(); importE2ERoomKeys(); }}>
-        { keyFile !== null && (
+        {keyFile !== null && (
           <div className="import-e2e-room-keys__file">
-            <IconButton onClick={removeImportKeysFile} src={CirclePlusIC} tooltip="Remove file" />
+            <IconButton onClick={removeImportKeysFile} fa="fa-solid fa-circle-plus" tooltip="Remove file" />
             <Text>{keyFile.name}</Text>
           </div>
         )}
@@ -118,7 +116,7 @@ function ImportE2ERoomKeys() {
         <Input forwardRef={passwordRef} type="password" placeholder="Password" required />
         <Button disabled={status.isOngoing} variant="primary" type="submit">Decrypt</Button>
       </form>
-      { status.type === cons.status.IN_FLIGHT && (
+      {status.type === cons.status.IN_FLIGHT && (
         <div className="import-e2e-room-keys__process">
           <Spinner size="small" />
           <Text variant="b2">{status.msg}</Text>

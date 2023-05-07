@@ -9,7 +9,6 @@ import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import IconButton from '../../atoms/button/IconButton';
-import CirclePlusIC from '../../../../public/res/ic/outlined/circle-plus.svg';
 
 function ImagePackUpload({ onUpload }) {
   const mx = initMatrix.matrixClient;
@@ -55,7 +54,7 @@ function ImagePackUpload({ onUpload }) {
         imgFile
           ? (
             <div className="image-pack-upload__file">
-              <IconButton onClick={handleRemove} src={CirclePlusIC} tooltip="Remove file" />
+              <IconButton onClick={handleRemove} fa="fa-solid fa-circle-plus" tooltip="Remove file" />
               <Text>{imgFile.name}</Text>
             </div>
           )

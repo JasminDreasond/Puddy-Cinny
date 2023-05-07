@@ -23,7 +23,6 @@ import { MessageReply } from '../../molecules/message/Message';
 import StickerBoard from '../sticker-board/StickerBoard';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
-import CirclePlusIC from '../../../../public/res/ic/outlined/circle-plus.svg';
 import EmojiIC from '../../../../public/res/ic/outlined/emoji.svg';
 import SendIC from '../../../../public/res/ic/outlined/send.svg';
 import StickerIC from '../../../../public/res/ic/outlined/sticker.svg';
@@ -362,7 +361,7 @@ function RoomViewInput({
       <>
         <div className={`room-input__option-container${attachment === null ? '' : ' room-attachment__option'}`}>
           <input onChange={uploadFileChange} style={{ display: 'none' }} ref={uploadInputRef} type="file" />
-          <IconButton onClick={handleUploadClick} tooltip={attachment === null ? 'Upload' : 'Cancel'} src={CirclePlusIC} />
+          <IconButton onClick={handleUploadClick} tooltip={attachment === null ? 'Upload' : 'Cancel'} fa="fa-solid fa-circle-plus" />
         </div>
         <div ref={inputBaseRef} className="room-input__input-container">
           {roomTimeline.isEncrypted() && <RawIcon size="extra-small" src={ShieldIC} />}
