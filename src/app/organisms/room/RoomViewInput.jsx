@@ -23,13 +23,6 @@ import { MessageReply } from '../../molecules/message/Message';
 import StickerBoard from '../sticker-board/StickerBoard';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
-import SendIC from '../../../../public/res/ic/outlined/send.svg';
-import StickerIC from '../../../../public/res/ic/outlined/sticker.svg';
-import ShieldIC from '../../../../public/res/ic/outlined/shield.svg';
-import VLCIC from '../../../../public/res/ic/outlined/vlc.svg';
-import VolumeFullIC from '../../../../public/res/ic/outlined/volume-full.svg';
-import FileIC from '../../../../public/res/ic/outlined/file.svg';
-
 import commands from './commands';
 
 const CMD_REGEX = /(^\/|:|@)(\S*)$/;
@@ -363,7 +356,7 @@ function RoomViewInput({
           <IconButton onClick={handleUploadClick} tooltip={attachment === null ? 'Upload' : 'Cancel'} fa="fa-solid fa-circle-plus" />
         </div>
         <div ref={inputBaseRef} className="room-input__input-container">
-          {roomTimeline.isEncrypted() && <RawIcon size="extra-small" src={ShieldIC} />}
+          {roomTimeline.isEncrypted() && <RawIcon size="extra-small" fa="bi bi-shield-lock-fill" />}
           <ScrollView autoHide>
             <Text className="room-input__textarea-wrapper">
               <TextareaAutosize
@@ -400,7 +393,7 @@ function RoomViewInput({
               );
             }}
             tooltip="Sticker"
-            src={StickerIC}
+            fa="fa-solid fa-note-sticky"
           />
           <IconButton
             onClick={(e) => {
@@ -412,7 +405,7 @@ function RoomViewInput({
             tooltip="Emoji"
             fa="fa-solid fa-face-smile"
           />
-          <IconButton onClick={sendMessage} tooltip="Send" src={SendIC} />
+          <IconButton onClick={sendMessage} tooltip="Send" fa="fa-solid fa-paper-plane" />
         </div>
       </>
     );
@@ -424,9 +417,9 @@ function RoomViewInput({
       <div className="room-attachment">
         <div className={`room-attachment__preview${fileType !== 'image' ? ' room-attachment__icon' : ''}`}>
           {fileType === 'image' && <img alt={attachment.name} src={URL.createObjectURL(attachment)} />}
-          {fileType === 'video' && <RawIcon src={VLCIC} />}
-          {fileType === 'audio' && <RawIcon src={VolumeFullIC} />}
-          {fileType !== 'image' && fileType !== 'video' && fileType !== 'audio' && <RawIcon src={FileIC} />}
+          {fileType === 'video' && <RawIcon fa="fa-solid fa-film" />}
+          {fileType === 'audio' && <RawIcon fa="fa-solid fa-volume-high" />}
+          {fileType !== 'image' && fileType !== 'video' && fileType !== 'audio' && <RawIcon fa="fa-solid fa-file" />}
         </div>
         <div className="room-attachment__info">
           <Text variant="b1">{attachment.name}</Text>
