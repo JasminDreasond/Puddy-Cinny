@@ -30,8 +30,6 @@ import Time from '../../atoms/time/Time';
 import ContextMenu, { MenuHeader, MenuItem, MenuBorder } from '../../atoms/context-menu/ContextMenu';
 import * as Media from '../media/Media';
 
-import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
-
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
 import { html, plain } from '../../../util/markdown';
@@ -575,7 +573,7 @@ const MessageOptions = React.memo(({
               Read receipts
             </MenuItem>
             <MenuItem
-              iconSrc={CmdIC}
+              faSrc="fa-solid fa-code"
               onClick={() => handleOpenViewSource(mEvent, roomTimeline)}
             >
               View source
