@@ -5,7 +5,6 @@ import React, {
 import PropTypes from 'prop-types';
 import './Message.scss';
 
-import { renderToString } from 'react-dom/server'
 import { twemojify } from '../../../util/twemojify';
 
 import initMatrix from '../../../client/initMatrix';
@@ -31,7 +30,6 @@ import Time from '../../atoms/time/Time';
 import ContextMenu, { MenuHeader, MenuItem, MenuBorder } from '../../atoms/context-menu/ContextMenu';
 import * as Media from '../media/Media';
 
-import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
@@ -571,7 +569,7 @@ const MessageOptions = React.memo(({
           <>
             <MenuHeader>Options</MenuHeader>
             <MenuItem
-              iconSrc={TickMarkIC}
+              faSrc="fa-solid fa-check-double"
               onClick={() => openReadReceipts(roomId, roomTimeline.getEventReaders(mEvent))}
             >
               Read receipts

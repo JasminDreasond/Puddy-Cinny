@@ -11,7 +11,6 @@ import { markAsRead } from '../../../client/action/notifications';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 import RoomNotification from '../room-notification/RoomNotification';
 
-import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 
@@ -46,7 +45,7 @@ function RoomOptions({ roomId, afterOptionSelect }) {
   return (
     <div style={{ maxWidth: '256px' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
-      <MenuItem iconSrc={TickMarkIC} onClick={handleMarkAsRead}>Mark as read</MenuItem>
+      <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         iconSrc={AddUserIC}
         onClick={handleInviteClick}

@@ -12,7 +12,6 @@ import Button from '../../atoms/button/Button';
 
 import MessageIC from '../../../../public/res/ic/outlined/message.svg';
 import MessageUnreadIC from '../../../../public/res/ic/outlined/message-unread.svg';
-import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 
 import { getUsersActionJsx } from './common';
 
@@ -101,7 +100,7 @@ function RoomViewFloating({
         <Button iconSrc={MessageUnreadIC} onClick={jumpToEvent} variant="primary">
           <Text variant="b3" weight="medium">Jump to unread messages</Text>
         </Button>
-        <Button iconSrc={TickMarkIC} onClick={cancelJumpToEvent} variant="primary">
+        <Button faSrc="fa-solid fa-check-double" onClick={cancelJumpToEvent} variant="primary">
           <Text variant="b3" weight="bold">Mark as read</Text>
         </Button>
       </div>

@@ -18,7 +18,6 @@ import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 
 import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
 import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
-import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
@@ -83,7 +82,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
   return (
     <div style={{ maxWidth: 'calc(var(--navigation-drawer-width) - var(--sp-normal))' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
-      <MenuItem iconSrc={TickMarkIC} onClick={handleMarkAsRead}>Mark as read</MenuItem>
+      <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         onClick={handleCategorizeClick}
         iconSrc={isCategorized ? CategoryFilledIC : CategoryIC}
