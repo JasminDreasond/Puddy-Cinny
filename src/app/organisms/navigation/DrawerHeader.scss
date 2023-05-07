@@ -1,17 +1,6 @@
 @use '../../partials/flex';
 @use '../../partials/dir';
 
-.drawer-breadcrumb img,
-.message--body-only img,
-.timeline-change img,
-.message--full img {
-  height: 21px !important;
-}
-
-.image-container img {
-  height: auto !important;
-}
-
 .drawer-header__btn {
   min-width: 0;
   @extend .cp-fx__row--s-c;

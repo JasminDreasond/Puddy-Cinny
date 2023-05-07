@@ -1,3 +1,16 @@
+.drawer-breadcrumb img,
+.message--body-only img,
+.timeline-change img,
+.message--full img {
+  height: 21px !important;
+}
+
+.image-container img,
+.sticker-container img,
+.avatar-container img {
+  height: auto !important;
+}
+
 @mixin font($type) {
   font-size: var(--fs-#{$type});
   letter-spacing: var(--ls-#{$type});
@@ -5,7 +18,7 @@
 
   & img.emoji,
   & img[data-mx-emoticon] {
-    height: calc(var(--lh-emoji-#{$type}) - 0.25rem);
+    height: calc(var(--lh-emoji-#{$type}) - 0.25rem) !important;
   }
 }
 
