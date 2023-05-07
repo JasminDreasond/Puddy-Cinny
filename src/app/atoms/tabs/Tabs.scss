@@ -13,12 +13,12 @@
 
 .tab-item {
   flex-shrink: 0;
-  
+
   @include dir.side(padding, var(--sp-normal), 24px);
   border-radius: 0;
   height: 100%;
   box-shadow: none;
-  border-radius: var(--bo-radius) var(--bo-radius)   0 0;
+  border-radius: var(--bo-radius) var(--bo-radius) 0 0;
 
   &:focus,
   &:active {
@@ -30,6 +30,9 @@
     --bs-tab-selected: inset 0 -2px 0 var(--tc-surface-high);
     box-shadow: var(--bs-tab-selected);
 
+    & .ic-fa {
+      color: var(--ic-surface-high);
+    }
     & .ic-raw {
       background-color: var(--ic-surface-high);
     }

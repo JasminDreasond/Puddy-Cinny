@@ -22,11 +22,11 @@
   & .text {
     @extend .cp-txt__ellipsis;
   }
-  
+
   &--icon {
     @include dir.side(padding, var(--sp-tight), var(--sp-loose));
-
   }
+  .ic-fa,
   .ic-raw {
     @include dir.side(margin, 0, var(--sp-extra-tight));
     flex-shrink: 0;
@@ -37,11 +37,13 @@
   .text {
     color: $textColor;
   }
+  .ic-fa {
+    color: $iconColor;
+  }
   .ic-raw {
     background-color: $iconColor;
   }
 }
-
 
 .btn-surface {
   box-shadow: var(--bs-surface-border);

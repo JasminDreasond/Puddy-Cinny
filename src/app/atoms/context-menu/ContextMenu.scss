@@ -45,7 +45,7 @@
 
 .context-menu__item {
   display: flex;
-  button[class^="btn"] {
+  button[class^='btn'] {
     @extend .cp-fx__item-one;
     justify-content: flex-start;
     border-radius: 0;
@@ -53,17 +53,14 @@
     white-space: nowrap;
     padding: var(--sp-extra-tight) var(--sp-normal);
 
+    & > .ic-fa,
     & > .ic-raw {
       @include dir.side(margin, 0, var(--sp-tight));
     }
 
     // if item doesn't have icon
     .text:first-child {
-      @include dir.side(
-        margin,
-        calc(var(--ic-small) + var(--sp-tight)),
-        0
-      );
+      @include dir.side(margin, calc(var(--ic-small) + var(--sp-tight)), 0);
     }
   }
   .btn-surface:focus {

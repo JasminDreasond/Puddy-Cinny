@@ -12,6 +12,9 @@
 }
 
 @mixin color($color) {
+  .ic-fa {
+    color: $color;
+  }
   .ic-raw {
     background-color: $color;
   }

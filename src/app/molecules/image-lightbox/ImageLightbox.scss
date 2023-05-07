@@ -12,6 +12,9 @@
   & .text {
     color: white;
   }
+  & .ic-fa {
+    color: white;
+  }
   & .ic-raw {
     background-color: white;
   }
@@ -20,7 +23,6 @@
 .image-lightbox__overlay {
   background-color: var(--bg-overlay-low);
 }
-
 
 .image-lightbox__header > *,
 .image-lightbox__content > * {

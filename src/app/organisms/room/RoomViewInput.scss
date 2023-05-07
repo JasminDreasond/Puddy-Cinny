@@ -17,16 +17,17 @@
     display: flex;
     align-items: center;
 
-    margin: 0 calc(var(--sp-tight)  - 2px);
+    margin: 0 calc(var(--sp-tight) - 2px);
     background-color: var(--bg-surface-low);
     box-shadow: var(--bs-surface-border);
     border-radius: var(--bo-radius);
 
-    & > .ic-raw {
+    & > .ic-fa,
+    .ic-raw {
       transform: scale(0.8);
       margin: 0 var(--sp-extra-tight);
     }
- 
+
     & .scrollbar {
       max-height: 50vh;
       flex: 1;
@@ -87,10 +88,16 @@
   &__option button {
     transition: transform 200ms ease-in-out;
     transform: translateY(-48px);
+    & .ic-fa,
     & .ic-raw {
       transition: transform 200ms ease-in-out;
       transform: rotate(45deg);
+    }
+    & .ic-raw {
       background-color: var(--bg-caution);
+    }
+    & .ic-fa {
+      color: var(--bg-caution);
     }
   }
 }

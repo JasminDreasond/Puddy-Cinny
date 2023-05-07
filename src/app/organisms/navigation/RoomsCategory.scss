@@ -20,18 +20,28 @@
         height: 16px;
         background-color: var(--ic-surface-low);
       }
+      & .ic-fa {
+        font-size: 16px;
+        color: var(--ic-surface-low);
+      }
     }
   }
   &__toggle {
     @extend .cp-fx__item-one;
     padding: var(--sp-extra-tight) var(--sp-tight);
     cursor: pointer;
-    
+
     & .ic-raw {
       flex-shrink: 0;
       width: 12px;
       height: 12px;
       background-color: var(--ic-surface-low);
+      @include dir.side(margin, 0, var(--sp-ultra-tight));
+    }
+    & .ic-fa {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--ic-surface-low);
       @include dir.side(margin, 0, var(--sp-ultra-tight));
     }
     & .text {
@@ -46,7 +56,7 @@
   &__content:first-child {
     margin-top: var(--sp-extra-tight);
   }
-  
+
   & .room-selector {
     width: calc(100% - var(--sp-extra-tight));
     @include dir.side(margin, auto, 0);

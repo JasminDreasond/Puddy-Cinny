@@ -3,7 +3,7 @@
 
 .space-add-existing {
   height: 100%;
-  
+
   .dialog__content-container {
     padding: 0;
     padding-bottom: 80px;
@@ -25,10 +25,12 @@
     z-index: 999;
     background-color: var(--bg-surface);
 
+    & > .ic-fa,
     & > .ic-raw,
     & > .ic-btn {
       position: absolute;
     }
+    & > .ic-fa,
     & > .ic-raw {
       margin: 0 var(--sp-tight);
     }

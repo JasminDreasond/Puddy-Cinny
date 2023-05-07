@@ -39,7 +39,6 @@
   }
 }
 
-
 .pw__drawer__content,
 .pw__content-container {
   padding-top: var(--sp-extra-tight);
@@ -77,6 +76,7 @@
 
   & .context-menu__item > button {
     border-radius: var(--bo-radius);
+    & .ic-fa,
     & .ic-raw {
       @include dir.side(margin, 0, var(--sp-tight));
     }
