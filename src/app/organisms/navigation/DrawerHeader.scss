@@ -2,7 +2,9 @@
 @use '../../partials/dir';
 
 .drawer-breadcrumb img,
-.message--body-only img {
+.message--body-only img,
+.timeline-change img,
+.message--full img {
   height: 21px !important;
 }
 
