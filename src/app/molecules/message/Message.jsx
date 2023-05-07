@@ -5,6 +5,7 @@ import React, {
 import PropTypes from 'prop-types';
 import './Message.scss';
 
+import { renderToString } from 'react-dom/server'
 import { twemojify } from '../../../util/twemojify';
 
 import initMatrix from '../../../client/initMatrix';
@@ -37,6 +38,7 @@ import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
+import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
@@ -914,6 +916,9 @@ function Message({
   }
 
   // Bad Message
+  // CrossIC
+  const errorMessage = ` <strong>Unable to decrypt message.</strong>`;
+  isCustomHTML = true;
   return (
 
     <div className={className.join(' ')}>
@@ -946,7 +951,7 @@ function Message({
         <MessageBody
           senderName={username}
           isCustomHTML={isCustomHTML}
-          body={body}
+          body={errorMessage}
           msgType={msgType}
           isEdited={isEdited}
         />
