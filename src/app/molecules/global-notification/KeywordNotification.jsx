@@ -15,7 +15,6 @@ import SettingTile from '../setting-tile/SettingTile';
 import NotificationSelector from './NotificationSelector';
 
 import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { useAccountData } from '../../hooks/useAccountData';
 import {
@@ -173,7 +172,7 @@ function GlobalNotification() {
         title="Message containing my display name"
         options={(
           <Button onClick={(evt) => onSelect(evt, DISPLAY_NAME)} iconSrc={ChevronBottomIC}>
-            { typeToLabel[rulesToType[DISPLAY_NAME]] }
+            {typeToLabel[rulesToType[DISPLAY_NAME]]}
           </Button>
         )}
         content={<Text variant="b3">Default notification settings for all message containing your display name.</Text>}
@@ -182,7 +181,7 @@ function GlobalNotification() {
         title="Message containing my username"
         options={(
           <Button onClick={(evt) => onSelect(evt, USERNAME)} iconSrc={ChevronBottomIC}>
-            { typeToLabel[rulesToType[USERNAME]] }
+            {typeToLabel[rulesToType[USERNAME]]}
           </Button>
         )}
         content={<Text variant="b3">Default notification settings for all message containing your username.</Text>}
@@ -196,7 +195,7 @@ function GlobalNotification() {
         )}
         content={<Text variant="b3">Default notification settings for all messages containing @room.</Text>}
       />
-      { rulesToType[KEYWORD] && (
+      {rulesToType[KEYWORD] && (
         <SettingTile
           title="Message containing keywords"
           options={(
@@ -220,10 +219,10 @@ function GlobalNotification() {
               <div>
                 {keywordRules.map((rule) => (
                   <Chip
-                    iconSrc={CrossIC}
+                    faSrc="fa-solid fa-xmark"
                     key={rule.rule_id}
                     text={rule.pattern}
-                    iconColor={CrossIC}
+                    // iconColor={CrossIC}
                     onClick={() => removeKeyword(rule)}
                   />
                 ))}
