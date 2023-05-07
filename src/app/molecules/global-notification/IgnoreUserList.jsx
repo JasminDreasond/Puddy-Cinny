@@ -11,8 +11,6 @@ import Button from '../../atoms/button/Button';
 import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SettingTile from '../setting-tile/SettingTile';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
-
 import { useAccountData } from '../../hooks/useAccountData';
 
 function IgnoreUserList() {
@@ -45,10 +43,10 @@ function IgnoreUserList() {
               <div>
                 {ignoredUsers.map((uId) => (
                   <Chip
-                    iconSrc={CrossIC}
+                    faSrc="fa-solid fa-xmark"
                     key={uId}
                     text={uId}
-                    iconColor={CrossIC}
+                    // iconColor={CrossIC}
                     onClick={() => roomActions.unignore([uId])}
                   />
                 ))}

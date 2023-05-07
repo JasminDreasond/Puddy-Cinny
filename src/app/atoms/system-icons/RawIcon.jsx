@@ -21,7 +21,7 @@ function RawIcon({ color, size, src, isImage, fa }) {
   }
 
   if (color !== null) style.fontColor = color;
-  return <i className={`ic-base ic-fa ic-raw-${size} ${fa}`} style={style} />;
+  return <i className={`ic-base ic-fa ic-fa-${size} ${fa}`} style={style} />;
 
 }
 
