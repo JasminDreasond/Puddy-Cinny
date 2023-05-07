@@ -33,11 +33,6 @@ import CrossSigning from './CrossSigning';
 import KeyBackup from './KeyBackup';
 import DeviceManage from './DeviceManage';
 
-import SunIC from '../../../../public/res/ic/outlined/sun.svg';
-import LockIC from '../../../../public/res/ic/outlined/lock.svg';
-import InfoIC from '../../../../public/res/ic/outlined/info.svg';
-import PowerIC from '../../../../public/res/ic/outlined/power.svg';
-
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
 function AppearanceSection() {
@@ -338,7 +333,7 @@ function Settings() {
       title={<Text variant="s1" weight="medium" primary>Settings</Text>}
       contentOptions={(
         <>
-          <Button variant="danger" iconSrc={PowerIC} onClick={handleLogout}>
+          <Button variant="danger" faSrc="fa-solid fa-power-off" onClick={handleLogout}>
             Logout
           </Button>
           <IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />
