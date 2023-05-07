@@ -10,9 +10,6 @@ import { markAsRead } from '../../../client/action/notifications';
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 
-import MessageIC from '../../../../public/res/ic/outlined/message.svg';
-import MessageUnreadIC from '../../../../public/res/ic/outlined/message-unread.svg';
-
 import { getUsersActionJsx } from './common';
 
 function useJumpToEvent(roomTimeline) {
@@ -97,7 +94,7 @@ function RoomViewFloating({
   return (
     <>
       <div className={`room-view__unread ${isJumpToEvent ? 'room-view__unread--open' : ''}`}>
-        <Button iconSrc={MessageUnreadIC} onClick={jumpToEvent} variant="primary">
+        <Button faSrc="bi bi-chat-left-text-fill" onClick={jumpToEvent} variant="primary">
           <Text variant="b3" weight="medium">Jump to unread messages</Text>
         </Button>
         <Button faSrc="fa-solid fa-check-double" onClick={cancelJumpToEvent} variant="primary">
@@ -109,7 +106,7 @@ function RoomViewFloating({
         <Text variant="b2">{getUsersActionJsx(roomId, [...typingMembers], 'typing...')}</Text>
       </div>
       <div className={`room-view__STB${isAtBottom ? '' : ' room-view__STB--open'}`}>
-        <Button iconSrc={MessageIC} onClick={handleScrollToBottom}>
+        <Button faSrc="bi bi-chat-left-fill" onClick={handleScrollToBottom}>
           <Text variant="b3" weight="medium">Jump to latest</Text>
         </Button>
       </div>
