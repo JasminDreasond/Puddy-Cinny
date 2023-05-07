@@ -26,7 +26,6 @@ import HashPlusIC from '../../../../public/res/ic/outlined/hash-plus.svg';
 import HashGlobeIC from '../../../../public/res/ic/outlined/hash-globe.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 import SpacePlusIC from '../../../../public/res/ic/outlined/space-plus.svg';
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 
 export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
   const mx = initMatrix.matrixClient;
@@ -52,7 +51,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       >
         Create new room
       </MenuItem>
-      { !spaceId && (
+      {!spaceId && (
         <MenuItem
           iconSrc={HashGlobeIC}
           onClick={() => { afterOptionSelect(); openPublicRooms(); }}
@@ -60,7 +59,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
           Explore public rooms
         </MenuItem>
       )}
-      { !spaceId && (
+      {!spaceId && (
         <MenuItem
           iconSrc={PlusIC}
           onClick={() => { afterOptionSelect(); openJoinAlias(); }}
@@ -68,7 +67,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
           Join with address
         </MenuItem>
       )}
-      { spaceId && (
+      {spaceId && (
         <MenuItem
           iconSrc={PlusIC}
           onClick={() => { afterOptionSelect(); openSpaceAddExisting(spaceId); }}
@@ -77,7 +76,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
           Add existing
         </MenuItem>
       )}
-      { spaceId && (
+      {spaceId && (
         <MenuItem
           onClick={() => { afterOptionSelect(); openSpaceManage(spaceId); }}
           iconSrc={HashSearchIC}
@@ -134,7 +133,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
           <TitleWrapper>
             <Text variant="s1" weight="medium" primary>{twemojify(spaceName)}</Text>
           </TitleWrapper>
-          <RawIcon size="small" src={ChevronBottomIC} />
+          <RawIcon size="small" fa="fa-solid fa-check" />
         </button>
       ) : (
         <TitleWrapper>
@@ -142,8 +141,8 @@ function DrawerHeader({ selectedTab, spaceId }) {
         </TitleWrapper>
       )}
 
-      { isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" src={PlusIC} size="small" /> }
-      { !isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" src={PlusIC} size="small" /> }
+      {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" src={PlusIC} size="small" />}
+      {!isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" src={PlusIC} size="small" />}
     </Header>
   );
 }

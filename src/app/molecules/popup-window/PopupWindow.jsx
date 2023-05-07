@@ -11,8 +11,6 @@ import Header, { TitleWrapper } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import RawModal from '../../atoms/modal/RawModal';
 
-import ChevronLeftIC from '../../../../public/res/ic/outlined/chevron-left.svg';
-
 function PWContentSelector({
   selected, variant, iconSrc,
   type, onClick, children,
@@ -69,7 +67,7 @@ function PopupWindow({
         {haveDrawer && (
           <div className="pw__drawer">
             <Header>
-              <IconButton size="small" src={ChevronLeftIC} onClick={onRequestClose} tooltip="Back" />
+              <IconButton size="small" fa="fa-solid fa-chevron-left" onClick={onRequestClose} tooltip="Back" />
               <TitleWrapper>
                 {
                   typeof title === 'string'

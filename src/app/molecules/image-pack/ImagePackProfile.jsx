@@ -13,7 +13,6 @@ import Input from '../../atoms/input/Input';
 import ImageUpload from '../image-upload/ImageUpload';
 import ImagePackUsageSelector from './ImagePackUsageSelector';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 
 function ImagePackProfile({
@@ -92,7 +91,7 @@ function ImagePackProfile({
         <Text variant="b3">Pack usage</Text>
         <Button
           onClick={onUsageChange ? handleUsageSelect : undefined}
-          iconSrc={onUsageChange ? ChevronBottomIC : null}
+          faSrc={onUsageChange ? "fa-solid fa-check" : null}
         >
           <Text>
             {usage === 'emoticon' && 'Emoji'}

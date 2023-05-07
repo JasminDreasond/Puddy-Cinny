@@ -12,7 +12,6 @@ import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import ImagePackUsageSelector from './ImagePackUsageSelector';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 
@@ -47,7 +46,7 @@ function ImagePackItem({
           {onDelete && <IconButton tooltip="Delete" size="extra-small" src={BinIC} onClick={() => onDelete(shortcode)} />}
         </div>
         <Button onClick={onUsageChange ? handleUsageSelect : undefined}>
-          {onUsageChange && <RawIcon src={ChevronBottomIC} size="extra-small" />}
+          {onUsageChange && <RawIcon fa="fa-solid fa-check" size="extra-small" />}
           <Text variant="b2">
             {usage === 'emoticon' && 'Emoji'}
             {usage === 'sticker' && 'Sticker'}

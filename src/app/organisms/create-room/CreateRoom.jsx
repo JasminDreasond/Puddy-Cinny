@@ -30,7 +30,6 @@ import HashGlobeIC from '../../../../public/res/ic/outlined/hash-globe.svg';
 import SpaceIC from '../../../../public/res/ic/outlined/space.svg';
 import SpaceLockIC from '../../../../public/res/ic/outlined/space-lock.svg';
 import SpaceGlobeIC from '../../../../public/res/ic/outlined/space-globe.svg';
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 
 function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
   const [joinRule, setJoinRule] = useState(parentId ? 'restricted' : 'invite');
@@ -168,7 +167,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
         <SettingTile
           title="Visibility"
           options={(
-            <Button onClick={handleJoinRule} iconSrc={ChevronBottomIC}>
+            <Button onClick={handleJoinRule} faSrc="fa-solid fa-check">
               {joinRuleShortText[joinRules.indexOf(joinRule)]}
             </Button>
           )}

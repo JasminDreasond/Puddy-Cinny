@@ -27,8 +27,6 @@ import PowerLevelSelector from '../../molecules/power-level-selector/PowerLevelS
 import Dialog from '../../molecules/dialog/Dialog';
 
 import ShieldEmptyIC from '../../../../public/res/ic/outlined/shield-empty.svg';
-import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
@@ -134,7 +132,7 @@ function SessionInfo({ userId }) {
     <div className="session-info">
       <MenuItem
         onClick={() => setIsVisible(!isVisible)}
-        iconSrc={isVisible ? ChevronBottomIC : ChevronRightIC}
+        faSrc={isVisible ? "fa-solid fa-check" : "fa-solid fa-chevron-right"}
       >
         <Text variant="b2">{`View ${devices?.length > 0 ? `${devices.length} ` : ''}sessions`}</Text>
       </MenuItem>
@@ -411,7 +409,7 @@ function ProfileViewer() {
             <Text variant="b3">Role</Text>
             <Button
               onClick={canChangeRole ? handlePowerSelector : null}
-              iconSrc={canChangeRole ? ChevronBottomIC : null}
+              faSrc={canChangeRole ? "fa-solid fa-check" : null}
             >
               {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
             </Button>

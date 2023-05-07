@@ -15,8 +15,6 @@ import { HomeSpaceOptions } from './DrawerHeader';
 
 import PlusIC from '../../../../public/res/ic/outlined/plus.svg';
 import HorizontalMenuIC from '../../../../public/res/ic/outlined/horizontal-menu.svg';
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
 
 function RoomsCategory({
   spaceId, name, hideHeader, roomIds, drawerPostie,
@@ -62,7 +60,7 @@ function RoomsCategory({
       {!hideHeader && (
         <div className="room-category__header">
           <button className="room-category__toggle" onClick={() => setIsOpen(!isOpen)} type="button">
-            <RawIcon src={isOpen ? ChevronBottomIC : ChevronRightIC} size="extra-small" />
+            <RawIcon fa={isOpen ? "fa-solid fa-check" : "fa-solid fa-chevron-right"} size="extra-small" />
             <Text className="cat-header" variant="b3" weight="medium">{name}</Text>
           </button>
           {spaceId && <IconButton onClick={openSpaceOptions} tooltip="Space options" src={HorizontalMenuIC} size="extra-small" />}

@@ -14,8 +14,6 @@ import SettingTile from '../setting-tile/SettingTile';
 
 import NotificationSelector from './NotificationSelector';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-
 import { useAccountData } from '../../hooks/useAccountData';
 import {
   notifType, typeToLabel, getActionType, getTypeActions,
@@ -171,7 +169,7 @@ function GlobalNotification() {
       <SettingTile
         title="Message containing my display name"
         options={(
-          <Button onClick={(evt) => onSelect(evt, DISPLAY_NAME)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, DISPLAY_NAME)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[DISPLAY_NAME]]}
           </Button>
         )}
@@ -180,7 +178,7 @@ function GlobalNotification() {
       <SettingTile
         title="Message containing my username"
         options={(
-          <Button onClick={(evt) => onSelect(evt, USERNAME)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, USERNAME)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[USERNAME]]}
           </Button>
         )}
@@ -189,7 +187,7 @@ function GlobalNotification() {
       <SettingTile
         title="Message containing @room"
         options={(
-          <Button onClick={(evt) => onSelect(evt, ROOM_PING)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, ROOM_PING)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[ROOM_PING]]}
           </Button>
         )}
@@ -199,7 +197,7 @@ function GlobalNotification() {
         <SettingTile
           title="Message containing keywords"
           options={(
-            <Button onClick={(evt) => onSelect(evt, KEYWORD)} iconSrc={ChevronBottomIC}>
+            <Button onClick={(evt) => onSelect(evt, KEYWORD)} faSrc="fa-solid fa-check">
               {typeToLabel[rulesToType[KEYWORD]]}
             </Button>
           )}

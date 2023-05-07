@@ -16,8 +16,6 @@ import Button from '../../atoms/button/Button';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import NotificationBadge from '../../atoms/badge/NotificationBadge';
 
-import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
-
 function DrawerBreadcrumb({ spaceId }) {
   const [, forceUpdate] = useState({});
   const scrollRef = useRef(null);
@@ -104,7 +102,7 @@ function DrawerBreadcrumb({ spaceId }) {
                 <React.Fragment
                   key={id}
                 >
-                  { index !== 0 && <RawIcon size="extra-small" src={ChevronRightIC} />}
+                  {index !== 0 && <RawIcon size="extra-small" fa="fa-solid fa-chevron-right" />}
                   <Button
                     className={index === spacePath.length - 1 ? 'drawer-breadcrumb__btn--selected' : ''}
                     onClick={() => {
@@ -113,7 +111,7 @@ function DrawerBreadcrumb({ spaceId }) {
                     }}
                   >
                     <Text variant="b2">{id === cons.tabs.HOME ? 'Home' : twemojify(mx.getRoom(id).name)}</Text>
-                    { noti !== null && (
+                    {noti !== null && (
                       <NotificationBadge
                         alert={noti.highlight !== 0}
                         content={noti.total > 0 ? abbreviateNumber(noti.total) : null}

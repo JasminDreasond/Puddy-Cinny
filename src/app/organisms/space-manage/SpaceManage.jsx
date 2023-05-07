@@ -25,7 +25,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 
-import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -39,7 +38,7 @@ function SpaceManageBreadcrumb({ path, onSelect }) {
           {
             path.map((item, index) => (
               <React.Fragment key={item.roomId}>
-                {index > 0 && <RawIcon size="extra-small" src={ChevronRightIC} />}
+                {index > 0 && <RawIcon size="extra-small" fa="fa-solid fa-chevron-right" />}
                 <Button onClick={() => onSelect(item.roomId, item.name)}>
                   <Text variant="b2">{twemojify(item.name)}</Text>
                 </Button>

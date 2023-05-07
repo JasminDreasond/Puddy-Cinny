@@ -21,7 +21,6 @@ import Header, { TitleWrapper } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import RoomOptions from '../../molecules/room-options/RoomOptions';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import PhoneIC from '../../../../public/res/ic/outlined/phone-call-svgrepo-com.svg';
@@ -93,7 +92,7 @@ function RoomViewHeader({ roomId }) {
         <TitleWrapper>
           <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
         </TitleWrapper>
-        <RawIcon src={ChevronBottomIC} />
+        <RawIcon fa="fa-solid fa-check" />
       </button>
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" src={SearchIC} />}
       <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="Start VC" src={PhoneIC} />

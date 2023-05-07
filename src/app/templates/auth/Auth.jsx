@@ -20,7 +20,6 @@ import Header, { TitleWrapper } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import ContextMenu, { MenuItem, MenuHeader } from '../../atoms/context-menu/ContextMenu';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
 import EyeIC from '../../../../public/res/ic/outlined/eye.svg';
 import EyeBlindIC from '../../../../public/res/ic/outlined/eye-blind.svg';
 import SSOButtons from '../../molecules/sso-buttons/SSOButtons';
@@ -141,7 +140,7 @@ function Homeserver({ onChange }) {
               }
             </>
           )}
-          render={(toggleMenu) => <IconButton onClick={toggleMenu} src={ChevronBottomIC} />}
+          render={(toggleMenu) => <IconButton onClick={toggleMenu} fa="fa-solid fa-check" />}
         />
       </div>
       {process.error !== undefined && <Text className="homeserver-form__error" variant="b3">{process.error}</Text>}
@@ -225,7 +224,7 @@ function Login({ loginFlow, baseUrl }) {
               ))
             )}
             render={(toggleMenu) => (
-              <Button onClick={toggleMenu} iconSrc={ChevronBottomIC}>
+              <Button onClick={toggleMenu} faSrc="fa-solid fa-check">
                 {loginTypes[typeIndex]}
               </Button>
             )}
