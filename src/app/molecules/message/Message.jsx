@@ -31,8 +31,6 @@ import Time from '../../atoms/time/Time';
 import ContextMenu, { MenuHeader, MenuItem, MenuBorder } from '../../atoms/context-menu/ContextMenu';
 import * as Media from '../media/Media';
 
-import ReplyArrowIC from '../../../../public/res/ic/outlined/reply-arrow.svg';
-import EmojiAddIC from '../../../../public/res/ic/outlined/emoji-add.svg';
 import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
@@ -110,7 +108,7 @@ function MessageReply({ name, color, body }) {
   return (
     <div className="message__reply">
       <Text variant="b2">
-        <RawIcon color={color} size="extra-small" src={ReplyArrowIC} />
+        <RawIcon color={color} size="extra-small" fa="fa-solid fa-reply" />
         <span style={{ color }}>{twemojify(name)}</span>
         {' '}
         {twemojify(body)}
@@ -497,7 +495,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
           onClick={(e) => {
             pickEmoji(e, roomId, mEvent.getId(), roomTimeline);
           }}
-          src={EmojiAddIC}
+          fa="fa-solid fa-heart-circle-plus"
           size="extra-small"
           tooltip="Add reaction"
         />
@@ -550,14 +548,14 @@ const MessageOptions = React.memo(({
       {canSendReaction && (
         <IconButton
           onClick={(e) => pickEmoji(e, roomId, mEvent.getId(), roomTimeline)}
-          src={EmojiAddIC}
+          fa="fa-solid fa-heart-circle-plus"
           size="extra-small"
           tooltip="Add reaction"
         />
       )}
       <IconButton
         onClick={() => reply()}
-        src={ReplyArrowIC}
+        fa="fa-solid fa-reply"
         size="extra-small"
         tooltip="Reply"
       />
