@@ -1,14 +1,6 @@
 .drawer-breadcrumb img,
-.message--body-only img,
-.timeline-change img,
-.message--full img {
+.timeline-change img {
   height: 21px !important;
-}
-
-.image-container img,
-.sticker-container img,
-.avatar-container img {
-  height: auto !important;
 }
 
 @mixin font($type) {
