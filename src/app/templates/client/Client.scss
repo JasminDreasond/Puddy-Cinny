@@ -1,5 +1,10 @@
 @use '../../partials/screen';
 
+.fa-ellipsis-vertical {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
 .client-container {
   display: flex;
   height: 100%;
@@ -7,7 +12,7 @@
 
 .navigation__wrapper {
   width: var(--navigation-width);
-  
+
   @include screen.smallerThan(mobileBreakpoint) {
     width: 100%;
   }
