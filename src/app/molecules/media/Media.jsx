@@ -10,7 +10,6 @@ import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
 import ImageLightbox from '../image-lightbox/ImageLightbox';
 
-import ExternalSVG from '../../../../public/res/ic/outlined/external.svg';
 import PlaySVG from '../../../../public/res/ic/outlined/play.svg';
 
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
@@ -68,7 +67,7 @@ function FileHeader({
               <IconButton
                 size="extra-small"
                 tooltip="Open in new tab"
-                src={ExternalSVG}
+                fa="fa-solid fa-arrow-up-right-from-square"
                 onClick={() => window.open(url || link)}
               />
             )
