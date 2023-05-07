@@ -605,7 +605,7 @@ const MessageOptions = React.memo(({
         render={(toggleMenu) => (
           <IconButton
             onClick={toggleMenu}
-            fa="fa-solid fa-ellipsis-vertical"
+            fa="bi bi-three-dots-vertical"
             size="extra-small"
             tooltip="Options"
           />

@@ -97,7 +97,7 @@ function RoomViewHeader({ roomId }) {
       <IconButton
         onClick={openRoomOptions}
         tooltip="Options"
-        fa="fa-solid fa-ellipsis-vertical"
+        fa="bi bi-three-dots-vertical"
       />
     </Header>
   );

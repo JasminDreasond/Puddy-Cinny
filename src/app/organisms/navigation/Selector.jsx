@@ -69,7 +69,7 @@ function Selector({
           size="extra-small"
           tooltip="Options"
           tooltipPlacement="right"
-          fa="fa-solid fa-ellipsis-vertical"
+          fa="bi bi-three-dots-vertical"
           onClick={openOptions}
         />
       )}
