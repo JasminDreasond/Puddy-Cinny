@@ -1,7 +1,8 @@
 @use '../../partials/flex';
 @use '../../partials/dir';
 
-.drawer-breadcrumb img {
+.drawer-breadcrumb img,
+.message--body-only img {
   height: 21px !important;
 }
 
