@@ -10,8 +10,6 @@ import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
 import ImageLightbox from '../image-lightbox/ImageLightbox';
 
-import PlaySVG from '../../../../public/res/ic/outlined/play.svg';
-
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
 
 async function getDecryptedBlob(response, type, decryptData) {
@@ -253,7 +251,7 @@ function Audio({
       <FileHeader name={name} link={file !== null ? url : url || link} type={type} external />
       <div className="audio-container">
         {url === null && isLoading && <Spinner size="small" />}
-        {url === null && !isLoading && <IconButton onClick={handlePlayAudio} tooltip="Play audio" src={PlaySVG} />}
+        {url === null && !isLoading && <IconButton onClick={handlePlayAudio} tooltip="Play audio" fa="fa-regular fa-circle-play" />}
         {url !== null && (
           /* eslint-disable-next-line jsx-a11y/media-has-caption */
           <audio autoPlay controls>
@@ -324,7 +322,7 @@ function Video({
               <img style={{ display: blur ? 'none' : 'unset' }} src={thumbUrl} onLoad={() => setBlur(false)} alt={name} />
             )}
             {isLoading && <Spinner size="small" />}
-            {!isLoading && <IconButton onClick={handlePlayVideo} tooltip="Play video" src={PlaySVG} />}
+            {!isLoading && <IconButton onClick={handlePlayVideo} tooltip="Play video" fa="fa-regular fa-circle-play" />}
           </>
         ) : (
           /* eslint-disable-next-line jsx-a11y/media-has-caption */
