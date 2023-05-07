@@ -5,6 +5,7 @@
 
 @mixin icFaSize($size) {
   font-size: $size;
+  margin-left: 2px;
 }
 
 .ic-base {
