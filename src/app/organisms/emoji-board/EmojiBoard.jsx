@@ -290,7 +290,7 @@ function EmojiBoard({ onSelect, searchRef }) {
               [2, "fa-solid fa-mug-saucer", 'Food'],
               [3, "fa-solid fa-futbol", 'Activities'],
               [4, "fa-solid fa-image", 'Travel'],
-              [5, "fa-solid fa-lightbulb", 'Objects'],
+              [5, "fa-solid fa-book", 'Objects'],
               [6, "fa-solid fa-peace", 'Symbols'],
               [7, "fa-solid fa-flag", 'Flags'],
             ].map(([indx, ico, name]) => (
