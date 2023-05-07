@@ -11,8 +11,6 @@ import SettingTile from '../setting-tile/SettingTile';
 
 import NotificationSelector from './NotificationSelector';
 
-import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-
 import { useAccountData } from '../../hooks/useAccountData';
 
 export const notifType = {
