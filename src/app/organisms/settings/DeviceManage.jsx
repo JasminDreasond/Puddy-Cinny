@@ -15,7 +15,6 @@ import InfoCard from '../../atoms/card/InfoCard';
 import Spinner from '../../atoms/spinner/Spinner';
 import SettingTile from '../../molecules/setting-tile/SettingTile';
 
-import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 
 import { authRequest } from './AuthRequest';
@@ -173,7 +172,7 @@ function DeviceManage() {
               <>
                 {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} variant="positive">Verify</Button>}
                 <IconButton size="small" onClick={() => handleRename(device)} fa="fa-solid fa-pencil" tooltip="Rename" />
-                <IconButton size="small" onClick={() => handleRemove(device)} src={BinIC} tooltip="Remove session" />
+                <IconButton size="small" onClick={() => handleRemove(device)} fa="fa-solid fa-trash-can" tooltip="Remove session" />
               </>
             )
         }

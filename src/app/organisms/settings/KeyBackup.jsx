@@ -18,7 +18,6 @@ import SettingTile from '../../molecules/setting-tile/SettingTile';
 import { accessSecretStorage } from './SecretStorageAccess';
 
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
-import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 import DownloadIC from '../../../../public/res/ic/outlined/download.svg';
 
 import { useStore } from '../../hooks/useStore';
@@ -258,7 +257,7 @@ function KeyBackup() {
     return (
       <>
         <IconButton src={DownloadIC} variant="positive" onClick={openRestoreKeyBackup} tooltip="Restore backup" />
-        <IconButton src={BinIC} onClick={openDeleteKeyBackup} tooltip="Delete backup" />
+        <IconButton fa="fa-solid fa-trash-can" onClick={openDeleteKeyBackup} tooltip="Delete backup" />
       </>
     );
   };

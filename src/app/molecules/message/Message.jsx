@@ -36,7 +36,6 @@ import EmojiAddIC from '../../../../public/res/ic/outlined/emoji-add.svg';
 import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
-import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
@@ -591,7 +590,7 @@ const MessageOptions = React.memo(({
                 <MenuBorder />
                 <MenuItem
                   variant="danger"
-                  iconSrc={BinIC}
+                  faSrc="fa-solid fa-trash-can"
                   onClick={async () => {
                     const isConfirmed = await confirmDialog(
                       'Delete message',
