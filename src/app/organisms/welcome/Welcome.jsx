@@ -8,7 +8,7 @@ function Welcome() {
   return (
     <div className="app-welcome flex--center">
       <div>
-        <img className="app-welcome__logo noselect" src="/public/favicon.ico" alt="Cinny logo" />
+        <img className="app-welcome__logo noselect" src="./public/favicon.ico" alt="Cinny logo" />
         <Text className="app-welcome__heading" variant="h1" weight="medium" primary>
           Welcome to Puddy Cinny
         </Text>

@@ -558,7 +558,7 @@ function Auth() {
           {!loginToken && (
             <div className="auth-card">
               <Header>
-                <Avatar size="extra-small" imageSrc="/public/favicon.ico" />
+                <Avatar size="extra-small" imageSrc="./public/favicon.ico" />
                 <TitleWrapper>
                   <Text variant="h2" weight="medium">Puddy Cinny</Text>
                 </TitleWrapper>

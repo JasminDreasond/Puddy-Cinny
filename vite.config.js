@@ -23,6 +23,10 @@ const copyFiles = {
     {
       src: 'public/res/android',
       dest: 'public/',
+    },
+    {
+      src: 'public/favicon.ico',
+      dest: 'public/',
     }
   ],
 }
