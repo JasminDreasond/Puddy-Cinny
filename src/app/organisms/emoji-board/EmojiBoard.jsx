@@ -21,8 +21,6 @@ import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import ScrollView from '../../atoms/scroll/ScrollView';
 
-import RecentClockIC from '../../../../public/res/ic/outlined/recent-clock.svg';
-
 const ROW_EMOJIS_COUNT = 7;
 
 const EmojiGroup = React.memo(({ name, groupEmojis }) => {
@@ -260,7 +258,7 @@ function EmojiBoard({ onSelect, searchRef }) {
           {recentEmojis.length > 0 && (
             <IconButton
               onClick={() => openGroup(0)}
-              src={RecentClockIC}
+              fa="fa-solid fa-clock-rotate-left"
               tooltip="Recent"
               tooltipPlacement="left"
             />
