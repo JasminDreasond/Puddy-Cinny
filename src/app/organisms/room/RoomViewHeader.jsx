@@ -92,7 +92,7 @@ function RoomViewHeader({ roomId }) {
         <TitleWrapper>
           <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
         </TitleWrapper>
-        <RawIcon fa="fa-solid fa-check" />
+        <RawIcon fa="fa-solid fa-chevron-down" />
       </button>
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" src={SearchIC} />}
       <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="Start VC" src={PhoneIC} />
