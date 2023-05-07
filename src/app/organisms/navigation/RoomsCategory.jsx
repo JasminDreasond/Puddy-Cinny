@@ -13,7 +13,6 @@ import Selector from './Selector';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 import { HomeSpaceOptions } from './DrawerHeader';
 
-import PlusIC from '../../../../public/res/ic/outlined/plus.svg';
 import HorizontalMenuIC from '../../../../public/res/ic/outlined/horizontal-menu.svg';
 
 function RoomsCategory({
@@ -64,7 +63,7 @@ function RoomsCategory({
             <Text className="cat-header" variant="b3" weight="medium">{name}</Text>
           </button>
           {spaceId && <IconButton onClick={openSpaceOptions} tooltip="Space options" src={HorizontalMenuIC} size="extra-small" />}
-          {spaceId && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" src={PlusIC} size="extra-small" />}
+          {spaceId && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="extra-small" />}
         </div>
       )}
       {(isOpen || hideHeader) && (

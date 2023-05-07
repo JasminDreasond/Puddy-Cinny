@@ -9,8 +9,6 @@ import Avatar from '../../atoms/avatar/Avatar';
 import Spinner from '../../atoms/spinner/Spinner';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 
-import PlusIC from '../../../../public/res/ic/outlined/plus.svg';
-
 function ImageUpload({
   text, bgColor, imageSrc, onUpload, onRequestRemove,
   size,
@@ -60,12 +58,12 @@ function ImageUpload({
           {uploadPromise === null && (
             size === 'large'
               ? <Text variant="b3" weight="bold">Upload</Text>
-              : <RawIcon src={PlusIC} color="white" />
+              : <RawIcon fa="fa-solid fa-plus" color="white" />
           )}
           {uploadPromise !== null && <Spinner size="small" />}
         </div>
       </button>
-      { (typeof imageSrc === 'string' || uploadPromise !== null) && (
+      {(typeof imageSrc === 'string' || uploadPromise !== null) && (
         <button
           className="img-upload__btn-cancel"
           type="button"

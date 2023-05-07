@@ -21,7 +21,6 @@ import IconButton from '../../atoms/button/IconButton';
 import { MenuItem, MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
-import PlusIC from '../../../../public/res/ic/outlined/plus.svg';
 import HashPlusIC from '../../../../public/res/ic/outlined/hash-plus.svg';
 import HashGlobeIC from '../../../../public/res/ic/outlined/hash-globe.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
@@ -61,7 +60,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       )}
       {!spaceId && (
         <MenuItem
-          iconSrc={PlusIC}
+          faSrc="fa-solid fa-plus"
           onClick={() => { afterOptionSelect(); openJoinAlias(); }}
         >
           Join with address
@@ -69,7 +68,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       )}
       {spaceId && (
         <MenuItem
-          iconSrc={PlusIC}
+          faSrc="fa-solid fa-plus"
           onClick={() => { afterOptionSelect(); openSpaceAddExisting(spaceId); }}
           disabled={!canManage}
         >
@@ -141,8 +140,8 @@ function DrawerHeader({ selectedTab, spaceId }) {
         </TitleWrapper>
       )}
 
-      {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" src={PlusIC} size="small" />}
-      {!isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" src={PlusIC} size="small" />}
+      {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" fa="fa-solid fa-plus" size="small" />}
+      {!isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="small" />}
     </Header>
   );
 }
