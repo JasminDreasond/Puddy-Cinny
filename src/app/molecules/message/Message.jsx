@@ -105,7 +105,7 @@ function MessageReply({ name, color, body }) {
       <Text variant="b2">
         <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
         {' '}
-        <span style={{ color }}>{twemojify(name)}</span>
+        <span className="username-title" style={{ color }}>{twemojify(name)}</span>
         {' '}
         {twemojify(body)}
       </Text>
