@@ -16,7 +16,6 @@ import Button from '../../atoms/button/Button';
 import Spinner from '../../atoms/spinner/Spinner';
 import Dialog from '../../molecules/dialog/Dialog';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import { useStore } from '../../hooks/useStore';
 import { accessSecretStorage } from '../settings/SecretStorageAccess';
 
@@ -185,7 +184,7 @@ function EmojiVerification() {
           Emoji verification
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

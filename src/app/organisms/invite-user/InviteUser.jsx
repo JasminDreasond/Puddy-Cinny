@@ -16,7 +16,6 @@ import Input from '../../atoms/input/Input';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import RoomTile from '../../molecules/room-tile/RoomTile';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 
 function InviteUser({
@@ -228,7 +227,7 @@ function InviteUser({
     <PopupWindow
       isOpen={isOpen}
       title={(typeof roomId === 'string' ? `Invite to ${mx.getRoom(roomId).name}` : 'Direct message')}
-      contentOptions={<IconButton src={CrossIC} onClick={onRequestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="invite-user">
@@ -254,7 +253,7 @@ function InviteUser({
             searchQuery.error && <Text className="invite-user__search-error" variant="b2">{searchQuery.error}</Text>
           }
         </div>
-        { users.length !== 0 && (
+        {users.length !== 0 && (
           <div className="invite-user__content">
             {renderUserList()}
           </div>

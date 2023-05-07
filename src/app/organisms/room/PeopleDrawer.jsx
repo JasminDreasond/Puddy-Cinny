@@ -23,7 +23,6 @@ import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 
 import AddUserIC from '../../../../public/res/ic/outlined/add-user.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 function simplyfiMembers(members) {
   const mx = initMatrix.matrixClient;
@@ -199,7 +198,7 @@ function PeopleDrawer({ roomId }) {
             <Input forwardRef={searchRef} type="text" onChange={handleSearch} placeholder="Search" required />
             {
               searchedMembers !== null
-              && <IconButton onClick={handleSearch} size="small" src={CrossIC} />
+              && <IconButton onClick={handleSearch} size="small" fa="fa-solid fa-xmark" />
             }
           </form>
         </div>

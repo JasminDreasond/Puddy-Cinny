@@ -20,7 +20,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import RoomSelector from '../room-selector/RoomSelector';
 import Dialog from '../dialog/Dialog';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
 
 import { useStore } from '../../hooks/useStore';
@@ -122,7 +121,7 @@ function SpaceAddExistingContent({ roomId }) {
           placeholder="Search room"
           autoFocus
         />
-        <IconButton size="small" type="button" onClick={handleSearchClear} src={CrossIC} />
+        <IconButton size="small" type="button" onClick={handleSearchClear} fa="fa-solid fa-xmark" />
       </form>
       {searchIds?.length === 0 && <Text>No results found</Text>}
       {
@@ -172,7 +171,7 @@ function SpaceAddExistingContent({ roomId }) {
         <div className="space-add-existing__footer">
           {process && <Spinner size="small" />}
           <Text weight="medium">{process || `${selected.length} item selected`}</Text>
-          { !process && (
+          {!process && (
             <Button onClick={handleAdd} variant="primary">Add</Button>
           )}
         </div>
@@ -215,7 +214,7 @@ function SpaceAddExisting() {
           <span style={{ color: 'var(--tc-surface-low)' }}> — add existing rooms</span>
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

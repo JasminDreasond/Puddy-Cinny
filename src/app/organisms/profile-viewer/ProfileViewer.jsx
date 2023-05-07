@@ -29,7 +29,6 @@ import Dialog from '../../molecules/dialog/Dialog';
 import ShieldEmptyIC from '../../../../public/res/ic/outlined/shield-empty.svg';
 import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
 import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
@@ -253,7 +252,7 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
       >
         {isCreatingDM ? 'Creating room...' : 'Message'}
       </Button>
-      { isBanned && canIKick && (
+      {isBanned && canIKick && (
         <Button
           variant="positive"
           onClick={() => roomActions.unban(roomId, userId)}
@@ -261,7 +260,7 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
           Unban
         </Button>
       )}
-      { (isInvited ? canIKick : room.canInvite(mx.getUserId())) && isInvitable && (
+      {(isInvited ? canIKick : room.canInvite(mx.getUserId())) && isInvitable && (
         <Button
           onClick={toggleInvite}
           disabled={isInviting}
@@ -420,7 +419,7 @@ function ProfileViewer() {
         </div>
         <ModerationTools roomId={roomId} userId={userId} />
         <SessionInfo userId={userId} />
-        { userId !== mx.getUserId() && (
+        {userId !== mx.getUserId() && (
           <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
         )}
       </div>
@@ -434,7 +433,7 @@ function ProfileViewer() {
       title={room?.name ?? ''}
       onAfterClose={handleAfterClose}
       onRequestClose={closeDialog}
-      contentOptions={<IconButton src={CrossIC} onClick={closeDialog} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={closeDialog} tooltip="Close" />}
     >
       {roomId ? renderProfile() : <div />}
     </Dialog>

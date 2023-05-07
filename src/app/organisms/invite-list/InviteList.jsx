@@ -14,8 +14,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import RoomTile from '../../molecules/room-tile/RoomTile';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
-
 function InviteList({ isOpen, onRequestClose }) {
   const [procInvite, changeProcInvite] = useState(new Set());
 
@@ -86,11 +84,11 @@ function InviteList({ isOpen, onRequestClose }) {
     <PopupWindow
       isOpen={isOpen}
       title="Invites"
-      contentOptions={<IconButton src={CrossIC} onClick={onRequestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="invites-content">
-        { initMatrix.roomList.inviteDirects.size !== 0 && (
+        {initMatrix.roomList.inviteDirects.size !== 0 && (
           <div className="invites-content__subheading">
             <Text variant="b3" weight="bold">Direct Messages</Text>
           </div>
@@ -119,19 +117,19 @@ function InviteList({ isOpen, onRequestClose }) {
             );
           })
         }
-        { initMatrix.roomList.inviteSpaces.size !== 0 && (
+        {initMatrix.roomList.inviteSpaces.size !== 0 && (
           <div className="invites-content__subheading">
             <Text variant="b3" weight="bold">Spaces</Text>
           </div>
         )}
-        { Array.from(initMatrix.roomList.inviteSpaces).map(renderRoomTile) }
+        {Array.from(initMatrix.roomList.inviteSpaces).map(renderRoomTile)}
 
-        { initMatrix.roomList.inviteRooms.size !== 0 && (
+        {initMatrix.roomList.inviteRooms.size !== 0 && (
           <div className="invites-content__subheading">
             <Text variant="b3" weight="bold">Rooms</Text>
           </div>
         )}
-        { Array.from(initMatrix.roomList.inviteRooms).map(renderRoomTile) }
+        {Array.from(initMatrix.roomList.inviteRooms).map(renderRoomTile)}
       </div>
     </PopupWindow>
   );

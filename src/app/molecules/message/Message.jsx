@@ -38,7 +38,6 @@ import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
@@ -916,8 +915,7 @@ function Message({
   }
 
   // Bad Message
-  // CrossIC
-  const errorMessage = ` <strong>Unable to decrypt message.</strong>`;
+  const errorMessage = `<i class="fa-solid fa-xmark"></i> <strong>Unable to decrypt message.</strong>`;
   isCustomHTML = true;
   return (
 

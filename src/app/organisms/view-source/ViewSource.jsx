@@ -10,8 +10,6 @@ import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
-
 function ViewSourceBlock({ title, json }) {
   return (
     <div className="view-source__card">
@@ -63,7 +61,7 @@ function ViewSource() {
       title="View source"
       onAfterClose={handleAfterClose}
       onRequestClose={() => setIsOpen(false)}
-      contentOptions={<IconButton src={CrossIC} onClick={() => setIsOpen(false)} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={() => setIsOpen(false)} tooltip="Close" />}
     >
       {event ? renderViewSource() : <div />}
     </PopupWindow>

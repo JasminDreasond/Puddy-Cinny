@@ -28,7 +28,6 @@ import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
 import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
@@ -171,7 +170,7 @@ function SpaceSettings() {
           <span style={{ color: 'var(--tc-surface-low)' }}> — space settings</span>
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {isOpen && (

@@ -31,7 +31,6 @@ import ShieldIC from '../../../../public/res/ic/outlined/shield.svg';
 import VLCIC from '../../../../public/res/ic/outlined/vlc.svg';
 import VolumeFullIC from '../../../../public/res/ic/outlined/volume-full.svg';
 import FileIC from '../../../../public/res/ic/outlined/file.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import commands from './commands';
 
@@ -447,7 +446,7 @@ function RoomViewInput({
             roomsInput.cancelReplyTo(roomId);
             setReplyTo(null);
           }}
-          src={CrossIC}
+          fa="fa-solid fa-xmark"
           tooltip="Cancel reply"
           size="extra-small"
         />
@@ -464,8 +463,8 @@ function RoomViewInput({
 
   return (
     <>
-      { replyTo !== null && attachReply()}
-      { attachment !== null && attachFile() }
+      {replyTo !== null && attachReply()}
+      {attachment !== null && attachFile()}
       <form className="room-input" onSubmit={(e) => { e.preventDefault(); }}>
         {
           renderInputs()

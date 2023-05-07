@@ -31,7 +31,6 @@ import SpaceIC from '../../../../public/res/ic/outlined/space.svg';
 import SpaceLockIC from '../../../../public/res/ic/outlined/space-lock.svg';
 import SpaceGlobeIC from '../../../../public/res/ic/outlined/space-globe.svg';
 import ChevronBottomIC from '../../../../public/res/ic/outlined/chevron-bottom.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
   const [joinRule, setJoinRule] = useState(parentId ? 'restricted' : 'invite');
@@ -154,7 +153,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
                 onClick={() => { closeMenu(); setJoinRule(rule); }}
                 disabled={!parentId && rule === 'restricted'}
               >
-                { joinRuleText[joinRules.indexOf(rule)] }
+                {joinRuleText[joinRules.indexOf(rule)]}
               </MenuItem>
             ))
           }
@@ -283,7 +282,7 @@ function CreateRoom() {
           </span>
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={onRequestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       {

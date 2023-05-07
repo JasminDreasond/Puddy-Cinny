@@ -15,7 +15,6 @@ import Input from '../../atoms/input/Input';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import RoomTile from '../../molecules/room-tile/RoomTile';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 
 const SEARCH_LIMIT = 20;
@@ -219,7 +218,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
     <PopupWindow
       isOpen={isOpen}
       title="Public rooms"
-      contentOptions={<IconButton src={CrossIC} onClick={onRequestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="public-rooms">
@@ -255,7 +254,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
                 : <Text variant="b2">{`Search result for "${searchQuery.name}" on ${searchQuery.homeserver}.`}</Text>
             )
           }
-          { searchQuery.error && (
+          {searchQuery.error && (
             <>
               <Text className="public-rooms__search-error" variant="b2">{searchQuery.error}</Text>
               {typeof searchQuery.alias === 'string' && (
@@ -264,17 +263,17 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
             </>
           )}
         </div>
-        { publicRooms.length !== 0 && (
+        {publicRooms.length !== 0 && (
           <div className="public-rooms__content">
-            { renderRoomList(publicRooms) }
+            {renderRoomList(publicRooms)}
           </div>
         )}
-        { publicRooms.length !== 0 && publicRooms.length % SEARCH_LIMIT === 0 && (
+        {publicRooms.length !== 0 && publicRooms.length % SEARCH_LIMIT === 0 && (
           <div className="public-rooms__view-more">
-            { isViewMore !== true && (
+            {isViewMore !== true && (
               <Button onClick={() => searchRooms(true)}>View more</Button>
             )}
-            { isViewMore && <Spinner /> }
+            {isViewMore && <Spinner />}
           </div>
         )}
       </div>

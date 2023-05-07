@@ -18,7 +18,6 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 import RoomSelector from '../../molecules/room-selector/RoomSelector';
 
 import SearchIC from '../../../../public/res/ic/outlined/search.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 function useVisiblityToggle(setResult) {
   const [isOpen, setIsOpen] = useState(false);
@@ -211,12 +210,12 @@ function Search() {
             forwardRef={searchRef}
             placeholder="Search"
           />
-          <IconButton size="small" src={CrossIC} type="reset" onClick={handleCross} tabIndex={-1} />
+          <IconButton size="small" fa="fa-solid fa-xmark" type="reset" onClick={handleCross} tabIndex={-1} />
         </form>
         <div className="search-dialog__content-wrapper">
           <ScrollView autoHide>
             <div className="search-dialog__content">
-              { Array.isArray(result?.chunk) && result.chunk.map(renderRoomSelector) }
+              {Array.isArray(result?.chunk) && result.chunk.map(renderRoomSelector)}
             </div>
           </ScrollView>
         </div>

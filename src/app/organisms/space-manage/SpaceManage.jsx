@@ -25,7 +25,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import ChevronRightIC from '../../../../public/res/ic/outlined/chevron-right.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 
@@ -201,7 +200,7 @@ function SpaceManageFooter({ parentId, selected }) {
     <div className="space-manage__footer">
       {process && <Spinner size="small" />}
       <Text weight="medium">{process || `${selected.length} item selected`}</Text>
-      { !process && (
+      {!process && (
         <>
           <Button onClick={handleRemove} variant="danger">Remove</Button>
           <Button
@@ -416,7 +415,7 @@ function SpaceManage() {
           <span style={{ color: 'var(--tc-surface-low)' }}> — manage rooms</span>
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

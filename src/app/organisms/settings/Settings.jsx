@@ -39,7 +39,6 @@ import LockIC from '../../../../public/res/ic/outlined/lock.svg';
 import BellIC from '../../../../public/res/ic/outlined/bell.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 import PowerIC from '../../../../public/res/ic/outlined/power.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
@@ -344,7 +343,7 @@ function Settings() {
           <Button variant="danger" iconSrc={PowerIC} onClick={handleLogout}>
             Logout
           </Button>
-          <IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />
+          <IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />
         </>
       )}
       onRequestClose={requestClose}

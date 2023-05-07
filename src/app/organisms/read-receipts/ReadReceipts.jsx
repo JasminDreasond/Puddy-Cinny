@@ -10,7 +10,6 @@ import IconButton from '../../atoms/button/IconButton';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 import Dialog from '../../molecules/dialog/Dialog';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 import { openProfileViewer } from '../../../client/action/navigation';
 
 function ReadReceipts() {
@@ -62,7 +61,7 @@ function ReadReceipts() {
       title="Seen by"
       onAfterClose={handleAfterClose}
       onRequestClose={() => setIsOpen(false)}
-      contentOptions={<IconButton src={CrossIC} onClick={() => setIsOpen(false)} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={() => setIsOpen(false)} tooltip="Close" />}
     >
       <div style={{ marginTop: 'var(--sp-tight)', marginBottom: 'var(--sp-extra-loose)' }}>
         {

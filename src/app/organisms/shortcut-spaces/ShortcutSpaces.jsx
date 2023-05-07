@@ -18,7 +18,6 @@ import Dialog from '../../molecules/dialog/Dialog';
 
 import PinIC from '../../../../public/res/ic/outlined/pin.svg';
 import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
 import { useSpaceShortcut } from '../../hooks/useSpaceShortcut';
 
@@ -117,7 +116,7 @@ function ShortcutSpacesContent() {
         <div className="shortcut-spaces__footer">
           {process && <Spinner size="small" />}
           <Text weight="medium">{process || `${selected.length} spaces selected`}</Text>
-          { !process && (
+          {!process && (
             <Button onClick={handleAdd} variant="primary">Pin</Button>
           )}
         </div>
@@ -154,7 +153,7 @@ function ShortcutSpaces() {
           Pin spaces
         </Text>
       )}
-      contentOptions={<IconButton src={CrossIC} onClick={requestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {
