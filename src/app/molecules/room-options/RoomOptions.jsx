@@ -11,8 +11,6 @@ import { markAsRead } from '../../../client/action/notifications';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 import RoomNotification from '../room-notification/RoomNotification';
 
-import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
-
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 
 function RoomOptions({ roomId, afterOptionSelect }) {
@@ -52,7 +50,7 @@ function RoomOptions({ roomId, afterOptionSelect }) {
       >
         Invite
       </MenuItem>
-      <MenuItem iconSrc={LeaveArrowIC} variant="danger" onClick={handleLeaveClick}>Leave</MenuItem>
+      <MenuItem faSrc="fa-solid fa-arrow-right-from-bracket" variant="danger" onClick={handleLeaveClick}>Leave</MenuItem>
       <MenuHeader>Notification</MenuHeader>
       <RoomNotification roomId={roomId} />
     </div>

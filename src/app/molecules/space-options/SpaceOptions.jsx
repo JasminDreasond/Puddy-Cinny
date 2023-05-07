@@ -20,7 +20,6 @@ import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
 import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
-import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 import PinIC from '../../../../public/res/ic/outlined/pin.svg';
 import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
 
@@ -106,7 +105,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       <MenuItem
         variant="danger"
         onClick={handleLeaveClick}
-        iconSrc={LeaveArrowIC}
+        faSrc="fa-solid fa-arrow-right-from-bracket"
       >
         Leave
       </MenuItem>

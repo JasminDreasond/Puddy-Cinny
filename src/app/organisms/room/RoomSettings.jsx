@@ -27,7 +27,6 @@ import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
-import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 import ChevronTopIC from '../../../../public/res/ic/outlined/chevron-top.svg';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -96,7 +95,7 @@ function GeneralSettings({ roomId }) {
             if (!isConfirmed) return;
             roomActions.leave(roomId);
           }}
-          iconSrc={LeaveArrowIC}
+          faSrc="fa-solid fa-arrow-right-from-bracket"
         >
           Leave
         </MenuItem>

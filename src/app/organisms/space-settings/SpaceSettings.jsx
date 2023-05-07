@@ -30,7 +30,6 @@ import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 import UserIC from '../../../../public/res/ic/outlined/user.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
-import LeaveArrowIC from '../../../../public/res/ic/outlined/leave-arrow.svg';
 import PinIC from '../../../../public/res/ic/outlined/pin.svg';
 import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
 import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
@@ -105,7 +104,7 @@ function GeneralSettings({ roomId }) {
             );
             if (isConfirmed) leave(roomId);
           }}
-          iconSrc={LeaveArrowIC}
+          faSrc="fa-solid fa-arrow-right-from-bracket"
         >
           Leave
         </MenuItem>
