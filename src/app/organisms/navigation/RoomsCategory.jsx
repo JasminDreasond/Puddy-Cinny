@@ -60,7 +60,7 @@ function RoomsCategory({
       {!hideHeader && (
         <div className="room-category__header">
           <button className="room-category__toggle" onClick={() => setIsOpen(!isOpen)} type="button">
-            <RawIcon fa={isOpen ? "fa-solid fa-check" : "fa-solid fa-chevron-right"} size="extra-small" />
+            <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
             <Text className="cat-header" variant="b3" weight="medium">{name}</Text>
           </button>
           {spaceId && <IconButton onClick={openSpaceOptions} tooltip="Space options" src={HorizontalMenuIC} size="extra-small" />}
