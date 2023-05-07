@@ -31,6 +31,7 @@
 
   & > .ic-fa {
     font-size: 16px;
+    height: 16px;
     @include dir.side(margin, 0, var(--sp-ultra-tight));
   }
 }
