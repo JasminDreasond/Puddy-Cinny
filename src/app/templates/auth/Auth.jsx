@@ -138,7 +138,7 @@ function Homeserver({ onChange }) {
               }
             </>
           )}
-          render={(toggleMenu) => <IconButton onClick={toggleMenu} fa="fa-solid fa-check" />}
+          render={(toggleMenu) => <IconButton onClick={toggleMenu} fa="fa-solid fa-server" />}
         />
       </div>
       {process.error !== undefined && <Text className="homeserver-form__error" variant="b3">{process.error}</Text>}
@@ -222,7 +222,7 @@ function Login({ loginFlow, baseUrl }) {
               ))
             )}
             render={(toggleMenu) => (
-              <Button onClick={toggleMenu} faSrc="fa-solid fa-check">
+              <Button onClick={toggleMenu} faSrc="fa-solid fa-chevron-down">
                 {loginTypes[typeIndex]}
               </Button>
             )}
