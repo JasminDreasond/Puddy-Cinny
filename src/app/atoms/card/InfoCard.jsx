@@ -6,8 +6,6 @@ import Text from '../text/Text';
 import RawIcon from '../system-icons/RawIcon';
 import IconButton from '../button/IconButton';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
-
 function InfoCard({
   className, style,
   variant, iconSrc,
@@ -29,7 +27,7 @@ function InfoCard({
         {content}
       </div>
       {requestClose && (
-        <IconButton src={CrossIC} variant={variant} onClick={requestClose} />
+        <IconButton fa="fa-solid fa-xmark" variant={variant} onClick={requestClose} />
       )}
     </div>
   );

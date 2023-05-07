@@ -7,7 +7,7 @@ import RawIcon from '../system-icons/RawIcon';
 import { blurOnBubbling } from './script';
 
 const Button = React.forwardRef(({
-  id, className, variant, iconSrc,
+  id, className, variant, iconSrc, faSrc,
   type, onClick, children, disabled,
 }, ref) => {
   const iconClass = (iconSrc === null) ? '' : `btn-${variant}--icon`;
@@ -23,8 +23,9 @@ const Button = React.forwardRef(({
       disabled={disabled}
     >
       {iconSrc !== null && <RawIcon size="small" src={iconSrc} />}
-      {typeof children === 'string' && <Text variant="b1">{ children }</Text>}
-      {typeof children !== 'string' && children }
+      {faSrc !== null && <RawIcon size="small" fa={faSrc} />}
+      {typeof children === 'string' && <Text variant="b1">{children}</Text>}
+      {typeof children !== 'string' && children}
     </button>
   );
 });
@@ -34,6 +35,7 @@ Button.defaultProps = {
   className: null,
   variant: 'surface',
   iconSrc: null,
+  faSrc: null,
   type: 'button',
   onClick: null,
   disabled: false,
@@ -44,6 +46,7 @@ Button.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.oneOf(['surface', 'primary', 'positive', 'caution', 'danger']),
   iconSrc: PropTypes.string,
+  faSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,

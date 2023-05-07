@@ -8,7 +8,7 @@ import { blurOnBubbling } from './script';
 import Text from '../text/Text';
 
 const IconButton = React.forwardRef(({
-  variant, size, type,
+  variant, size, type, fa,
   tooltip, tooltipPlacement, src,
   onClick, tabIndex, disabled, isImage,
   className,
@@ -24,7 +24,7 @@ const IconButton = React.forwardRef(({
       tabIndex={tabIndex}
       disabled={disabled}
     >
-      <RawIcon size={size} src={src} isImage={isImage} />
+      <RawIcon fa={fa} size={size} src={src} isImage={isImage} />
     </button>
   );
   if (tooltip === null) return btn;
@@ -45,6 +45,7 @@ IconButton.defaultProps = {
   tooltip: null,
   tooltipPlacement: 'top',
   onClick: null,
+  fa: null,
   tabIndex: 0,
   disabled: false,
   isImage: false,
@@ -63,6 +64,7 @@ IconButton.propTypes = {
   disabled: PropTypes.bool,
   isImage: PropTypes.bool,
   className: PropTypes.string,
+  fa: PropTypes.string,
 };
 
 export default IconButton;

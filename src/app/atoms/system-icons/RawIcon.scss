@@ -3,16 +3,21 @@
   height: $size;
 }
 
-.ic-raw {
+.ic-base {
   display: inline-block;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: cover;
   mask-size: cover;
-  background-color: var(--ic-surface-normal);
-
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.ic-raw {
+  background-color: var(--ic-surface-normal);
+}
+.ic-fa {
+  color: var(--ic-surface-normal);
 }
 .ic-raw-large {
   @include icSize(var(--ic-large));

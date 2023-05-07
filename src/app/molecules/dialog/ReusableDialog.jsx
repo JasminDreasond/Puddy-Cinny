@@ -6,8 +6,6 @@ import navigation from '../../../client/state/navigation';
 import IconButton from '../../atoms/button/IconButton';
 import Dialog from './Dialog';
 
-import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
-
 function ReusableDialog() {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(null);
@@ -38,7 +36,7 @@ function ReusableDialog() {
       title={data?.title || ''}
       onAfterClose={handleAfterClose}
       onRequestClose={handleRequestClose}
-      contentOptions={<IconButton src={CrossIC} onClick={handleRequestClose} tooltip="Close" />}
+      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={handleRequestClose} tooltip="Close" />}
       invisibleScroll
     >
       {data?.render(handleRequestClose) || <div />}

@@ -134,8 +134,8 @@ function GlobalNotification() {
       <SettingTile
         title="Direct messages"
         options={(
-          <Button onClick={(evt) => onSelect(evt, DM)} iconSrc={ChevronBottomIC}>
-            { typeToLabel[rulesToType[DM]] }
+          <Button onClick={(evt) => onSelect(evt, DM)} faSrc="fa-solid fa-check">
+            {typeToLabel[rulesToType[DM]]}
           </Button>
         )}
         content={<Text variant="b3">Default notification settings for all direct message.</Text>}
@@ -143,7 +143,7 @@ function GlobalNotification() {
       <SettingTile
         title="Encrypted direct messages"
         options={(
-          <Button onClick={(evt) => onSelect(evt, ENC_DM)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, ENC_DM)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[ENC_DM]]}
           </Button>
         )}
@@ -152,7 +152,7 @@ function GlobalNotification() {
       <SettingTile
         title="Rooms messages"
         options={(
-          <Button onClick={(evt) => onSelect(evt, ROOM)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, ROOM)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[ROOM]]}
           </Button>
         )}
@@ -161,7 +161,7 @@ function GlobalNotification() {
       <SettingTile
         title="Encrypted rooms messages"
         options={(
-          <Button onClick={(evt) => onSelect(evt, ENC_ROOM)} iconSrc={ChevronBottomIC}>
+          <Button onClick={(evt) => onSelect(evt, ENC_ROOM)} faSrc="fa-solid fa-check">
             {typeToLabel[rulesToType[ENC_ROOM]]}
           </Button>
         )}
