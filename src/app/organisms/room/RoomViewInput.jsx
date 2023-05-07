@@ -25,31 +25,44 @@ import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
 import commands from './commands';
 
+// Variables
 const CMD_REGEX = /(^\/|:|@)(\S*)$/;
 let isTyping = false;
 let isCmdActivated = false;
 let cmdCursorPos = null;
+
+// Room View Input
 function RoomViewInput({
   roomId, roomTimeline, viewEvent,
 }) {
+
+  // File
   const [attachment, setAttachment] = useState(null);
+
+  // Reply
   const [replyTo, setReplyTo] = useState(null);
 
+  // Inputs
   const textAreaRef = useRef(null);
   const inputBaseRef = useRef(null);
   const uploadInputRef = useRef(null);
   const uploadProgressRef = useRef(null);
   const rightOptionsRef = useRef(null);
 
+  // Timeout Cfg
   const TYPING_TIMEOUT = 5000;
+
+  // Matrix Client
   const mx = initMatrix.matrixClient;
   const { roomsInput } = initMatrix;
 
+  // Request Focus
   function requestFocusInput() {
     if (textAreaRef === null) return;
     textAreaRef.current.focus();
   }
 
+  // Effects
   useEffect(() => {
     roomsInput.on(cons.events.roomsInput.ATTACHMENT_SET, setAttachment);
     viewEvent.on('focus_msg_input', requestFocusInput);
@@ -91,26 +104,31 @@ function RoomViewInput({
     }
   }
 
+  // CMD Stuff
   function activateCmd(prefix) {
     isCmdActivated = true;
     rightOptionsA11Y(false);
     viewEvent.emit('cmd_activate', prefix);
   }
+
   function deactivateCmd() {
     isCmdActivated = false;
     cmdCursorPos = null;
     rightOptionsA11Y(true);
   }
+
   function deactivateCmdAndEmit() {
     deactivateCmd();
     viewEvent.emit('cmd_deactivate');
   }
+
   function setCursorPosition(pos) {
     setTimeout(() => {
       textAreaRef.current.focus();
       textAreaRef.current.setSelectionRange(pos, pos);
     }, 0);
   }
+
   function replaceCmdWith(msg, cursor, replacement) {
     if (msg === null) return null;
     const targetInput = msg.slice(0, cursor);
@@ -119,89 +137,141 @@ function RoomViewInput({
     if (replacement.length > 0) setCursorPosition(leadingInput.length + replacement.length);
     return leadingInput + replacement + msg.slice(cursor);
   }
+
   function firedCmd(cmdData) {
+
     const msg = textAreaRef.current.value;
     textAreaRef.current.value = replaceCmdWith(
       msg,
       cmdCursorPos,
       typeof cmdData?.replace !== 'undefined' ? cmdData.replace : '',
     );
+
     deactivateCmd();
+
   }
 
+  // Input
   function focusInput() {
     if (settings.isTouchScreenDevice) return;
     textAreaRef.current.focus();
   }
 
+  // Set Reply
   function setUpReply(userId, eventId, body, formattedBody) {
+
     setReplyTo({ userId, eventId, body });
+
     roomsInput.setReplyTo(roomId, {
       userId, eventId, body, formattedBody,
     });
+
     focusInput();
+
   }
 
+  // Effects
   useEffect(() => {
+
+    // Events On
     roomsInput.on(cons.events.roomsInput.UPLOAD_PROGRESS_CHANGES, uploadingProgress);
     roomsInput.on(cons.events.roomsInput.ATTACHMENT_CANCELED, clearAttachment);
     roomsInput.on(cons.events.roomsInput.FILE_UPLOADED, clearAttachment);
+
     viewEvent.on('cmd_fired', firedCmd);
+
     navigation.on(cons.events.navigation.REPLY_TO_CLICKED, setUpReply);
+
+    // Textarea
     if (textAreaRef?.current !== null) {
       isTyping = false;
       textAreaRef.current.value = roomsInput.getMessage(roomId);
       setAttachment(roomsInput.getAttachment(roomId));
       setReplyTo(roomsInput.getReplyTo(roomId));
     }
+
+    // Complete
     return () => {
+
       roomsInput.removeListener(cons.events.roomsInput.UPLOAD_PROGRESS_CHANGES, uploadingProgress);
       roomsInput.removeListener(cons.events.roomsInput.ATTACHMENT_CANCELED, clearAttachment);
       roomsInput.removeListener(cons.events.roomsInput.FILE_UPLOADED, clearAttachment);
+
       viewEvent.removeListener('cmd_fired', firedCmd);
       navigation.removeListener(cons.events.navigation.REPLY_TO_CLICKED, setUpReply);
+
       if (isCmdActivated) deactivateCmd();
       if (textAreaRef?.current === null) return;
 
       const msg = textAreaRef.current.value;
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
       textAreaRef.current.style.height = 'unset';
       // eslint-disable-next-line react-hooks/exhaustive-deps
       inputBaseRef.current.style.backgroundImage = 'unset';
+
       if (msg.trim() === '') {
         roomsInput.setMessage(roomId, '');
         return;
       }
       roomsInput.setMessage(roomId, msg);
+
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
+  // Send Body
   const sendBody = async (body, options) => {
+
+    // Options
     const opt = options ?? {};
+
+    // Is Text
     if (!opt.msgType) opt.msgType = 'm.text';
+
+    // Markdown
     if (typeof opt.autoMarkdown !== 'boolean') opt.autoMarkdown = true;
+
+    // Is Seding?
     if (roomsInput.isSending(roomId)) return;
+
+    // Cancel Typing Warn
     sendIsTyping(false);
 
+    // Set Message
     roomsInput.setMessage(roomId, body);
+
+    // Prepare Files
     if (attachment !== null) {
       roomsInput.setAttachment(roomId, attachment);
     }
+
+
+    // Prepare Message
     textAreaRef.current.disabled = true;
     textAreaRef.current.style.cursor = 'not-allowed';
+
+    // Send Input
     await roomsInput.sendInput(roomId, opt).catch(err => {
       alert(err.message);
     });
+
+    // CSS
     textAreaRef.current.disabled = false;
     textAreaRef.current.style.cursor = 'unset';
     focusInput();
 
+    // Get Room ID
     textAreaRef.current.value = roomsInput.getMessage(roomId);
     textAreaRef.current.style.height = 'unset';
+
+    // Reply Fix
     if (replyTo !== null) setReplyTo(null);
+
   };
 
+  // Command
   const processCommand = (cmdBody) => {
     const spaceIndex = cmdBody.indexOf(' ');
     const cmdName = cmdBody.slice(1, spaceIndex > -1 ? spaceIndex : undefined);
@@ -217,8 +287,13 @@ function RoomViewInput({
     commands[cmdName].exe(roomId, cmdData);
   };
 
+  // Send Message
   const sendMessage = async () => {
+
+    // Animation
     requestAnimationFrame(() => deactivateCmdAndEmit());
+
+    // Message Body
     const msgBody = textAreaRef.current.value.trim();
     if (msgBody.startsWith('/')) {
       processCommand(msgBody.trim());
@@ -226,14 +301,19 @@ function RoomViewInput({
       textAreaRef.current.style.height = 'unset';
       return;
     }
+
+    // Send Body
     if (msgBody === '' && attachment === null) return;
     sendBody(msgBody);
+
   };
 
+  // Sticker
   const handleSendSticker = async (data) => {
     roomsInput.sendSticker(roomId, data);
   };
 
+  // Typing Progress
   function processTyping(msg) {
     const isEmptyMsg = msg === '';
 
@@ -246,10 +326,12 @@ function RoomViewInput({
     }
   }
 
+  // Get Cursor
   function getCursorPosition() {
     return textAreaRef.current.selectionStart;
   }
 
+  // Cmd
   function recognizeCmd(rawInput) {
     const cursor = getCursorPosition();
     const targetInput = rawInput.slice(0, cursor);
@@ -324,6 +406,7 @@ function RoomViewInput({
     }
   };
 
+  // Add Emoji
   function addEmoji(emoji) {
     textAreaRef.current.value += emoji.unicode;
     textAreaRef.current.focus();
@@ -435,6 +518,7 @@ function RoomViewInput({
     );
   }
 
+  // File Reply
   function attachReply() {
     return (
       <div className="room-reply">
@@ -458,6 +542,7 @@ function RoomViewInput({
     );
   }
 
+  // Complete
   return (
     <>
       {replyTo !== null && attachReply()}
@@ -469,7 +554,11 @@ function RoomViewInput({
       </form>
     </>
   );
+
 }
+// ================================ End Script
+
+// Room View PropTypes
 RoomViewInput.propTypes = {
   roomId: PropTypes.string.isRequired,
   roomTimeline: PropTypes.shape({}).isRequired,

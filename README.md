@@ -52,3 +52,5 @@ If you are a developer interested in contributing to the project, I'll let the P
     src/app/molecules/media
     src/app/organisms/navigation/DrawerHeader.scss
     src/app/atoms/text/Text.scss
+
+    src/app/organisms/room/RoomViewInput.jsx
