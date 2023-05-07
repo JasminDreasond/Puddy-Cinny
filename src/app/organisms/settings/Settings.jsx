@@ -35,7 +35,6 @@ import DeviceManage from './DeviceManage';
 
 import SunIC from '../../../../public/res/ic/outlined/sun.svg';
 import LockIC from '../../../../public/res/ic/outlined/lock.svg';
-import BellIC from '../../../../public/res/ic/outlined/bell.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 import PowerIC from '../../../../public/res/ic/outlined/power.svg';
 
@@ -276,27 +275,27 @@ export const tabText = {
 };
 const tabItems = [{
   text: tabText.APPEARANCE,
-  iconSrc: SunIC,
+  faSrc: "fa-solid fa-sun",
   disabled: false,
   render: () => <AppearanceSection />,
 }, {
   text: tabText.NOTIFICATIONS,
-  iconSrc: BellIC,
+  faSrc: "fa-solid fa-bell",
   disabled: false,
   render: () => <NotificationsSection />,
 }, {
   text: tabText.EMOJI,
-  faSrc: "fa-regular fa-face-smile",
+  faSrc: "fa-solid fa-face-smile",
   disabled: false,
   render: () => <EmojiSection />,
 }, {
   text: tabText.SECURITY,
-  iconSrc: LockIC,
+  faSrc: "fa-solid fa-lock",
   disabled: false,
   render: () => <SecuritySection />,
 }, {
   text: tabText.ABOUT,
-  iconSrc: InfoIC,
+  faSrc: "fa-solid fa-circle-info",
   disabled: false,
   render: () => <AboutSection />,
 }];

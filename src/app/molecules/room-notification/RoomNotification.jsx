@@ -9,25 +9,20 @@ import Text from '../../atoms/text/Text';
 import RadioButton from '../../atoms/button/RadioButton';
 import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 
-import BellIC from '../../../../public/res/ic/outlined/bell.svg';
-import BellRingIC from '../../../../public/res/ic/outlined/bell-ring.svg';
-import BellPingIC from '../../../../public/res/ic/outlined/bell-ping.svg';
-import BellOffIC from '../../../../public/res/ic/outlined/bell-off.svg';
-
 const items = [{
-  iconSrc: BellIC,
+  faSrc: "fa-solid fa-globe",
   text: 'Global',
   type: cons.notifs.DEFAULT,
 }, {
-  iconSrc: BellRingIC,
+  faSrc: "fa-solid fa-comments",
   text: 'All messages',
   type: cons.notifs.ALL_MESSAGES,
 }, {
-  iconSrc: BellPingIC,
+  faSrc: "fa-solid fa-quote-left",
   text: 'Mentions & Keywords',
   type: cons.notifs.MENTIONS_AND_KEYWORDS,
 }, {
-  iconSrc: BellOffIC,
+  faSrc: "fa-solid fa-bell-slash",
   text: 'Mute',
   type: cons.notifs.MUTE,
 }];

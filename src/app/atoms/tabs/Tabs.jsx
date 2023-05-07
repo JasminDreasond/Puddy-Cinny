@@ -6,7 +6,7 @@ import Button from '../button/Button';
 import ScrollView from '../scroll/ScrollView';
 
 function TabItem({
-  selected, iconSrc,
+  selected, iconSrc, faSrc,
   onClick, children, disabled,
 }) {
   const isSelected = selected ? 'tab-item--selected' : '';
@@ -15,6 +15,7 @@ function TabItem({
     <Button
       className={`tab-item ${isSelected}`}
       iconSrc={iconSrc}
+      faSrc={faSrc}
       onClick={onClick}
       disabled={disabled}
     >
@@ -26,6 +27,7 @@ function TabItem({
 TabItem.defaultProps = {
   selected: false,
   iconSrc: null,
+  faSrc: null,
   onClick: null,
   disabled: false,
 };
@@ -33,6 +35,7 @@ TabItem.defaultProps = {
 TabItem.propTypes = {
   selected: PropTypes.bool,
   iconSrc: PropTypes.string,
+  faSrc: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
@@ -56,6 +59,7 @@ function Tabs({ items, defaultSelected, onSelect }) {
               key={item.text}
               selected={selectedItem.text === item.text}
               iconSrc={item.iconSrc}
+              faSrc={item.faSrc}
               disabled={item.disabled}
               onClick={() => handleTabSelection(item, index)}
             >
