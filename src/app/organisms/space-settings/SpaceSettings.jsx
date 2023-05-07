@@ -27,9 +27,6 @@ import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
-import UserIC from '../../../../public/res/ic/outlined/user.svg';
-import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
-import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
 import PinIC from '../../../../public/res/ic/outlined/pin.svg';
 import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
 import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
