@@ -85,7 +85,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       </MenuItem>
       <MenuItem
         onClick={handlePinClick}
-        faSrc={isPinned ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
+        faSrc={isPinned ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
       >
         {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
       </MenuItem>

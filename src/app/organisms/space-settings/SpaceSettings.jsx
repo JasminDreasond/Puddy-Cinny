@@ -81,7 +81,7 @@ function GeneralSettings({ roomId }) {
             else createSpaceShortcut(roomId);
             forceUpdate();
           }}
-          faSrc={isPinned ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
+          faSrc={isPinned ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
         >
           {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
         </MenuItem>

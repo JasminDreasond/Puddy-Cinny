@@ -83,7 +83,7 @@ function ShortcutSpacesContent() {
         onClick={isShortcut ? deleteShortcut : toggleSelected}
         options={isShortcut ? (
           <IconButton
-            fa={isShortcut ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
+            fa={isShortcut ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
             size="small"
             onClick={deleteShortcut}
             disabled={process !== null}
