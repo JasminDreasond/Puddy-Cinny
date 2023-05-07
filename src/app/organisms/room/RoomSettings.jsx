@@ -27,8 +27,6 @@ import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
-import ChevronTopIC from '../../../../public/res/ic/outlined/chevron-top.svg';
-
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
@@ -183,7 +181,7 @@ function RoomSettings({ roomId }) {
                   <span style={{ color: 'var(--tc-surface-low)' }}> — room settings</span>
                 </Text>
               </TitleWrapper>
-              <RawIcon size="small" src={ChevronTopIC} />
+              <RawIcon size="small" fa="fa-solid fa-chevron-up" />
             </button>
           </Header>
           <RoomProfile roomId={roomId} />
