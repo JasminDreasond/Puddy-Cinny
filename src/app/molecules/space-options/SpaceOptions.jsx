@@ -16,7 +16,6 @@ import {
 
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 
-import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
@@ -97,7 +96,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
         Invite
       </MenuItem>
       <MenuItem onClick={handleManageRoom} iconSrc={HashSearchIC}>Manage rooms</MenuItem>
-      <MenuItem onClick={handleSettingsClick} iconSrc={SettingsIC}>Settings</MenuItem>
+      <MenuItem onClick={handleSettingsClick} faSrc="fa-solid fa-gear">Settings</MenuItem>
       <MenuItem
         variant="danger"
         onClick={handleLeaveClick}
