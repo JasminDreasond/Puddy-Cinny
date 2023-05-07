@@ -15,8 +15,6 @@ import Input from '../../atoms/input/Input';
 import IconButton from '../../atoms/button/IconButton';
 import ImageUpload from '../image-upload/ImageUpload';
 
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
-
 import { useStore } from '../../hooks/useStore';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
@@ -135,10 +133,10 @@ function RoomProfile({ roomId }) {
       {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
       {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
       {(!canChangeName || !canChangeTopic) && <Text variant="b3">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</Text>}
-      { status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
-      { status.type === cons.status.SUCCESS && <Text style={{ color: 'var(--tc-positive-high)' }} variant="b2">{status.msg}</Text>}
-      { status.type === cons.status.ERROR && <Text style={{ color: 'var(--tc-danger-high)' }} variant="b2">{status.msg}</Text>}
-      { status.type !== cons.status.IN_FLIGHT && (
+      {status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
+      {status.type === cons.status.SUCCESS && <Text style={{ color: 'var(--tc-positive-high)' }} variant="b2">{status.msg}</Text>}
+      {status.type === cons.status.ERROR && <Text style={{ color: 'var(--tc-danger-high)' }} variant="b2">{status.msg}</Text>}
+      {status.type !== cons.status.IN_FLIGHT && (
         <div>
           <Button type="submit" variant="primary">Save</Button>
           <Button onClick={handleCancelEditing}>Cancel</Button>
@@ -151,9 +149,9 @@ function RoomProfile({ roomId }) {
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
       <div>
         <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
-        { (canChangeName || canChangeTopic) && (
+        {(canChangeName || canChangeTopic) && (
           <IconButton
-            src={PencilIC}
+            fa="fa-solid fa-pencil"
             size="extra-small"
             tooltip="Edit"
             onClick={() => setIsEditing(true)}
@@ -168,8 +166,8 @@ function RoomProfile({ roomId }) {
   return (
     <div className="room-profile">
       <div className="room-profile__content">
-        { !canChangeAvatar && <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />}
-        { canChangeAvatar && (
+        {!canChangeAvatar && <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />}
+        {canChangeAvatar && (
           <ImageUpload
             text={roomName}
             bgColor={colorMXID(roomId)}

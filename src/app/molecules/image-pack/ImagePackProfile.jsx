@@ -13,8 +13,6 @@ import Input from '../../atoms/input/Input';
 import ImageUpload from '../image-upload/ImageUpload';
 import ImagePackUsageSelector from './ImagePackUsageSelector';
 
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
-
 function ImagePackProfile({
   avatarUrl, displayName, attribution, usage,
   onUsageChange, onAvatarChange, onEditProfile,
@@ -80,7 +78,7 @@ function ImagePackProfile({
               <>
                 <div>
                   <Text>{displayName}</Text>
-                  {onEditProfile && <IconButton size="extra-small" onClick={() => setIsEdit(true)} src={PencilIC} tooltip="Edit" />}
+                  {onEditProfile && <IconButton size="extra-small" onClick={() => setIsEdit(true)} fa="fa-solid fa-pencil" tooltip="Edit" />}
                 </div>
                 {attribution && <Text variant="b3">{attribution}</Text>}
               </>

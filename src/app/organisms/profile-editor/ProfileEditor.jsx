@@ -11,7 +11,6 @@ import Button from '../../atoms/button/Button';
 import ImageUpload from '../../molecules/image-upload/ImageUpload';
 import Input from '../../atoms/input/Input';
 
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
 import './ProfileEditor.scss';
@@ -97,7 +96,7 @@ function ProfileEditor({ userId }) {
       <div>
         <Text variant="h2" primary weight="medium">{twemojify(username) ?? userId}</Text>
         <IconButton
-          src={PencilIC}
+          fa="fa-solid fa-pencil"
           size="extra-small"
           tooltip="Edit"
           onClick={() => setIsEditing(true)}

@@ -34,7 +34,6 @@ import * as Media from '../media/Media';
 import ReplyArrowIC from '../../../../public/res/ic/outlined/reply-arrow.svg';
 import EmojiAddIC from '../../../../public/res/ic/outlined/emoji-add.svg';
 import VerticalMenuIC from '../../../../public/res/ic/outlined/vertical-menu.svg';
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import TickMarkIC from '../../../../public/res/ic/outlined/tick-mark.svg';
 import CmdIC from '../../../../public/res/ic/outlined/cmd.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
@@ -566,7 +565,7 @@ const MessageOptions = React.memo(({
       {(senderId === mx.getUserId() && !isMedia(mEvent)) && (
         <IconButton
           onClick={() => edit(true)}
-          src={PencilIC}
+          fa="fa-solid fa-pencil"
           size="extra-small"
           tooltip="Edit"
         />

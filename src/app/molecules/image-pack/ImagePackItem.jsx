@@ -12,7 +12,6 @@ import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import ImagePackUsageSelector from './ImagePackUsageSelector';
 
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 
 function ImagePackItem({
@@ -42,7 +41,7 @@ function ImagePackItem({
       </div>
       <div className="image-pack-item__usage">
         <div className="image-pack-item__btn">
-          {onRename && <IconButton tooltip="Rename" size="extra-small" src={PencilIC} onClick={() => onRename(shortcode)} />}
+          {onRename && <IconButton tooltip="Rename" size="extra-small" fa="fa-solid fa-pencil" onClick={() => onRename(shortcode)} />}
           {onDelete && <IconButton tooltip="Delete" size="extra-small" src={BinIC} onClick={() => onDelete(shortcode)} />}
         </div>
         <Button onClick={onUsageChange ? handleUsageSelect : undefined}>

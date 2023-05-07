@@ -15,7 +15,6 @@ import InfoCard from '../../atoms/card/InfoCard';
 import Spinner from '../../atoms/spinner/Spinner';
 import SettingTile from '../../molecules/setting-tile/SettingTile';
 
-import PencilIC from '../../../../public/res/ic/outlined/pencil.svg';
 import BinIC from '../../../../public/res/ic/outlined/bin.svg';
 import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 
@@ -173,7 +172,7 @@ function DeviceManage() {
             : (
               <>
                 {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} variant="positive">Verify</Button>}
-                <IconButton size="small" onClick={() => handleRename(device)} src={PencilIC} tooltip="Rename" />
+                <IconButton size="small" onClick={() => handleRename(device)} fa="fa-solid fa-pencil" tooltip="Rename" />
                 <IconButton size="small" onClick={() => handleRemove(device)} src={BinIC} tooltip="Remove session" />
               </>
             )
@@ -234,10 +233,10 @@ function DeviceManage() {
         }
       </div>
       {noEncryption.length > 0 && (
-      <div>
-        <MenuHeader>Sessions without encryption support</MenuHeader>
-        {noEncryption.map((device) => renderDevice(device, null))}
-      </div>
+        <div>
+          <MenuHeader>Sessions without encryption support</MenuHeader>
+          {noEncryption.map((device) => renderDevice(device, null))}
+        </div>
       )}
       <div>
         <MenuHeader>Verified sessions</MenuHeader>
@@ -249,12 +248,12 @@ function DeviceManage() {
             })
             : <Text className="device-manage__info">No verified sessions</Text>
         }
-        { verified.length > TRUNCATED_COUNT && (
+        {verified.length > TRUNCATED_COUNT && (
           <Button className="device-manage__info" onClick={() => setTruncated(!truncated)}>
             {truncated ? `View ${verified.length - 4} more` : 'View less'}
           </Button>
         )}
-        { deviceList.length > 0 && (
+        {deviceList.length > 0 && (
           <Text className="device-manage__info" variant="b3">Session names are visible to everyone, so do not put any private info here.</Text>
         )}
       </div>
