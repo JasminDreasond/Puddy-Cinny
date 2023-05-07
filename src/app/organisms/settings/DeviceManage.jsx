@@ -15,8 +15,6 @@ import InfoCard from '../../atoms/card/InfoCard';
 import Spinner from '../../atoms/spinner/Spinner';
 import SettingTile from '../../molecules/setting-tile/SettingTile';
 
-import InfoIC from '../../../../public/res/ic/outlined/info.svg';
-
 import { authRequest } from './AuthRequest';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
@@ -220,7 +218,7 @@ function DeviceManage() {
             <InfoCard
               rounded
               variant="caution"
-              iconSrc={InfoIC}
+              faSrc="fa-solid fa-circle-info"
               title="Setup cross signing in case you lose all your sessions."
             />
           </div>

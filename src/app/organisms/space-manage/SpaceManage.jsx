@@ -25,8 +25,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 
-import InfoIC from '../../../../public/res/ic/outlined/info.svg';
-
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { useStore } from '../../hooks/useStore';
 
@@ -120,7 +118,7 @@ function SpaceManageItem({
     <IconButton
       variant={isExpand ? 'primary' : 'surface'}
       size="extra-small"
-      src={InfoIC}
+      fa="fa-solid fa-circle-info"
       tooltip="Topic"
       tooltipPlacement="top"
       onClick={() => setIsExpand(!isExpand)}

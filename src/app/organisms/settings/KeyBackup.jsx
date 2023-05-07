@@ -17,7 +17,6 @@ import SettingTile from '../../molecules/setting-tile/SettingTile';
 
 import { accessSecretStorage } from './SecretStorageAccess';
 
-import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 import DownloadIC from '../../../../public/res/ic/outlined/download.svg';
 
 import { useStore } from '../../hooks/useStore';
@@ -273,7 +272,7 @@ function KeyBackup() {
               style={{ marginTop: 'var(--sp-ultra-tight)' }}
               rounded
               variant="caution"
-              iconSrc={InfoIC}
+              faSrc="fa-solid fa-circle-info"
               title="Setup cross signing to backup your encrypted messages."
             />
           )}
