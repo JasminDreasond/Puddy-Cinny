@@ -61,7 +61,7 @@ const tabItems = [{
   text: tabText.MEMBERS,
   disabled: false,
 }, {
-  faSrc: "fa-regular fa-face-smile",
+  faSrc: "fa-solid fa-face-smile",
   text: tabText.EMOJIS,
   disabled: false,
 }, {

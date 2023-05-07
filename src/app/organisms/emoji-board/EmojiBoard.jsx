@@ -285,7 +285,7 @@ function EmojiBoard({ onSelect, searchRef }) {
           </div>
           <div className="emoji-board__nav-twemoji">
             {[
-              [0, "fa-regular fa-face-smile", 'Smilies'],
+              [0, "fa-solid fa-face-smile", 'Smilies'],
               [1, "fa-solid fa-paw", 'Animals'],
               [2, "fa-solid fa-mug-saucer", 'Food'],
               [3, "fa-solid fa-futbol", 'Activities'],

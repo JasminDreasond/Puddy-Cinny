@@ -410,7 +410,7 @@ function RoomViewInput({
               openEmojiBoard(cords, addEmoji);
             }}
             tooltip="Emoji"
-            fa="fa-regular fa-face-smile"
+            fa="fa-solid fa-face-smile"
           />
           <IconButton onClick={sendMessage} tooltip="Send" src={SendIC} />
         </div>

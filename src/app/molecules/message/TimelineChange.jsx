@@ -25,7 +25,7 @@ function TimelineChange({
       faSrc = "fa-solid fa-user-minus";
       break;
     case 'avatar':
-      faSrc = "fa-regular fa-id-badge";
+      faSrc = "fa-solid fa-id-badge";
       break;
     default:
       faSrc = "fa-solid fa-arrow-right-to-bracket";
