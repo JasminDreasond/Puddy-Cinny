@@ -16,7 +16,7 @@ function TimelineChange({
       faSrc = "fa-solid fa-arrow-right-to-bracket";
       break;
     case 'leave':
-      faSrc = "fa-solid fa-right-from-bracket";
+      faSrc = "fa-solid fa-arrow-right-from-bracket";
       break;
     case 'invite':
       faSrc = "fa-solid fa-user-plus";
