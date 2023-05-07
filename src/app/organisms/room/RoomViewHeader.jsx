@@ -21,8 +21,6 @@ import Header, { TitleWrapper } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import RoomOptions from '../../molecules/room-options/RoomOptions';
 
-import BackArrowIC from '../../../../public/res/ic/outlined/chevron-left.svg';
-
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 
 function RoomViewHeader({ roomId }) {
@@ -72,7 +70,7 @@ function RoomViewHeader({ roomId }) {
   return (
     <Header>
       <IconButton
-        src={BackArrowIC}
+        fa="fa-solid fa-chevron-left"
         className="room-header__back-btn"
         tooltip="Return to navigation"
         onClick={() => openNavigation()}
