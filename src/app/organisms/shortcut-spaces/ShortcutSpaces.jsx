@@ -16,9 +16,6 @@ import Spinner from '../../atoms/spinner/Spinner';
 import RoomSelector from '../../molecules/room-selector/RoomSelector';
 import Dialog from '../../molecules/dialog/Dialog';
 
-import PinIC from '../../../../public/res/ic/outlined/pin.svg';
-import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
-
 import { useSpaceShortcut } from '../../hooks/useSpaceShortcut';
 
 function ShortcutSpacesContent() {
@@ -86,7 +83,7 @@ function ShortcutSpacesContent() {
         onClick={isShortcut ? deleteShortcut : toggleSelected}
         options={isShortcut ? (
           <IconButton
-            src={isShortcut ? PinFilledIC : PinIC}
+            fa={isShortcut ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
             size="small"
             onClick={deleteShortcut}
             disabled={process !== null}

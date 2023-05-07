@@ -16,12 +16,8 @@ import {
 
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 
-import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
-import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
 import SettingsIC from '../../../../public/res/ic/outlined/settings.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
-import PinIC from '../../../../public/res/ic/outlined/pin.svg';
-import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
 
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 
@@ -83,13 +79,13 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         onClick={handleCategorizeClick}
-        iconSrc={isCategorized ? CategoryFilledIC : CategoryIC}
+        faSrc={isCategorized ? "fa-solid fa-border-all" : "fa-solid fa-square"}
       >
         {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
       </MenuItem>
       <MenuItem
         onClick={handlePinClick}
-        iconSrc={isPinned ? PinFilledIC : PinIC}
+        faSrc={isPinned ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
       >
         {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
       </MenuItem>

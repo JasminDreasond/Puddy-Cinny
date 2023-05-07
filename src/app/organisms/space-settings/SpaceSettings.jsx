@@ -27,11 +27,6 @@ import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
 
-import PinIC from '../../../../public/res/ic/outlined/pin.svg';
-import PinFilledIC from '../../../../public/res/ic/filled/pin.svg';
-import CategoryIC from '../../../../public/res/ic/outlined/category.svg';
-import CategoryFilledIC from '../../../../public/res/ic/filled/category.svg';
-
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 
@@ -76,7 +71,7 @@ function GeneralSettings({ roomId }) {
             else categorizeSpace(roomId);
             forceUpdate();
           }}
-          iconSrc={isCategorized ? CategoryFilledIC : CategoryIC}
+          faSrc={isCategorized ? "fa-solid fa-border-all" : "fa-solid fa-square"}
         >
           {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
         </MenuItem>
@@ -86,7 +81,7 @@ function GeneralSettings({ roomId }) {
             else createSpaceShortcut(roomId);
             forceUpdate();
           }}
-          iconSrc={isPinned ? PinFilledIC : PinIC}
+          faSrc={isPinned ? "fa-solid fa-thumbtack" : "fa-solid fa-thumbtack"}
         >
           {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
         </MenuItem>
