@@ -5,8 +5,6 @@ import './PowerLevelSelector.scss';
 import IconButton from '../../atoms/button/IconButton';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 
-import CheckIC from '../../../../public/res/ic/outlined/check.svg';
-
 function PowerLevelSelector({
   value, max, onSelect,
 }) {
@@ -30,7 +28,7 @@ function PowerLevelSelector({
           autoComplete="off"
           required
         />
-        <IconButton variant="primary" src={CheckIC} type="submit" />
+        <IconButton variant="primary" fa="fa-solid fa-check" type="submit" />
       </form>
       {max >= 0 && <MenuHeader>Presets</MenuHeader>}
       {max >= 100 && <MenuItem variant={value === 100 ? 'positive' : 'surface'} onClick={() => onSelect(100)}>Admin - 100</MenuItem>}
