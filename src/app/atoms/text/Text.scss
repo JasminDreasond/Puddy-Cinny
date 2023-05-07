@@ -1,8 +1,3 @@
-.drawer-breadcrumb img,
-.timeline-change img {
-  height: 21px !important;
-}
-
 @mixin font($type) {
   font-size: var(--fs-#{$type});
   letter-spacing: var(--ls-#{$type});
@@ -63,4 +58,11 @@
 .text-b3 {
   @include font(b3);
   color: var(--tc-surface-low);
+}
+
+.drawer-breadcrumb img,
+.timeline-change img,
+.following-members img,
+.profile-viewer__user__info img {
+  max-height: 21px !important;
 }
