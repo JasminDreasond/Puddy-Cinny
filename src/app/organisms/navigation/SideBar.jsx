@@ -22,11 +22,6 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 import SidebarAvatar from '../../molecules/sidebar-avatar/SidebarAvatar';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
-import HomeIC from '../../../../public/res/ic/outlined/home.svg';
-import AddPinIC from '../../../../public/res/ic/outlined/add-pin.svg';
-import InviteIC from '../../../../public/res/ic/outlined/invite.svg';
-import ShieldUserIC from '../../../../public/res/ic/outlined/shield-user.svg';
-
 import { useSelectedTab } from '../../hooks/useSelectedTab';
 import { useDeviceList } from '../../hooks/useDeviceList';
 
@@ -99,7 +94,7 @@ function CrossSigninAlert() {
       className="sidebar__cross-signin-alert"
       tooltip={`${unverified.length} unverified sessions`}
       onClick={() => openSettings(settingTabText.SECURITY)}
-      avatar={<Avatar iconSrc={ShieldUserIC} iconColor="var(--ic-danger-normal)" size="normal" />}
+      avatar={<Avatar faSrc="bi bi-shield-lock-fill" iconColor="var(--ic-danger-normal)" size="normal" />}
     />
   );
 }
@@ -160,7 +155,7 @@ function FeaturedTab() {
         tooltip="Home"
         active={selectedTab === cons.tabs.HOME}
         onClick={() => selectTab(cons.tabs.HOME)}
-        avatar={<Avatar iconSrc={HomeIC} size="normal" />}
+        avatar={<Avatar faSrc="fa-solid fa-house" size="normal" />}
         notificationBadge={homeNoti ? (
           <NotificationBadge
             alert={homeNoti?.highlight > 0}
@@ -355,7 +350,7 @@ function SideBar() {
               <SidebarAvatar
                 tooltip="Pin spaces"
                 onClick={() => openShortcutSpaces()}
-                avatar={<Avatar iconSrc={AddPinIC} size="normal" />}
+                avatar={<Avatar faSrc="bi bi-bookmark-plus-fill" size="normal" />}
               />
             </div>
           </div>
@@ -373,7 +368,7 @@ function SideBar() {
             <SidebarAvatar
               tooltip="Invites"
               onClick={() => openInviteList()}
-              avatar={<Avatar iconSrc={InviteIC} size="normal" />}
+              avatar={<Avatar faSrc="bi bi-envelope-plus-fill" size="normal" />}
               notificationBadge={<NotificationBadge alert content={totalInvites} />}
             />
           )}
