@@ -132,7 +132,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
           <TitleWrapper>
             <Text variant="s1" weight="medium" primary>{twemojify(spaceName)}</Text>
           </TitleWrapper>
-          <RawIcon size="small" fa="fa-solid fa-check" />
+          <RawIcon size="small" fa="fa-solid fa-chevron-down" />
         </button>
       ) : (
         <TitleWrapper>
