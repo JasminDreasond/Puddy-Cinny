@@ -103,7 +103,7 @@ function MessageReply({ name, color, body }) {
   return (
     <div className="message__reply">
       <Text variant="b2">
-        <RawIcon color={color} size="extra-small" fa="fa-solid fa-reply" />
+        <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
         {' '}
         <span style={{ color }}>{twemojify(name)}</span>
         {' '}
@@ -492,7 +492,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
             pickEmoji(e, roomId, mEvent.getId(), roomTimeline);
           }}
           fa="fa-solid fa-heart-circle-plus"
-          size="extra-small"
+          size="normal"
           tooltip="Add reaction"
         />
       )}
@@ -545,21 +545,21 @@ const MessageOptions = React.memo(({
         <IconButton
           onClick={(e) => pickEmoji(e, roomId, mEvent.getId(), roomTimeline)}
           fa="fa-solid fa-heart-circle-plus"
-          size="extra-small"
+          size="normal"
           tooltip="Add reaction"
         />
       )}
       <IconButton
         onClick={() => reply()}
         fa="fa-solid fa-reply"
-        size="extra-small"
+        size="normal"
         tooltip="Reply"
       />
       {(senderId === mx.getUserId() && !isMedia(mEvent)) && (
         <IconButton
           onClick={() => edit(true)}
           fa="fa-solid fa-pencil"
-          size="extra-small"
+          size="normal"
           tooltip="Edit"
         />
       )}
@@ -606,7 +606,7 @@ const MessageOptions = React.memo(({
           <IconButton
             onClick={toggleMenu}
             fa="bi bi-three-dots-vertical"
-            size="extra-small"
+            size="normal"
             tooltip="Options"
           />
         )}

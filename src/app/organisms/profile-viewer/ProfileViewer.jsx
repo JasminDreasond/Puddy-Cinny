@@ -130,7 +130,7 @@ function SessionInfo({ userId }) {
     <div className="session-info">
       <MenuItem
         onClick={() => setIsVisible(!isVisible)}
-        faSrc={isVisible ? "fa-solid fa-check" : "fa-solid fa-chevron-right"}
+        faSrc={isVisible ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"}
       >
         <Text variant="b2">{`View ${devices?.length > 0 ? `${devices.length} ` : ''}sessions`}</Text>
       </MenuItem>
