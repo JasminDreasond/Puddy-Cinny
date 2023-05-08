@@ -202,6 +202,7 @@ const MessageBody = React.memo(({
   senderName,
   body,
   isCustomHTML,
+  isSystem,
   isEdited,
   msgType,
 }) => {
@@ -222,8 +223,10 @@ const MessageBody = React.memo(({
       console.error('Malformed custom html: ', body);
       content = twemojify(body, undefined);
     }
-  } else {
+  } else if (!isSystem) {
     content = twemojify(body, undefined, true);
+  } else {
+    content = twemojify(body, undefined, true, false, true);
   }
 
   // Determine if this message should render with large emojis
@@ -273,12 +276,14 @@ const MessageBody = React.memo(({
 });
 MessageBody.defaultProps = {
   isCustomHTML: false,
+  isSystem: false,
   isEdited: false,
   msgType: null,
 };
 MessageBody.propTypes = {
   senderName: PropTypes.string.isRequired,
   body: PropTypes.node.isRequired,
+  isSystem: PropTypes.bool,
   isCustomHTML: PropTypes.bool,
   isEdited: PropTypes.bool,
   msgType: PropTypes.string,
@@ -912,7 +917,7 @@ function Message({
   }
 
   // Bad Message
-  const errorMessage = `<i class="fa-solid fa-xmark"></i> <strong>Unable to decrypt message.</strong>`;
+  const errorMessage = `<i class="bi bi-slash-circle"></i> <strong>Unable to decrypt message.</strong>`;
   isCustomHTML = true;
   return (
 
@@ -945,7 +950,7 @@ function Message({
 
         <MessageBody
           senderName={username}
-          isCustomHTML={isCustomHTML}
+          isSystem={isCustomHTML}
           body={errorMessage}
           msgType={msgType}
           isEdited={isEdited}
