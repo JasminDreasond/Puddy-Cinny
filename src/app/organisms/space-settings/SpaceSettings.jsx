@@ -71,7 +71,7 @@ function GeneralSettings({ roomId }) {
             else categorizeSpace(roomId);
             forceUpdate();
           }}
-          faSrc={isCategorized ? "fa-solid fa-border-all" : "fa-solid fa-square"}
+          faSrc={isCategorized ? "bi bi-grid" : "bi bi-grid-fill"}
         >
           {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
         </MenuItem>

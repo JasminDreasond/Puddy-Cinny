@@ -78,7 +78,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         onClick={handleCategorizeClick}
-        faSrc={isCategorized ? "fa-solid fa-border-all" : "fa-solid fa-square"}
+        faSrc={isCategorized ? "bi bi-grid" : "bi bi-grid-fill"}
       >
         {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
       </MenuItem>
