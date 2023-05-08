@@ -12,10 +12,47 @@ const options = {
     },
 
     configOverwrite: {
+
+        useHostPageLocalStorage: true,
+        disableAudioLevels: false,
+
+        securityUi: {
+            hideLobbyButton: true,
+            disableLobbyPassword: false
+        },
+
+        enableEmailInStats: false,
+        enableDisplayNameInStats: true,
+
+        breakoutRooms: {
+            hideAddRoomButton: true,
+            hideAutoAssignButton: true,
+            hideJoinRoomButton: true
+        },
+
         startWithAudioMuted: false,
         startAudioOnly: true,
         transcribingEnabled: false,
-        disableSimulcast: true,
+        disableSimulcast: false,
+
+        //etherpad_base: 'https://your-etherpad-installati.on/p/',
+
+        giphy: {
+            enabled: false
+        },
+
+        gravatar: {
+            baseUrl: 'https://www.gravatar.com/avatar/',
+            disabled: true
+        },
+
+        whiteboard: {
+            enabled: false,
+            //collabServerBaseUrl: 'https://excalidraw-backend.example.com'
+        },
+
+        startWithVideoMuted: true,
+
     },
 
     interfaceConfigOverwrite: {
