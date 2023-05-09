@@ -166,6 +166,16 @@ api.addListener('readyToClose', () => {
     console.log('readyToClose');
 });
 
+// Mute Audio
+api.addListener('audioMuteStatusChanged', (data) => {
+    console.log('audioMuteStatusChanged', data);
+});
+
+// Mute Video
+api.addListener('videoMuteStatusChanged', (data) => {
+    console.log('videoMuteStatusChanged', data);
+});
+
 // set new password for channel
 api.addEventListener('participantRoleChanged', function (event) {
     if (event.role === "moderator") {
