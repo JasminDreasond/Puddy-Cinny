@@ -124,10 +124,8 @@ const options = {
 
         setTimeout(function () {
 
-            api.executeCommands({
-                displayName: ['Tiny Jasmini'],
-                avatarUrl: ['https://matrix-client.matrix.org/_matrix/media/r0/thumbnail/matrix.org/XhHfjJYarbeWNgNUMeNSROLW?width=512&height=512&method=crop'],
-            });
+            api.executeCommand('avatarUrl', 'https://matrix-client.matrix.org/_matrix/media/r0/thumbnail/matrix.org/XhHfjJYarbeWNgNUMeNSROLW?width=512&height=512&method=crop');
+            api.executeCommand('displayName', 'Tiny Jasmini');
 
             //
         }, 20000);
