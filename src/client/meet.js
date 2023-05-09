@@ -13,6 +13,8 @@ const options = {
 
     configOverwrite: {
 
+        disableInviteFunctions: true,
+
         prejoinConfig: {
             enabled: false
         },
