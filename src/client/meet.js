@@ -20,7 +20,13 @@ const options = {
         // Room Name
         subject: `{{title | safe}}`,
 
+        // Start Mode
+        startWithAudioMuted: false,
+        startAudioOnly: true,
+
         // Rest Config
+
+        startWithVideoMuted: true,
 
         disableInviteFunctions: true,
         readOnlyName: false,
@@ -46,8 +52,6 @@ const options = {
             hideJoinRoomButton: true
         },
 
-        startWithAudioMuted: false,
-        startAudioOnly: true,
         transcribingEnabled: false,
         disableSimulcast: false,
 
@@ -67,20 +71,23 @@ const options = {
             //collabServerBaseUrl: 'https://excalidraw-backend.example.com'
         },
 
-        startWithVideoMuted: true,
-
     },
 
+    // Interface
     interfaceConfigOverwrite: {
 
+        // App Template
         APP_NAME: 'Puddy Cinny',
+        DEFAULT_BACKGROUND: '#040404',
+
         AUDIO_LEVEL_PRIMARY_COLOR: 'rgba(255,255,255,0.4)',
         AUDIO_LEVEL_SECONDARY_COLOR: 'rgba(255,255,255,0.2)',
+
+        // Rest
 
         GENERATE_ROOMNAMES_ON_WELCOME_PAGE: false,
         DISABLE_TRANSCRIPTION_SUBTITLES: true,
 
-        DEFAULT_BACKGROUND: '#040404',
         DEFAULT_WELCOME_PAGE_LOGO_URL: 'images/watermark.svg',
 
         DISPLAY_WELCOME_FOOTER: false,
