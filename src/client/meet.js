@@ -13,6 +13,10 @@ const options = {
 
     configOverwrite: {
 
+        prejoinConfig: {
+            enabled: false
+        },
+
         useHostPageLocalStorage: true,
         disableAudioLevels: false,
 
@@ -111,8 +115,23 @@ const options = {
     //jwt: '<jwt_token>',
 
     userInfo: {
-        email: 'email@jitsiexamplemail.com',
-        displayName: 'John Doe'
+        displayName: 'JasminDreasond',
+    },
+
+    onload: function () {
+
+        api.executeCommand('avatarUrl', 'https://avatars0.githubusercontent.com/u/3671647');
+
+        setTimeout(function () {
+
+            api.executeCommands({
+                displayName: ['Tiny Jasmini'],
+                avatarUrl: ['https://matrix-client.matrix.org/_matrix/media/r0/thumbnail/matrix.org/XhHfjJYarbeWNgNUMeNSROLW?width=512&height=512&method=crop'],
+            });
+
+            //
+        }, 20000);
+
     }
 
 };
