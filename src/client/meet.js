@@ -1,7 +1,6 @@
 const domain = 'meet.jit.si';
 const options = {
 
-    roomName: 'JitsiMeetAPIExample',
     parentNode: document.querySelector('#meet'),
     lang: 'en',
 
@@ -14,6 +13,7 @@ const options = {
     configOverwrite: {
 
         disableInviteFunctions: true,
+        readOnlyName: false,
 
         prejoinConfig: {
             enabled: false
@@ -114,15 +114,16 @@ const options = {
 
     },
 
-    //jwt: '<jwt_token>',
-
     userInfo: {
         displayName: 'JasminDreasond',
     },
 
+    roomName: `{{key | safe}}`,
+
     onload: function () {
 
         api.executeCommand('avatarUrl', 'https://avatars0.githubusercontent.com/u/3671647');
+        api.executeCommand('password', `{{password | safe}}`);
 
         setTimeout(function () {
 
@@ -135,3 +136,13 @@ const options = {
     }
 
 };
+
+const api = new JitsiMeetExternalAPI(domain, options);
+
+api.addListener('readyToClose', () => {
+    console.log('readyToClose');
+});
+
+api.addListener('passwordRequired', () => {
+    api.executeCommand('password', `{{password | safe}}`);
+});
