@@ -1,16 +1,26 @@
+
+// Server
 const domain = 'meet.jit.si';
 const options = {
 
+    // Insert App
     parentNode: document.querySelector('#meet'),
     lang: 'en',
 
+    // Selected Device
     devices: {
         //audioInput: '<deviceLabel>',
         //audioOutput: '<deviceLabel>',
         //videoInput: '<deviceLabel>'
     },
 
+    // Page Config
     configOverwrite: {
+
+        // Room Name
+        subject: `{{title | safe}}`,
+
+        // Rest Config
 
         disableInviteFunctions: true,
         readOnlyName: false,
@@ -114,17 +124,24 @@ const options = {
 
     },
 
+    // User Data
     userInfo: {
         displayName: 'JasminDreasond',
     },
 
+    // Room Key
     roomName: `{{key | safe}}`,
 
+    // Page Load
     onload: function () {
 
+        // Set Avatar
         api.executeCommand('avatarUrl', 'https://avatars0.githubusercontent.com/u/3671647');
+
+        // Set Password
         api.executeCommand('password', `{{password | safe}}`);
 
+        // Test
         setTimeout(function () {
 
             api.executeCommand('avatarUrl', 'https://matrix-client.matrix.org/_matrix/media/r0/thumbnail/matrix.org/XhHfjJYarbeWNgNUMeNSROLW?width=512&height=512&method=crop');
@@ -137,12 +154,15 @@ const options = {
 
 };
 
+// Start
 const api = new JitsiMeetExternalAPI(domain, options);
 
+// Ready to Close
 api.addListener('readyToClose', () => {
     console.log('readyToClose');
 });
 
+// Insert Password
 api.addListener('passwordRequired', () => {
     api.executeCommand('password', `{{password | safe}}`);
 });
