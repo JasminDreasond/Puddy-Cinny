@@ -1,7 +1,6 @@
 {
   "defaultHomeserver": 1,
   "homeserverList": [
-    "mlp.chat",
     "matrix.org",
     "mozilla.org"
   ],
