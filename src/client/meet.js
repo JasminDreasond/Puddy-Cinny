@@ -145,9 +145,6 @@ const options = {
         // Set Avatar
         api.executeCommand('avatarUrl', 'https://avatars0.githubusercontent.com/u/3671647');
 
-        // Set Password
-        api.executeCommand('password', `{{password | safe}}`);
-
         // Test
         setTimeout(function () {
 
@@ -167,6 +164,13 @@ const api = new JitsiMeetExternalAPI(domain, options);
 // Ready to Close
 api.addListener('readyToClose', () => {
     console.log('readyToClose');
+});
+
+// set new password for channel
+api.addEventListener('participantRoleChanged', function (event) {
+    if (event.role === "moderator") {
+        api.executeCommand('password', `{{password | safe}}`);
+    }
 });
 
 // Insert Password
