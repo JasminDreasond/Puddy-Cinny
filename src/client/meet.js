@@ -169,11 +169,13 @@ api.addListener('readyToClose', () => {
 // Mute Audio
 api.addListener('audioMuteStatusChanged', (data) => {
     console.log('audioMuteStatusChanged', data);
+    // api.executeCommand('toggleAudio');
 });
 
 // Mute Video
 api.addListener('videoMuteStatusChanged', (data) => {
     console.log('videoMuteStatusChanged', data);
+    // api.executeCommand('toggleVideo');
 });
 
 // set new password for channel
