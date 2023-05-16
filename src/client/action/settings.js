@@ -19,6 +19,12 @@ export function togglePeopleDrawer() {
   });
 }
 
+export function startVoiceChat() {
+  appDispatcher.dispatch({
+    type: cons.actions.settings.TOGGLE_PEOPLE_DRAWER,
+  });
+}
+
 export function toggleMembershipEvents() {
   appDispatcher.dispatch({
     type: cons.actions.settings.TOGGLE_MEMBERSHIP_EVENT,

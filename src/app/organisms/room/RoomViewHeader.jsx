@@ -9,8 +9,7 @@ import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
 import navigation from '../../../client/state/navigation';
 import { toggleRoomSettings, openReusableContextMenu, openNavigation } from '../../../client/action/navigation';
-import { togglePeopleDrawer } from '../../../client/action/settings';
-import { startVoiceChat } from '../../../client/action/voiceChat';
+import { togglePeopleDrawer, startVoiceChat } from '../../../client/action/settings';
 import colorMXID from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
 
