@@ -54,3 +54,6 @@ If you are a developer interested in contributing to the project, I'll let the P
     src/app/atoms/text/Text.scss
 
     src/app/organisms/room/RoomViewInput.jsx
+
+    src/util/markdown.js
+    src/util/sanitize.js

@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
+import moment from 'moment-timezone';
 import SimpleMarkdown from '@khanacademy/simple-markdown';
 import { idRegex, parseIdUri } from './common';
 
@@ -108,8 +109,12 @@ const plainRules = {
 };
 
 const markdownRules = {
+
+  // Default
   ...defaultRules,
   ...plainRules,
+
+  // Heading
   heading: {
     ...defaultRules.heading,
     match: blockRegex(/^ *(#{1,6})([^\n:]*?(?: [^\n]*?)?)#* *(?:\n *)*\n/),
@@ -121,10 +126,14 @@ const markdownRules = {
       return `${out}\n${(node.level === 1 ? '=' : '-').repeat(out.length)}\n\n`;
     },
   },
+
+  // HR Separator
   hr: {
     ...defaultRules.hr,
     plain: () => '---\n\n',
   },
+
+  // Code Block
   codeBlock: {
     ...defaultRules.codeBlock,
     plain: (node) => `\`\`\`${node.lang || ''}\n${node.content}\n\`\`\`\n`,
@@ -132,14 +141,20 @@ const markdownRules = {
       class: node.lang ? `language-${node.lang}` : undefined,
     })),
   },
+
+  // Fence
   fence: {
     ...defaultRules.fence,
     match: blockRegex(/^ *(`{3,}|~{3,}) *(?:(\S+) *)?\n([\s\S]+?)\n?\1 *(?:\n *)*\n/),
   },
+
+  // Block Quote
   blockQuote: {
     ...defaultRules.blockQuote,
     plain: (node, output, state) => `> ${output(node.content, state).trim().replace(/\n/g, '\n> ')}\n\n`,
   },
+
+  // List
   list: {
     ...defaultRules.list,
     plain: (node, output, state) => {
@@ -159,7 +174,11 @@ const markdownRules = {
       return items;
     },
   },
+
+  // ???
   def: undefined,
+
+  // Table
   table: {
     ...defaultRules.table,
     plain: (node, output, state) => {
@@ -177,7 +196,7 @@ const markdownRules = {
         }
       });
       header.forEach((s, i) => {
-        if (s.length > colWidth[i])colWidth[i] = s.length;
+        if (s.length > colWidth[i]) colWidth[i] = s.length;
       });
 
       const cells = node.cells.map((row) => row.map((content, i) => {
@@ -222,6 +241,8 @@ const markdownRules = {
       return table.map((row) => `| ${row.join(' | ')} |\n`).join('');
     },
   },
+
+  // Display Math
   displayMath: {
     order: defaultRules.table.order + 0.1,
     match: blockRegex(/^ *\$\$ *\n?([\s\S]+?)\n?\$\$ *(?:\n *)*\n/),
@@ -231,15 +252,21 @@ const markdownRules = {
       : `$$${node.content}$$\n`),
     html: (node) => mathHtml('div', node),
   },
+
+  // Shrug
   shrug: {
     order: defaultRules.escape.order - 0.1,
     match: inlineRegex(/^¯\\_\(ツ\)_\/¯/),
     parse: (capture) => ({ type: 'text', content: capture[0] }),
   },
+
+  // Table Separator
   tableSeparator: {
     ...defaultRules.tableSeparator,
     plain: () => ' | ',
   },
+
+  // Link
   link: {
     ...defaultRules.link,
     plain: (node, output, state) => {
@@ -262,6 +289,8 @@ const markdownRules = {
       return target;
     },
   },
+
+  // Image
   image: {
     ...defaultRules.image,
     plain: (node) => `![${node.alt}](${sanitizeUrl(node.target) || ''}${node.title ? ` "${node.title}"` : ''})`,
@@ -271,8 +300,12 @@ const markdownRules = {
       title: node.title,
     }, false),
   },
+
+  // Ref
   reflink: undefined,
   refimage: undefined,
+
+  // Others
   em: {
     ...defaultRules.em,
     plain: (node, output, state) => `_${output(node.content, state)}_`,
@@ -289,11 +322,15 @@ const markdownRules = {
     ...defaultRules.del,
     plain: (node, output, state) => `~~${output(node.content, state)}~~`,
   },
+
+  // Inline Code
   inlineCode: {
     ...defaultRules.inlineCode,
     match: inlineRegex(/^(`+)([^\n]*?[^`\n])\1(?!`)/),
     plain: (node) => `\`${node.content}\``,
   },
+
+  // Spoiler
   spoiler: {
     order: defaultRules.inlineCode.order + 0.1,
     match: inlineRegex(/^\|\|([\s\S]+?)\|\|(?:\(([\s\S]+?)\))?/),
@@ -318,6 +355,19 @@ const markdownRules = {
       { 'data-mx-spoiler': node.reason || null },
     ),
   },
+
+  // Timestamp
+  timestamp_t: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?)>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM`)
+  },
+
+  // Math
   inlineMath: {
     order: defaultRules.del.order + 0.2,
     match: inlineRegex(/^\$(\S[\s\S]+?\S|\S)\$(?!\d)/),
@@ -325,6 +375,7 @@ const markdownRules = {
     plain: (node) => `$${node.content}$`,
     html: (node) => mathHtml('span', node),
   },
+
 };
 
 function mapElement(el) {
@@ -441,13 +492,21 @@ function mapElement(el) {
       }
       return mapChildren(el);
     case 'SPAN':
+
       if (el.hasAttribute('data-mx-spoiler')) {
         return [{ type: 'spoiler', reason: el.getAttribute('data-mx-spoiler'), content: mapChildren(el) }];
       }
+
+      if (el.hasAttribute('data-mx-timestamp')) {
+        return [{ type: 'timestamp_t', content: mapChildren(el) }];
+      }
+
       if (el.hasAttribute('data-mx-maths')) {
         return [{ type: 'inlineMath', content: el.getAttribute('data-mx-maths') }];
       }
+
       return mapChildren(el);
+
     default:
       return mapChildren(el);
   }

@@ -11,11 +11,11 @@ const permittedHtmlTags = [
   'td', 'caption', 'pre', 'span', 'img', 'details', 'summary',
 ];
 
-const urlSchemes = ['https', 'http', 'ftp', 'mailto', 'magnet'];
+const urlSchemes = ['https', 'http', 'ftp', 'mailto', 'magnet', 'ipfs', 'bitcoin'];
 
 const permittedTagToAttributes = {
   font: ['style', 'data-mx-bg-color', 'data-mx-color', 'color'],
-  span: ['style', 'data-mx-bg-color', 'data-mx-color', 'data-mx-spoiler', 'data-mx-maths', 'data-mx-pill', 'data-mx-ping'],
+  span: ['style', 'data-mx-bg-color', 'data-mx-color', 'data-mx-timestamp-t', 'data-mx-spoiler', 'data-mx-maths', 'data-mx-pill', 'data-mx-ping'],
   div: ['data-mx-maths'],
   a: ['name', 'target', 'href', 'rel'],
   img: ['width', 'height', 'alt', 'title', 'src', 'data-mx-emoticon'],
