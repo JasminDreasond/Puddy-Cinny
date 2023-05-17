@@ -363,7 +363,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:t>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`hh:MM A`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        moment(timestamp).format(`hh:MM A`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_T: {
@@ -373,7 +380,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:T>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`hh:MM:SS A`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        moment(timestamp).format(`hh:MM:SS A`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_d: {
@@ -383,7 +397,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:d>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MM/DD/YYYY`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        moment(timestamp).format(`MM/DD/YYYY`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_D: {
@@ -393,7 +414,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:D>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        moment(timestamp).format(`MMMM DD, YYYY`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_f: {
@@ -403,7 +431,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:f>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM A`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        moment(timestamp).format(`MMMM DD, YYYY hh:MM A`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_F: {
@@ -413,7 +448,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:F>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`dddd MMMM DD, YYYY hh:MM A`)
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      htmlTag(
+        'span',
+        moment(timestamp).format(`dddd MMMM DD, YYYY hh:MM A`),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   timestamp_R: {
@@ -423,7 +465,14 @@ const markdownRules = {
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}:R>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).fromNow()
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      htmlTag(
+        'span',
+        moment(timestamp).fromNow(),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
   },
 
   // Math
