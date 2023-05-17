@@ -356,17 +356,6 @@ const markdownRules = {
     ),
   },
 
-  // Timestamp
-  timestamp: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?)>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM A`)
-  },
-
   timestamp_t: {
     order: defaultRules.inlineCode.order + 0.1,
     match: inlineRegex(/<t:([\s\S]+?):t>/),
