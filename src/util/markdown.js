@@ -357,14 +357,84 @@ const markdownRules = {
   },
 
   // Timestamp
-  timestamp_t: {
+  timestamp: {
     order: defaultRules.inlineCode.order + 0.1,
     match: inlineRegex(/<t:([\s\S]+?)>/),
     parse: (capture, parse, state) => ({
       content: parse(capture[1], state)
     }),
     plain: (node, output, state) => `<t:${output(node.content, state)}>`,
-    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM`)
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM A`)
+  },
+
+  timestamp_t: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):t>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:t>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`hh:MM A`)
+  },
+
+  timestamp_T: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):T>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:T>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`hh:MM:SS A`)
+  },
+
+  timestamp_d: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):d>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:d>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MM/DD/YYYY`)
+  },
+
+  timestamp_D: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):D>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:D>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY`)
+  },
+
+  timestamp_f: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):f>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:f>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`MMMM DD, YYYY hh:MM A`)
+  },
+
+  timestamp_F: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):F>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:F>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).format(`dddd MMMM DD, YYYY hh:MM A`)
+  },
+
+  timestamp_R: {
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(/<t:([\s\S]+?):R>/),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:R>`,
+    html: (node, output, state) => moment(Number(output(node.content, state)) * 1000).fromNow()
   },
 
   // Math
