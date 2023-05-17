@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './DeviceManage.scss';
-import dateFormat from 'dateformat';
+import moment from 'moment-timezone';
 
 import initMatrix from '../../../client/initMatrix';
 import { isCrossVerified } from '../../../util/matrixUtil';
@@ -180,7 +180,7 @@ function DeviceManage() {
               <Text variant="b3">
                 Last activity
                 <span style={{ color: 'var(--tc-surface-normal)' }}>
-                  {dateFormat(new Date(lastTS), ' hh:MM TT, dd/mm/yyyy')}
+                  {moment(new Date(lastTS)).format(' hh:MM A, DD/MM/YYYY')}
                 </span>
                 {lastIP ? ` at ${lastIP}` : ''}
               </Text>

@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import './RoomViewContent.scss';
 
-import dateFormat from 'dateformat';
+import moment from 'moment-timezone';
 import { twemojify } from '../../../util/twemojify';
 
 import initMatrix from '../../../client/initMatrix';
@@ -98,7 +98,7 @@ function RoomIntroContainer({ event, timeline }) {
       name={room.name}
       heading={twemojify(heading)}
       desc={desc}
-      time={event ? `Created at ${dateFormat(event.getDate(), 'dd mmmm yyyy, hh:MM TT')}` : null}
+      time={event ? `Created at ${moment(event.getDate()).format('DD MMMM YYYY, hh:MM A')}` : null}
     />
   );
 }
@@ -577,7 +577,7 @@ function RoomViewContent({ eventId, roomTimeline }) {
       }
       const dayDivider = prevMEvent && !isInSameDay(mEvent.getDate(), prevMEvent.getDate());
       if (dayDivider) {
-        tl.push(<Divider key={`divider-${mEvent.getId()}`} text={`${dateFormat(mEvent.getDate(), 'mmmm dd, yyyy')}`} />);
+        tl.push(<Divider key={`divider-${mEvent.getId()}`} text={`${moment(mEvent.getDate()).format('MMMM DD, YYYY')}`} />);
         itemCountIndex += 1;
       }
 
