@@ -567,10 +567,6 @@ function mapElement(el) {
         return [{ type: 'spoiler', reason: el.getAttribute('data-mx-spoiler'), content: mapChildren(el) }];
       }
 
-      if (el.hasAttribute('data-mx-timestamp')) {
-        return [{ type: 'timestamp_t', content: mapChildren(el) }];
-      }
-
       if (el.hasAttribute('data-mx-maths')) {
         return [{ type: 'inlineMath', content: el.getAttribute('data-mx-maths') }];
       }
