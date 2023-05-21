@@ -38,7 +38,7 @@ function Selector({
       if (typeof index === 'number' && !isNaN(index)) {
 
         name.shift();
-        room.nameVanilla = room.name;
+        room.cinnyName = { original: room.name, index: index };
         room.name = name.join(' - ');
 
       }
