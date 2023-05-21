@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { isInSameDay } from '../../../util/common';
 
+moment.locale('en');
+
 function Time({ timestamp, fullTime }) {
   const date = new Date(timestamp);
 

@@ -4,6 +4,8 @@ import moment from 'moment-timezone';
 import SimpleMarkdown from '@khanacademy/simple-markdown';
 import { idRegex, parseIdUri } from './common';
 
+moment.locale('en');
+
 const {
   defaultRules, parserFor, outputFor, anyScopeRegex, blockRegex, inlineRegex,
   sanitizeText, sanitizeUrl,
