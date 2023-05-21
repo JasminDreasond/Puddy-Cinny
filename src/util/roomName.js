@@ -24,7 +24,7 @@ export function updateName(room) {
 
 export function sortName(a, b) {
     if (a.nameCinny && b.nameCinny) {
-        return a.nameCinny.index > b.nameCinny.index;
+        return a.nameCinny.index - b.nameCinny.index;
     } else {
 
         const nameA = a.name.toUpperCase(); // ignore upper and lowercase
