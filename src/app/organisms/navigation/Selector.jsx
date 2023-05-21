@@ -18,13 +18,21 @@ import { useForceUpdate } from '../../hooks/useForceUpdate';
 
 // Selector Function
 function Selector({
-  roomId, isDM, drawerPostie, onClick,
+  roomId, isDM, drawerPostie, onClick, roomObject
 }) {
 
   // Base Script
   const mx = initMatrix.matrixClient;
   const noti = initMatrix.notifications;
-  const room = mx.getRoom(roomId);
+
+  // Room Data
+  let room;
+
+  if (!roomObject) {
+    room = mx.getRoom(roomId);
+  } else {
+    room = roomObject;
+  }
 
   // Is Room
   if (!isDM) {
@@ -35,10 +43,10 @@ function Selector({
 
       // Index Channel
       const index = Number(name[0]);
-      if (typeof index === 'number' && !isNaN(index)) {
+      if (typeof index === 'number' && !Number.isNaN(index)) {
 
         name.shift();
-        room.cinnyName = { original: room.name, index: index };
+        room.nameCinny = { original: room.name, index };
         room.name = name.join(' - ');
 
       }
@@ -65,6 +73,7 @@ function Selector({
       unSub1();
       unSub2();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Options
@@ -119,10 +128,16 @@ Selector.defaultProps = {
 };
 
 Selector.propTypes = {
+
   roomId: PropTypes.string.isRequired,
   isDM: PropTypes.bool,
+
+  // eslint-disable-next-line react/forbid-prop-types
+  roomObject: PropTypes.object,
+
   drawerPostie: PropTypes.shape({}).isRequired,
   onClick: PropTypes.func.isRequired,
+
 };
 
 export default Selector;

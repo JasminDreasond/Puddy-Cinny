@@ -34,7 +34,7 @@ function RoomProfile({ roomId }) {
   avatarSrc = isDM ? mx.getRoom(roomId).getAvatarFallbackMember()?.getAvatarUrl(mx.baseUrl, 36, 36, 'crop') : avatarSrc;
   const room = mx.getRoom(roomId);
   const { currentState } = room;
-  const roomName = room.name;
+  const roomName = room.nameCinny.original;
   const roomTopic = currentState.getStateEvents('m.room.topic')[0]?.getContent().topic;
 
   const userId = mx.getUserId();

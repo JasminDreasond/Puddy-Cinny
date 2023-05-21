@@ -16,9 +16,13 @@ import { HomeSpaceOptions } from './DrawerHeader';
 function RoomsCategory({
   spaceId, name, hideHeader, roomIds, drawerPostie,
 }) {
+
+  // Prepare Code Base
+  const mx = initMatrix.matrixClient;
   const { spaces, directs } = initMatrix.roomList;
   const [isOpen, setIsOpen] = useState(true);
 
+  // Create Space Options
   const openSpaceOptions = (e) => {
     e.preventDefault();
     openReusableContextMenu(
@@ -37,21 +41,33 @@ function RoomsCategory({
     );
   };
 
+  // Render Selector Funciton
   const renderSelector = (roomId) => {
+
     const isSpace = spaces.has(roomId);
     const isDM = directs.has(roomId);
 
+    const roomReady = true;
+    const room = mx.getRoom(roomId);
+
     return (
       <Selector
+        roomReady={roomReady}
         key={roomId}
         roomId={roomId}
+        roomObject={room}
         isDM={isDM}
         drawerPostie={drawerPostie}
         onClick={() => (isSpace ? selectSpace(roomId) : selectRoom(roomId))}
       />
     );
+
   };
 
+  // Prepare Rooms
+  const rooms = roomIds.map(renderSelector);
+
+  // Complete
   return (
     <div className="room-category">
       {!hideHeader && (
@@ -66,7 +82,7 @@ function RoomsCategory({
       )}
       {(isOpen || hideHeader) && (
         <div className="room-category__content">
-          {roomIds.map(renderSelector)}
+          {rooms}
         </div>
       )}
     </div>

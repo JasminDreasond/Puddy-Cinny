@@ -59,6 +59,7 @@ If you are a developer interested in contributing to the project, I'll let the P
 
     src/app/molecules/message
 
+    src/app/molecules/room-profile/RoomProfile.jsx
     src/app/organisms/navigation/Selector.jsx
 
     src/util/markdown.js
