@@ -43,14 +43,13 @@ function RoomsCategory({
   };
 
   // Render Selector Funciton
-  const renderSelector = (roomId) => {
+  const renderSelector = (room) => {
 
+    const roomId = room.roomId;
     const isSpace = spaces.has(roomId);
     const isDM = directs.has(roomId);
 
     const roomReady = true;
-    const room = mx.getRoom(roomId);
-    updateName(room);
 
     return (
       <Selector
@@ -66,8 +65,15 @@ function RoomsCategory({
 
   };
 
+  const renderData = (roomId) => {
+    const room = mx.getRoom(roomId);
+    updateName(room);
+    return room;
+  };
+
   // Prepare Rooms
-  const rooms = roomIds.map(renderSelector);
+  const roomData = roomIds.map(renderData);
+  const rooms = roomData.map(renderSelector);
 
   // Complete
   return (
