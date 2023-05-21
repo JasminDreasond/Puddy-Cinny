@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './RoomsCategory.scss';
 
+import { updateName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
 import { selectSpace, selectRoom, openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
@@ -49,6 +50,7 @@ function RoomsCategory({
 
     const roomReady = true;
     const room = mx.getRoom(roomId);
+    updateName(room);
 
     return (
       <Selector

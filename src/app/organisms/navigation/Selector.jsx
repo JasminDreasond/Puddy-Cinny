@@ -8,6 +8,7 @@ import navigation from '../../../client/state/navigation';
 import { openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords, abbreviateNumber } from '../../../util/common';
 import { joinRuleToIconSrc } from '../../../util/matrixUtil';
+import { updateName } from '../../../util/roomName';
 
 import IconButton from '../../atoms/button/IconButton';
 import RoomSelector from '../../molecules/room-selector/RoomSelector';
@@ -35,24 +36,8 @@ function Selector({
   }
 
   // Is Room
-  if (!isDM) {
-
-    // Separe Channel Name
-    const name = room.name.split(' - ');
-    if (name.length > 0) {
-
-      // Index Channel
-      const index = Number(name[0]);
-      if (typeof index === 'number' && !Number.isNaN(index)) {
-
-        name.shift();
-        room.nameCinny = { original: room.name, index };
-        room.name = name.join(' - ');
-
-      }
-
-    }
-
+  if (!isDM && !room.nameCinny) {
+    updateName(room);
   }
 
   // Image
