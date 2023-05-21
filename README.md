@@ -48,12 +48,18 @@ If you are a developer interested in contributing to the project, I'll let the P
 
 ## Message Data
 
-    src/app/molecules/message
     src/app/molecules/media
     src/app/organisms/navigation/DrawerHeader.scss
     src/app/atoms/text/Text.scss
 
     src/app/organisms/room/RoomViewInput.jsx
+
+
+    Message
+
+    src/app/molecules/message
+
+    src/app/organisms/navigation/Selector.jsx
 
     src/util/markdown.js
     src/util/sanitize.js

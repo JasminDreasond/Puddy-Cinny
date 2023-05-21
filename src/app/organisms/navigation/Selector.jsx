@@ -16,20 +16,48 @@ import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 
+// Selector Function
 function Selector({
   roomId, isDM, drawerPostie, onClick,
 }) {
+
+  // Base Script
   const mx = initMatrix.matrixClient;
   const noti = initMatrix.notifications;
   const room = mx.getRoom(roomId);
 
+  // Is Room
+  if (!isDM) {
+
+    // Separe Channel Name
+    const name = room.name.split(' - ');
+    if (name.length > 0) {
+
+      // Index Channel
+      const index = Number(name[0]);
+      if (typeof index === 'number' && !isNaN(index)) {
+
+        name.shift();
+        room.nameVanilla = room.name;
+        room.name = name.join(' - ');
+
+      }
+
+    }
+
+  }
+
+  // Image
   let imageSrc = room.getAvatarFallbackMember()?.getAvatarUrl(mx.baseUrl, 24, 24, 'crop') || null;
   if (imageSrc === null) imageSrc = room.getAvatarUrl(mx.baseUrl, 24, 24, 'crop') || null;
 
+  // Is Muted
   const isMuted = noti.getNotiType(roomId) === cons.notifs.MUTE;
 
+  // Force Update
   const [, forceUpdate] = useForceUpdate();
 
+  // Effects
   useEffect(() => {
     const unSub1 = drawerPostie.subscribe('selector-change', roomId, forceUpdate);
     const unSub2 = drawerPostie.subscribe('unread-change', roomId, forceUpdate);
@@ -39,17 +67,24 @@ function Selector({
     };
   }, []);
 
+  // Options
   const openOptions = (e) => {
+
     e.preventDefault();
     openReusableContextMenu(
+
       'right',
+
       getEventCords(e, '.room-selector'),
       room.isSpaceRoom()
         ? (closeMenu) => <SpaceOptions roomId={roomId} afterOptionSelect={closeMenu} />
         : (closeMenu) => <RoomOptions roomId={roomId} afterOptionSelect={closeMenu} />,
+
     );
+
   };
 
+  // Complete Data
   return (
     <RoomSelector
       key={roomId}
@@ -75,8 +110,10 @@ function Selector({
       )}
     />
   );
+
 }
 
+// Default
 Selector.defaultProps = {
   isDM: true,
 };
