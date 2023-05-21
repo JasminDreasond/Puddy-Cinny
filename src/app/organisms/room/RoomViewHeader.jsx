@@ -67,6 +67,8 @@ function RoomViewHeader({ roomId }) {
     );
   };
 
+  //       <IconButton className="room-header__drawer-btn" onClick={startVoiceChat} tooltip="Start VC" fa="fa-solid fa-phone" />
+
   return (
     <Header>
       <IconButton
@@ -89,8 +91,6 @@ function RoomViewHeader({ roomId }) {
         <RawIcon fa="fa-solid fa-chevron-down" />
       </button>
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
-
-      <IconButton className="room-header__drawer-btn" onClick={startVoiceChat} tooltip="Start VC" fa="fa-solid fa-phone" />
 
       <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />
       <IconButton className="room-header__members-btn" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" />
