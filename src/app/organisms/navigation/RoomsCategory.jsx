@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './RoomsCategory.scss';
 
-import { updateName } from '../../../util/roomName';
+import { updateName, sortName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
 import { selectSpace, selectRoom, openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
@@ -73,6 +73,9 @@ function RoomsCategory({
 
   // Prepare Rooms
   const roomData = roomIds.map(renderData);
+  roomData.sort(sortName);
+
+  // Insert Rooms
   const rooms = roomData.map(renderSelector);
 
   // Complete
