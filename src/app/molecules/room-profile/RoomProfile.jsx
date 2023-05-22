@@ -138,7 +138,7 @@ function RoomProfile({ roomId }) {
         }
 
         // Save Name
-        if (newName !== roomName && roomName.trim() !== '') {
+        if (newName !== roomName && newName.trim() !== '') {
           setStatus({
             msg: 'Saving room name...',
             type: cons.status.IN_FLIGHT,
