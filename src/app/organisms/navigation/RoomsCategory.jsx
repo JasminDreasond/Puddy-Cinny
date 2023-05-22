@@ -23,17 +23,22 @@ function setCategoryOpen({ roomName }) {
   tinyIsOpen = (tinyIsOpen === 'on');
 
   const dom = document.getElementById(`category_bt_${roomName}`);
+  const iconDom = document.querySelector(`#category_bd_${roomName} .ic-base`);
 
   // Disable
   if (tinyIsOpen) {
     setSpaceItem(`category_${roomName}`, 'off');
-    dom.style.display = 'none';
+    dom.classList.add('category-hide');
+    iconDom.classList.remove('fa-chevron-down');
+    iconDom.classList.add('fa-chevron-right');
   }
 
   // Enable
   else {
     setSpaceItem(`category_${roomName}`, 'on');
-    dom.style.display = '';
+    dom.classList.remove('category-hide');
+    iconDom.classList.remove('fa-chevron-right');
+    iconDom.classList.add('fa-chevron-down');
   }
 
 }
@@ -152,6 +157,7 @@ function RoomsCategory({
 
     const roomDivId = roomCategory[item].name.replace(/ /g, '');
     const roomIdB2 = `category_bt_${roomDivId}`;
+    const roomIdB1 = `category_bd_${roomDivId}`;
 
     let tinyIsOpen = getSpaceItem(`category_${roomDivId}`);
     if (typeof tinyIsOpen === 'string') {
@@ -162,8 +168,8 @@ function RoomsCategory({
     }
 
     rooms.push((
-      <div className="room-category__header" style={{ marginLeft: '15px' }}>
-        <button className="room-category__toggle anti-click-below" onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
+      <div className="room-category__header">
+        <button className="room-category__toggle" id={roomIdB1} onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
           <RawIcon fa={tinyIsOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
           <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
         </button>
@@ -171,19 +177,9 @@ function RoomsCategory({
     ));
 
     rooms.push(
-      (tinyIsOpen) && (
-        <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomIdB2}>
-          {tinyRooms}
-        </div>
-      )
-    );
-
-    rooms.push(
-      (!tinyIsOpen) && (
-        <div className="room-category__content" style={{ marginLeft: '15px', display: 'none' }} id={roomIdB2}>
-          {tinyRooms}
-        </div>
-      )
+      <div className={tinyIsOpen ? "room-category__content" : "room-category__content category-hide"} id={roomIdB2}>
+        {tinyRooms}
+      </div>
     );
 
   }
