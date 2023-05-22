@@ -126,7 +126,6 @@ function RoomsCategory({
     rooms.push((
       <div className="room-category__header" id={roomDivId}>
         <button className="room-category__toggle" type="button">
-          <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
           <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
         </button>
       </div>
