@@ -13,7 +13,7 @@ function Welcome() {
           Welcome to Pony House
         </Text>
         <Text className="app-welcome__subheading" variant="s1">
-          The tiny Puddy Club matrix client
+          The tiny Pony House matrix client
         </Text>
       </div>
     </div>

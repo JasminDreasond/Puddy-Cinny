@@ -1,7 +1,7 @@
 {
   "name": "Pony House",
   "short_name": "PCinny",
-  "description": "The tiny Puddy Club matrix client",
+  "description": "The tiny Pony House matrix client",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",

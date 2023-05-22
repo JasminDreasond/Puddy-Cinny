@@ -224,7 +224,7 @@ function AboutSection() {
               Pony House
               <span className="text text-b3" style={{ margin: '0 var(--sp-extra-tight)' }}>{`v${cons.version}`}</span>
             </Text>
-            <Text>The tiny Puddy Club matrix client</Text>
+            <Text>The tiny Pony House matrix client</Text>
 
             <div className="settings-about__btns">
               <Button onClick={() => window.open('https://github.com/JasminDreasond/Puddy-Cinny')}>Source code</Button>
