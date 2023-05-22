@@ -1,14 +1,14 @@
 {
   "name": "Pony House",
-  "short_name": "PCinny",
+  "short_name": "Pony House",
   "description": "The tiny Pony House matrix client",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#212121",
+  "theme_color": "#212121",
   "icons": [
     {
       "src": "/public/android/android-chrome-36x36.png",
