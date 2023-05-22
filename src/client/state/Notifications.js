@@ -6,6 +6,7 @@ import cons from './cons';
 import navigation from './navigation';
 import settings from './settings';
 import { setFavicon } from '../../util/common';
+import { updateName } from '../../util/roomName';
 
 import LogoSVG from '../../../public/res/svg/cinny.svg';
 import LogoUnreadSVG from '../../../public/res/svg/cinny-unread.svg';
@@ -248,6 +249,7 @@ class Notifications extends EventEmitter {
         title = `${mEvent.sender.name} (${room.name})`;
       }
 
+      updateName(room);
       const iconSize = 36;
       const icon = await renderAvatar({
         text: mEvent.sender.name,
