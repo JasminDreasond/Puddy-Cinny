@@ -250,6 +250,14 @@ class Notifications extends EventEmitter {
       }
 
       updateName(room);
+      if (room.nameCinny) {
+
+        if (typeof room.nameCinny.category === 'string') {
+          title = `(${room.nameCinny.category}) - ${title}`;
+        }
+
+      }
+
       const iconSize = 36;
       const icon = await renderAvatar({
         text: mEvent.sender.name,
