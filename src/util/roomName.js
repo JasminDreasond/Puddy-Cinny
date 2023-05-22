@@ -13,7 +13,7 @@ export function updateName(room) {
             const newData = { original: room.name, index };
 
             // New Category
-            if (name.length > 1) {
+            if (name.length > 2) {
 
                 if (typeof name[1] === 'string' && name[1].length > 0) {
                     newData.category = name[1];

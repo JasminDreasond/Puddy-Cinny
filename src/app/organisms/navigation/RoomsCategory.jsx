@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './RoomsCategory.scss';
@@ -74,9 +76,52 @@ function RoomsCategory({
   // Prepare Rooms
   const roomData = roomIds.map(renderData);
   roomData.sort(sortName);
+  const roomHTML = roomData.map(renderSelector);
 
   // Insert Rooms
-  const rooms = roomData.map(renderSelector);
+  const roomCategory = [];
+  const rooms = [];
+
+  // Get Rooms
+  for (const item in roomHTML) {
+
+    // With Category
+    if (roomData[item] && roomData[item].nameCinny && typeof roomData[item].nameCinny.category === 'string') {
+
+      // Exist Category
+      let tinyCategory = roomCategory.find(tinyCategory => tinyCategory.name === roomData[item].nameCinny.category);
+      if (!tinyCategory) {
+
+        tinyCategory = {
+          name: roomData[item].nameCinny.category,
+          data: []
+        };
+
+        roomCategory.push(tinyCategory);
+
+      }
+
+      tinyCategory.data.push(roomHTML[item]);
+
+    }
+
+    // Nope
+    else {
+      rooms.push(roomHTML[item]);
+    }
+
+  }
+
+  // Insert Categories
+  for (const item in roomCategory) {
+
+    const tinyRooms = [];
+
+    for (const item2 in roomCategory[item].data) {
+      tinyRooms.push(roomCategory[item].data[item2]);
+    }
+
+  }
 
   // Complete
   return (
