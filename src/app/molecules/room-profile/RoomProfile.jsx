@@ -117,7 +117,25 @@ function RoomProfile({ roomId }) {
       if (canChangeName) {
 
         // New Name
-        const newName = `${roomNameInput.value}`;
+        let newName = `${roomNameInput.value}`;
+
+        // Check Index
+        if (
+          (typeof roomIndex === 'string' && roomIndex.length > 0) ||
+          (typeof roomCategory === 'string' && roomCategory.length > 0)
+        ) {
+
+          if (typeof roomIndex === 'string' && roomIndex.length > 0) {
+            newName = `${roomIndex} - ${newName}`;
+          } else {
+            newName = `0 - ${newName}`;
+          }
+
+        }
+
+        if (typeof roomCategory === 'string' && roomCategory.length > 0) {
+          newName = `${roomCategory} - ${newName}`;
+        }
 
         // Save Name
         if (newName !== roomName && roomName.trim() !== '') {
@@ -218,23 +236,29 @@ function RoomProfile({ roomId }) {
   // Render Panel
   const renderNameAndTopic = () => (
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
+
       <div>
+
         <Text variant="h2" weight="medium" style={{ margin: '0px' }} primary>{twemojify(roomName)}</Text>
+
         {(nameCinny.category.length > 0) && (
           <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
             <span style={{ marginRight: '8px', marginLeft: '18px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.category)}</span>
           </Text>
         )}
+
         {(nameCinny.index.length > 0) && (
           <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
             <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.index)}</span>
           </Text>
         )}
+
         <Text variant="h3" weight="small" primary>
           <span>{' '}</span>
         </Text>
+
         {(canChangeName || canChangeTopic) && (
           <IconButton
             fa="fa-solid fa-pencil"
@@ -243,9 +267,12 @@ function RoomProfile({ roomId }) {
             onClick={() => setIsEditing(true)}
           />
         )}
+
       </div>
+
       <Text variant="b3">{room.getCanonicalAlias() || room.roomId}</Text>
       {roomTopic && <Text variant="b2">{twemojify(roomTopic, undefined, true)}</Text>}
+
     </div>
   );
 
