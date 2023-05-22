@@ -42,6 +42,23 @@ function RoomProfile({ roomId }) {
   const roomName = room.name;
   const roomTopic = currentState.getStateEvents('m.room.topic')[0]?.getContent().topic;
 
+  const nameCinny = {};
+  if (room.name.nameCinny) {
+
+    if (typeof room.name.nameCinny.original === 'string') {
+      nameCinny.original = room.name.nameCinny.original;
+    }
+
+    if (typeof room.name.nameCinny.category === 'string') {
+      nameCinny.category = room.name.nameCinny.category;
+    }
+
+    if (typeof room.name.nameCinny.index === 'number') {
+      nameCinny.index = room.name.nameCinny.index;
+    }
+
+  }
+
   // User Id
   const userId = mx.getUserId();
 
