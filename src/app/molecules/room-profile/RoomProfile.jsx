@@ -20,6 +20,8 @@ import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 
 function RoomProfile({ roomId }) {
+
+  // First Data
   const isMountStore = useStore();
   const [isEditing, setIsEditing] = useState(false);
   const [, forceUpdate] = useForceUpdate();
@@ -28,21 +30,27 @@ function RoomProfile({ roomId }) {
     type: cons.status.PRE_FLIGHT,
   });
 
+  // First Values
   const mx = initMatrix.matrixClient;
   const isDM = initMatrix.roomList.directs.has(roomId);
   let avatarSrc = mx.getRoom(roomId).getAvatarUrl(mx.baseUrl, 36, 36, 'crop');
   avatarSrc = isDM ? mx.getRoom(roomId).getAvatarFallbackMember()?.getAvatarUrl(mx.baseUrl, 36, 36, 'crop') : avatarSrc;
   const room = mx.getRoom(roomId);
   const { currentState } = room;
-  const roomName = room.nameCinny.original;
+
+  // Strings
+  const roomName = room.name;
   const roomTopic = currentState.getStateEvents('m.room.topic')[0]?.getContent().topic;
 
+  // User Id
   const userId = mx.getUserId();
 
+  // Can?
   const canChangeAvatar = currentState.maySendStateEvent('m.room.avatar', userId);
   const canChangeName = currentState.maySendStateEvent('m.room.name', userId);
   const canChangeTopic = currentState.maySendStateEvent('m.room.topic', userId);
 
+  // Use Effect
   useEffect(() => {
     isMountStore.setItem(true);
     const { roomList } = initMatrix;
@@ -63,6 +71,7 @@ function RoomProfile({ roomId }) {
     };
   }, [roomId]);
 
+  // Submit
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { target } = e;
@@ -106,6 +115,7 @@ function RoomProfile({ roomId }) {
     }
   };
 
+  // Cancel Edit
   const handleCancelEditing = () => {
     setStatus({
       msg: null,
@@ -114,6 +124,7 @@ function RoomProfile({ roomId }) {
     setIsEditing(false);
   };
 
+  // Avatar Upload
   const handleAvatarUpload = async (url) => {
     if (url === null) {
       const isConfirmed = await confirmDialog(
@@ -128,6 +139,7 @@ function RoomProfile({ roomId }) {
     } else await mx.sendStateEvent(roomId, 'm.room.avatar', { url }, '');
   };
 
+  // Render Edit Data
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
       {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
@@ -145,6 +157,7 @@ function RoomProfile({ roomId }) {
     </form>
   );
 
+  // Render Panel
   const renderNameAndTopic = () => (
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
       <div>
@@ -163,6 +176,7 @@ function RoomProfile({ roomId }) {
     </div>
   );
 
+  // Complete
   return (
     <div className="room-profile">
       <div className="room-profile__content">
@@ -181,6 +195,7 @@ function RoomProfile({ roomId }) {
       </div>
     </div>
   );
+
 }
 
 RoomProfile.propTypes = {
