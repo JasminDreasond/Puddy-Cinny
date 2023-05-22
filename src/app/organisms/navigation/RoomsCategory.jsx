@@ -8,6 +8,7 @@ import { updateName, sortName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
 import { selectSpace, selectRoom, openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
+import { getSelectSpace, getSpaceItem, setSpaceItem } from '../../../util/selectedRoom';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
@@ -15,6 +16,17 @@ import IconButton from '../../atoms/button/IconButton';
 import Selector from './Selector';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 import { HomeSpaceOptions } from './DrawerHeader';
+
+function setCategoryOpen({ roomName }) {
+
+  let tinyIsOpen = getSpaceItem(roomName);
+  tinyIsOpen = (typeof tinyIsOpen === 'string' && tinyIsOpen === 'on');
+
+}
+
+setCategoryOpen.propTypes = {
+  roomName: PropTypes.string,
+};
 
 function RoomsCategory({
   spaceId, name, hideHeader, roomIds, drawerPostie,
@@ -113,6 +125,7 @@ function RoomsCategory({
   }
 
   // Insert Categories
+  const spaceRoom = getSelectSpace();
   for (const item in roomCategory) {
 
     const tinyRooms = [];
@@ -123,9 +136,13 @@ function RoomsCategory({
 
     const roomDivId = roomCategory[item].name.replace(/ /g, '');
 
+    let tinyIsOpen = getSpaceItem(roomDivId);
+    tinyIsOpen = (typeof tinyIsOpen === 'string' && tinyIsOpen === 'on');
+
     rooms.push((
       <div className="room-category__header" style={{ marginLeft: '15px' }} id={roomDivId}>
-        <button className="room-category__toggle" type="button">
+        <button className="room-category__toggle" onClick={() => { setCategoryOpen(roomDivId) }} type="button">
+          <RawIcon fa={tinyIsOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
           <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
         </button>
       </div>

@@ -26,6 +26,8 @@ import HashGlobeIC from '../../../../public/res/ic/outlined/hash-globe.svg';
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 import SpacePlusIC from '../../../../public/res/ic/outlined/space-plus.svg';
 
+import { setSelectSpace } from '../../../util/selectedRoom';
+
 export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
   const mx = initMatrix.matrixClient;
   const room = mx.getRoom(spaceId);
@@ -101,6 +103,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
   const isDMTab = selectedTab === cons.tabs.DIRECTS;
   const room = mx.getRoom(spaceId);
   const spaceName = isDMTab ? null : (room?.name || null);
+  setSelectSpace(room);
 
   const openSpaceOptions = (e) => {
     e.preventDefault();
