@@ -227,7 +227,7 @@ function AboutSection() {
             <Text>The tiny Pony House matrix client</Text>
 
             <div className="settings-about__btns">
-              <Button onClick={() => window.open('https://github.com/JasminDreasond/Puddy-Cinny')}>Source code</Button>
+              <Button onClick={() => window.open('https://github.com/Pony-House/Puddy-Cinny')}>Source code</Button>
               <Button onClick={() => window.open('https://puddy.club/')}>Support</Button>
               <Button onClick={() => initMatrix.clearCacheAndReload()} variant="danger">Clear cache & reload</Button>
             </div>
