@@ -89,7 +89,7 @@ function RoomsCategory({
     if (roomData[item] && roomData[item].nameCinny && typeof roomData[item].nameCinny.category === 'string') {
 
       // Exist Category
-      let tinyCategory = roomCategory.find(tinyCategory => tinyCategory.name === roomData[item].nameCinny.category);
+      let tinyCategory = roomCategory.find(tinyCategory2 => tinyCategory2.name === roomData[item].nameCinny.category);
       if (!tinyCategory) {
 
         tinyCategory = {
@@ -120,6 +120,23 @@ function RoomsCategory({
     for (const item2 in roomCategory[item].data) {
       tinyRooms.push(roomCategory[item].data[item2]);
     }
+
+    const roomDivId = roomCategory[item].name.substring(/ /g, '');
+
+    rooms.push((
+      <div className="room-category__header" id={roomDivId}>
+        <button className="room-category__toggle" type="button">
+          <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
+          <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
+        </button>
+      </div>
+    ));
+
+    rooms.push((
+      <div className="room-category__content" id={roomDivId}>
+        {tinyRooms}
+      </div>
+    ));
 
   }
 
