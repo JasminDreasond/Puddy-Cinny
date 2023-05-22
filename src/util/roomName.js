@@ -9,9 +9,20 @@ export function updateName(room) {
         const index = Number(name[0]);
         if (typeof index === 'number' && !Number.isNaN(index)) {
 
+            // New Data
+            const newData = { original: room.name, index };
+
+            // New Category
+            if (name.length > 1) {
+                newData.category = name[1];
+                name.shift();
+            }
+
+            // Space
             name.shift();
 
-            room.nameCinny = { original: room.name, index };
+            // Insert Name
+            room.nameCinny = newData;
             room.name = name.join(' - ');
 
         }
