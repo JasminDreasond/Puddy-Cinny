@@ -23,9 +23,9 @@ export function getSpaceItem(name) {
     return null;
 };
 
-export function setSpaceItem(name) {
+export function setSpaceItem(name, data) {
     if (space && global.localStorage) {
-        return global.localStorage.setItem(`${space.roomId}_${name}`);
+        return global.localStorage.setItem(`${space.roomId}_${name}`, data);
     }
     return null;
 };

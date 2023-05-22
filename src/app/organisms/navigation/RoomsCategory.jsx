@@ -8,7 +8,7 @@ import { updateName, sortName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
 import { selectSpace, selectRoom, openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
-import { getSelectSpace, getSpaceItem, setSpaceItem } from '../../../util/selectedRoom';
+import { getSpaceItem, setSpaceItem } from '../../../util/selectedRoom';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
@@ -19,8 +19,8 @@ import { HomeSpaceOptions } from './DrawerHeader';
 
 function setCategoryOpen({ roomName }) {
 
-  let tinyIsOpen = getSpaceItem(roomName);
-  tinyIsOpen = (typeof tinyIsOpen === 'string' && tinyIsOpen === 'on');
+  let tinyIsOpen = getSpaceItem(`category_${roomName}`);
+  tinyIsOpen = (tinyIsOpen === 'on');
 
 }
 
@@ -125,7 +125,6 @@ function RoomsCategory({
   }
 
   // Insert Categories
-  const spaceRoom = getSelectSpace();
   for (const item in roomCategory) {
 
     const tinyRooms = [];
@@ -136,8 +135,13 @@ function RoomsCategory({
 
     const roomDivId = roomCategory[item].name.replace(/ /g, '');
 
-    let tinyIsOpen = getSpaceItem(roomDivId);
-    tinyIsOpen = (typeof tinyIsOpen === 'string' && tinyIsOpen === 'on');
+    let tinyIsOpen = getSpaceItem(`category_${roomDivId}`);
+    if (typeof tinyIsOpen === 'string') {
+      tinyIsOpen = (tinyIsOpen === 'on');
+    } else {
+      setSpaceItem(`category_${roomDivId}`, 'on');
+      tinyIsOpen = true;
+    }
 
     rooms.push((
       <div className="room-category__header" style={{ marginLeft: '15px' }} id={roomDivId}>
@@ -148,11 +152,13 @@ function RoomsCategory({
       </div>
     ));
 
-    rooms.push((
-      <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomDivId}>
-        {tinyRooms}
-      </div>
-    ));
+    rooms.push(
+      (tinyIsOpen) && (
+        <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomDivId}>
+          {tinyRooms}
+        </div>
+      )
+    );
 
   }
 
