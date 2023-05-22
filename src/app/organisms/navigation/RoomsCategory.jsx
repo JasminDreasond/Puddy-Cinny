@@ -121,10 +121,10 @@ function RoomsCategory({
       tinyRooms.push(roomCategory[item].data[item2]);
     }
 
-    const roomDivId = roomCategory[item].name.substring(/ /g, '');
+    const roomDivId = roomCategory[item].name.replace(/ /g, '');
 
     rooms.push((
-      <div className="room-category__header" id={roomDivId}>
+      <div className="room-category__header" style={{ marginLeft: '15px' }} id={roomDivId}>
         <button className="room-category__toggle" type="button">
           <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
         </button>
@@ -132,7 +132,7 @@ function RoomsCategory({
     ));
 
     rooms.push((
-      <div className="room-category__content" id={roomDivId}>
+      <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomDivId}>
         {tinyRooms}
       </div>
     ));
