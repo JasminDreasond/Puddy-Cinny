@@ -101,14 +101,25 @@ function RoomProfile({ roomId }) {
 
   // Submit
   const handleOnSubmit = async (e) => {
+
+    // Prepare Values
     e.preventDefault();
     const { target } = e;
     const roomNameInput = target.elements['room-name'];
     const roomTopicInput = target.elements['room-topic'];
+    const roomIndex = target.elements['room-index'];
+    const roomCategory = target.elements['room-category'];
 
+    // Try
     try {
+
+      // Change Name
       if (canChangeName) {
-        const newName = roomNameInput.value;
+
+        // New Name
+        let newName = roomNameInput.value;
+
+        // Save Name
         if (newName !== roomName && roomName.trim() !== '') {
           setStatus({
             msg: 'Saving room name...',
@@ -116,9 +127,16 @@ function RoomProfile({ roomId }) {
           });
           await mx.setRoomName(roomId, newName);
         }
+
       }
+
+      // Change Topic
       if (canChangeTopic) {
+
+        // New Topic Name
         const newTopic = roomTopicInput.value;
+
+        // Save
         if (newTopic !== roomTopic) {
           if (isMountStore.getItem()) {
             setStatus({
@@ -128,18 +146,28 @@ function RoomProfile({ roomId }) {
           }
           await mx.setRoomTopic(roomId, newTopic);
         }
+
       }
+
+      // Save Complete
       if (!isMountStore.getItem()) return;
       setStatus({
         msg: 'Saved successfully',
         type: cons.status.SUCCESS,
       });
-    } catch (err) {
+
+    }
+
+    // Error
+    catch (err) {
+
       if (!isMountStore.getItem()) return;
+
       setStatus({
         msg: err.message || 'Unable to save.',
         type: cons.status.ERROR,
       });
+
     }
   };
 
@@ -171,8 +199,8 @@ function RoomProfile({ roomId }) {
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
       {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
-      {canChangeName && <Input value={nameCinny.index} type="number" id="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
-      {canChangeName && <Input value={nameCinny.category} id="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
+      {canChangeName && <Input value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
+      {canChangeName && <Input value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
       {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
       {(!canChangeName || !canChangeTopic) && <Text variant="b3">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</Text>}
       {status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
