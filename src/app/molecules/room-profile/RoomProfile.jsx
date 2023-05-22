@@ -117,7 +117,7 @@ function RoomProfile({ roomId }) {
       if (canChangeName) {
 
         // New Name
-        let newName = roomNameInput.value;
+        const newName = `${roomNameInput.value}`;
 
         // Save Name
         if (newName !== roomName && roomName.trim() !== '') {
@@ -219,13 +219,22 @@ function RoomProfile({ roomId }) {
   const renderNameAndTopic = () => (
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
       <div>
-        <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
+        <Text variant="h2" weight="medium" style={{ margin: '0px' }} primary>{twemojify(roomName)}</Text>
         {(nameCinny.category.length > 0) && (
-          <Text variant="h3" weight="small" primary>
-            <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
+          <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
+            <span style={{ marginRight: '8px', marginLeft: '18px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.category)}</span>
           </Text>
         )}
+        {(nameCinny.index.length > 0) && (
+          <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
+            <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
+            <span>{twemojify(nameCinny.index)}</span>
+          </Text>
+        )}
+        <Text variant="h3" weight="small" primary>
+          <span>{' '}</span>
+        </Text>
         {(canChangeName || canChangeTopic) && (
           <IconButton
             fa="fa-solid fa-pencil"
