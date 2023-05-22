@@ -120,21 +120,21 @@ function RoomProfile({ roomId }) {
         let newName = `${roomNameInput.value}`;
 
         // Check Index
+        if (typeof roomCategory.value === 'string' && roomCategory.value.length > 0) {
+          newName = `${roomCategory.value} - ${newName}`;
+        }
+
         if (
-          (typeof roomIndex === 'string' && roomIndex.length > 0) ||
-          (typeof roomCategory === 'string' && roomCategory.length > 0)
+          (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) ||
+          (typeof roomCategory.value === 'string' && roomCategory.value.length > 0)
         ) {
 
-          if (typeof roomIndex === 'string' && roomIndex.length > 0) {
-            newName = `${roomIndex} - ${newName}`;
+          if (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) {
+            newName = `${roomIndex.value} - ${newName}`;
           } else {
             newName = `0 - ${newName}`;
           }
 
-        }
-
-        if (typeof roomCategory === 'string' && roomCategory.length > 0) {
-          newName = `${roomCategory} - ${newName}`;
         }
 
         // Save Name
