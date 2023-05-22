@@ -170,9 +170,9 @@ function RoomProfile({ roomId }) {
   // Render Edit Data
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
+      {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
       {canChangeName && <Input value={nameCinny.index} type="number" id="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
       {canChangeName && <Input value={nameCinny.category} id="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
-      {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
       {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
       {(!canChangeName || !canChangeTopic) && <Text variant="b3">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</Text>}
       {status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
