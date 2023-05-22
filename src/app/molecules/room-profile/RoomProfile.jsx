@@ -48,16 +48,26 @@ function RoomProfile({ roomId }) {
 
     if (typeof room.nameCinny.original === 'string') {
       nameCinny.original = room.nameCinny.original;
+    } else {
+      nameCinny.original = '';
     }
 
     if (typeof room.nameCinny.category === 'string') {
       nameCinny.category = room.nameCinny.category;
+    } else {
+      nameCinny.category = '';
     }
 
     if (typeof room.nameCinny.index === 'number') {
-      nameCinny.index = room.nameCinny.index;
+      nameCinny.index = String(room.nameCinny.index);
+    } else {
+      nameCinny.index = '';
     }
 
+  } else {
+    nameCinny.original = '';
+    nameCinny.category = '';
+    nameCinny.index = '';
   }
 
   // User Id
@@ -160,6 +170,8 @@ function RoomProfile({ roomId }) {
   // Render Edit Data
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
+      {canChangeName && <Input value={nameCinny.index} type="number" id="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
+      {canChangeName && <Input value={nameCinny.category} id="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
       {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
       {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
       {(!canChangeName || !canChangeTopic) && <Text variant="b3">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</Text>}
@@ -180,7 +192,7 @@ function RoomProfile({ roomId }) {
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
       <div>
         <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
-        {(typeof nameCinny.category === 'string') && (
+        {(nameCinny.category.length > 0) && (
           <Text variant="h3" weight="small" primary>
             <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.category)}</span>
