@@ -14,8 +14,13 @@ export function updateName(room) {
 
             // New Category
             if (name.length > 1) {
-                newData.category = name[1];
+
+                if (typeof name[1] === 'string' && name[1].length > 0) {
+                    newData.category = name[1];
+                }
+
                 name.shift();
+
             }
 
             // Space

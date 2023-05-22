@@ -8,6 +8,7 @@ import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
 import colorMXID from '../../../util/colorMXID';
 
+import RawIcon from '../../atoms/system-icons/RawIcon';
 import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
 import Button from '../../atoms/button/Button';
@@ -179,6 +180,12 @@ function RoomProfile({ roomId }) {
     <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
       <div>
         <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
+        {(typeof nameCinny.category === 'string') && (
+          <Text variant="h3" weight="small" primary>
+            <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
+            <span>{twemojify(nameCinny.category)}</span>
+          </Text>
+        )}
         {(canChangeName || canChangeTopic) && (
           <IconButton
             fa="fa-solid fa-pencil"
