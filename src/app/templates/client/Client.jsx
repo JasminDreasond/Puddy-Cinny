@@ -93,7 +93,7 @@ function Client() {
         <Text className="loading__message" variant="b2">{loadingMsg}</Text>
 
         <div className="loading__appname">
-          <Text variant="h2" weight="medium">Puddy Cinny</Text>
+          <Text variant="h2" weight="medium">Pony House</Text>
         </div>
       </div>
     );

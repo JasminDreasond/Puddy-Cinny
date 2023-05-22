@@ -560,7 +560,7 @@ function Auth() {
               <Header>
                 <Avatar size="extra-small" imageSrc="./public/favicon.ico" />
                 <TitleWrapper>
-                  <Text variant="h2" weight="medium">Puddy Cinny</Text>
+                  <Text variant="h2" weight="medium">Pony House</Text>
                 </TitleWrapper>
               </Header>
               <div className="auth-card__content">

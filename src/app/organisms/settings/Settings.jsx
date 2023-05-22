@@ -221,7 +221,7 @@ function AboutSection() {
           <img width="60" height="60" src="./public/favicon.ico" alt="Cinny logo" />
           <div>
             <Text variant="h2" weight="medium">
-              Puddy Cinny
+              Pony House
               <span className="text text-b3" style={{ margin: '0 var(--sp-extra-tight)' }}>{`v${cons.version}`}</span>
             </Text>
             <Text>The tiny Puddy Club matrix client</Text>
@@ -252,7 +252,7 @@ function AboutSection() {
             </li>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>The Puddy Cinny is a private fork from the <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">Cinny</a>. All source code base credits go to this group.</Text>
+              <Text>The Pony House is a private fork from the <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">Cinny</a>. All source code base credits go to this group.</Text>
             </li>
           </ul>
         </div>

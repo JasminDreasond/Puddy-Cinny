@@ -77,7 +77,7 @@ const options = {
     interfaceConfigOverwrite: {
 
         // App Template
-        APP_NAME: 'Puddy Cinny',
+        APP_NAME: 'Pony House',
         DEFAULT_BACKGROUND: '#040404',
 
         AUDIO_LEVEL_PRIMARY_COLOR: 'rgba(255,255,255,0.4)',

@@ -1,4 +1,4 @@
-# Puddy Cinny
+# Pony House
 <p>
     <a href="https://github.com/JasminDreasond/Puddy-Cinny/releases">
         <img alt="GitHub release downloads" src="https://img.shields.io/github/downloads/JasminDreasond/Puddy-Cinny/total?logo=github&style=social"></a>
@@ -16,7 +16,7 @@ I am someone who is definitely tired of seeing censorship spread across the inte
 I see the Matrix project as one of the best alternatives to maintain at least try to keep communities and groups of friends on the internet. So my goal is to make this fork as good as possible so that not only can I be happy, but also all the people who are having a similar situation to me.
 
 ## Getting started
-Web app is available at https://matrix.puddy.club and gets updated on each new release.
+Web app is available at https://client.pony.house/ and gets updated on each new release.
 
 You can also download our desktop app from [cinny-desktop repository](https://github.com/JasminDreasond/Puddy-Cinny-Desktop).
 
