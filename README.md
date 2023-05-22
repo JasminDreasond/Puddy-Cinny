@@ -42,7 +42,7 @@ npm run build # Compiles the app into the dist/ directory
 
 <hr/>
 
-# Edit Help
+# Edit Help 
 
 If you are a developer interested in contributing to the project, I'll let the PATH of the recommended files to be modified below.
 
