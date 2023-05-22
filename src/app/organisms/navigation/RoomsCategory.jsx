@@ -22,14 +22,18 @@ function setCategoryOpen({ roomName }) {
   let tinyIsOpen = getSpaceItem(`category_${roomName}`);
   tinyIsOpen = (tinyIsOpen === 'on');
 
+  const dom = document.getElementById(`category_bt_${roomName}`);
+
   // Disable
   if (tinyIsOpen) {
-    removeSpaceItem(`category_${roomName}`);
+    setSpaceItem(`category_${roomName}`, 'off');
+    dom.style.display = 'none';
   }
 
   // Enable
   else {
     setSpaceItem(`category_${roomName}`, 'on');
+    dom.style.display = '';
   }
 
 }
@@ -147,7 +151,7 @@ function RoomsCategory({
     }
 
     const roomDivId = roomCategory[item].name.replace(/ /g, '');
-    const roomIdB2 = `br_${roomDivId}`;
+    const roomIdB2 = `category_bt_${roomDivId}`;
 
     let tinyIsOpen = getSpaceItem(`category_${roomDivId}`);
     if (typeof tinyIsOpen === 'string') {
@@ -176,7 +180,7 @@ function RoomsCategory({
 
     rooms.push(
       (!tinyIsOpen) && (
-        <div className="room-category__content" style={{ marginLeft: '15px', display: 'none' }} id={roomDivId}>
+        <div className="room-category__content" style={{ marginLeft: '15px', display: 'none' }} id={roomIdB2}>
           {tinyRooms}
         </div>
       )
