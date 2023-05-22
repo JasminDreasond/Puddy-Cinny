@@ -8,7 +8,7 @@ import { updateName, sortName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
 import { selectSpace, selectRoom, openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
-import { getSpaceItem, setSpaceItem } from '../../../util/selectedRoom';
+import { getSpaceItem, setSpaceItem, removeSpaceItem } from '../../../util/selectedRoom';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
@@ -22,8 +22,21 @@ function setCategoryOpen({ roomName }) {
   let tinyIsOpen = getSpaceItem(`category_${roomName}`);
   tinyIsOpen = (tinyIsOpen === 'on');
 
+  // Disable
+  if (tinyIsOpen) {
+    removeSpaceItem(`category_${roomName}`);
+  }
+
+  // Enable
+  else {
+    setSpaceItem(`category_${roomName}`, 'on');
+  }
+
 }
 
+setCategoryOpen.defaultProps = {
+  roomName: '',
+};
 setCategoryOpen.propTypes = {
   roomName: PropTypes.string,
 };
@@ -134,6 +147,7 @@ function RoomsCategory({
     }
 
     const roomDivId = roomCategory[item].name.replace(/ /g, '');
+    const roomIdB2 = `br_${roomDivId}`;
 
     let tinyIsOpen = getSpaceItem(`category_${roomDivId}`);
     if (typeof tinyIsOpen === 'string') {
@@ -144,8 +158,8 @@ function RoomsCategory({
     }
 
     rooms.push((
-      <div className="room-category__header" style={{ marginLeft: '15px' }} id={roomDivId}>
-        <button className="room-category__toggle" onClick={() => { setCategoryOpen(roomDivId) }} type="button">
+      <div className="room-category__header" style={{ marginLeft: '15px' }}>
+        <button className="room-category__toggle anti-click-below" onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
           <RawIcon fa={tinyIsOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
           <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
         </button>
@@ -154,7 +168,15 @@ function RoomsCategory({
 
     rooms.push(
       (tinyIsOpen) && (
-        <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomDivId}>
+        <div className="room-category__content" style={{ marginLeft: '15px' }} id={roomIdB2}>
+          {tinyRooms}
+        </div>
+      )
+    );
+
+    rooms.push(
+      (!tinyIsOpen) && (
+        <div className="room-category__content" style={{ marginLeft: '15px', display: 'none' }} id={roomDivId}>
           {tinyRooms}
         </div>
       )
