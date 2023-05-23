@@ -275,19 +275,19 @@ function DonateSection() {
             </li>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><a href="https://patreon.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Patreon</a></Text>
+              <Text><i className="fa-brands fa-patreon"></i> <a href="https://patreon.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Patreon</a></Text>
             </li>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><a href="https://ko-fi.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Ko-Fi</a></Text>
+              <Text><i className="fa-solid fa-mug-hot"></i> <a href="https://ko-fi.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Ko-Fi</a></Text>
             </li>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><a href="https://donate.stripe.com/bIYeYL3U08a3gsE7st" target="_blank" rel="noreferrer noopener">Stripe</a></Text>
+              <Text><i className="fa-brands fa-stripe-s"></i> <a href="https://donate.stripe.com/bIYeYL3U08a3gsE7st" target="_blank" rel="noreferrer noopener">Stripe</a></Text>
             </li>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><a href="https://ud.me/jasmindreasond.wallet" target="_blank" rel="noreferrer noopener">Crypto</a></Text>
+              <Text><i className="fa-brands fa-ethereum"></i> <a href="https://ud.me/jasmindreasond.wallet" target="_blank" rel="noreferrer noopener">Crypto</a></Text>
             </li>
           </ul>
         </div>
