@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './NotificationBadge.scss';
 
-import Text from '../text/Text';
-
-function NotificationBadge({ alert, content }) {
+function NotificationBadge({ alert, content, className }) {
   const notificationClass = alert ? ' notification-badge--alert' : '';
+  const classes = ['badge', 'bg-light', 'notification-badge'];
+  if (className) classes.push(className);
   return (
-    <div className={`notification-badge${notificationClass}`}>
-      {content !== null && <Text variant="b3" weight="bold">{content}</Text>}
+    <div className={`${classes.join(' ')}${notificationClass}`}>
+      {content !== null && content}
     </div>
   );
 }
@@ -16,10 +16,12 @@ function NotificationBadge({ alert, content }) {
 NotificationBadge.defaultProps = {
   alert: false,
   content: null,
+  className: null,
 };
 
 NotificationBadge.propTypes = {
   alert: PropTypes.bool,
+  className: PropTypes.string,
   content: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

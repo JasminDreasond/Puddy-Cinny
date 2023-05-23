@@ -1,5 +1,4 @@
 @use './app/partials/screen';
-/* @import 'bootstrap/scss/bootstrap'; */
 
 :root {
   /* background color | --bg-[background type]: value */
@@ -495,3 +494,5 @@ audio:not([controls]) {
   justify-content: center;
   align-items: center;
 }
+
+@import 'bootstrap/scss/bootstrap';

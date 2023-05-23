@@ -12,9 +12,11 @@ const SidebarAvatar = React.forwardRef(({
   className, tooltip, active, onClick,
   onContextMenu, avatar, notificationBadge,
 }, ref) => {
-  const classes = ['sidebar-avatar'];
+
+  const classes = ['sidebar-avatar', 'position-relative'];
   if (active) classes.push('sidebar-avatar--active');
   if (className) classes.push(className);
+
   return (
     <Tooltip
       content={<Text variant="b1">{twemojify(tooltip)}</Text>}
@@ -33,6 +35,7 @@ const SidebarAvatar = React.forwardRef(({
       </button>
     </Tooltip>
   );
+
 });
 SidebarAvatar.defaultProps = {
   className: null,

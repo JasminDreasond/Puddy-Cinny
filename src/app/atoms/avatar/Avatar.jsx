@@ -25,6 +25,7 @@ const Avatar = React.forwardRef(({
         imageSrc !== null
           ? (
             <img
+              className='img-fluid'
               draggable="false"
               src={imageSrc}
               onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}

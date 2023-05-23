@@ -27,6 +27,8 @@ import { useDeviceList } from '../../hooks/useDeviceList';
 
 import { tabText as settingTabText } from '../settings/Settings';
 
+const notificationClasses = 'position-absolute top-0 start-100 translate-middle badge rounded-pill sidebar-mode';
+
 function useNotificationUpdate() {
   const { notifications } = initMatrix;
   const [, forceUpdate] = useState({});
@@ -146,6 +148,7 @@ function FeaturedTab() {
         avatar={<Avatar faSrc="fa-solid fa-user" size="normal" />}
         notificationBadge={dmsNoti ? (
           <NotificationBadge
+            className={notificationClasses}
             alert={dmsNoti?.highlight > 0}
             content={abbreviateNumber(dmsNoti.total) || null}
           />
@@ -158,6 +161,7 @@ function FeaturedTab() {
         avatar={<Avatar faSrc="fa-solid fa-house" size="normal" />}
         notificationBadge={homeNoti ? (
           <NotificationBadge
+            className={notificationClasses}
             alert={homeNoti?.highlight > 0}
             content={abbreviateNumber(homeNoti.total) || null}
           />
@@ -252,6 +256,7 @@ function DraggableSpaceShortcut({
       )}
       notificationBadge={notifications.hasNoti(spaceId) ? (
         <NotificationBadge
+          className={notificationClasses}
           alert={notifications.getHighlightNoti(spaceId) > 0}
           content={abbreviateNumber(notifications.getTotalNoti(spaceId)) || null}
         />
@@ -369,7 +374,7 @@ function SideBar() {
               tooltip="Invites"
               onClick={() => openInviteList()}
               avatar={<Avatar faSrc="bi bi-envelope-plus-fill" size="normal" />}
-              notificationBadge={<NotificationBadge alert content={totalInvites} />}
+              notificationBadge={<NotificationBadge className={notificationClasses} alert content={totalInvites} />}
             />
           )}
           <CrossSigninAlert />
