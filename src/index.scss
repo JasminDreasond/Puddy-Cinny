@@ -370,22 +370,18 @@
   --fw-bold: 600;
 }
 
-html {
+html,
+body {
   height: 100%;
-  overflow: hidden;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 body {
   background-color: var(--bg-surface-low) !important;
-  margin: 0;
-  padding: 0;
-  height: 100%;
   font-family: var(--font-secondary);
   font-size: 16px;
   font-weight: var(--fw-normal);
-  background-color: var(--bg-surface-low);
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
 
   /*Why font-variant-ligatures => https://github.com/rsms/inter/issues/222 */
   font-variant-ligatures: no-contextual;
@@ -395,26 +391,12 @@ body {
   height: 100%;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
-}
 a {
-  color: var(--tc-link);
-  text-decoration: none;
+  color: var(--tc-link) !important;
+  text-decoration: none !important;
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
   }
-}
-b {
-  font-weight: var(--fw-medium);
-}
-label {
-  margin: 0;
-  padding: 0;
 }
 button,
 textarea {
