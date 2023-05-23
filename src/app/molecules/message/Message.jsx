@@ -364,10 +364,16 @@ function toggleEmoji(roomId, eventId, emojiKey, shortcode, roomTimeline) {
 }
 
 function pickEmoji(e, roomId, eventId, roomTimeline) {
-  openEmojiBoard(getEventCords(e), (emoji) => {
+
+  const cords = getEventCords(e);
+  cords.x -= 395;
+  console.log(cords);
+
+  openEmojiBoard(cords, (emoji) => {
     toggleEmoji(roomId, eventId, emoji.mxc ?? emoji.unicode, emoji.shortcodes[0], roomTimeline);
     e.target.click();
   });
+
 }
 
 // Reaction Generator

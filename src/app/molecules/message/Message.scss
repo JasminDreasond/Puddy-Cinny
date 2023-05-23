@@ -309,8 +309,8 @@
 .message__options {
   position: absolute;
   top: 0;
-  @include dir.prop(right, 60px, unset);
-  @include dir.prop(left, unset, 60px);
+  @include dir.prop(right, 10px, unset);
+  @include dir.prop(left, unset, 10px);
 
   z-index: 99;
   transform: translateY(-100%);
