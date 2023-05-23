@@ -4,7 +4,6 @@
 
 .room-view {
   @extend .cp-fx__column;
-  background-color: var(--bg-surface);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -13,6 +12,10 @@
   box-shadow: none;
 
   transition: transform 200ms var(--fluid-slide-down);
+
+  & .room-view__content-wrapper {
+    background-color: var(--bg-surface);
+  }
 
   &--dropped {
     transform: translateY(calc(100% - var(--header-height)));
@@ -35,7 +38,7 @@
     @extend .cp-fx__item-one;
     position: relative;
   }
-  
+
   &__sticky {
     min-height: 85px;
     position: relative;
