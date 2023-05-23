@@ -54,18 +54,20 @@ function Tabs({ items, defaultSelected, onSelect }) {
     <div className="tabs">
       <ScrollView horizontal vertical={false} invisible>
         <div className="tabs__content">
-          {items.map((item, index) => (
-            <TabItem
-              key={item.text}
-              selected={selectedItem.text === item.text}
-              iconSrc={item.iconSrc}
-              faSrc={item.faSrc}
-              disabled={item.disabled}
-              onClick={() => handleTabSelection(item, index)}
-            >
-              {item.text}
-            </TabItem>
-          ))}
+          <center style={{ width: '100%' }}>
+            {items.map((item, index) => (
+              <TabItem
+                key={item.text}
+                selected={selectedItem.text === item.text}
+                iconSrc={item.iconSrc}
+                faSrc={item.faSrc}
+                disabled={item.disabled}
+                onClick={() => handleTabSelection(item, index)}
+              >
+                {item.text}
+              </TabItem>
+            ))}
+          </center>
         </div>
       </ScrollView>
     </div>

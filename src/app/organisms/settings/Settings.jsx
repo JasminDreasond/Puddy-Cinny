@@ -345,7 +345,7 @@ const tabItems = [{
   render: () => <AboutSection />,
 }, {
   text: tabText.DONATE,
-  faSrc: "fa-solid fa-circle-info",
+  faSrc: "fa-solid fa-coins",
   disabled: false,
   render: () => <DonateSection />,
 }];
