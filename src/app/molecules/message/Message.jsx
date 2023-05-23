@@ -363,12 +363,23 @@ function toggleEmoji(roomId, eventId, emojiKey, shortcode, roomTimeline) {
   sendReaction(roomId, eventId, emojiKey, shortcode);
 }
 
+// Pick Emoji Modal
 function pickEmoji(e, roomId, eventId, roomTimeline) {
 
+  // Get Cords
   const cords = getEventCords(e);
-  cords.x -= 395;
-  console.log(cords);
 
+  // Mobile Screen - Viewport
+  if (window.matchMedia('screen and (max-width: 479px)').matches) {
+    cords.x -= 280;
+  }
+
+  // Normal Screen
+  else {
+    cords.x -= 395;
+  }
+
+  // Open the Emoji Board
   openEmojiBoard(cords, (emoji) => {
     toggleEmoji(roomId, eventId, emoji.mxc ?? emoji.unicode, emoji.shortcodes[0], roomTimeline);
     e.target.click();
