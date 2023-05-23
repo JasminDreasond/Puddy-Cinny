@@ -24,7 +24,13 @@
   }
 
   & .header {
-    background-color: var(--bg-surface-low);
+    @media screen and (max-width: 750px) {
+      background-color: var(--bg-surface-low) !important;
+    }
+  }
+
+  & .header {
+    background-color: var(--bg-surface);
     @include screen.smallerThan(mobileBreakpoint) {
       padding: 0 var(--sp-tight);
     }
