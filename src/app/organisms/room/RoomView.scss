@@ -24,6 +24,7 @@
   }
 
   & .header {
+    background-color: var(--bg-surface-low);
     @include screen.smallerThan(mobileBreakpoint) {
       padding: 0 var(--sp-tight);
     }
