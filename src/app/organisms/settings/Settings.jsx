@@ -270,7 +270,7 @@ function DonateSection() {
           <ul>
             <li>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>If you are enjoying the app, you are invited to make donations to help me keep all the infrastructure of the application working. All types of donation is welcome! Feel free to choose below.</Text>
+              <Text>If you are enjoying the app, you are invited to make donations to help me keep all the infrastructure of the application and the domain working. All types of donation is welcome! Feel free to choose below.</Text>
               <br />
             </li>
             <li>
