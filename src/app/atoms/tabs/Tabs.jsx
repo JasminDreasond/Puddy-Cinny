@@ -54,7 +54,7 @@ function Tabs({ items, defaultSelected, onSelect }) {
     <div className="tabs">
       <ScrollView horizontal vertical={false} invisible>
         <div className="tabs__content">
-          <center style={{ width: '100%' }}>
+          <center>
             {items.map((item, index) => (
               <TabItem
                 key={item.text}

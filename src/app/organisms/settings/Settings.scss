@@ -18,6 +18,13 @@
 
   & .tabs__content {
     padding: 0 var(--sp-normal);
+    center {
+      width: 100%;
+      overflow-x: scroll;
+    }
+    center::-webkit-scrollbar {
+      width: 0px; /* width of the entire scrollbar */
+    }
   }
 
   &__cards-wrapper {
