@@ -261,12 +261,62 @@ function AboutSection() {
   );
 }
 
+function DonateSection() {
+  return (
+    <div className="settings-donate noselect">
+      <div className="settings-donate__card">
+        <MenuHeader>Application</MenuHeader>
+        <div className="settings-donate__branding">
+          <img width="60" height="60" src="./public/favicon.ico" alt="Cinny logo" />
+          <div>
+            <Text variant="h2" weight="medium">
+              Pony House
+              <span className="text text-b3" style={{ margin: '0 var(--sp-extra-tight)' }}>{`v${cons.version}`}</span>
+            </Text>
+            <Text>The tiny Pony House matrix client</Text>
+
+            <div className="settings-donate__btns">
+              <Button onClick={() => window.open('https://github.com/Pony-House/Puddy-Cinny')}>Source code</Button>
+              <Button onClick={() => window.open('https://puddy.club/')}>Support</Button>
+              <Button onClick={() => initMatrix.clearCacheAndReload()} variant="danger">Clear cache & reload</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="settings-donate__card">
+        <MenuHeader>Credits</MenuHeader>
+        <div className="settings-donate__credits">
+          <ul>
+            <li>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              <Text>The <a href="https://github.com/matrix-org/matrix-js-sdk" rel="noreferrer noopener" target="_blank">matrix-js-sdk</a> is © <a href="https://matrix.org/foundation" rel="noreferrer noopener" target="_blank">The Matrix.org Foundation C.I.C</a> used under the terms of <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="noreferrer noopener" target="_blank">Apache 2.0</a>.</Text>
+            </li>
+            <li>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              <Text>The <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twemoji</a> emoji art is © <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twitter, Inc and other contributors</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</Text>
+            </li>
+            <li>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              <Text>The <a href="https://material.io/design/sound/sound-resources.html" target="_blank" rel="noreferrer noopener">Material sound resources</a> are © <a href="https://google.com" target="_blank" rel="noreferrer noopener">Google</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</Text>
+            </li>
+            <li>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              <Text>The Pony House is a private fork from the <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">Cinny</a>. All source code base credits go to this group.</Text>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export const tabText = {
   APPEARANCE: 'Appearance',
   NOTIFICATIONS: 'Notifications',
   EMOJI: 'Emoji',
   SECURITY: 'Security',
   ABOUT: 'About',
+  DONATE: 'Donate',
 };
 const tabItems = [{
   text: tabText.APPEARANCE,
@@ -293,6 +343,11 @@ const tabItems = [{
   faSrc: "fa-solid fa-circle-info",
   disabled: false,
   render: () => <AboutSection />,
+}, {
+  text: tabText.DONATE,
+  faSrc: "fa-solid fa-circle-info",
+  disabled: false,
+  render: () => <DonateSection />,
 }];
 
 function useWindowToggle(setSelectedTab) {
@@ -330,6 +385,7 @@ function Settings() {
     <PopupWindow
       isOpen={isOpen}
       className="settings-window"
+      size="large"
       title={<Text variant="s1" weight="medium" primary>Settings</Text>}
       contentOptions={(
         <>
