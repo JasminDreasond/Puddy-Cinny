@@ -26,6 +26,7 @@
     "@matrix-org/olm": "3.2.14",
     "@tippyjs/react": "4.2.6",
     "blurhash": "2.0.4",
+    "bootstrap": "5.2.3",
     "browser-encrypt-attachment": "0.3.0",
     "emojibase-data": "7.0.1",
     "file-saver": "2.0.5",
