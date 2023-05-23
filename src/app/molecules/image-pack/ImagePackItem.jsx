@@ -18,7 +18,7 @@ function ImagePackItem({
   const handleUsageSelect = (event) => {
     openReusableContextMenu(
       'bottom',
-      getEventCords(event, '.btn-surface'),
+      getEventCords(event, '.btn-link'),
       (closeMenu) => (
         <ImagePackUsageSelector
           usage={usage}

@@ -36,7 +36,7 @@ function InfoCard({
 InfoCard.defaultProps = {
   className: null,
   style: null,
-  variant: 'surface',
+  variant: 'link btn-bg',
   iconSrc: null,
   content: null,
   rounded: false,
@@ -46,7 +46,7 @@ InfoCard.defaultProps = {
 InfoCard.propTypes = {
   className: PropTypes.string,
   style: PropTypes.shape({}),
-  variant: PropTypes.oneOf(['surface', 'primary', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   iconSrc: PropTypes.string,
   title: PropTypes.string.isRequired,
   content: PropTypes.node,

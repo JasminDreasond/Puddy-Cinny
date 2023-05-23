@@ -9,9 +9,9 @@ function NotificationSelector({
   return (
     <div>
       <MenuHeader>Notification</MenuHeader>
-      <MenuItem faSrc={value === 'off' ? "fa-solid fa-check" : null} variant={value === 'off' ? 'positive' : 'surface'} onClick={() => onSelect('off')}>Off</MenuItem>
-      <MenuItem faSrc={value === 'on' ? "fa-solid fa-check" : null} variant={value === 'on' ? 'positive' : 'surface'} onClick={() => onSelect('on')}>On</MenuItem>
-      <MenuItem faSrc={value === 'noisy' ? "fa-solid fa-check" : null} variant={value === 'noisy' ? 'positive' : 'surface'} onClick={() => onSelect('noisy')}>Noisy</MenuItem>
+      <MenuItem faSrc={value === 'off' ? "fa-solid fa-check" : null} variant={value === 'off' ? 'success' : 'link btn-bg'} onClick={() => onSelect('off')}>Off</MenuItem>
+      <MenuItem faSrc={value === 'on' ? "fa-solid fa-check" : null} variant={value === 'on' ? 'success' : 'link btn-bg'} onClick={() => onSelect('on')}>On</MenuItem>
+      <MenuItem faSrc={value === 'noisy' ? "fa-solid fa-check" : null} variant={value === 'noisy' ? 'success' : 'link btn-bg'} onClick={() => onSelect('noisy')}>Noisy</MenuItem>
     </div>
   );
 }

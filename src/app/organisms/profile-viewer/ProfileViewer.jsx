@@ -381,7 +381,7 @@ function ProfileViewer() {
     const handlePowerSelector = (e) => {
       openReusableContextMenu(
         'bottom',
-        getEventCords(e, '.btn-surface'),
+        getEventCords(e, '.btn-link'),
         (closeMenu) => (
           <PowerLevelSelector
             value={powerLevel}

@@ -203,7 +203,7 @@ function RoomPermissions({ roomId }) {
 
     openReusableContextMenu(
       'bottom',
-      getEventCords(e, '.btn-surface'),
+      getEventCords(e, '.btn-link'),
       (closeMenu) => (
         <PowerLevelSelector
           value={powerLevel}

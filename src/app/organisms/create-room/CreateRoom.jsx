@@ -135,7 +135,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
   const handleJoinRule = (evt) => {
     openReusableContextMenu(
       'bottom',
-      getEventCords(evt, '.btn-surface'),
+      getEventCords(evt, '.btn-link'),
       (closeMenu) => (
         <>
           <MenuHeader>Visibility (who can join)</MenuHeader>
@@ -143,7 +143,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
             joinRules.map((rule) => (
               <MenuItem
                 key={rule}
-                variant={rule === joinRule ? 'positive' : 'surface'}
+                variant={rule === joinRule ? 'success' : 'link btn-bg'}
                 iconSrc={
                   isSpace
                     ? jrSpaceIC[joinRules.indexOf(rule)]

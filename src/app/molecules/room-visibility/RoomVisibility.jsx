@@ -97,7 +97,7 @@ function RoomVisibility({ roomId }) {
       {
         items.map((item) => (
           <MenuItem
-            variant={activeType === item.type ? 'positive' : 'surface'}
+            variant={activeType === item.type ? 'success' : 'link btn-bg'}
             key={item.type}
             iconSrc={item.iconSrc}
             onClick={() => setVisibility(item)}

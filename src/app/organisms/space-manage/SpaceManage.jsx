@@ -116,7 +116,7 @@ function SpaceManageItem({
 
   const expandBtnJsx = (
     <IconButton
-      variant={isExpand ? 'primary' : 'surface'}
+      variant={isExpand ? 'primary' : 'link btn-bg'}
       size="extra-small"
       fa="fa-solid fa-circle-info"
       tooltip="Topic"
@@ -202,7 +202,7 @@ function SpaceManageFooter({ parentId, selected }) {
           <Button onClick={handleRemove} variant="danger">Remove</Button>
           <Button
             onClick={() => handleToggleSuggested(!allSuggested)}
-            variant={allSuggested ? 'surface' : 'primary'}
+            variant={allSuggested ? 'link btn-bg' : 'primary'}
           >
             {allSuggested ? 'Mark as not suggested' : 'Mark as suggested'}
           </Button>

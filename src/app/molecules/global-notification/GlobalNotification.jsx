@@ -113,7 +113,7 @@ function GlobalNotification() {
   const onSelect = (evt, rule) => {
     openReusableContextMenu(
       'bottom',
-      getEventCords(evt, '.btn-surface'),
+      getEventCords(evt, '.btn-link'),
       (requestClose) => (
         <NotificationSelector
           value={rulesToType[rule]}

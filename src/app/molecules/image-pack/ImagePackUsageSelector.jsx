@@ -9,21 +9,21 @@ function ImagePackUsageSelector({ usage, onSelect }) {
       <MenuHeader>Usage</MenuHeader>
       <MenuItem
         faSrc={usage === 'emoticon' ? "fa-solid fa-check" : undefined}
-        variant={usage === 'emoticon' ? 'positive' : 'surface'}
+        variant={usage === 'emoticon' ? 'success' : 'link btn-bg'}
         onClick={() => onSelect('emoticon')}
       >
         Emoji
       </MenuItem>
       <MenuItem
         faSrc={usage === 'sticker' ? "fa-solid fa-check" : undefined}
-        variant={usage === 'sticker' ? 'positive' : 'surface'}
+        variant={usage === 'sticker' ? 'success' : 'link btn-bg'}
         onClick={() => onSelect('sticker')}
       >
         Sticker
       </MenuItem>
       <MenuItem
         faSrc={usage === 'both' ? "fa-solid fa-check" : undefined}
-        variant={usage === 'both' ? 'positive' : 'surface'}
+        variant={usage === 'both' ? 'success' : 'link btn-bg'}
         onClick={() => onSelect('both')}
       >
         Both

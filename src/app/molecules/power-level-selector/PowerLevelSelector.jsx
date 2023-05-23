@@ -31,9 +31,9 @@ function PowerLevelSelector({
         <IconButton variant="primary" fa="fa-solid fa-check" type="submit" />
       </form>
       {max >= 0 && <MenuHeader>Presets</MenuHeader>}
-      {max >= 100 && <MenuItem variant={value === 100 ? 'positive' : 'surface'} onClick={() => onSelect(100)}>Admin - 100</MenuItem>}
-      {max >= 50 && <MenuItem variant={value === 50 ? 'positive' : 'surface'} onClick={() => onSelect(50)}>Mod - 50</MenuItem>}
-      {max >= 0 && <MenuItem variant={value === 0 ? 'positive' : 'surface'} onClick={() => onSelect(0)}>Member - 0</MenuItem>}
+      {max >= 100 && <MenuItem variant={value === 100 ? 'success' : 'link btn-bg'} onClick={() => onSelect(100)}>Admin - 100</MenuItem>}
+      {max >= 50 && <MenuItem variant={value === 50 ? 'success' : 'link btn-bg'} onClick={() => onSelect(50)}>Mod - 50</MenuItem>}
+      {max >= 0 && <MenuItem variant={value === 0 ? 'success' : 'link btn-bg'} onClick={() => onSelect(0)}>Member - 0</MenuItem>}
     </div>
   );
 }

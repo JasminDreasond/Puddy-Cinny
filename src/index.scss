@@ -370,34 +370,6 @@
   --fw-bold: 600;
 }
 
-html,
-body {
-  height: 100%;
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-}
-
-body {
-  background-color: var(--bg-surface-low) !important;
-  font-family: var(--font-secondary);
-  font-size: 16px;
-  font-weight: var(--fw-normal);
-
-  /*Why font-variant-ligatures => https://github.com/rsms/inter/issues/222 */
-  font-variant-ligatures: no-contextual;
-}
-#root {
-  width: 100%;
-  height: 100%;
-}
-
-a {
-  color: var(--tc-link) !important;
-  text-decoration: none !important;
-  &:hover {
-    text-decoration: underline !important;
-  }
-}
 button,
 textarea {
   margin: 0;
@@ -479,3 +451,42 @@ audio:not([controls]) {
 }
 
 @import 'bootstrap/scss/bootstrap';
+
+.btn-bg {
+  color: var(--tc-surface-normal) !important;
+  text-decoration: none !important;
+}
+
+.btn-bg:hover {
+  color: var(--tc-surface-high) !important;
+  background-color: var(--bg-surface-hover);
+}
+
+html,
+body {
+  height: 100%;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+body {
+  background-color: var(--bg-surface-low) !important;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: var(--fw-normal);
+
+  /*Why font-variant-ligatures => https://github.com/rsms/inter/issues/222 */
+  font-variant-ligatures: no-contextual;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: var(--tc-link) !important;
+  text-decoration: none !important;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}

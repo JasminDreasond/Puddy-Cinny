@@ -91,7 +91,7 @@ function MenuItem({
 }
 
 MenuItem.defaultProps = {
-  variant: 'surface',
+  variant: 'link btn-bg',
   iconSrc: null,
   faSrc: null,
   type: 'button',
@@ -100,7 +100,7 @@ MenuItem.defaultProps = {
 };
 
 MenuItem.propTypes = {
-  variant: PropTypes.oneOf(['surface', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit']),

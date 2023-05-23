@@ -32,14 +32,14 @@ function PWContentSelector({
 
 PWContentSelector.defaultProps = {
   selected: false,
-  variant: 'surface',
+  variant: 'link btn-bg',
   iconSrc: 'none',
   type: 'button',
 };
 
 PWContentSelector.propTypes = {
   selected: PropTypes.bool,
-  variant: PropTypes.oneOf(['surface', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   iconSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit']),
   onClick: PropTypes.func.isRequired,

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Button.scss';
 
-import Text from '../text/Text';
 import RawIcon from '../system-icons/RawIcon';
 import { blurOnBubbling } from './script';
 
@@ -17,17 +15,16 @@ const Button = React.forwardRef(({
     <button
       ref={ref}
       id={id === '' ? undefined : id}
-      className={`${className ? `${className} ` : ''}btn-${variant} ${iconClass} noselect`}
+      className={`btn ${className ? `${className} ` : ''}btn-${variant} ${iconClass} noselect`}
       onMouseUp={(e) => blurOnBubbling(e, `.btn-${variant}`)}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={type}
       disabled={disabled}
     >
-      {iconSrc !== null && <RawIcon size="small" src={iconSrc} />}
-      {faSrc !== null && <RawIcon size="small" fa={faSrc} />}
-      {typeof children === 'string' && <Text variant="b1">{children}</Text>}
-      {typeof children !== 'string' && children}
+      {iconSrc !== null && <RawIcon size="small me-2" src={iconSrc} />}
+      {faSrc !== null && <RawIcon size="small me-2" fa={faSrc} />}
+      {children}
     </button>
   );
 
@@ -36,7 +33,7 @@ const Button = React.forwardRef(({
 Button.defaultProps = {
   id: '',
   className: null,
-  variant: 'surface',
+  variant: 'link btn-bg',
   iconSrc: null,
   faSrc: null,
   type: 'button',
@@ -47,7 +44,7 @@ Button.defaultProps = {
 Button.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['surface', 'primary', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),

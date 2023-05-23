@@ -32,7 +32,7 @@ Checkbox.defaultProps = {
 };
 
 Checkbox.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   isActive: PropTypes.bool,
   onToggle: PropTypes.func,
   disabled: PropTypes.bool,

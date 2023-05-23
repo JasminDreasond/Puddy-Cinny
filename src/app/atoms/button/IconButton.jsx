@@ -43,7 +43,7 @@ const IconButton = React.forwardRef(({
 });
 
 IconButton.defaultProps = {
-  variant: 'surface',
+  variant: 'link btn-bg',
   size: 'normal',
   type: 'button',
   tooltip: null,
@@ -57,7 +57,7 @@ IconButton.defaultProps = {
 };
 
 IconButton.propTypes = {
-  variant: PropTypes.oneOf(['surface', 'primary', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   size: PropTypes.oneOf(['normal', 'small', 'extra-small']),
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   tooltip: PropTypes.string,

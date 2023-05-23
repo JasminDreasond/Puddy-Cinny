@@ -15,13 +15,13 @@ function Divider({ text, variant, align }) {
 
 Divider.defaultProps = {
   text: null,
-  variant: 'surface',
+  variant: 'link btn-bg',
   align: 'center',
 };
 
 Divider.propTypes = {
   text: PropTypes.string,
-  variant: PropTypes.oneOf(['surface', 'primary', 'positive', 'caution', 'danger']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
