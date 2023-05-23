@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import './Toggle.scss';
 
 function Toggle({ isActive, onToggle, disabled }) {
+
   const className = `toggle${isActive ? ' toggle--active' : ''}`;
   if (onToggle === null) return <span className={className} />;
+
   return (
     // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button
@@ -14,6 +16,7 @@ function Toggle({ isActive, onToggle, disabled }) {
       disabled={disabled}
     />
   );
+
 }
 
 Toggle.defaultProps = {

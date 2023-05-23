@@ -10,7 +10,9 @@ const Button = React.forwardRef(({
   id, className, variant, iconSrc, faSrc,
   type, onClick, children, disabled,
 }, ref) => {
+
   const iconClass = (iconSrc === null) ? '' : `btn-${variant}--icon`;
+
   return (
     <button
       ref={ref}
@@ -28,6 +30,7 @@ const Button = React.forwardRef(({
       {typeof children !== 'string' && children}
     </button>
   );
+
 });
 
 Button.defaultProps = {

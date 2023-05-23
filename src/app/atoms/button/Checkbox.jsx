@@ -6,8 +6,10 @@ function Checkbox({
   variant, isActive, onToggle,
   disabled, tabIndex,
 }) {
+
   const className = `checkbox checkbox-${variant}${isActive ? ' checkbox--active' : ''}`;
   if (onToggle === null) return <span className={className} />;
+
   return (
     // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button
@@ -18,6 +20,7 @@ function Checkbox({
       tabIndex={tabIndex}
     />
   );
+
 }
 
 Checkbox.defaultProps = {

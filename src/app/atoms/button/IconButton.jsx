@@ -13,6 +13,7 @@ const IconButton = React.forwardRef(({
   onClick, tabIndex, disabled, isImage,
   className,
 }, ref) => {
+
   const btn = (
     <button
       ref={ref}
@@ -27,7 +28,9 @@ const IconButton = React.forwardRef(({
       <RawIcon fa={fa} size={size} src={src} isImage={isImage} />
     </button>
   );
+
   if (tooltip === null) return btn;
+
   return (
     <Tooltip
       placement={tooltipPlacement}
@@ -36,6 +39,7 @@ const IconButton = React.forwardRef(({
       {btn}
     </Tooltip>
   );
+
 });
 
 IconButton.defaultProps = {
