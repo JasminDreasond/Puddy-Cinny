@@ -4,6 +4,10 @@
   "description": "The tiny Pony House matrix client",
   "dir": "auto",
   "lang": "en-US",
+  "display_override": [
+    "window-control-overlay",
+    "minimal-ui"
+  ],
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
