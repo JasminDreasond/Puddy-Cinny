@@ -53,10 +53,6 @@
       @extend .cp-txt__ellipsis;
       max-width: 86px;
     }
-
-    & .notification-badge {
-      @include dir.side(margin, var(--sp-extra-tight), 0);
-    }
   }
 
   &__btn--selected {

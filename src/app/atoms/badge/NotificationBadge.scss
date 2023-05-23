@@ -3,14 +3,20 @@
 
   background-color: var(--bg-badge);
   color: var(--tc-badge);
+}
 
-  &--alert {
-    background-color: var(--bg-positive);
-  }
+.notification-badge.sidebar-mode.empty-badge > i {
+  font-size: 9px;
 }
 
 .notification-badge.sidebar-mode {
   margin-top: 8px;
   padding: 3px 5px;
   margin-left: -4px;
+}
+
+.notification-badge.sidebar-mode.empty-badge {
+  padding: 0px;
+  margin-top: 2px;
+  margin-left: -1px;
 }

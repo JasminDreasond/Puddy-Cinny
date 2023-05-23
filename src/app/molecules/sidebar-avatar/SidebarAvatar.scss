@@ -10,18 +10,13 @@
   & .notification-badge {
     box-shadow: 0 0 0 2px var(--bg-surface-low);
   }
-  & .avatar-container,
-  & .notification-badge {
+  & .avatar-container {
     transition: transform 200ms var(--fluid-push);
   }
   &:hover .avatar-container {
     @include dir.prop(transform, translateX(4px), translateX(-4px));
   }
-  &:hover .notification-badge {
-    --ltr: translate(calc(20% + 4px), -20%);
-    --rtl: translate(calc(-20% - 4px), -20%);
-    @include dir.prop(transform, var(--ltr), var(--rtl));
-  }
+
   &:focus {
     outline: none;
   }
