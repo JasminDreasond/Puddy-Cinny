@@ -13,6 +13,15 @@
   margin-top: 8px;
   padding: 3px 5px;
   margin-left: -4px;
+  transition: margin-left 250ms ease-in-out;
+}
+
+.sidebar-avatar:hover .notification-badge.sidebar-mode {
+  margin-left: -1px;
+}
+
+.sidebar-avatar:hover .notification-badge.sidebar-mode.empty-badge {
+  margin-left: 1px;
 }
 
 .notification-badge.sidebar-mode.empty-badge {
