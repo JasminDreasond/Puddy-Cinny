@@ -102,7 +102,9 @@ function DrawerBreadcrumb({ spaceId }) {
                 <React.Fragment
                   key={id}
                 >
+                  <span style={{ marginLeft: '10px' }}>{" "}</span>
                   {index !== 0 && <RawIcon size="extra-small" fa="fa-solid fa-chevron-right" />}
+                  <span style={{ marginRight: '10px' }}>{" "}</span>
                   <Button
                     className={index === spacePath.length - 1 ? 'drawer-breadcrumb__btn--selected' : ''}
                     onClick={() => {

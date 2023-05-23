@@ -383,6 +383,8 @@ body {
   font-size: 16px;
   font-weight: var(--fw-normal);
   background-color: var(--bg-surface-low);
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 
   /*Why font-variant-ligatures => https://github.com/rsms/inter/issues/222 */
   font-variant-ligatures: no-contextual;
