@@ -22,7 +22,7 @@ function SegmentedControls({
   }, [selected]);
 
   return (
-    <div className="segmented-controls">
+    <div className="segmented-controls noselect">
       {
         segments.map((segment, index) => (
           <button

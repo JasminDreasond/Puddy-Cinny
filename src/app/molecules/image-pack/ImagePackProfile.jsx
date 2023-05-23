@@ -62,7 +62,7 @@ function ImagePackProfile({
           )
           : <Avatar bgColor="#555" text={displayName} imageSrc={avatarUrl} size="normal" />
       }
-      <div className="image-pack-profile__content">
+      <div className="image-pack-profile__content noselect">
         {
           isEdit
             ? (
@@ -85,7 +85,7 @@ function ImagePackProfile({
             )
         }
       </div>
-      <div className="image-pack-profile__usage">
+      <div className="image-pack-profile__usage noselect">
         <Text variant="b3">Pack usage</Text>
         <Button
           onClick={onUsageChange ? handleUsageSelect : undefined}

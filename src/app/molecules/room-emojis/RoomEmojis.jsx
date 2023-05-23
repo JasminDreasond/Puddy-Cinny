@@ -94,8 +94,8 @@ function RoomEmojis({ roomId }) {
   };
 
   return (
-    <div className="room-emojis">
-      { canChange && (
+    <div className="room-emojis noselect">
+      {canChange && (
         <div className="room-emojis__add-pack">
           <MenuHeader>Create Pack</MenuHeader>
           <form onSubmit={handlePackCreate}>

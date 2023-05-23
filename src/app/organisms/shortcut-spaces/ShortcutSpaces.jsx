@@ -144,7 +144,7 @@ function ShortcutSpaces() {
   return (
     <Dialog
       isOpen={isOpen}
-      className="shortcut-spaces"
+      className="shortcut-spaces noselect"
       title={(
         <Text variant="s1" weight="medium" primary>
           Pin spaces

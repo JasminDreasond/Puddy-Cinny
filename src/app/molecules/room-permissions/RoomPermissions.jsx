@@ -224,7 +224,7 @@ function RoomPermissions({ roomId }) {
         Object.keys(permsGroups).map((groupKey) => {
           const groupedPermKeys = permsGroups[groupKey];
           return (
-            <div className="room-permissions__card" key={groupKey}>
+            <div className="room-permissions__card noselect" key={groupKey}>
               <MenuHeader>{groupKey}</MenuHeader>
               {
                 groupedPermKeys.map((permKey) => {

@@ -229,11 +229,11 @@ function InviteUser({
       onRequestClose={onRequestClose}
     >
       <div className="invite-user">
-        <form className="invite-user__form" onSubmit={(e) => { e.preventDefault(); searchUser(usernameRef.current.value); }}>
+        <form className="invite-user__form noselect" onSubmit={(e) => { e.preventDefault(); searchUser(usernameRef.current.value); }}>
           <Input value={searchTerm} forwardRef={usernameRef} label="Name or userId" />
           <Button disabled={isSearching} faSrc="fa-solid fa-user" variant="primary" type="submit">Search</Button>
         </form>
-        <div className="invite-user__search-status">
+        <div className="invite-user__search-status noselect">
           {
             typeof searchQuery.username !== 'undefined' && isSearching && (
               <div className="flex--center">

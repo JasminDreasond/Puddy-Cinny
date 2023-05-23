@@ -40,7 +40,7 @@ function RoomOptions({ roomId, afterOptionSelect }) {
   };
 
   return (
-    <div style={{ maxWidth: '256px' }}>
+    <div className="noselect" style={{ maxWidth: '256px' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
       <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem

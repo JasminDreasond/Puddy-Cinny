@@ -39,7 +39,7 @@ function AppearanceSection() {
   const [, updateState] = useState({});
 
   return (
-    <div className="settings-appearance">
+    <div className="settings-appearance noselect">
       <div className="settings-appearance__card">
         <MenuHeader>Theme</MenuHeader>
         <SettingTile
@@ -144,7 +144,7 @@ function NotificationsSection() {
 
   return (
     <>
-      <div className="settings-notifications">
+      <div className="settings-notifications noselect">
         <MenuHeader>Notification & Sound</MenuHeader>
         <SettingTile
           title="Desktop notification"
@@ -180,7 +180,7 @@ function EmojiSection() {
 
 function SecuritySection() {
   return (
-    <div className="settings-security">
+    <div className="settings-security noselect">
       <div className="settings-security__card">
         <MenuHeader>Cross signing and backup</MenuHeader>
         <CrossSigning />
@@ -214,7 +214,7 @@ function SecuritySection() {
 
 function AboutSection() {
   return (
-    <div className="settings-about">
+    <div className="settings-about noselect">
       <div className="settings-about__card">
         <MenuHeader>Application</MenuHeader>
         <div className="settings-about__branding">

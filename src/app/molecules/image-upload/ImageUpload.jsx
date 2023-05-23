@@ -65,7 +65,7 @@ function ImageUpload({
       </button>
       {(typeof imageSrc === 'string' || uploadPromise !== null) && (
         <button
-          className="img-upload__btn-cancel"
+          className="img-upload__btn-cancel noselect"
           type="button"
           onClick={uploadPromise === null ? onRequestRemove : cancelUpload}
         >

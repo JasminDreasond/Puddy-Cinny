@@ -4,7 +4,7 @@ import './Header.scss';
 
 function Header({ children }) {
   return (
-    <div className="header">
+    <div className="header noselect">
       {children}
     </div>
   );

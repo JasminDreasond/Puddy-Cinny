@@ -123,7 +123,7 @@ function RoomMembers({ roomId }) {
 
   const mList = searchMembers ? searchMembers.data : members.slice(0, itemCount);
   return (
-    <div className="room-members">
+    <div className="room-members noselect">
       <MenuHeader>Search member</MenuHeader>
       <Input
         onChange={handleSearch}

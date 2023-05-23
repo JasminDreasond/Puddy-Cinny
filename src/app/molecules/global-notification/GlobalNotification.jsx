@@ -127,7 +127,7 @@ function GlobalNotification() {
   };
 
   return (
-    <div className="global-notification">
+    <div className="global-notification noselect">
       <MenuHeader>Global Notifications</MenuHeader>
       <SettingTile
         title="Direct messages"

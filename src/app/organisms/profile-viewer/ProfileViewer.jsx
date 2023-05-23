@@ -403,7 +403,7 @@ function ProfileViewer() {
             <Text variant="s1" weight="medium">{twemojify(username)}</Text>
             <Text variant="b2">{twemojify(userId)}</Text>
           </div>
-          <div className="profile-viewer__user__role">
+          <div className="profile-viewer__user__role noselect">
             <Text variant="b3">Role</Text>
             <Button
               onClick={canChangeRole ? handlePowerSelector : null}

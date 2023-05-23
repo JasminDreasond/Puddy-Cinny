@@ -133,7 +133,7 @@ function RoomSearch({ roomId }) {
 
   return (
     <div className="room-search">
-      <form className="room-search__form" onSubmit={handleSearch}>
+      <form className="room-search__form noselect" onSubmit={handleSearch}>
         <MenuHeader>Room search</MenuHeader>
         <div>
           <Input

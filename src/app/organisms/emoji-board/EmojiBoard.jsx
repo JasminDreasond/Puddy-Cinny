@@ -252,7 +252,7 @@ function EmojiBoard({ onSelect, searchRef }) {
   }
 
   return (
-    <div id="emoji-board" className="emoji-board">
+    <div id="emoji-board" className="emoji-board noselect">
       <ScrollView invisible>
         <div className="emoji-board__nav">
           {recentEmojis.length > 0 && (

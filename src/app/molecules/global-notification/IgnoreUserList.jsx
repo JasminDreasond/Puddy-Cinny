@@ -28,7 +28,7 @@ function IgnoreUserList() {
   };
 
   return (
-    <div className="ignore-user-list">
+    <div className="ignore-user-list noselect">
       <MenuHeader>Ignored users</MenuHeader>
       <SettingTile
         title="Ignore user"

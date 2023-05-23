@@ -72,7 +72,7 @@ function GeneralSettings({ roomId }) {
 
   return (
     <>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Options</MenuHeader>
         <MenuItem
           disabled={!canInvite}
@@ -98,15 +98,15 @@ function GeneralSettings({ roomId }) {
           Leave
         </MenuItem>
       </div>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Notification (Changing this will only affect you)</MenuHeader>
         <RoomNotification roomId={roomId} />
       </div>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Room visibility (who can join)</MenuHeader>
         <RoomVisibility roomId={roomId} />
       </div>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Room addresses</MenuHeader>
         <RoomAliases roomId={roomId} />
       </div>
@@ -121,11 +121,11 @@ GeneralSettings.propTypes = {
 function SecuritySettings({ roomId }) {
   return (
     <>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Encryption</MenuHeader>
         <RoomEncryption roomId={roomId} />
       </div>
-      <div className="room-settings__card">
+      <div className="room-settings__card noselect">
         <MenuHeader>Message history visibility</MenuHeader>
         <RoomHistoryVisibility roomId={roomId} />
       </div>

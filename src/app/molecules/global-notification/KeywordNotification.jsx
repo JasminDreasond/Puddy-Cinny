@@ -164,7 +164,7 @@ function GlobalNotification() {
   };
 
   return (
-    <div className="keyword-notification">
+    <div className="keyword-notification noselect">
       <MenuHeader>Mentions & keywords</MenuHeader>
       <SettingTile
         title="Message containing my display name"

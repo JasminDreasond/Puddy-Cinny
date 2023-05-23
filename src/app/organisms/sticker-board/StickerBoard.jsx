@@ -65,7 +65,7 @@ function StickerBoard({ roomId, onSelect }) {
   );
 
   return (
-    <div className="sticker-board">
+    <div className="sticker-board noselect">
       {packs.length > 0 && (
         <ScrollView invisible>
           <div className="sticker-board__sidebar">
