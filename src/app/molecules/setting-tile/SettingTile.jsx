@@ -1,25 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SettingTile.scss';
-
-import Text from '../../atoms/text/Text';
 
 function SettingTile({ title, options, content }) {
+
+  let colNumber = 12;
+  if (options !== null) {
+    colNumber = 9;
+  }
+
   return (
-    <div className="setting-tile">
-      <div className="setting-tile__content">
-        <div className="setting-tile__title">
+    <li className="list-group-item">
+      <div className="row">
+        <div className={`col-md-${colNumber}`}>
           {
             typeof title === 'string'
-              ? <Text variant="b1">{title}</Text>
+              ? <small>{title}</small>
               : title
           }
+          {content}
         </div>
-        {content}
+        {options !== null && <div className="col-md-3 text-end">{options}</div>}
       </div>
-      {options !== null && <div className="setting-tile__options">{options}</div>}
-    </div>
+    </li>
   );
+
 }
 
 SettingTile.defaultProps = {

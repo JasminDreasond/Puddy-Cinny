@@ -158,38 +158,38 @@ function DeviceManage() {
       <SettingTile
         key={deviceId}
         title={(
-          <Text style={{ color: isVerified !== false ? '' : 'var(--tc-danger-high)' }}>
+          <div className={`small ${isVerified !== false ? '' : 'text-danger'}`}>
             {displayName}
-            <Text variant="b3" span>{`${displayName ? ' — ' : ''}${deviceId}`}</Text>
-            {isCurrentDevice && <Text span className="device-manage__current-label" variant="b3">Current</Text>}
-          </Text>
+            <span className="very-small text-gray">{`${displayName ? ' — ' : ''}${deviceId}`}</span>
+            {isCurrentDevice && <span className="ms-2 very-small badge bg-secondary">Current</span>}
+          </div>
         )}
         options={
           processing.includes(deviceId)
             ? <Spinner size="small" />
             : (
               <>
-                {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} variant="outline-success">Verify</Button>}
-                <IconButton size="small" onClick={() => handleRename(device)} fa="fa-solid fa-pencil" tooltip="Rename" />
-                <IconButton size="small" onClick={() => handleRemove(device)} fa="fa-solid fa-trash-can" tooltip="Remove session" />
+                {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} className='mx-1' variant="outline-success">Verify</Button>}
+                <IconButton size="small" className='mx-1' onClick={() => handleRename(device)} fa="fa-solid fa-pencil" tooltip="Rename" />
+                <IconButton size="small" className='mx-1' onClick={() => handleRemove(device)} fa="fa-solid fa-trash-can" tooltip="Remove session" />
               </>
             )
         }
         content={(
           <>
             {lastTS && (
-              <Text variant="b3">
+              <div className="very-small text-gray">
                 Last activity
                 <span style={{ color: 'var(--tc-surface-normal)' }}>
                   {moment(new Date(lastTS)).format(' hh:MM A, DD/MM/YYYY')}
                 </span>
                 {lastIP ? ` at ${lastIP}` : ''}
-              </Text>
+              </div>
             )}
             {isCurrentDevice && (
-              <Text style={{ marginTop: 'var(--sp-ultra-tight)' }} variant="b3">
+              <div className="very-small text-gray">
                 {`Session Key: ${initMatrix.matrixClient.getDeviceEd25519Key().match(/.{1,4}/g).join(' ')}`}
-              </Text>
+              </div>
             )}
           </>
         )}

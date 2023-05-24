@@ -467,6 +467,10 @@ audio:not([controls]) {
   font-size: 11.2px;
 }
 
+.very-small.badge {
+  padding: 3.4px;
+}
+
 .text-gray {
   color: var(--tc-surface-low);
 }
@@ -489,6 +493,7 @@ body {
 }
 
 body {
+  color: var(--tc-surface-normal);
   background-color: var(--bg-surface-low) !important;
   font-family: var(--font-secondary);
   font-size: 16px;

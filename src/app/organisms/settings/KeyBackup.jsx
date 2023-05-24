@@ -250,7 +250,7 @@ function KeyBackup() {
 
   const renderOptions = () => {
     if (keyBackup === undefined) return <Spinner size="small" />;
-    if (keyBackup === null) return <Button variant="primary" onClick={openCreateKeyBackup}>Create Backup</Button>;
+    if (keyBackup === null) return <Button variant="outline-primary" onClick={openCreateKeyBackup}>Create Backup</Button>;
     return (
       <>
         <IconButton fa="fa-solid fa-upload" variant="success" onClick={openRestoreKeyBackup} tooltip="Restore backup" />
