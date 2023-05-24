@@ -16,19 +16,19 @@ const visibility = {
 };
 
 const items = [{
-  iconSrc: null,
+  className: 'text-start btn-sm',
   text: 'Anyone (including guests)',
   type: visibility.WORLD_READABLE,
 }, {
-  iconSrc: null,
+  className: 'text-start btn-sm',
   text: 'Members (all messages)',
   type: visibility.SHARED,
 }, {
-  iconSrc: null,
+  className: 'text-start btn-sm',
   text: 'Members (messages after invite)',
   type: visibility.INVITED,
 }, {
-  iconSrc: null,
+  className: 'text-start btn-sm',
   text: 'Members (messages after join)',
   type: visibility.JOINED,
 }];
@@ -72,20 +72,27 @@ function RoomHistoryVisibility({ roomId }) {
   return (
     <div className="room-history-visibility">
       {
-        items.map((item) => (
-          <MenuItem
-            variant={activeType === item.type ? 'success' : 'link btn-bg'}
-            key={item.type}
-            iconSrc={item.iconSrc}
-            onClick={() => setVisibility(item)}
-            disabled={(!canChange)}
-          >
-            <Text varient="b1">
-              <span>{item.text}</span>
-              <RadioButton isActive={activeType === item.type} />
-            </Text>
-          </MenuItem>
-        ))
+        items.map((item) => {
+
+          const variant = `${item.className} ${activeType === item.type ? 'btn-text-success' : ''}`;
+
+          return (
+            <MenuItem
+              className={variant}
+              variant='link btn-bg'
+              key={item.type}
+              iconSrc={item.iconSrc}
+              onClick={() => setVisibility(item)}
+              disabled={(!canChange)}
+            >
+              <Text varient="b1">
+                <span>{item.text}</span>
+                <RadioButton isActive={activeType === item.type} />
+              </Text>
+            </MenuItem>
+          );
+
+        })
       }
       <Text variant="b3">Changes to history visibility will only apply to future messages. The visibility of existing history will have no effect.</Text>
     </div>
