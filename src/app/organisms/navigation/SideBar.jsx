@@ -96,7 +96,7 @@ function CrossSigninAlert() {
       className="sidebar__cross-signin-alert"
       tooltip={`${unverified.length} unverified sessions`}
       onClick={() => openSettings(settingTabText.SECURITY)}
-      avatar={<Avatar faSrc="bi bi-shield-lock-fill" iconColor="var(--ic-danger-normal)" size="normal" />}
+      avatar={<Avatar faSrc="bi bi-shield-lock-fill btn-text-danger" size="normal" />}
     />
   );
 }
