@@ -450,8 +450,10 @@ audio:not([controls]) {
   align-items: center;
 }
 
+/* Bootstrap Version */
 @import 'bootstrap/scss/bootstrap';
 
+/* Buttons */
 .btn-bg {
   color: var(--tc-surface-normal) !important;
   text-decoration: none !important;
@@ -462,6 +464,7 @@ audio:not([controls]) {
   background-color: var(--bg-surface-hover);
 }
 
+/* HTML Base */
 html,
 body {
   height: 100%;
@@ -483,10 +486,44 @@ body {
   height: 100%;
 }
 
+/* Link */
 a {
   color: var(--tc-link) !important;
   text-decoration: none !important;
   &:hover {
     text-decoration: underline !important;
   }
+}
+
+/* Notifications */
+.notification-badge {
+  font-size: 10px;
+
+  background-color: var(--bg-badge);
+  color: var(--tc-badge);
+}
+
+.notification-badge.sidebar-mode.empty-badge > i {
+  font-size: 9px;
+}
+
+.notification-badge.sidebar-mode {
+  margin-top: 8px;
+  padding: 3px 5px;
+  margin-left: -4px;
+  transition: margin-left 250ms ease-in-out;
+}
+
+.sidebar-avatar:hover .notification-badge.sidebar-mode {
+  margin-left: -1px;
+}
+
+.sidebar-avatar:hover .notification-badge.sidebar-mode.empty-badge {
+  margin-left: 1px;
+}
+
+.notification-badge.sidebar-mode.empty-badge {
+  padding: 0px;
+  margin-top: 2px;
+  margin-left: -1px;
 }

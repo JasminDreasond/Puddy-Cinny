@@ -312,7 +312,7 @@ function RoomAliases({ roomId }) {
           {`Published addresses can be used by anyone on any server to join your ${room.isSpaceRoom() ? 'space' : 'room'}. To publish an address, it needs to be set as a local address first.`}
         </Text>
       </div>
-      { isLocalVisible && (
+      {isLocalVisible && (
         <div className="room-aliases__content">
           <MenuHeader>Local addresses</MenuHeader>
           {(aliases.local.length === 0) && <Text className="room-aliases__message">No local addresses</Text>}

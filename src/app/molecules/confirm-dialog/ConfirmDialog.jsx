@@ -23,7 +23,7 @@ function ConfirmDialog({
 ConfirmDialog.propTypes = {
   desc: PropTypes.string.isRequired,
   actionTitle: PropTypes.string.isRequired,
-  actionType: PropTypes.oneOf(['primary', 'positive', 'danger', 'caution']).isRequired,
+  actionType: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']).isRequired,
   onComplete: PropTypes.func.isRequired,
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './NotificationBadge.scss';
 
 function NotificationBadge({ alert, content, className, bgColor }) {
 
