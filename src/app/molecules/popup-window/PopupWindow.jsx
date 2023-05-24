@@ -10,6 +10,7 @@ import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 import Header, { TitleWrapper } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import RawModal from '../../atoms/modal/RawModal';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function PWContentSelector({
   selected, variant, iconSrc,
@@ -39,7 +40,7 @@ PWContentSelector.defaultProps = {
 
 PWContentSelector.propTypes = {
   selected: PropTypes.bool,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   iconSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit']),
   onClick: PropTypes.func.isRequired,

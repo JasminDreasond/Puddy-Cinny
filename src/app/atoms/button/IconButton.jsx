@@ -6,6 +6,7 @@ import RawIcon from '../system-icons/RawIcon';
 import Tooltip from '../tooltip/Tooltip';
 import { blurOnBubbling } from './script';
 import Text from '../text/Text';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 const IconButton = React.forwardRef(({
   variant, size, type, fa,
@@ -57,7 +58,7 @@ IconButton.defaultProps = {
 };
 
 IconButton.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   size: PropTypes.oneOf(['normal', 'small', 'extra-small']),
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   tooltip: PropTypes.string,

@@ -42,15 +42,16 @@ function RoomOptions({ roomId, afterOptionSelect }) {
   return (
     <div className="noselect" style={{ maxWidth: '256px' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
-      <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
+      <MenuItem className="text-start btn-sm" faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
+        className="text-start btn-sm"
         faSrc="fa-solid fa-user-plus"
         onClick={handleInviteClick}
         disabled={!canInvite}
       >
         Invite
       </MenuItem>
-      <MenuItem faSrc="fa-solid fa-arrow-right-from-bracket" variant="danger" onClick={handleLeaveClick}>Leave</MenuItem>
+      <MenuItem className="text-start btn-sm" faSrc="fa-solid fa-arrow-right-from-bracket" variant="danger" onClick={handleLeaveClick}>Leave</MenuItem>
       <MenuHeader>Notification</MenuHeader>
       <RoomNotification roomId={roomId} />
     </div>

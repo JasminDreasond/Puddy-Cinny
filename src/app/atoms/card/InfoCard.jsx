@@ -5,6 +5,7 @@ import './InfoCard.scss';
 import Text from '../text/Text';
 import RawIcon from '../system-icons/RawIcon';
 import IconButton from '../button/IconButton';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function InfoCard({
   className, style,
@@ -46,7 +47,7 @@ InfoCard.defaultProps = {
 InfoCard.propTypes = {
   className: PropTypes.string,
   style: PropTypes.shape({}),
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   iconSrc: PropTypes.string,
   title: PropTypes.string.isRequired,
   content: PropTypes.node,

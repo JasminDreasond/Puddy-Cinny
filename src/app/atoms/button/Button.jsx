@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RawIcon from '../system-icons/RawIcon';
 import { blurOnBubbling } from './script';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 const Button = React.forwardRef(({
   id, className, variant, iconSrc, faSrc,
@@ -44,7 +45,7 @@ Button.defaultProps = {
 Button.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),

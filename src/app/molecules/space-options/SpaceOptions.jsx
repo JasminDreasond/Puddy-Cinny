@@ -75,7 +75,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
   return (
     <div className="noselect" style={{ maxWidth: 'calc(var(--navigation-drawer-width) - var(--sp-normal))' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
-      <MenuItem faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
+      <MenuItem className="text-start btn-sm" faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         onClick={handleCategorizeClick}
         faSrc={isCategorized ? "bi bi-grid" : "bi bi-grid-fill"}
@@ -84,20 +84,23 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       </MenuItem>
       <MenuItem
         onClick={handlePinClick}
+        className="text-start btn-sm"
         faSrc={isPinned ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
       >
         {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
       </MenuItem>
       <MenuItem
+        className="text-start btn-sm"
         faSrc="fa-solid fa-user-plus"
         onClick={handleInviteClick}
         disabled={!canInvite}
       >
         Invite
       </MenuItem>
-      <MenuItem onClick={handleManageRoom} iconSrc={HashSearchIC}>Manage rooms</MenuItem>
-      <MenuItem onClick={handleSettingsClick} faSrc="fa-solid fa-gear">Settings</MenuItem>
+      <MenuItem className="text-start btn-sm" onClick={handleManageRoom} iconSrc={HashSearchIC}>Manage rooms</MenuItem>
+      <MenuItem className="text-start btn-sm" onClick={handleSettingsClick} faSrc="fa-solid fa-gear">Settings</MenuItem>
       <MenuItem
+        className="text-start btn-sm"
         variant="danger"
         onClick={handleLeaveClick}
         faSrc="fa-solid fa-arrow-right-from-bracket"

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Checkbox.scss';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function Checkbox({
   variant, isActive, onToggle,
@@ -32,7 +33,7 @@ Checkbox.defaultProps = {
 };
 
 Checkbox.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   isActive: PropTypes.bool,
   onToggle: PropTypes.func,
   disabled: PropTypes.bool,

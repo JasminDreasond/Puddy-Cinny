@@ -8,6 +8,7 @@ import 'tippy.js/animations/scale-extreme.css';
 import Text from '../text/Text';
 import Button from '../button/Button';
 import ScrollView from '../scroll/ScrollView';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function ContextMenu({
   content, placement, maxWidth, render, afterToggle,
@@ -72,11 +73,12 @@ MenuHeader.propTypes = {
 
 function MenuItem({
   variant, iconSrc, faSrc, type,
-  onClick, children, disabled,
+  onClick, children, disabled, className
 }) {
   return (
     <div className="context-menu__item">
       <Button
+        className={className}
         variant={variant}
         iconSrc={iconSrc}
         faSrc={faSrc}
@@ -91,6 +93,7 @@ function MenuItem({
 }
 
 MenuItem.defaultProps = {
+  className: null,
   variant: 'link btn-bg',
   iconSrc: null,
   faSrc: null,
@@ -100,7 +103,8 @@ MenuItem.defaultProps = {
 };
 
 MenuItem.propTypes = {
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(bsColorsArray),
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit']),

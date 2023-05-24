@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './Divider.scss';
 
 import Text from '../text/Text';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function Divider({ text, variant, align }) {
   const dividerClass = ` divider--${variant} divider--${align}`;
@@ -21,7 +22,7 @@ Divider.defaultProps = {
 
 Divider.propTypes = {
   text: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']),
+  variant: PropTypes.oneOf(bsColorsArray),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 

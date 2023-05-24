@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './ConfirmDialog.scss';
 
 import { openReusableDialog } from '../../../client/action/navigation';
+import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
@@ -23,7 +24,7 @@ function ConfirmDialog({
 ConfirmDialog.propTypes = {
   desc: PropTypes.string.isRequired,
   actionTitle: PropTypes.string.isRequired,
-  actionType: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link', 'link btn-bg']).isRequired,
+  actionType: PropTypes.oneOf(bsColorsArray).isRequired,
   onComplete: PropTypes.func.isRequired,
 };
 
