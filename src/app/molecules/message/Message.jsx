@@ -593,12 +593,14 @@ const MessageOptions = React.memo(({
           <>
             <MenuHeader>Options</MenuHeader>
             <MenuItem
+              className="text-start btn-sm"
               faSrc="fa-solid fa-check-double"
               onClick={() => openReadReceipts(roomId, roomTimeline.getEventReaders(mEvent))}
             >
               Read receipts
             </MenuItem>
             <MenuItem
+              className="text-start btn-sm"
               faSrc="fa-solid fa-code"
               onClick={() => handleOpenViewSource(mEvent, roomTimeline)}
             >
@@ -608,7 +610,7 @@ const MessageOptions = React.memo(({
               <>
                 <MenuBorder />
                 <MenuItem
-                  variant="danger"
+                  className="text-start btn-sm btn-text-danger"
                   faSrc="fa-solid fa-trash-can"
                   onClick={async () => {
                     const isConfirmed = await confirmDialog(
