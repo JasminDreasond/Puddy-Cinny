@@ -253,7 +253,7 @@ function KeyBackup() {
     if (keyBackup === null) return <Button variant="primary" onClick={openCreateKeyBackup}>Create Backup</Button>;
     return (
       <>
-        <IconButton fa="fa-solid fa-upload" variant="positive" onClick={openRestoreKeyBackup} tooltip="Restore backup" />
+        <IconButton fa="fa-solid fa-upload" variant="success" onClick={openRestoreKeyBackup} tooltip="Restore backup" />
         <IconButton fa="fa-solid fa-trash-can" onClick={openDeleteKeyBackup} tooltip="Delete backup" />
       </>
     );

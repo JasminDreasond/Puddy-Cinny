@@ -273,10 +273,10 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
         onAvatarChange={canChange ? handleAvatarChange : null}
         onEditProfile={canChange ? handleEditProfile : null}
       />
-      { canChange && (
+      {canChange && (
         <ImagePackUpload onUpload={handleAddItem} />
       )}
-      { images.length === 0 ? null : (
+      {images.length === 0 ? null : (
         <div>
           <div className="image-pack__header">
             <Text variant="b3">Image</Text>
@@ -307,11 +307,11 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
               }
             </Button>
           )}
-          { handlePackDelete && <Button variant="danger" onClick={handleDeletePack}>Delete Pack</Button>}
+          {handlePackDelete && <Button variant="danger" onClick={handleDeletePack}>Delete Pack</Button>}
         </div>
       )}
       <div className="image-pack__global">
-        <Checkbox variant="positive" onToggle={handleGlobalChange} isActive={isGlobal} />
+        <Checkbox variant="success" onToggle={handleGlobalChange} isActive={isGlobal} />
         <div>
           <Text variant="b2">Use globally</Text>
           <Text variant="b3">Add this pack to your account to use in all rooms.</Text>
@@ -360,7 +360,7 @@ function ImagePackUser() {
         onEditProfile={handleEditProfile}
       />
       <ImagePackUpload onUpload={handleAddItem} />
-      { images.length === 0 ? null : (
+      {images.length === 0 ? null : (
         <div>
           <div className="image-pack__header">
             <Text variant="b3">Image</Text>
@@ -447,7 +447,7 @@ function ImagePackGlobal() {
                   if (!pack) return null;
                   return (
                     <div className="image-pack__global" key={pack.id}>
-                      <Checkbox variant="positive" onToggle={() => handleChange(roomId, stateKey)} isActive />
+                      <Checkbox variant="success" onToggle={() => handleChange(roomId, stateKey)} isActive />
                       <div>
                         <Text variant="b2">{pack.displayName ?? 'Unknown'}</Text>
                         <Text variant="b3">{room.name}</Text>

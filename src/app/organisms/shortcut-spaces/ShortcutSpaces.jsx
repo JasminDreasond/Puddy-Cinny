@@ -91,7 +91,7 @@ function ShortcutSpacesContent() {
         ) : (
           <Checkbox
             isActive={selected.includes(spaceId)}
-            variant="positive"
+            variant="success"
             onToggle={toggleSelected}
             tabIndex={-1}
             disabled={process !== null}

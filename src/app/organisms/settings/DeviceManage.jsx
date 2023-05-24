@@ -170,7 +170,7 @@ function DeviceManage() {
             ? <Spinner size="small" />
             : (
               <>
-                {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} variant="positive">Verify</Button>}
+                {(isCSEnabled && canVerify) && <Button onClick={() => verify(deviceId, isCurrentDevice)} variant="success">Verify</Button>}
                 <IconButton size="small" onClick={() => handleRename(device)} fa="fa-solid fa-pencil" tooltip="Rename" />
                 <IconButton size="small" onClick={() => handleRemove(device)} fa="fa-solid fa-trash-can" tooltip="Remove session" />
               </>

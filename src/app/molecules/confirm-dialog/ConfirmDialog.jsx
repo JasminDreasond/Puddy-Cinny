@@ -32,7 +32,7 @@ ConfirmDialog.propTypes = {
  * @param {string} title title of confirm dialog
  * @param {string} desc description of confirm dialog
  * @param {string} actionTitle title of main action to take
- * @param {'primary' | 'positive' | 'danger' | 'caution'} actionType type of action. default=primary
+ * @param {'primary' | 'success' | 'danger' | 'caution'} actionType type of action. default=primary
  * @return {Promise<boolean>} does it get's confirmed or not
  */
 // eslint-disable-next-line import/prefer-default-export

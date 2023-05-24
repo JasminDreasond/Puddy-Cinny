@@ -260,7 +260,7 @@ function RoomAliases({ roomId }) {
     return (
       <div className="room-aliases__item-btns">
         {canPublishAlias && !isMain && <Button onClick={() => handleSetMainAlias(alias)} variant="primary">Set as Main</Button>}
-        {!isPublished && canPublishAlias && <Button onClick={() => handlePublishAlias(alias)} variant="positive">Publish</Button>}
+        {!isPublished && canPublishAlias && <Button onClick={() => handlePublishAlias(alias)} variant="success">Publish</Button>}
         {isPublished && canPublishAlias && <Button onClick={() => handleUnPublishAlias(alias)} variant="caution">Un-Publish</Button>}
         <Button onClick={() => handleDeleteAlias(alias)} variant="danger">Delete</Button>
       </div>
@@ -275,7 +275,7 @@ function RoomAliases({ roomId }) {
     return (
       <React.Fragment key={`${alias}-wrapper`}>
         <div className="room-aliases__alias-item" key={alias}>
-          <Checkbox variant="positive" disabled={disabled} isActive={isActive} onToggle={() => handleAliasSelect(alias)} />
+          <Checkbox variant="success" disabled={disabled} isActive={isActive} onToggle={() => handleAliasSelect(alias)} />
           <Text>
             {alias}
             {isMain && <span>Main</span>}

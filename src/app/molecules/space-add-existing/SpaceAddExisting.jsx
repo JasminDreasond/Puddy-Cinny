@@ -155,7 +155,7 @@ function SpaceAddExistingContent({ roomId }) {
               options={(
                 <Checkbox
                   isActive={selected.includes(rId)}
-                  variant="positive"
+                  variant="success"
                   onToggle={handleSelect}
                   tabIndex={-1}
                   disabled={process !== null}

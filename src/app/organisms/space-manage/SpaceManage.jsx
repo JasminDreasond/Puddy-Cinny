@@ -130,7 +130,7 @@ function SpaceManageItem({
       className={`space-manage-item${isSpace ? '--space' : ''}`}
     >
       <div>
-        {canManage && <Checkbox isActive={isSelected} onToggle={() => onSelect(roomId)} variant="positive" />}
+        {canManage && <Checkbox isActive={isSelected} onToggle={() => onSelect(roomId)} variant="success" />}
         <button
           className="space-manage-item__btn"
           onClick={isSpace ? () => onSpaceClick(roomId, name) : null}

@@ -250,7 +250,7 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
       </Button>
       {isBanned && canIKick && (
         <Button
-          variant="positive"
+          variant="success"
           onClick={() => roomActions.unban(roomId, userId)}
         >
           Unban
@@ -269,7 +269,7 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
         </Button>
       )}
       <Button
-        variant={isUserIgnored ? 'positive' : 'danger'}
+        variant={isUserIgnored ? 'success' : 'danger'}
         onClick={toggleIgnore}
         disabled={isIgnoring}
       >
