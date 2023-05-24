@@ -9,6 +9,9 @@ const arrayItems = [
     'light',
     'dark',
 
+    'link',
+    'link btn-bg',
+
     'outline-primary',
     'outline-secondary',
     'outline-success',
@@ -16,10 +19,7 @@ const arrayItems = [
     'outline-warning',
     'outline-info',
     'outline-light',
-    'outline-dark',
-
-    'link',
-    'link btn-bg'
+    'outline-dark'
 
 ];
 

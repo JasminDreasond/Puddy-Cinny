@@ -100,8 +100,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
       <MenuItem className="text-start btn-sm" onClick={handleManageRoom} iconSrc={HashSearchIC}>Manage rooms</MenuItem>
       <MenuItem className="text-start btn-sm" onClick={handleSettingsClick} faSrc="fa-solid fa-gear">Settings</MenuItem>
       <MenuItem
-        className="text-start btn-sm"
-        variant="danger"
+        className="text-start btn-sm btn-text-danger"
         onClick={handleLeaveClick}
         faSrc="fa-solid fa-arrow-right-from-bracket"
       >

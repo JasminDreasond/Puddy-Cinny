@@ -464,6 +464,62 @@ audio:not([controls]) {
   background-color: var(--bg-surface-hover);
 }
 
+.btn-text-primary,
+.btn-text-primary:hover,
+.btn-text-primary:hover i,
+.btn-text-primary i {
+  color: var(--bs-primary) !important;
+}
+
+.btn-text-secondary,
+.btn-text-secondary:hover,
+.btn-text-secondary:hover i,
+.btn-text-secondary i {
+  color: var(--bs-secondary) !important;
+}
+
+.btn-text-success,
+.btn-text-success:hover,
+.btn-text-success:hover i,
+.btn-text-success i {
+  color: var(--bs-success) !important;
+}
+
+.btn-text-danger,
+.btn-text-danger:hover,
+.btn-text-danger:hover i,
+.btn-text-danger i {
+  color: var(--bs-danger) !important;
+}
+
+.btn-text-warning,
+.btn-text-warning:hover,
+.btn-text-warning:hover i,
+.btn-text-warning i {
+  color: var(--bs-warning) !important;
+}
+
+.btn-text-info,
+.btn-text-info:hover i,
+.btn-text-info:hover i,
+.btn-text-info i {
+  color: var(--bs-info) !important;
+}
+
+.btn-text-light,
+.btn-text-light:hover,
+.btn-text-light:hover i,
+.btn-text-light i {
+  color: var(--bs-light) !important;
+}
+
+.btn-text-dark,
+.btn-text-dark:hover,
+.btn-text-dark:hover i,
+.btn-text-light i {
+  color: var(--bs-dark) !important;
+}
+
 /* HTML Base */
 html,
 body {
