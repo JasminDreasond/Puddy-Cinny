@@ -430,7 +430,7 @@ function MessageReaction({
             ? <img className="react-emoji" draggable="false" alt={shortcode ?? reaction} src={customEmojiUrl} />
             : twemojify(reaction, { className: 'react-emoji' })
         }
-        <Text variant="b3" className="msg__reaction-count">{count}</Text>
+        <div className="very-small text-gray msg__reaction-count">{count}</div>
       </button>
     </Tooltip>
   );

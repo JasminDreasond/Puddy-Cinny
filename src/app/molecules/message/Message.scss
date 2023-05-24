@@ -257,10 +257,9 @@
   }
 }
 .msg__reaction {
-  margin: var(--sp-extra-tight) 0 0 0;
+  height: 26px;
   @include dir.side(margin, 0, var(--sp-extra-tight));
   padding: 0 var(--sp-ultra-tight);
-  min-height: 26px;
   display: inline-flex;
   align-items: center;
   color: var(--tc-surface-normal);
@@ -270,7 +269,7 @@
   cursor: pointer;
 
   & .react-emoji {
-    height: 16px;
+    height: 13px;
     margin: 2px;
   }
   &-count {
