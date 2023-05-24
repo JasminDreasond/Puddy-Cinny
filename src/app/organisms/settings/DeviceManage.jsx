@@ -211,7 +211,7 @@ function DeviceManage() {
     }
   });
   return (
-    <div className="card">
+    <div className="card noselect">
       <ul className="list-group list-group-flush">
 
         <li className="list-group-item very-small text-gray">Unverified sessions</li>

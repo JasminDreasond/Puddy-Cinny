@@ -39,9 +39,9 @@ function AppearanceSection() {
   const [, updateState] = useState({});
 
   return (
-    <div className="settings-appearance noselect">
+    <div className="card noselect">
       <div className="settings-appearance__card">
-        <MenuHeader>Theme</MenuHeader>
+        <li className="list-group-item very-small text-gray">Theme</li>
         <SettingTile
           title="Follow system theme"
           options={(
@@ -50,7 +50,7 @@ function AppearanceSection() {
               onToggle={() => { toggleSystemTheme(); updateState({}); }}
             />
           )}
-          content={<Text variant="b3">Use light or dark mode based on the system settings.</Text>}
+          content={<div className="very-small text-gray">Use light or dark mode based on the system settings.</div>}
         />
         <SettingTile
           title="Theme"
@@ -72,38 +72,43 @@ function AppearanceSection() {
           )}
         />
       </div>
-      <div className="settings-appearance__card">
-        <MenuHeader>Room messages</MenuHeader>
-        <SettingTile
-          title="Markdown formatting"
-          options={(
-            <Toggle
-              isActive={settings.isMarkdown}
-              onToggle={() => { toggleMarkdown(); updateState({}); }}
-            />
-          )}
-          content={<Text variant="b3">Format messages with markdown syntax before sending.</Text>}
-        />
-        <SettingTile
-          title="Hide membership events"
-          options={(
-            <Toggle
-              isActive={settings.hideMembershipEvents}
-              onToggle={() => { toggleMembershipEvents(); updateState({}); }}
-            />
-          )}
-          content={<Text variant="b3">Hide membership change messages from room timeline. (Join, Leave, Invite, Kick and Ban)</Text>}
-        />
-        <SettingTile
-          title="Hide nick/avatar events"
-          options={(
-            <Toggle
-              isActive={settings.hideNickAvatarEvents}
-              onToggle={() => { toggleNickAvatarEvents(); updateState({}); }}
-            />
-          )}
-          content={<Text variant="b3">Hide nick and avatar change messages from room timeline.</Text>}
-        />
+      <div className="card noselect">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Room messages</li>
+          <SettingTile
+            title="Markdown formatting"
+            options={(
+              <Toggle
+                className='d-inline-flex'
+                isActive={settings.isMarkdown}
+                onToggle={() => { toggleMarkdown(); updateState({}); }}
+              />
+            )}
+            content={<div className="very-small text-gray">Format messages with markdown syntax before sending.</div>}
+          />
+          <SettingTile
+            title="Hide membership events"
+            options={(
+              <Toggle
+                className='d-inline-flex'
+                isActive={settings.hideMembershipEvents}
+                onToggle={() => { toggleMembershipEvents(); updateState({}); }}
+              />
+            )}
+            content={<div className="very-small text-gray">Hide membership change messages from room timeline. (Join, Leave, Invite, Kick and Ban)</div>}
+          />
+          <SettingTile
+            title="Hide nick/avatar events"
+            options={(
+              <Toggle
+                className='d-inline-flex'
+                isActive={settings.hideNickAvatarEvents}
+                onToggle={() => { toggleNickAvatarEvents(); updateState({}); }}
+              />
+            )}
+            content={<div className="very-small text-gray">Hide nick and avatar change messages from room timeline.</div>}
+          />
+        </ul>
       </div>
     </div>
   );
@@ -116,7 +121,7 @@ function NotificationsSection() {
 
   const renderOptions = () => {
     if (window.Notification === undefined) {
-      return <Text className="settings-notifications__not-supported">Not supported in this browser.</Text>;
+      return <div className="settings-notifications__not-supported">Not supported in this browser.</div>;
     }
 
     if (permission === 'granted') {
@@ -149,7 +154,7 @@ function NotificationsSection() {
         <SettingTile
           title="Desktop notification"
           options={renderOptions()}
-          content={<Text variant="b3">Show desktop notification when new messages arrive.</Text>}
+          content={<div className="very-small text-gray">Show desktop notification when new messages arrive.</div>}
         />
         <SettingTile
           title="Notification Sound"
@@ -159,7 +164,7 @@ function NotificationsSection() {
               onToggle={() => { toggleNotificationSounds(); updateState({}); }}
             />
           )}
-          content={<Text variant="b3">Play sound when new messages arrive.</Text>}
+          content={<div className="very-small text-gray">Play sound when new messages arrive.</div>}
         />
       </div>
       <GlobalNotification />
@@ -193,7 +198,7 @@ function SecuritySection() {
           title="Export E2E room keys"
           content={(
             <>
-              <Text variant="b3">Export end-to-end encryption room keys to decrypt old messages in other session. In order to encrypt keys you need to set a password, which will be used while importing.</Text>
+              <div className="very-small text-gray">Export end-to-end encryption room keys to decrypt old messages in other session. In order to encrypt keys you need to set a password, which will be used while importing.</div>
               <ExportE2ERoomKeys />
             </>
           )}
@@ -202,7 +207,7 @@ function SecuritySection() {
           title="Import E2E room keys"
           content={(
             <>
-              <Text variant="b3">{'To decrypt older messages, Export E2EE room keys from Element (Settings > Security & Privacy > Encryption > Cryptography) and import them here. Imported keys are encrypted so you\'ll have to enter the password you set in order to decrypt it.'}</Text>
+              <div className="very-small text-gray">{'To decrypt older messages, Export E2EE room keys from Element (Settings > Security & Privacy > Encryption > Cryptography) and import them here. Imported keys are encrypted so you\'ll have to enter the password you set in order to decrypt it.'}</div>
               <ImportE2ERoomKeys />
             </>
           )}
