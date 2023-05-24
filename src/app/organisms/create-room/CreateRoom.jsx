@@ -216,6 +216,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
           <Input name="name" label={`${isSpace ? 'Space' : 'Room'} name`} required />
           <Button
             disabled={isValidAddress === false || isCreatingRoom}
+            iconSrc={isSpace ? SpacePlusIC : HashPlusIC}
             type="submit"
             variant="primary"
           >

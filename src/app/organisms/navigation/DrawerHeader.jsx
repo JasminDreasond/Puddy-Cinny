@@ -39,6 +39,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
     <>
       <MenuHeader>Add rooms or spaces</MenuHeader>
       <MenuItem
+        className="text-start"
         iconSrc={SpacePlusIC}
         onClick={() => { afterOptionSelect(); openCreateRoom(true, spaceId); }}
         disabled={!canManage}
@@ -46,6 +47,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
         Create new space
       </MenuItem>
       <MenuItem
+        className="text-start"
         iconSrc={HashPlusIC}
         onClick={() => { afterOptionSelect(); openCreateRoom(false, spaceId); }}
         disabled={!canManage}
@@ -54,6 +56,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       </MenuItem>
       {!spaceId && (
         <MenuItem
+          className="text-start"
           iconSrc={HashGlobeIC}
           onClick={() => { afterOptionSelect(); openPublicRooms(); }}
         >
@@ -62,6 +65,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       )}
       {!spaceId && (
         <MenuItem
+          className="text-start"
           faSrc="fa-solid fa-plus"
           onClick={() => { afterOptionSelect(); openJoinAlias(); }}
         >
@@ -70,6 +74,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       )}
       {spaceId && (
         <MenuItem
+          className="text-start"
           faSrc="fa-solid fa-plus"
           onClick={() => { afterOptionSelect(); openSpaceAddExisting(spaceId); }}
           disabled={!canManage}
@@ -79,6 +84,7 @@ export function HomeSpaceOptions({ spaceId, afterOptionSelect }) {
       )}
       {spaceId && (
         <MenuItem
+          className="text-start"
           onClick={() => { afterOptionSelect(); openSpaceManage(spaceId); }}
           iconSrc={HashSearchIC}
         >
