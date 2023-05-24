@@ -18,7 +18,7 @@ const IconButton = React.forwardRef(({
   const btn = (
     <button
       ref={ref}
-      className={`ic-btn ic-btn-${variant} ${className}`}
+      className={`btn ic-btn ic-btn-${variant} btn-link btn-bg btn-text-${variant} ${className}`}
       onMouseUp={(e) => blurOnBubbling(e, `.ic-btn-${variant}`)}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type

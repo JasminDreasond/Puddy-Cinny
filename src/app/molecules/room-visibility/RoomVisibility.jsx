@@ -76,16 +76,19 @@ function RoomVisibility({ roomId }) {
   const canChange = room.currentState.hasSufficientPowerLevelFor('state_default', myPowerlevel);
 
   const items = [{
+    className: 'text-start btn-sm',
     iconSrc: isSpace ? SpaceLockIC : HashLockIC,
     text: 'Private (invite only)',
     type: visibility.INVITE,
     unsupported: false,
   }, {
+    className: 'text-start btn-sm',
     iconSrc: isSpace ? SpaceIC : HashIC,
     text: roomVersion < 8 ? 'Restricted (unsupported: required room upgrade)' : 'Restricted (space member can join)',
     type: visibility.RESTRICTED,
     unsupported: roomVersion < 8 || noSpaceParent,
   }, {
+    className: 'text-start btn-sm',
     iconSrc: isSpace ? SpaceGlobeIC : HashGlobeIC,
     text: 'Public (anyone can join)',
     type: visibility.PUBLIC,
@@ -95,20 +98,27 @@ function RoomVisibility({ roomId }) {
   return (
     <div className="room-visibility">
       {
-        items.map((item) => (
-          <MenuItem
-            variant={activeType === item.type ? 'success' : 'link btn-bg'}
-            key={item.type}
-            iconSrc={item.iconSrc}
-            onClick={() => setVisibility(item)}
-            disabled={(!canChange || item.unsupported)}
-          >
-            <Text varient="b1">
-              <span>{item.text}</span>
-              <RadioButton isActive={activeType === item.type} />
-            </Text>
-          </MenuItem>
-        ))
+        items.map((item) => {
+
+          const variant = `${item.className} ${activeType === item.type ? 'btn-text-success' : ''}`;
+
+          return (
+            <MenuItem
+              className={variant}
+              variant='link btn-bg'
+              key={item.type}
+              iconSrc={item.iconSrc}
+              onClick={() => setVisibility(item)}
+              disabled={(!canChange || item.unsupported)}
+            >
+              <Text varient="b1">
+                <span>{item.text}</span>
+                <RadioButton isActive={activeType === item.type} />
+              </Text>
+            </MenuItem>
+          );
+
+        })
       }
     </div>
   );
