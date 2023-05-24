@@ -16,19 +16,19 @@ const visibility = {
 };
 
 const items = [{
-  className: 'text-start btn-sm',
+  className: 'text-start',
   text: 'Anyone (including guests)',
   type: visibility.WORLD_READABLE,
 }, {
-  className: 'text-start btn-sm',
+  className: 'text-start',
   text: 'Members (all messages)',
   type: visibility.SHARED,
 }, {
-  className: 'text-start btn-sm',
+  className: 'text-start',
   text: 'Members (messages after invite)',
   type: visibility.INVITED,
 }, {
-  className: 'text-start btn-sm',
+  className: 'text-start',
   text: 'Members (messages after join)',
   type: visibility.JOINED,
 }];

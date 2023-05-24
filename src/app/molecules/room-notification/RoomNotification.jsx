@@ -116,7 +116,7 @@ function RoomNotification({ roomId }) {
       {
         items.map((item) => (
           <MenuItem
-            className={activeType === item.type ? 'text-start btn-sm btn-text-success' : 'text-start btn-sm'}
+            className={activeType === item.type ? 'text-start btn-text-success' : 'text-start'}
             key={item.type}
             iconSrc={item.iconSrc}
             onClick={() => setNotification(item)}

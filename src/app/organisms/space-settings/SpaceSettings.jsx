@@ -66,7 +66,7 @@ function GeneralSettings({ roomId }) {
       <div className="room-settings__card">
         <MenuHeader>Options</MenuHeader>
         <MenuItem
-          className='text-start btn-sm'
+          className='text-start'
           onClick={() => {
             if (isCategorized) unCategorizeSpace(roomId);
             else categorizeSpace(roomId);
@@ -77,7 +77,7 @@ function GeneralSettings({ roomId }) {
           {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
         </MenuItem>
         <MenuItem
-          className='text-start btn-sm'
+          className='text-start'
           onClick={() => {
             if (isPinned) deleteSpaceShortcut(roomId);
             else createSpaceShortcut(roomId);
@@ -88,7 +88,7 @@ function GeneralSettings({ roomId }) {
           {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
         </MenuItem>
         <MenuItem
-          className='text-start btn-sm btn-text-danger'
+          className='text-start btn-text-danger'
           onClick={async () => {
             const isConfirmed = await confirmDialog(
               'Leave space',

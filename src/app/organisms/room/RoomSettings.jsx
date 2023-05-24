@@ -75,7 +75,7 @@ function GeneralSettings({ roomId }) {
       <div className="room-settings__card noselect">
         <MenuHeader>Options</MenuHeader>
         <MenuItem
-          className="text-start btn-sm"
+          className="text-start"
           disabled={!canInvite}
           onClick={() => openInviteUser(roomId)}
           faSrc="fa-solid fa-user-plus"
@@ -83,7 +83,7 @@ function GeneralSettings({ roomId }) {
           Invite
         </MenuItem>
         <MenuItem
-          className="text-start btn-sm btn-text-danger"
+          className="text-start btn-text-danger"
           onClick={async () => {
             const isConfirmed = await confirmDialog(
               'Leave room',

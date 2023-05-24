@@ -7,7 +7,7 @@ import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 const Button = React.forwardRef(({
   id, className, variant, iconSrc, faSrc,
-  type, onClick, children, disabled,
+  type, onClick, children, disabled, size
 }, ref) => {
 
   const iconClass = (iconSrc === null) ? '' : `btn-${variant}--icon`;
@@ -16,7 +16,7 @@ const Button = React.forwardRef(({
     <button
       ref={ref}
       id={id === '' ? undefined : id}
-      className={`btn ${className ? `${className} ` : ''}btn-${variant} ${iconClass} noselect`}
+      className={`btn ${className ? `${className} ` : ''}btn-${variant} btn-${size} ${iconClass} noselect`}
       onMouseUp={(e) => blurOnBubbling(e, `.btn-${variant}`)}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
@@ -33,6 +33,7 @@ const Button = React.forwardRef(({
 
 Button.defaultProps = {
   id: '',
+  size: 'sm',
   className: null,
   variant: 'link btn-bg',
   iconSrc: null,
@@ -44,6 +45,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   id: PropTypes.string,
+  size: PropTypes.string,
   className: PropTypes.string,
   variant: PropTypes.oneOf(bsColorsArray),
   iconSrc: PropTypes.string,

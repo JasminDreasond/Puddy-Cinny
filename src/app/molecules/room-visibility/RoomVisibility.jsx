@@ -76,19 +76,19 @@ function RoomVisibility({ roomId }) {
   const canChange = room.currentState.hasSufficientPowerLevelFor('state_default', myPowerlevel);
 
   const items = [{
-    className: 'text-start btn-sm',
+    className: 'text-start',
     // iconSrc: isSpace ? SpaceLockIC : HashLockIC,
     text: 'Private (invite only)',
     type: visibility.INVITE,
     unsupported: false,
   }, {
-    className: 'text-start btn-sm',
+    className: 'text-start',
     // iconSrc: isSpace ? SpaceIC : HashIC,
     text: roomVersion < 8 ? 'Restricted (unsupported: required room upgrade)' : 'Restricted (space member can join)',
     type: visibility.RESTRICTED,
     unsupported: roomVersion < 8 || noSpaceParent,
   }, {
-    className: 'text-start btn-sm',
+    className: 'text-start',
     // iconSrc: isSpace ? SpaceGlobeIC : HashGlobeIC,
     text: 'Public (anyone can join)',
     type: visibility.PUBLIC,
