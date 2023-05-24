@@ -11,7 +11,6 @@ import Button from '../../atoms/button/Button';
 import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
-import InfoCard from '../../atoms/card/InfoCard';
 import Spinner from '../../atoms/spinner/Spinner';
 import SettingTile from '../../molecules/setting-tile/SettingTile';
 
@@ -212,40 +211,38 @@ function DeviceManage() {
     }
   });
   return (
-    <div className="device-manage">
-      <div>
-        <MenuHeader>Unverified sessions</MenuHeader>
+    <div className="card">
+      <ul className="list-group list-group-flush">
+
+        <li className="list-group-item very-small text-gray">Unverified sessions</li>
+
         {!isCSEnabled && (
-          <div style={{ padding: 'var(--sp-extra-tight) var(--sp-normal)' }}>
-            <InfoCard
-              rounded
-              variant="warning"
-              faSrc="fa-solid fa-circle-info"
-              title="Setup cross signing in case you lose all your sessions."
-            />
-          </div>
+          <li className="list-group-item small text-warning p-4">
+            <i className="fa-solid fa-circle-info me-2" />
+            Setup cross signing in case you lose all your sessions.
+          </li>
         )}
+
         {
           unverified.length > 0
             ? unverified.map((device) => renderDevice(device, false))
-            : <Text className="device-manage__info">No unverified sessions</Text>
+            : <li className="list-group-item very-small text-gray p-3">No unverified sessions</li>
         }
-      </div>
-      {noEncryption.length > 0 && (
-        <div>
-          <MenuHeader>Sessions without encryption support</MenuHeader>
-          {noEncryption.map((device) => renderDevice(device, null))}
-        </div>
-      )}
-      <div>
-        <MenuHeader>Verified sessions</MenuHeader>
+
+        {noEncryption.length > 0 && (
+          <li className="list-group-item small text-gray">Sessions without encryption support</li>
+        )}
+
+        {noEncryption.length > 0 && noEncryption.map((device) => renderDevice(device, null))}
+
+        <li className="list-group-item very-small text-gray p-3">Verified sessions</li>
         {
           verified.length > 0
             ? verified.map((device, index) => {
               if (truncated && index >= TRUNCATED_COUNT) return null;
               return renderDevice(device, true);
             })
-            : <Text className="device-manage__info">No verified sessions</Text>
+            : <li className="list-group-item small">No verified sessions</li>
         }
         {verified.length > TRUNCATED_COUNT && (
           <Button className="device-manage__info" onClick={() => setTruncated(!truncated)}>
@@ -253,9 +250,10 @@ function DeviceManage() {
           </Button>
         )}
         {deviceList.length > 0 && (
-          <Text className="device-manage__info" variant="b3">Session names are visible to everyone, so do not put any private info here.</Text>
+          <li className="list-group-item very-small text-gray p-3">Session names are visible to everyone, so do not put any private info here.</li>
         )}
-      </div>
+      </ul>
+
     </div>
   );
 }

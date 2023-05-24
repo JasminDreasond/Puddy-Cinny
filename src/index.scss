@@ -462,6 +462,24 @@ audio:not([controls]) {
   --bs-success-rgb: 69, 184, 59;
 }
 
+/* Bootstrap Fix */
+.very-small {
+  font-size: 11.2px;
+}
+
+.text-gray {
+  color: var(--tc-surface-low);
+}
+
+.card {
+  --bs-card-bg: var(--bg-surface);
+}
+
+.list-group {
+  --bs-list-group-bg: var(--bg-surface);
+  --bs-list-group-color: var(--tc-surface-normal);
+}
+
 /* HTML Base */
 html,
 body {
