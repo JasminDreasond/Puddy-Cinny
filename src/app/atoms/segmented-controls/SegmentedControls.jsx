@@ -26,7 +26,7 @@ function SegmentedControls({
       {
         segments.map((segment, index) => (
           <button
-            key={Math.random().toString(20).substr(2, 6)}
+            key={Math.random().toString(20).substring(2, 6)}
             className={`segment-btn${select === index ? ' segment-btn--active' : ''}`}
             type="button"
             onClick={() => selectSegment(index)}

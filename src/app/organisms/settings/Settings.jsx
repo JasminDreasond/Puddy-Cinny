@@ -39,40 +39,43 @@ function AppearanceSection() {
   const [, updateState] = useState({});
 
   return (
-    <div className="card noselect">
-      <div className="settings-appearance__card">
-        <li className="list-group-item very-small text-gray">Theme</li>
-        <SettingTile
-          title="Follow system theme"
-          options={(
-            <Toggle
-              isActive={settings.useSystemTheme}
-              onToggle={() => { toggleSystemTheme(); updateState({}); }}
-            />
-          )}
-          content={<div className="very-small text-gray">Use light or dark mode based on the system settings.</div>}
-        />
-        <SettingTile
-          title="Theme"
-          content={(
-            <SegmentedControls
-              selected={settings.useSystemTheme ? -1 : settings.getThemeIndex()}
-              segments={[
-                { text: 'Light' },
-                { text: 'Silver' },
-                { text: 'Dark' },
-                { text: 'Butter' },
-              ]}
-              onSelect={(index) => {
-                if (settings.useSystemTheme) toggleSystemTheme();
-                settings.setTheme(index);
-                updateState({});
-              }}
-            />
-          )}
-        />
+    <div>
+      <div className="card noselect my-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Theme</li>
+          <SettingTile
+            title="Follow system theme"
+            options={(
+              <Toggle
+                className='d-inline-flex'
+                isActive={settings.useSystemTheme}
+                onToggle={() => { toggleSystemTheme(); updateState({}); }}
+              />
+            )}
+            content={<div className="very-small text-gray">Use light or dark mode based on the system settings.</div>}
+          />
+          <SettingTile
+            title="Theme"
+            content={(
+              <SegmentedControls
+                selected={settings.useSystemTheme ? -1 : settings.getThemeIndex()}
+                segments={[
+                  { text: 'Light' },
+                  { text: 'Silver' },
+                  { text: 'Dark' },
+                  { text: 'Butter' },
+                ]}
+                onSelect={(index) => {
+                  if (settings.useSystemTheme) toggleSystemTheme();
+                  settings.setTheme(index);
+                  updateState({});
+                }}
+              />
+            )}
+          />
+        </ul>
       </div>
-      <div className="card noselect">
+      <div className="card noselect my-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item very-small text-gray">Room messages</li>
           <SettingTile
