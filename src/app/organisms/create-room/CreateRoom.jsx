@@ -171,7 +171,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
               {joinRuleShortText[joinRules.indexOf(joinRule)]}
             </Button>
           )}
-          content={<Text variant="b3">{`Select who can join this ${isSpace ? 'space' : 'room'}.`}</Text>}
+          content={<div className="very-small text-gray">{`Select who can join this ${isSpace ? 'space' : 'room'}.`}</div>}
         />
         {joinRule === 'public' && (
           <div>
@@ -195,7 +195,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
           <SettingTile
             title="Enable end-to-end encryption"
             options={<Toggle isActive={isEncrypted} onToggle={setIsEncrypted} />}
-            content={<Text variant="b3">You can’t disable this later. Bridges & most bots won’t work yet.</Text>}
+            content={<div className="very-small text-gray">You can’t disable this later. Bridges & most bots won’t work yet.</div>}
           />
         )}
         <SettingTile
@@ -208,7 +208,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
             />
           )}
           content={(
-            <Text variant="b3">Selecting Admin sets 100 power level whereas Founder sets 101.</Text>
+            <div className="very-small text-gray">Selecting Admin sets 100 power level whereas Founder sets 101.</div>
           )}
         />
         <Input name="topic" minHeight={174} resizable label="Topic (optional)" />

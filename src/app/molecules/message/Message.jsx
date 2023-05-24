@@ -81,9 +81,9 @@ const MessageHeader = React.memo(({
       <span>{twemojify(userId)}</span>
     </Text>
     <div className="message__time">
-      <Text variant="b3">
+      <div className="very-small text-gray">
         <Time timestamp={timestamp} fullTime={fullTime} />
-      </Text>
+      </div>
     </div>
   </div>
 ));

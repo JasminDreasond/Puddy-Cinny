@@ -173,7 +173,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[DISPLAY_NAME]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all message containing your display name.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all message containing your display name.</div>}
       />
       <SettingTile
         title="Message containing my username"
@@ -182,7 +182,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[USERNAME]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all message containing your username.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all message containing your username.</div>}
       />
       <SettingTile
         title="Message containing @room"
@@ -191,7 +191,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[ROOM_PING]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all messages containing @room.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all messages containing @room.</div>}
       />
       {rulesToType[KEYWORD] && (
         <SettingTile
@@ -201,14 +201,14 @@ function GlobalNotification() {
               {typeToLabel[rulesToType[KEYWORD]]}
             </Button>
           )}
-          content={<Text variant="b3">Default notification settings for all message containing keywords.</Text>}
+          content={<div className="very-small text-gray">Default notification settings for all message containing keywords.</div>}
         />
       )}
       <SettingTile
         title="Keywords"
         content={(
           <div className="keyword-notification__keyword">
-            <Text variant="b3">Get notification when a message contains keyword.</Text>
+            <div className="very-small text-gray">Get notification when a message contains keyword.</div>
             <form onSubmit={handleSubmit}>
               <Input name="keywordInput" required />
               <Button variant="primary" type="submit">Add</Button>

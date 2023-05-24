@@ -279,9 +279,9 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
       {images.length === 0 ? null : (
         <div>
           <div className="image-pack__header">
-            <Text variant="b3">Image</Text>
-            <Text variant="b3">Shortcode</Text>
-            <Text variant="b3">Usage</Text>
+            <div className="very-small text-gray">Image</div>
+            <div className="very-small text-gray">Shortcode</div>
+            <div className="very-small text-gray">Usage</div>
           </div>
           {images.map(([shortcode, image]) => (
             <ImagePackItem
@@ -314,7 +314,7 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
         <Checkbox variant="success" onToggle={handleGlobalChange} isActive={isGlobal} />
         <div>
           <Text variant="b2">Use globally</Text>
-          <Text variant="b3">Add this pack to your account to use in all rooms.</Text>
+          <div className="very-small text-gray">Add this pack to your account to use in all rooms.</div>
         </div>
       </div>
     </div>
@@ -363,9 +363,9 @@ function ImagePackUser() {
       {images.length === 0 ? null : (
         <div>
           <div className="image-pack__header">
-            <Text variant="b3">Image</Text>
-            <Text variant="b3">Shortcode</Text>
-            <Text variant="b3">Usage</Text>
+            <div className="very-small text-gray">Image</div>
+            <div className="very-small text-gray">Shortcode</div>
+            <div className="very-small text-gray">Usage</div>
           </div>
           {images.map(([shortcode, image]) => (
             <ImagePackItem
@@ -450,7 +450,7 @@ function ImagePackGlobal() {
                       <Checkbox variant="success" onToggle={() => handleChange(roomId, stateKey)} isActive />
                       <div>
                         <Text variant="b2">{pack.displayName ?? 'Unknown'}</Text>
-                        <Text variant="b3">{room.name}</Text>
+                        <div className="very-small text-gray">{room.name}</div>
                       </div>
                     </div>
                   );

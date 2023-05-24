@@ -210,7 +210,7 @@ function CrossSignin() {
   return (
     <SettingTile
       title="Cross signing"
-      content={<Text variant="b3">Setup to verify and keep track of all your sessions. Also required to backup encrypted message.</Text>}
+      content={<div className="very-small text-gray">Setup to verify and keep track of all your sessions. Also required to backup encrypted message.</div>}
       options={(
         isCSEnabled
           ? <Button variant="outline-danger" onClick={resetDialog}>Reset</Button>

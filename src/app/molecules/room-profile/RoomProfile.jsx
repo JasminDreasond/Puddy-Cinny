@@ -220,7 +220,7 @@ function RoomProfile({ roomId }) {
       {canChangeName && <Input value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
       {canChangeName && <Input value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
       {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
-      {(!canChangeName || !canChangeTopic) && <Text variant="b3">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</Text>}
+      {(!canChangeName || !canChangeTopic) && <div className="very-small text-gray">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</div>}
       {status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
       {status.type === cons.status.SUCCESS && <Text style={{ color: 'var(--tc-positive-high)' }} variant="b2">{status.msg}</Text>}
       {status.type === cons.status.ERROR && <Text style={{ color: 'var(--tc-danger-high)' }} variant="b2">{status.msg}</Text>}
@@ -270,7 +270,7 @@ function RoomProfile({ roomId }) {
 
       </div>
 
-      <Text variant="b3">{room.getCanonicalAlias() || room.roomId}</Text>
+      <div className="very-small text-gray">{room.getCanonicalAlias() || room.roomId}</div>
       {roomTopic && <Text variant="b2">{twemojify(roomTopic, undefined, true)}</Text>}
 
     </div>

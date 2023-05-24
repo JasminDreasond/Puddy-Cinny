@@ -39,7 +39,7 @@ function RoomEncryption({ roomId }) {
       <SettingTile
         title="Enable room encryption"
         content={(
-          <Text variant="b3">Once enabled, encryption cannot be disabled.</Text>
+          <div className="very-small text-gray">Once enabled, encryption cannot be disabled.</div>
         )}
         options={(
           <Toggle

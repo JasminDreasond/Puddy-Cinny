@@ -80,13 +80,13 @@ function ImagePackProfile({
                   <Text>{displayName}</Text>
                   {onEditProfile && <IconButton size="extra-small" onClick={() => setIsEdit(true)} fa="fa-solid fa-pencil" tooltip="Edit" />}
                 </div>
-                {attribution && <Text variant="b3">{attribution}</Text>}
+                {attribution && <div className="very-small text-gray">{attribution}</div>}
               </>
             )
         }
       </div>
       <div className="image-pack-profile__usage noselect">
-        <Text variant="b3">Pack usage</Text>
+        <div className="very-small text-gray">Pack usage</div>
         <Button
           onClick={onUsageChange ? handleUsageSelect : undefined}
           faSrc={onUsageChange ? "fa-solid fa-check" : null}

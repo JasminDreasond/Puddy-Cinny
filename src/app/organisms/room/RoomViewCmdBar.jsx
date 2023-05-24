@@ -278,7 +278,7 @@ function RoomViewCmdBar({ roomId, roomTimeline, viewEvent }) {
   return (
     <div className="cmd-bar">
       <div className="cmd-bar__info">
-        <Text variant="b3">TAB</Text>
+        <div className="very-small text-gray">TAB</div>
       </div>
       <div className="cmd-bar__content">
         <ScrollView horizontal vertical={false} invisible>

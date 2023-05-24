@@ -136,7 +136,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[DM]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all direct message.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all direct message.</div>}
       />
       <SettingTile
         title="Encrypted direct messages"
@@ -145,7 +145,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[ENC_DM]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all encrypted direct message.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all encrypted direct message.</div>}
       />
       <SettingTile
         title="Rooms messages"
@@ -154,7 +154,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[ROOM]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all room message.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all room message.</div>}
       />
       <SettingTile
         title="Encrypted rooms messages"
@@ -163,7 +163,7 @@ function GlobalNotification() {
             {typeToLabel[rulesToType[ENC_ROOM]]}
           </Button>
         )}
-        content={<Text variant="b3">Default notification settings for all encrypted room message.</Text>}
+        content={<div className="very-small text-gray">Default notification settings for all encrypted room message.</div>}
       />
     </div>
   );

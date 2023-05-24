@@ -24,20 +24,20 @@ function RoomTile({
       </div>
       <div className="room-tile__content">
         <Text variant="s1">{twemojify(name)}</Text>
-        <Text variant="b3">
+        <div className="very-small text-gray">
           {
             inviterName !== null
               ? `Invited by ${inviterName} to ${id}${memberCount === null ? '' : ` • ${memberCount} members`}`
               : id + (memberCount === null ? '' : ` • ${memberCount} members`)
           }
-        </Text>
+        </div>
         {
           desc !== null && (typeof desc === 'string')
             ? <Text className="room-tile__content__desc" variant="b2">{twemojify(desc, undefined, true)}</Text>
             : desc
         }
       </div>
-      { options !== null && (
+      {options !== null && (
         <div className="room-tile__options">
           {options}
         </div>

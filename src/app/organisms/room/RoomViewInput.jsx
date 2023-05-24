@@ -543,7 +543,7 @@ function RoomViewInput({
         </div>
         <div className="room-attachment__info">
           <Text variant="b1">{attachment.name}</Text>
-          <Text variant="b3"><span ref={uploadProgressRef}>{`size: ${bytesToSize(attachment.size)}`}</span></Text>
+          <div className="very-small text-gray"><span ref={uploadProgressRef}>{`size: ${bytesToSize(attachment.size)}`}</span></div>
         </div>
       </div>
     );

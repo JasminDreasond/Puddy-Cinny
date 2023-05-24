@@ -94,7 +94,7 @@ function RoomHistoryVisibility({ roomId }) {
 
         })
       }
-      <Text variant="b3">Changes to history visibility will only apply to future messages. The visibility of existing history will have no effect.</Text>
+      <div className="very-small text-gray">Changes to history visibility will only apply to future messages. The visibility of existing history will have no effect.</div>
     </div>
   );
 }

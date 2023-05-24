@@ -404,7 +404,7 @@ function ProfileViewer() {
             <Text variant="b2">{twemojify(userId)}</Text>
           </div>
           <div className="profile-viewer__user__role noselect">
-            <Text variant="b3">Role</Text>
+            <div className="very-small text-gray">Role</div>
             <Button
               onClick={canChangeRole ? handlePowerSelector : null}
               faSrc={canChangeRole ? "fa-solid fa-check" : null}

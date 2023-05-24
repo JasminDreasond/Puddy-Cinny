@@ -246,7 +246,7 @@ function RoomPermissions({ roomId }) {
                     <SettingTile
                       key={permKey}
                       title={permInfo.name}
-                      content={<Text variant="b3">{permInfo.description}</Text>}
+                      content={<div className="very-small text-gray">{permInfo.description}</div>}
                       options={(
                         <Button
                           onClick={

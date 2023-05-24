@@ -63,7 +63,7 @@ function AuthRequest({ onComplete, makeRequest }) {
           required
         />
         {status.ongoing && <Spinner size="small" />}
-        {status.error && <Text variant="b3">{status.error}</Text>}
+        {status.error && <div className="very-small text-gray">{status.error}</div>}
         {(status === false || status.error) && <Button variant="primary" type="submit" disabled={!!status.error}>Continue</Button>}
       </form>
     </div>

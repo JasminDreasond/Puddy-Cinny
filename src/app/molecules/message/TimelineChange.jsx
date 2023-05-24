@@ -43,9 +43,9 @@ function TimelineChange({
         </Text>
       </div>
       <div className="timeline-change__time">
-        <Text variant="b3">
+        <div className="very-small text-gray">
           <Time timestamp={timestamp} />
-        </Text>
+        </div>
       </div>
     </button>
   );

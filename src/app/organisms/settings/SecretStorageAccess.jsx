@@ -81,7 +81,7 @@ function SecretStorageAccess({ onComplete }) {
           onChange={handleChange}
           required
         />
-        {error && <Text variant="b3">{error}</Text>}
+        {error && <div className="very-small text-gray">{error}</div>}
         {!process && (
           <div className="secret-storage-access__btn">
             <Button variant="primary" type="submit">Continue</Button>

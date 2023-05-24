@@ -209,7 +209,7 @@ function openHelpDialog() {
           <SettingTile
             key={cmdName}
             title={cmdName}
-            content={<Text variant="b3">{commands[cmdName].description}</Text>}
+            content={<div className="very-small text-gray">{commands[cmdName].description}</div>}
           />
         ))}
       </div>

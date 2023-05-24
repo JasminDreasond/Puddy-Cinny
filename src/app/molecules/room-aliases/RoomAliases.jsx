@@ -293,7 +293,7 @@ function RoomAliases({ roomId }) {
     <div className="room-aliases">
       <SettingTile
         title="Publish to room directory"
-        content={<Text variant="b3">{`Publish this ${room.isSpaceRoom() ? 'space' : 'room'} to the ${hsString}'s public room directory?`}</Text>}
+        content={<div className="very-small text-gray">{`Publish this ${room.isSpaceRoom() ? 'space' : 'room'} to the ${hsString}'s public room directory?`}</div>}
         options={(
           <Toggle
             isActive={isPublic}

@@ -62,7 +62,7 @@ ContextMenu.propTypes = {
 function MenuHeader({ children }) {
   return (
     <div className="context-menu__header">
-      <Text variant="b3">{children}</Text>
+      <div className="very-small text-gray">{children}</div>
     </div>
   );
 }

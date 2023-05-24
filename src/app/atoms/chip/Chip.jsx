@@ -12,7 +12,7 @@ function Chip({
   return (
     <button className="chip" type="button" onClick={onClick}>
       {iconSrc != null && <RawIcon src={iconSrc} color={iconColor} size="extra-small" />}
-      {(text != null && text !== '') && <Text variant="b3">{text}</Text>}
+      {(text != null && text !== '') && <div className="very-small text-gray">{text}</div>}
       {children}
     </button>
   );
