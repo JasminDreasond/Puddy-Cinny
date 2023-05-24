@@ -261,7 +261,7 @@ function RoomAliases({ roomId }) {
       <div className="room-aliases__item-btns">
         {canPublishAlias && !isMain && <Button onClick={() => handleSetMainAlias(alias)} variant="primary">Set as Main</Button>}
         {!isPublished && canPublishAlias && <Button onClick={() => handlePublishAlias(alias)} variant="success">Publish</Button>}
-        {isPublished && canPublishAlias && <Button onClick={() => handleUnPublishAlias(alias)} variant="caution">Un-Publish</Button>}
+        {isPublished && canPublishAlias && <Button onClick={() => handleUnPublishAlias(alias)} variant="warning">Un-Publish</Button>}
         <Button onClick={() => handleDeleteAlias(alias)} variant="danger">Delete</Button>
       </div>
     );

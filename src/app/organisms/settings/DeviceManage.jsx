@@ -219,7 +219,7 @@ function DeviceManage() {
           <div style={{ padding: 'var(--sp-extra-tight) var(--sp-normal)' }}>
             <InfoCard
               rounded
-              variant="caution"
+              variant="warning"
               faSrc="fa-solid fa-circle-info"
               title="Setup cross signing in case you lose all your sessions."
             />

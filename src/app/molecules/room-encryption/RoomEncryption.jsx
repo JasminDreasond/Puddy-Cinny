@@ -23,10 +23,10 @@ function RoomEncryption({ roomId }) {
     const confirmMsg2 = 'Once enabled, encryption for a room cannot be disabled. Messages sent in an encrypted room cannot be seen by the server, only by the participants of the room. Enabling encryption may prevent many bots and bridges from working correctly';
 
     const isConfirmed1 = (joinRule === 'public')
-      ? await confirmDialog('Enable encryption', confirmMsg1, 'Continue', 'caution')
+      ? await confirmDialog('Enable encryption', confirmMsg1, 'Continue', 'warning')
       : true;
     if (!isConfirmed1) return;
-    if (await confirmDialog('Enable encryption', confirmMsg2, 'Enable', 'caution')) {
+    if (await confirmDialog('Enable encryption', confirmMsg2, 'Enable', 'warning')) {
       setIsEncrypted(true);
       mx.sendStateEvent(roomId, 'm.room.encryption', {
         algorithm: 'm.megolm.v1.aes-sha2',

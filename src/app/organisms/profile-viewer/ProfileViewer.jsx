@@ -369,7 +369,7 @@ function ProfileViewer() {
           'Change power level',
           isSharedPower ? SHARED_POWER_MSG : DEMOTING_MYSELF_MSG,
           'Change',
-          'caution',
+          'warning',
         );
         if (!isConfirmed) return;
         roomActions.setPowerLevel(roomId, userId, newPowerLevel);

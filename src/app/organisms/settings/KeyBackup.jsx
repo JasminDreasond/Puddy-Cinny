@@ -269,7 +269,7 @@ function KeyBackup() {
             <InfoCard
               style={{ marginTop: 'var(--sp-ultra-tight)' }}
               rounded
-              variant="caution"
+              variant="warning"
               faSrc="fa-solid fa-circle-info"
               title="Setup cross signing to backup your encrypted messages."
             />

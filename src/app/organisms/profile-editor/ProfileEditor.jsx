@@ -43,7 +43,7 @@ function ProfileEditor({ userId }) {
         'Remove avatar',
         'Are you sure that you want to remove avatar?',
         'Remove',
-        'caution',
+        'warning',
       );
       if (isConfirmed) {
         mx.setAvatarUrl('');
