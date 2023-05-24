@@ -375,7 +375,7 @@ function Settings() {
       title={<Text variant="s1" weight="medium" primary>Settings</Text>}
       contentOptions={(
         <>
-          <Button variant="danger" faSrc="fa-solid fa-power-off" onClick={handleLogout}>
+          <Button className="btn-text-danger" faSrc="fa-solid fa-power-off" onClick={handleLogout}>
             Logout
           </Button>
           <IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />

@@ -121,7 +121,7 @@ function CrossSigningSetup() {
     <div className="cross-signing__setup">
       <div className="cross-signing__setup-entry">
         <Text>
-          We will generate a <b>Security Key</b>, 
+          We will generate a <b>Security Key</b>,
           which you can use to manage messages backup and session verification.
         </Text>
         {genWithPhrase !== false && <Button variant="primary" onClick={() => setup()} disabled={genWithPhrase !== undefined}>Generate Key</Button>}
@@ -143,7 +143,7 @@ function CrossSigningSetup() {
           >
             <Text>
               Alternatively you can also set a <b>Security Phrase </b>
-              so you don't have to remember long Security Key, 
+              so you don't have to remember long Security Key,
               and optionally save the Key as backup.
             </Text>
             <Input
@@ -188,9 +188,9 @@ function CrossSigningReset() {
       <Text variant="h1">{twemojify('✋🧑‍🚒🤚')}</Text>
       <Text weight="medium">Resetting cross-signing keys is permanent.</Text>
       <Text>
-        Anyone you have verified with will see security alerts and your message backup will be lost. 
-        You almost certainly do not want to do this, 
-        unless you have lost <b>Security Key</b> or <b>Phrase</b> and 
+        Anyone you have verified with will see security alerts and your message backup will be lost.
+        You almost certainly do not want to do this,
+        unless you have lost <b>Security Key</b> or <b>Phrase</b> and
         every session you can cross-sign from.
       </Text>
       <Button variant="danger" onClick={setupDialog}>Reset</Button>
@@ -213,8 +213,8 @@ function CrossSignin() {
       content={<Text variant="b3">Setup to verify and keep track of all your sessions. Also required to backup encrypted message.</Text>}
       options={(
         isCSEnabled
-          ? <Button variant="danger" onClick={resetDialog}>Reset</Button>
-          : <Button variant="primary" onClick={setupDialog}>Setup</Button>
+          ? <Button variant="outline-danger" onClick={resetDialog}>Reset</Button>
+          : <Button variant="outline-primary" onClick={setupDialog}>Setup</Button>
       )}
     />
   );
