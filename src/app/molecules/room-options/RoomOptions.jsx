@@ -51,7 +51,7 @@ function RoomOptions({ roomId, afterOptionSelect }) {
       >
         Invite
       </MenuItem>
-      <MenuItem className="text-start btn-sm" faSrc="fa-solid fa-arrow-right-from-bracket" variant="danger" onClick={handleLeaveClick}>Leave</MenuItem>
+      <MenuItem className="text-start btn-sm btn-text-danger" faSrc="fa-solid fa-arrow-right-from-bracket" onClick={handleLeaveClick}>Leave</MenuItem>
       <MenuHeader>Notification</MenuHeader>
       <RoomNotification roomId={roomId} />
     </div>
