@@ -90,7 +90,7 @@ function InviteList({ isOpen, onRequestClose }) {
       <div className="invites-content">
         {initMatrix.roomList.inviteDirects.size !== 0 && (
           <div className="invites-content__subheading">
-            <Text variant="b3" weight="bold">Direct Messages</Text>
+            <div className="very-small text-gray"><strong>Direct Messages</strong></div>
           </div>
         )}
         {
@@ -119,14 +119,14 @@ function InviteList({ isOpen, onRequestClose }) {
         }
         {initMatrix.roomList.inviteSpaces.size !== 0 && (
           <div className="invites-content__subheading">
-            <Text variant="b3" weight="bold">Spaces</Text>
+            <div className="very-small text-gray"><strong>Spaces</strong></div>
           </div>
         )}
         {Array.from(initMatrix.roomList.inviteSpaces).map(renderRoomTile)}
 
         {initMatrix.roomList.inviteRooms.size !== 0 && (
           <div className="invites-content__subheading">
-            <Text variant="b3" weight="bold">Rooms</Text>
+            <div className="very-small text-gray"><strong>Rooms</strong></div>
           </div>
         )}
         {Array.from(initMatrix.roomList.inviteRooms).map(renderRoomTile)}

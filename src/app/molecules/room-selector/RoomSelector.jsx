@@ -72,13 +72,13 @@ function RoomSelector({
           <Text variant="b1" weight={isUnread ? 'medium' : 'normal'}>
             {twemojify(name)}
             {parentName && (
-              <Text variant="b3" span>
+              <span className="very-small text-gray">
                 {' — '}
                 {twemojify(parentName)}
-              </Text>
+              </span>
             )}
           </Text>
-          { isUnread && (
+          {isUnread && (
             <NotificationBadge
               alert={isAlert}
               content={notificationCount !== 0 ? notificationCount : null}

@@ -110,7 +110,7 @@ function SpaceManageItem({
   const roomNameJSX = (
     <Text>
       {twemojify(name)}
-      <Text variant="b3" span>{` • ${roomInfo.num_joined_members} members`}</Text>
+      <span className="very-small text-gray" span>{` • ${roomInfo.num_joined_members} members`}</span>
     </Text>
   );
 
@@ -335,7 +335,7 @@ function SpaceManageContent({ roomId, requestClose }) {
       {spacePath.length > 1 && (
         <SpaceManageBreadcrumb path={spacePath} onSelect={addPathItem} />
       )}
-      <Text variant="b3" weight="bold">Rooms and spaces</Text>
+      <div className="very-small text-gray"><strong>Rooms and spaces</strong></div>
       <div className="space-manage__content-items">
         {!isLoading && currentHierarchy?.rooms?.length === 1 && (
           <Text>

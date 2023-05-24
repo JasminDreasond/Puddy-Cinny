@@ -4,7 +4,6 @@ import './ImageUpload.scss';
 
 import initMatrix from '../../../client/initMatrix';
 
-import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
 import Spinner from '../../atoms/spinner/Spinner';
 import RawIcon from '../../atoms/system-icons/RawIcon';
@@ -57,7 +56,7 @@ function ImageUpload({
         <div className={`img-upload__process ${uploadPromise === null ? ' img-upload__process--stopped' : ''}`}>
           {uploadPromise === null && (
             size === 'large'
-              ? <Text variant="b3" weight="bold">Upload</Text>
+              ? <div className="very-small text-gray"><strong>Upload</strong></div>
               : <RawIcon fa="fa-solid fa-plus" color="white" />
           )}
           {uploadPromise !== null && <Spinner size="small" />}

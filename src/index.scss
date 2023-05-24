@@ -475,6 +475,10 @@ audio:not([controls]) {
   color: var(--tc-surface-low);
 }
 
+.text-medium {
+  font-weight: var(--fw-medium);
+}
+
 .card {
   --bs-card-bg: var(--bg-surface);
 }

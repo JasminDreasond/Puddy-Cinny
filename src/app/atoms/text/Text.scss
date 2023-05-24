@@ -26,19 +26,6 @@
   }
 }
 
-.text-light {
-  font-weight: var(--fw-light);
-}
-.text-normal {
-  font-weight: var(--fw-normal);
-}
-.text-medium {
-  font-weight: var(--fw-medium);
-}
-.text-bold {
-  font-weight: var(--fw-bold);
-}
-
 .text-h1 {
   @include font(h1);
 }

@@ -95,10 +95,10 @@ function RoomViewFloating({
     <>
       <div className={`room-view__unread ${isJumpToEvent ? 'room-view__unread--open' : ''}`}>
         <Button faSrc="bi bi-chat-left-text-fill" onClick={jumpToEvent} variant="primary">
-          <Text variant="b3" weight="medium">Jump to unread messages</Text>
+          <div className="very-small text-gray text-medium">Jump to unread messages</div>
         </Button>
         <Button faSrc="fa-solid fa-check-double" onClick={cancelJumpToEvent} variant="primary">
-          <Text variant="b3" weight="bold">Mark as read</Text>
+          <div className="very-small text-gray"><strong>Mark as read</strong></div>
         </Button>
       </div>
       <div className={`room-view__typing${typingMembers.size > 0 ? ' room-view__typing--open' : ''}`}>
@@ -107,7 +107,7 @@ function RoomViewFloating({
       </div>
       <div className={`room-view__STB${isAtBottom ? '' : ' room-view__STB--open'}`}>
         <Button faSrc="bi bi-chat-left-fill" onClick={handleScrollToBottom}>
-          <Text variant="b3" weight="medium">Jump to latest</Text>
+          <div className="very-small text-gray text-medium">Jump to latest</div>
         </Button>
       </div>
     </>

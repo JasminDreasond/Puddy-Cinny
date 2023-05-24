@@ -155,7 +155,7 @@ function CrossSigningSetup() {
               required
               disabled={genWithPhrase !== undefined}
             />
-            {errors.phrase && <Text variant="b3" className="cross-signing__error">{errors.phrase}</Text>}
+            {errors.phrase && <div className="very-small text-gray cross-signing__error">{errors.phrase}</div>}
             <Input
               name="confirmPhrase"
               value={values.confirmPhrase}
@@ -165,7 +165,7 @@ function CrossSigningSetup() {
               required
               disabled={genWithPhrase !== undefined}
             />
-            {errors.confirmPhrase && <Text variant="b3" className="cross-signing__error">{errors.confirmPhrase}</Text>}
+            {errors.confirmPhrase && <div className="very-small text-gray cross-signing__error">{errors.confirmPhrase}</div>}
             {genWithPhrase !== true && <Button variant="primary" type="submit" disabled={genWithPhrase !== undefined}>Set Phrase & Generate Key</Button>}
             {genWithPhrase === true && <Spinner size="small" />}
           </form>
