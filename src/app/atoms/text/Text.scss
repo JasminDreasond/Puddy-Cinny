@@ -61,11 +61,13 @@
   color: var(--tc-surface-low);
 }
 
+/* Fix Emoji Size */
 .drawer-breadcrumb img,
 .timeline-change img,
 .following-members img,
 .profile-viewer__user__info img,
 .username-title img,
-.message__reply img {
+.message__reply img,
+.header__title-wrapper img {
   max-height: 21px !important;
 }
