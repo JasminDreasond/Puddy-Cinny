@@ -28,12 +28,12 @@ function PowerLevelSelector({
           autoComplete="off"
           required
         />
-        <IconButton variant="primary" fa="fa-solid fa-check" type="submit" />
+        <IconButton customColor='null' variant="primary" fa="fa-solid fa-check" type="submit" />
       </form>
       {max >= 0 && <MenuHeader>Presets</MenuHeader>}
-      {max >= 100 && <MenuItem variant={value === 100 ? 'success' : 'link btn-bg'} onClick={() => onSelect(100)}>Admin - 100</MenuItem>}
-      {max >= 50 && <MenuItem variant={value === 50 ? 'success' : 'link btn-bg'} onClick={() => onSelect(50)}>Mod - 50</MenuItem>}
-      {max >= 0 && <MenuItem variant={value === 0 ? 'success' : 'link btn-bg'} onClick={() => onSelect(0)}>Member - 0</MenuItem>}
+      {max >= 100 && <MenuItem className={value === 100 ? 'text-start btn-text-success' : 'text-start'} onClick={() => onSelect(100)}>Admin - 100</MenuItem>}
+      {max >= 50 && <MenuItem className={value === 50 ? 'text-start btn-text-success' : 'text-start'} onClick={() => onSelect(50)}>Mod - 50</MenuItem>}
+      {max >= 0 && <MenuItem className={value === 0 ? 'text-start btn-text-success' : 'text-start'} onClick={() => onSelect(0)}>Member - 0</MenuItem>}
     </div>
   );
 }

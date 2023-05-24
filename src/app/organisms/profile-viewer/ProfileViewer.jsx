@@ -132,7 +132,7 @@ function SessionInfo({ userId }) {
         onClick={() => setIsVisible(!isVisible)}
         faSrc={isVisible ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"}
       >
-        <Text variant="b2">{`View ${devices?.length > 0 ? `${devices.length} ` : ''}sessions`}</Text>
+        {`View ${devices?.length > 0 ? `${devices.length} ` : ''}sessions`}
       </MenuItem>
       {renderSessionChips()}
     </div>

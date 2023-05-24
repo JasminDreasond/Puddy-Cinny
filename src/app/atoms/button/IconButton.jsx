@@ -12,14 +12,26 @@ const IconButton = React.forwardRef(({
   variant, size, type, fa,
   tooltip, tooltipPlacement, src,
   onClick, tabIndex, disabled, isImage,
-  className,
+  className, customColor,
 }, ref) => {
+
+  let textColor = variant;
+  if (typeof customColor === 'string') {
+    if (customColor !== 'null') {
+      textColor = customColor;
+    } else {
+      textColor = '';
+    }
+  }
+
+  if (textColor) {
+    textColor = `btn-text-${textColor}`;
+  }
 
   const btn = (
     <button
       ref={ref}
-      className={`btn ic-btn ic-btn-${variant} btn-link btn-bg btn-text-${variant} ${className}`}
-      onMouseUp={(e) => blurOnBubbling(e, `.ic-btn-${variant}`)}
+      className={`btn ic-btn ic-btn-${variant} btn-link btn-bg ${textColor} ${className}`}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={type}
@@ -44,6 +56,7 @@ const IconButton = React.forwardRef(({
 });
 
 IconButton.defaultProps = {
+  customColor: null,
   variant: 'link btn-bg',
   size: 'normal',
   type: 'button',
@@ -58,6 +71,7 @@ IconButton.defaultProps = {
 };
 
 IconButton.propTypes = {
+  customColor: PropTypes.string,
   variant: PropTypes.oneOf(bsColorsArray),
   size: PropTypes.oneOf(['normal', 'small', 'extra-small']),
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
