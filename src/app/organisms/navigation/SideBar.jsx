@@ -343,11 +343,20 @@ function SideBar() {
 
   return (
     <>
-      <center>
+      <center className='sidebar-item-1 h-100'>
         <ScrollView invisible>
           <div className="scrollable-content">
             <div className="featured-container">
               <FeaturedTab />
+              {totalInvites !== 0 && (
+                <SidebarAvatar
+                  tooltip="Invites"
+                  onClick={() => openInviteList()}
+                  avatar={<Avatar faSrc="bi bi-envelope-plus-fill" size="normal" />}
+                  notificationBadge={<NotificationBadge className={notificationClasses} alert content={totalInvites} />}
+                />
+              )}
+              <CrossSigninAlert />
             </div>
             <div className="sidebar-divider" />
             <div className="space-container">
@@ -361,7 +370,7 @@ function SideBar() {
           </div>
         </ScrollView>
       </center>
-      <center>
+      <center className='sidebar-item-2'>
         <div className="sidebar-divider" />
         <div className="sticky-container">
           <SidebarAvatar
@@ -369,15 +378,6 @@ function SideBar() {
             onClick={() => openSearch()}
             avatar={<Avatar faSrc="fa-solid fa-magnifying-glass" size="normal" />}
           />
-          {totalInvites !== 0 && (
-            <SidebarAvatar
-              tooltip="Invites"
-              onClick={() => openInviteList()}
-              avatar={<Avatar faSrc="bi bi-envelope-plus-fill" size="normal" />}
-              notificationBadge={<NotificationBadge className={notificationClasses} alert content={totalInvites} />}
-            />
-          )}
-          <CrossSigninAlert />
           <ProfileAvatarMenu />
         </div>
       </center>
