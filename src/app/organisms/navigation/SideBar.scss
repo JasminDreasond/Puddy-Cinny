@@ -1,48 +1,25 @@
-@use '../../partials/flex';
-@use '../../partials/dir';
-
-.sidebar {
-  @extend .cp-fx__column;
-
-  width: var(--navigation-sidebar-width);
+.sidebar,
+.sidebar-1,
+.sidebar-2 {
   height: 100%;
-  background-color: var(--bg-surface-extra-low);
-  @include dir.side(border, none, 1px solid var(--bg-surface-border));
-
-  &__scrollable,
-  &__sticky {
-    width: 100%;
-  }
-
-  &__scrollable {
-    @extend .cp-fx__item-one;
-  }
 }
 
-.scrollable-content {
-  &::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 8px;
+.sidebar-1 {
+  width: 64px;
+  background-color: var(--bg-surface-extra-low);
+  position: absolute;
+}
 
-    background: transparent;
-    background-image: linear-gradient(
-      to top,
-      var(--bg-surface-extra-low),
-      var(--bg-surface-extra-low-transparent)
-    );
-    position: sticky;
-    bottom: -1px;
-    left: 0;
-  }
+.sidebar-2 {
+  display: inline-block;
+  width: 100%;
+  padding-left: 64px;
+  padding-bottom: 54px;
 }
 
 .featured-container,
 .space-container,
 .sticky-container {
-  @extend .cp-fx__column--c-c;
-
   padding: var(--sp-ultra-tight) 0;
 
   & > .sidebar-avatar,

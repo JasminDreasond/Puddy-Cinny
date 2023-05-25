@@ -342,8 +342,8 @@ function SideBar() {
   const [totalInvites] = useTotalInvites();
 
   return (
-    <div className="sidebar">
-      <div className="sidebar__scrollable">
+    <>
+      <center>
         <ScrollView invisible>
           <div className="scrollable-content">
             <div className="featured-container">
@@ -360,8 +360,8 @@ function SideBar() {
             </div>
           </div>
         </ScrollView>
-      </div>
-      <div className="sidebar__sticky">
+      </center>
+      <center>
         <div className="sidebar-divider" />
         <div className="sticky-container">
           <SidebarAvatar
@@ -380,8 +380,8 @@ function SideBar() {
           <CrossSigninAlert />
           <ProfileAvatarMenu />
         </div>
-      </div>
-    </div>
+      </center>
+    </>
   );
 }
 

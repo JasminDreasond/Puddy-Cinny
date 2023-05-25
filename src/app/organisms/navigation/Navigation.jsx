@@ -6,9 +6,9 @@ import Drawer from './Drawer';
 
 function Navigation() {
   return (
-    <div className="navigation">
-      <SideBar />
-      <Drawer />
+    <div className="sidebar">
+      <div className='sidebar-1'><SideBar /></div>
+      <div className='sidebar-2'><Drawer /></div>
     </div>
   );
 }

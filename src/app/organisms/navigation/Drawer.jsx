@@ -62,7 +62,7 @@ function Drawer() {
   }, [selectedTab]);
 
   return (
-    <div className="noselect w-100">
+    <>
 
       <DrawerHeader selectedTab={selectedTab} spaceId={spaceId} />
 
@@ -84,7 +84,7 @@ function Drawer() {
         </div>
       )}
 
-    </div>
+    </>
   );
 }
 
