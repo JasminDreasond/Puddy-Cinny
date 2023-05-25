@@ -222,84 +222,111 @@ function SecuritySection() {
 
 function AboutSection() {
   return (
-    <div className="settings-about noselect">
-      <div className="settings-about__card">
-        <MenuHeader>Application</MenuHeader>
-        <div className="settings-about__branding">
-          <img width="60" height="60" src="./public/favicon.ico" alt="Cinny logo" />
-          <div>
-            <Text variant="h2" weight="medium">
-              Pony House
-              <span className="text text-b3" style={{ margin: '0 var(--sp-extra-tight)' }}>{`v${cons.version}`}</span>
-            </Text>
-            <Text>The tiny Pony House matrix client</Text>
+    <div className="noselect">
 
-            <div className="settings-about__btns">
-              <Button onClick={() => window.open('https://github.com/Pony-House/Puddy-Cinny')}>Source code</Button>
-              <Button onClick={() => window.open('https://puddy.club/')}>Support</Button>
-              <Button onClick={() => initMatrix.clearCacheAndReload()} variant="danger">Clear cache & reload</Button>
+      <div className="card mt-3">
+
+        <ul className="list-group list-group-flush">
+
+          <li className="list-group-item very-small text-gray">Application</li>
+
+          <li className="list-group-item border-0">
+
+            <div className='row m-0 w-100'>
+
+              <div className='col-md-1 ps-0'>
+                <img width="60" height="60" src="./public/favicon.ico" alt="Cinny logo" />
+              </div>
+
+              <div className='col-md-11 pe-0'>
+
+                <h4>
+                  Pony House
+                  <span className="very-small text-gray" style={{ margin: '0 var(--sp-extra-tight)' }}>{`v${cons.version}`}</span>
+                </h4>
+
+                <div>The tiny Pony House matrix client</div>
+
+                <div className="mt-3">
+                  <Button className='me-1' onClick={() => window.open('https://github.com/Pony-House/Puddy-Cinny')}>Source code</Button>
+                  <Button className='mx-1' onClick={() => window.open('https://puddy.club/')}>Support</Button>
+                  <Button className='ms-1' onClick={() => initMatrix.clearCacheAndReload()} variant="danger">Clear cache & reload</Button>
+                </div>
+
+              </div>
+
             </div>
-          </div>
-        </div>
+
+          </li>
+
+        </ul>
+
       </div>
-      <div className="settings-about__card">
-        <MenuHeader>Credits</MenuHeader>
-        <div className="settings-about__credits">
-          <ul>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>The <a href="https://github.com/matrix-org/matrix-js-sdk" rel="noreferrer noopener" target="_blank">matrix-js-sdk</a> is © <a href="https://matrix.org/foundation" rel="noreferrer noopener" target="_blank">The Matrix.org Foundation C.I.C</a> used under the terms of <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="noreferrer noopener" target="_blank">Apache 2.0</a>.</Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>The <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twemoji</a> emoji art is © <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twitter, Inc and other contributors</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>The <a href="https://material.io/design/sound/sound-resources.html" target="_blank" rel="noreferrer noopener">Material sound resources</a> are © <a href="https://google.com" target="_blank" rel="noreferrer noopener">Google</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>The Pony House is a private fork from the <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">Cinny</a>. All source code base credits go to this group.</Text>
-            </li>
-          </ul>
-        </div>
+
+      <div className="card my-3">
+
+        <ul className="list-group list-group-flush">
+
+          <li className="list-group-item very-small text-gray">Credits</li>
+
+          <li className="list-group-item border-0">
+            <div className='small'>The <a href="https://github.com/matrix-org/matrix-js-sdk" rel="noreferrer noopener" target="_blank">matrix-js-sdk</a> is © <a href="https://matrix.org/foundation" rel="noreferrer noopener" target="_blank">The Matrix.org Foundation C.I.C</a> used under the terms of <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="noreferrer noopener" target="_blank">Apache 2.0</a>.</div>
+          </li>
+
+          <li className="list-group-item border-0">
+            <div className='small'>The <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twemoji</a> emoji art is © <a href="https://twemoji.twitter.com" target="_blank" rel="noreferrer noopener">Twitter, Inc and other contributors</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</div>
+          </li>
+
+          <li className="list-group-item border-0">
+            <div className='small'>The <a href="https://material.io/design/sound/sound-resources.html" target="_blank" rel="noreferrer noopener">Material sound resources</a> are © <a href="https://google.com" target="_blank" rel="noreferrer noopener">Google</a> used under the terms of <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC-BY 4.0</a>.</div>
+          </li>
+
+          <li className="list-group-item border-0">
+            <div className='small'>The Pony House is a private fork from the <a href="https://github.com/cinnyapp/cinny" target="_blank" rel="noreferrer noopener">Cinny</a>. All source code base credits go to this group.</div>
+          </li>
+
+        </ul>
+
       </div>
+
     </div>
+
   );
 }
 
 function DonateSection() {
   return (
-    <div className="settings-about noselect">
-      <div className="settings-about__card">
-        <MenuHeader>Donation</MenuHeader>
-        <div className="settings-about__credits">
-          <ul>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text>If you are enjoying the app, you are invited to make donations to help me keep all the infrastructure of the application and the domain working. All types of donation is welcome! Feel free to choose below.</Text>
-              <br />
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><i className="fa-brands fa-patreon" /> <a href="https://patreon.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Patreon</a></Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><i className="fa-solid fa-mug-hot" /> <a href="https://ko-fi.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Ko-Fi</a></Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><i className="fa-brands fa-stripe-s" /> <a href="https://donate.stripe.com/bIYeYL3U08a3gsE7st" target="_blank" rel="noreferrer noopener">Stripe</a></Text>
-            </li>
-            <li>
-              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-              <Text><i className="fa-brands fa-ethereum" /> <a href="https://ud.me/jasmindreasond.wallet" target="_blank" rel="noreferrer noopener">Crypto</a></Text>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div className="card noselect mt-3">
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item very-small text-gray">Donation</li>
+
+        <li className="list-group-item border-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <div className='small'>If you are enjoying the app, you are invited to make donations to help me keep all the infrastructure of the application and the domain working. All types of donation is welcome! Feel free to choose below.</div>
+          <br />
+        </li>
+
+        <li className="list-group-item border-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <div className='small'><i className="fa-brands fa-patreon" /> <a href="https://patreon.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Patreon</a></div>
+        </li>
+
+        <li className="list-group-item border-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <div className='small'><i className="fa-solid fa-mug-hot" /> <a href="https://ko-fi.com/jasmindreasond" target="_blank" rel="noreferrer noopener">Ko-Fi</a></div>
+        </li>
+
+        <li className="list-group-item border-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <div className='small'><i className="fa-brands fa-stripe-s" /> <a href="https://donate.stripe.com/bIYeYL3U08a3gsE7st" target="_blank" rel="noreferrer noopener">Stripe</a></div>
+        </li>
+
+        <li className="list-group-item border-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <div className='small'><i className="fa-brands fa-ethereum" /> <a href="https://ud.me/jasmindreasond.wallet" target="_blank" rel="noreferrer noopener">Crypto</a></div>
+        </li>
+
+      </ul>
     </div>
   );
 }
