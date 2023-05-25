@@ -18,11 +18,18 @@
 }
 
 .sidebar-item-1 {
-  padding-bottom: 122px;
+  padding-bottom: 132px;
 }
 
 .sidebar-item-2 {
-  margin-top: -112px;
+  margin-top: -122px;
+}
+
+.space-container > button,
+.featured-container > button,
+.sticky-container > button {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .featured-container,
