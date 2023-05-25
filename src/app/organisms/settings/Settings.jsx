@@ -40,7 +40,7 @@ function AppearanceSection() {
 
   return (
     <div>
-      <div className="card noselect my-3">
+      <div className="card noselect mb-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item very-small text-gray">Theme</li>
           <SettingTile
@@ -77,7 +77,7 @@ function AppearanceSection() {
           />
         </ul>
       </div>
-      <div className="card noselect my-3">
+      <div className="card noselect mt-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item very-small text-gray">Room messages</li>
           <SettingTile
@@ -226,7 +226,7 @@ function AboutSection() {
   return (
     <div className="noselect">
 
-      <div className="card mt-3">
+      <div className="card">
 
         <ul className="list-group list-group-flush">
 
@@ -265,7 +265,7 @@ function AboutSection() {
 
       </div>
 
-      <div className="card my-3">
+      <div className="card mt-3">
 
         <ul className="list-group list-group-flush">
 
@@ -298,7 +298,7 @@ function AboutSection() {
 
 function DonateSection() {
   return (
-    <div className="card noselect mt-3">
+    <div className="card noselect">
       <ul className="list-group list-group-flush">
         <li className="list-group-item very-small text-gray">Donation</li>
 
@@ -430,7 +430,7 @@ function Settings() {
             onSelect={handleTabChange}
           />
 
-          <div className="px-3 pb-3 border-top border-bg">
+          <div className="p-3 border-top border-bg">
             {selectedTab.render()}
           </div>
 
