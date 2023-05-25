@@ -132,6 +132,7 @@ function NotificationsSection() {
     if (permission === 'granted') {
       return (
         <Toggle
+          className='d-inline-flex'
           isActive={settings._showNotifications}
           onToggle={() => {
             toggleNotifications();
@@ -154,23 +155,26 @@ function NotificationsSection() {
 
   return (
     <>
-      <div className="settings-notifications noselect">
-        <MenuHeader>Notification & Sound</MenuHeader>
-        <SettingTile
-          title="Desktop notification"
-          options={renderOptions()}
-          content={<div className="very-small text-gray">Show desktop notification when new messages arrive.</div>}
-        />
-        <SettingTile
-          title="Notification Sound"
-          options={(
-            <Toggle
-              isActive={settings.isNotificationSounds}
-              onToggle={() => { toggleNotificationSounds(); updateState({}); }}
-            />
-          )}
-          content={<div className="very-small text-gray">Play sound when new messages arrive.</div>}
-        />
+      <div className="card noselect">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Notification & Sound</li>
+          <SettingTile
+            title="Desktop notification"
+            options={renderOptions()}
+            content={<div className="very-small text-gray">Show desktop notification when new messages arrive.</div>}
+          />
+          <SettingTile
+            title="Notification Sound"
+            options={(
+              <Toggle
+                className='d-inline-flex'
+                isActive={settings.isNotificationSounds}
+                onToggle={() => { toggleNotificationSounds(); updateState({}); }}
+              />
+            )}
+            content={<div className="very-small text-gray">Play sound when new messages arrive.</div>}
+          />
+        </ul>
       </div>
       <GlobalNotification />
       <KeywordNotification />

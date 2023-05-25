@@ -127,44 +127,52 @@ function GlobalNotification() {
   };
 
   return (
-    <div className="global-notification noselect">
-      <MenuHeader>Global Notifications</MenuHeader>
-      <SettingTile
-        title="Direct messages"
-        options={(
-          <Button onClick={(evt) => onSelect(evt, DM)} faSrc="fa-solid fa-check">
-            {typeToLabel[rulesToType[DM]]}
-          </Button>
-        )}
-        content={<div className="very-small text-gray">Default notification settings for all direct message.</div>}
-      />
-      <SettingTile
-        title="Encrypted direct messages"
-        options={(
-          <Button onClick={(evt) => onSelect(evt, ENC_DM)} faSrc="fa-solid fa-check">
-            {typeToLabel[rulesToType[ENC_DM]]}
-          </Button>
-        )}
-        content={<div className="very-small text-gray">Default notification settings for all encrypted direct message.</div>}
-      />
-      <SettingTile
-        title="Rooms messages"
-        options={(
-          <Button onClick={(evt) => onSelect(evt, ROOM)} faSrc="fa-solid fa-check">
-            {typeToLabel[rulesToType[ROOM]]}
-          </Button>
-        )}
-        content={<div className="very-small text-gray">Default notification settings for all room message.</div>}
-      />
-      <SettingTile
-        title="Encrypted rooms messages"
-        options={(
-          <Button onClick={(evt) => onSelect(evt, ENC_ROOM)} faSrc="fa-solid fa-check">
-            {typeToLabel[rulesToType[ENC_ROOM]]}
-          </Button>
-        )}
-        content={<div className="very-small text-gray">Default notification settings for all encrypted room message.</div>}
-      />
+    <div className="card noselect mt-3">
+      <ul className="list-group list-group-flush">
+
+        <li className="list-group-item very-small text-gray">Global Notifications</li>
+
+        <SettingTile
+          title="Direct messages"
+          options={(
+            <Button onClick={(evt) => onSelect(evt, DM)} faSrc="fa-solid fa-check">
+              {typeToLabel[rulesToType[DM]]}
+            </Button>
+          )}
+          content={<div className="very-small text-gray">Default notification settings for all direct message.</div>}
+        />
+
+        <SettingTile
+          title="Encrypted direct messages"
+          options={(
+            <Button onClick={(evt) => onSelect(evt, ENC_DM)} faSrc="fa-solid fa-check">
+              {typeToLabel[rulesToType[ENC_DM]]}
+            </Button>
+          )}
+          content={<div className="very-small text-gray">Default notification settings for all encrypted direct message.</div>}
+        />
+
+        <SettingTile
+          title="Rooms messages"
+          options={(
+            <Button onClick={(evt) => onSelect(evt, ROOM)} faSrc="fa-solid fa-check">
+              {typeToLabel[rulesToType[ROOM]]}
+            </Button>
+          )}
+          content={<div className="very-small text-gray">Default notification settings for all room message.</div>}
+        />
+
+        <SettingTile
+          title="Encrypted rooms messages"
+          options={(
+            <Button onClick={(evt) => onSelect(evt, ENC_ROOM)} faSrc="fa-solid fa-check">
+              {typeToLabel[rulesToType[ENC_ROOM]]}
+            </Button>
+          )}
+          content={<div className="very-small text-gray">Default notification settings for all encrypted room message.</div>}
+        />
+
+      </ul>
     </div>
   );
 }

@@ -28,33 +28,38 @@ function IgnoreUserList() {
   };
 
   return (
-    <div className="ignore-user-list noselect">
-      <MenuHeader>Ignored users</MenuHeader>
-      <SettingTile
-        title="Ignore user"
-        content={(
-          <div className="ignore-user-list__users">
-            <div className="very-small text-gray">Ignore userId if you do not want to receive their messages or invites.</div>
-            <form onSubmit={handleSubmit}>
-              <Input name="ignoreInput" required />
-              <Button variant="primary" type="submit">Ignore</Button>
-            </form>
-            {ignoredUsers.length > 0 && (
-              <div>
-                {ignoredUsers.map((uId) => (
-                  <Chip
-                    faSrc="fa-solid fa-xmark"
-                    key={uId}
-                    text={uId}
-                    // iconColor={CrossIC}
-                    onClick={() => roomActions.unignore([uId])}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      />
+    <div className="card noselect mt-3">
+      <ul className="list-group list-group-flush">
+
+        <li className="list-group-item very-small text-gray">Ignored users</li>
+
+        <SettingTile
+          title="Ignore user"
+          content={(
+            <div className="ignore-user-list__users">
+              <div className="very-small text-gray">Ignore userId if you do not want to receive their messages or invites.</div>
+              <form onSubmit={handleSubmit}>
+                <Input name="ignoreInput" required />
+                <Button variant="primary" type="submit">Ignore</Button>
+              </form>
+              {ignoredUsers.length > 0 && (
+                <div>
+                  {ignoredUsers.map((uId) => (
+                    <Chip
+                      faSrc="fa-solid fa-xmark"
+                      key={uId}
+                      text={uId}
+                      // iconColor={CrossIC}
+                      onClick={() => roomActions.unignore([uId])}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        />
+
+      </ul>
     </div>
   );
 }
