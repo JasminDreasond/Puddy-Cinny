@@ -419,6 +419,7 @@ function Settings() {
       onRequestClose={requestClose}
     >
       {isOpen && (
+
         <div className="w-100">
           <ProfileEditor userId={initMatrix.matrixClient.getUserId()} />
           <Tabs
