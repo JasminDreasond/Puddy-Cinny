@@ -11,16 +11,18 @@ function Input({
   onKeyDown, disabled, autoFocus,
 }) {
   return (
-    <div className="input-container">
-      { label !== '' && <label className="input__label text-b2" htmlFor={id}>{label}</label> }
-      { resizable
+    <div>
+
+      {label !== '' && <label className="small text-gray" htmlFor={id}>{label}</label>}
+
+      {resizable
         ? (
           <TextareaAutosize
             dir="auto"
             style={{ minHeight: `${minHeight}px` }}
             name={name}
             id={id}
-            className={`input input--resizable${state !== 'normal' ? ` input--${state}` : ''}`}
+            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}`}
             ref={forwardRef}
             type={type}
             placeholder={placeholder}
@@ -39,7 +41,7 @@ function Input({
             ref={forwardRef}
             id={id}
             name={name}
-            className={`input ${state !== 'normal' ? ` input--${state}` : ''}`}
+            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}`}
             type={type}
             placeholder={placeholder}
             required={required}
@@ -52,6 +54,7 @@ function Input({
             autoFocus={autoFocus}
           />
         )}
+
     </div>
   );
 }
