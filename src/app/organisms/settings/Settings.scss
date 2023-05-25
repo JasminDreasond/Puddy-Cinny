@@ -74,30 +74,3 @@
     padding: 0 var(--sp-ultra-tight);
   }
 }
-
-.settings-about,
-.settings-donate {
-  &__branding {
-    padding: var(--sp-normal);
-    display: flex;
-
-    & > div {
-      margin: 0 var(--sp-loose);
-    }
-  }
-  &__btns {
-    & button {
-      margin-top: var(--sp-tight);
-      @include dir.side(margin, 0, var(--sp-tight));
-    }
-  }
-
-  &__credits {
-    padding: 0 var(--sp-normal);
-    & ul {
-      color: var(--tc-surface-low);
-      padding: var(--sp-normal);
-      margin: var(--sp-extra-tight) 0;
-    }
-  }
-}
