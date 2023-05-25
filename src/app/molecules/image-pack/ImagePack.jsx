@@ -433,33 +433,47 @@ function ImagePackGlobal() {
   };
 
   return (
-    <div className="image-pack-global">
-      <MenuHeader>Global packs</MenuHeader>
-      <div>
-        {
-          roomIdToStateKeys.size > 0
-            ? [...roomIdToStateKeys].map(([roomId, stateKeys]) => {
-              const room = mx.getRoom(roomId);
-              return (
-                stateKeys.map((stateKey) => {
-                  const data = room.currentState.getStateEvents('im.ponies.room_emotes', stateKey);
-                  const pack = ImagePackBuilder.parsePack(data?.getId(), data?.getContent());
-                  if (!pack) return null;
-                  return (
-                    <div className="image-pack__global" key={pack.id}>
-                      <Checkbox variant="success" onToggle={() => handleChange(roomId, stateKey)} isActive />
-                      <div>
-                        <Text variant="b2">{pack.displayName ?? 'Unknown'}</Text>
-                        <div className="very-small text-gray">{room.name}</div>
-                      </div>
-                    </div>
-                  );
-                })
-              );
-            })
-            : <div className="image-pack-global__empty"><Text>No global packs</Text></div>
-        }
-      </div>
+    <div className="card noselect mt-3">
+      <ul className="list-group list-group-flush">
+
+        <li className="list-group-item very-small text-gray">Global packs</li>
+
+        <div>
+          {
+            roomIdToStateKeys.size > 0
+              ? [...roomIdToStateKeys].map(([roomId, stateKeys]) => {
+
+                const room = mx.getRoom(roomId);
+
+                return (
+                  stateKeys.map((stateKey) => {
+                    const data = room.currentState.getStateEvents('im.ponies.room_emotes', stateKey);
+                    const pack = ImagePackBuilder.parsePack(data?.getId(), data?.getContent());
+                    if (!pack) return null;
+                    return (
+                      <li className="list-group-item" key={pack.id}>
+                        <div className='row'>
+
+                          <div className='col-md-1'>
+                            <center><Checkbox variant="success" onToggle={() => handleChange(roomId, stateKey)} isActive /></center>
+                          </div>
+
+                          <div className='col-md-11 ps-0'>
+                            <div className="small">{pack.displayName ?? 'Unknown'}</div>
+                            <div className="very-small text-gray">{room.name}</div>
+                          </div>
+
+                        </div>
+                      </li>
+                    );
+                  })
+                );
+
+              })
+              : <li className="list-group-item small text-gray"><center>No global packs</center></li>
+          }
+        </div>
+      </ul>
     </div>
   );
 }

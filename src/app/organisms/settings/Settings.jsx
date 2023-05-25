@@ -186,8 +186,8 @@ function NotificationsSection() {
 function EmojiSection() {
   return (
     <>
-      <div className="settings-emoji__card"><ImagePackUser /></div>
-      <div className="settings-emoji__card"><ImagePackGlobal /></div>
+      <ImagePackUser />
+      <ImagePackGlobal />
     </>
   );
 }

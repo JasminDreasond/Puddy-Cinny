@@ -33,29 +33,6 @@
     @include dir.side(padding, var(--sp-normal), var(--sp-extra-tight));
   }
 }
-.settings-window__card {
-  margin: var(--sp-normal) 0;
-  background-color: var(--bg-surface);
-  border-radius: var(--bo-radius);
-  box-shadow: var(--bs-surface-border);
-  overflow: hidden;
-
-  & > .context-menu__header:first-child {
-    margin-top: 2px;
-  }
-}
-.settings-appearance__card,
-.settings-notifications,
-.global-notification,
-.keyword-notification,
-.ignore-user-list,
-.settings-security__card,
-.settings-security .device-manage,
-.settings-about__card,
-.settings-donate__card,
-.settings-emoji__card {
-  @extend .settings-window__card;
-}
 
 .settings-window__cards-wrapper {
   & .setting-tile {
