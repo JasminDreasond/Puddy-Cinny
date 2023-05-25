@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Drawer.scss';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -63,29 +62,28 @@ function Drawer() {
   }, [selectedTab]);
 
   return (
-    <div className="drawer noselect">
+    <div className="noselect w-100">
+
       <DrawerHeader selectedTab={selectedTab} spaceId={spaceId} />
-      <div className="drawer__content-wrapper">
-        {navigation.selectedSpacePath.length > 1 && selectedTab !== cons.tabs.DIRECTS && (
-          <DrawerBreadcrumb spaceId={spaceId} />
-        )}
-        <div className="rooms__wrapper">
-          <ScrollView ref={scrollRef} autoHide>
-            <div className="rooms-container">
-              {
-                selectedTab !== cons.tabs.DIRECTS
-                  ? <Home spaceId={spaceId} />
-                  : <Directs size={roomList.directs.size} />
-              }
-            </div>
-          </ScrollView>
-        </div>
-      </div>
+
+      {navigation.selectedSpacePath.length > 1 && selectedTab !== cons.tabs.DIRECTS && (
+        <DrawerBreadcrumb spaceId={spaceId} />
+      )}
+
+      <ScrollView ref={scrollRef} autoHide>
+        {
+          selectedTab !== cons.tabs.DIRECTS
+            ? <Home spaceId={spaceId} />
+            : <Directs size={roomList.directs.size} />
+        }
+      </ScrollView>
+
       {systemState !== null && (
         <div className="drawer__state">
           <Text>{systemState.status}</Text>
         </div>
       )}
+
     </div>
   );
 }
