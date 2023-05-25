@@ -52,7 +52,7 @@ function Tabs({ items, defaultSelected, onSelect }) {
   };
 
   return (
-    <div class="table-responsive">
+    <div className="table-responsive hide-scrollbar">
       <table className="table border-0 m-0">
         <tbody>
           <tr>
