@@ -10,7 +10,6 @@ import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import Spinner from '../../atoms/spinner/Spinner';
 import SettingTile from '../../molecules/setting-tile/SettingTile';
 
@@ -85,11 +84,11 @@ function DeviceManage() {
 
   if (deviceList === null) {
     return (
-      <div className="device-manage">
-        <div className="device-manage__loading">
-          <Spinner size="small" />
-          <Text>Loading devices...</Text>
-        </div>
+      <div className="card noselect">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item small pt-3 text-center"><Spinner size="small" /></li>
+          <li className="list-group-item small pb-3 text-center">Loading devices...</li>
+        </ul>
       </div>
     );
   }
