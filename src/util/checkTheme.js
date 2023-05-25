@@ -16,3 +16,21 @@ export function selectButton() {
     return 'light'
 
 }
+
+export function selectButtonInverse() {
+
+    if (document.body && document.body.classList) {
+
+        if (document.body.classList.contains('dark-theme')) {
+            return 'secondary';
+        }
+
+        if (document.body.classList.contains('butter-theme')) {
+            return 'secondary';
+        }
+
+    }
+
+    return 'light'
+
+}

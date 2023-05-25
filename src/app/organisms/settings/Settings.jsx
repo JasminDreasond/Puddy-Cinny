@@ -57,20 +57,22 @@ function AppearanceSection() {
           <SettingTile
             title="Theme"
             content={(
-              <SegmentedControls
-                selected={settings.useSystemTheme ? -1 : settings.getThemeIndex()}
-                segments={[
-                  { text: 'Light' },
-                  { text: 'Silver' },
-                  { text: 'Dark' },
-                  { text: 'Butter' },
-                ]}
-                onSelect={(index) => {
-                  if (settings.useSystemTheme) toggleSystemTheme();
-                  settings.setTheme(index);
-                  updateState({});
-                }}
-              />
+              <div className='mt-2'>
+                <SegmentedControls
+                  selected={settings.useSystemTheme ? -1 : settings.getThemeIndex()}
+                  segments={[
+                    { text: 'Light' },
+                    { text: 'Silver' },
+                    { text: 'Dark' },
+                    { text: 'Butter' },
+                  ]}
+                  onSelect={(index) => {
+                    if (settings.useSystemTheme) toggleSystemTheme();
+                    settings.setTheme(index);
+                    updateState({});
+                  }}
+                />
+              </div>
             )}
           />
         </ul>
