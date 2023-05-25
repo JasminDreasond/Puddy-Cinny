@@ -5,11 +5,9 @@ import initMatrix from '../../../client/initMatrix';
 import { openReusableContextMenu } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
 
-import Text from '../../atoms/text/Text';
 import Chip from '../../atoms/chip/Chip';
 import Input from '../../atoms/input/Input';
 import Button from '../../atoms/button/Button';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SettingTile from '../setting-tile/SettingTile';
 
 import NotificationSelector from './NotificationSelector';
