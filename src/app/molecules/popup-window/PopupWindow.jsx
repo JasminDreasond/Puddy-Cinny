@@ -103,13 +103,7 @@ function PopupWindow({
             </TitleWrapper>
             {contentOptions}
           </Header>
-          <div className="pw__content__wrapper">
-            <ScrollView autoHide>
-              <div className="pw__content-container">
-                {children}
-              </div>
-            </ScrollView>
-          </div>
+          {children}
         </div>
       </div>
     </RawModal>

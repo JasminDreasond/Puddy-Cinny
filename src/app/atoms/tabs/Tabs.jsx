@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Tabs.scss';
 
 import Button from '../button/Button';
-import ScrollView from '../scroll/ScrollView';
 
 function TabItem({
   selected, iconSrc, faSrc,
   onClick, children, disabled,
 }) {
-  const isSelected = selected ? 'tab-item--selected' : '';
+  const isSelected = selected ? 'active' : '';
 
   return (
-    <Button
-      className={`tab-item ${isSelected}`}
-      iconSrc={iconSrc}
-      faSrc={faSrc}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {children}
-    </Button>
+    <td className='p-0 border-0' style={{ minWidth: '150px' }}>
+      <Button
+        className={`btn-secondary py-2 rounded-0 rounded-top w-100 ${isSelected}`}
+        iconSrc={iconSrc}
+        faSrc={faSrc}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {children}
+      </Button>
+    </td>
   );
 }
 
@@ -51,10 +51,10 @@ function Tabs({ items, defaultSelected, onSelect }) {
   };
 
   return (
-    <div className="tabs">
-      <ScrollView horizontal vertical={false} invisible>
-        <div className="tabs__content">
-          <center>
+    <div class="table-responsive">
+      <table className="table border-0 m-0">
+        <tbody>
+          <tr>
             {items.map((item, index) => (
               <TabItem
                 key={item.text}
@@ -67,9 +67,9 @@ function Tabs({ items, defaultSelected, onSelect }) {
                 {item.text}
               </TabItem>
             ))}
-          </center>
-        </div>
-      </ScrollView>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

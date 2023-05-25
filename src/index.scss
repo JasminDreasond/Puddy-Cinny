@@ -462,6 +462,10 @@ audio:not([controls]) {
   --bs-success-rgb: 69, 184, 59;
 }
 
+.border-bg {
+  border-color: var(--bg-surface-border) !important;
+}
+
 /* Bootstrap Fix */
 .very-small {
   font-size: 11.2px;

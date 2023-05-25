@@ -419,16 +419,18 @@ function Settings() {
       onRequestClose={requestClose}
     >
       {isOpen && (
-        <div className="settings-window__content">
+        <div className="w-100">
           <ProfileEditor userId={initMatrix.matrixClient.getUserId()} />
           <Tabs
             items={tabItems}
             defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
             onSelect={handleTabChange}
           />
-          <div className="settings-window__cards-wrapper">
+
+          <div className="px-3 pb-3 border-top border-bg">
             {selectedTab.render()}
           </div>
+
         </div>
       )}
     </PopupWindow>
