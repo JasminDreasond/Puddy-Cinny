@@ -194,34 +194,46 @@ function EmojiSection() {
 
 function SecuritySection() {
   return (
-    <div className="settings-security noselect">
-      <div className="settings-security__card">
-        <MenuHeader>Cross signing and backup</MenuHeader>
-        <CrossSigning />
-        <KeyBackup />
+    <div className="noselect">
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Cross signing and backup</li>
+          <CrossSigning />
+          <KeyBackup />
+        </ul>
       </div>
+
       <DeviceManage />
-      <div className="settings-security__card">
-        <MenuHeader>Export/Import encryption keys</MenuHeader>
-        <SettingTile
-          title="Export E2E room keys"
-          content={(
-            <>
-              <div className="very-small text-gray">Export end-to-end encryption room keys to decrypt old messages in other session. In order to encrypt keys you need to set a password, which will be used while importing.</div>
-              <ExportE2ERoomKeys />
-            </>
-          )}
-        />
-        <SettingTile
-          title="Import E2E room keys"
-          content={(
-            <>
-              <div className="very-small text-gray">{'To decrypt older messages, Export E2EE room keys from Element (Settings > Security & Privacy > Encryption > Cryptography) and import them here. Imported keys are encrypted so you\'ll have to enter the password you set in order to decrypt it.'}</div>
-              <ImportE2ERoomKeys />
-            </>
-          )}
-        />
+
+      <div className="card noselect mt-3">
+        <ul className="list-group list-group-flush mt-3">
+
+          <li className="list-group-item very-small text-gray">Export/Import encryption keys</li>
+
+          <SettingTile
+            title="Export E2E room keys"
+            content={(
+              <>
+                <div className="very-small text-gray">Export end-to-end encryption room keys to decrypt old messages in other session. In order to encrypt keys you need to set a password, which will be used while importing.</div>
+                <ExportE2ERoomKeys />
+              </>
+            )}
+          />
+
+          <SettingTile
+            title="Import E2E room keys"
+            content={(
+              <>
+                <div className="very-small text-gray">{'To decrypt older messages, Export E2EE room keys from Element (Settings > Security & Privacy > Encryption > Cryptography) and import them here. Imported keys are encrypted so you\'ll have to enter the password you set in order to decrypt it.'}</div>
+                <ImportE2ERoomKeys />
+              </>
+            )}
+
+          />
+        </ul>
       </div>
+
     </div>
   );
 }

@@ -220,7 +220,7 @@ function KeyBackup() {
     if (keyData === null) return;
 
     openReusableDialog(
-      <Text variant="s1" weight="medium">Create Key Backup</Text>,
+      'Create Key Backup',
       () => <CreateKeyBackupDialog keyData={keyData} />,
       () => fetchKeyBackupVersion(),
     );
@@ -231,13 +231,13 @@ function KeyBackup() {
     if (keyData === null) return;
 
     openReusableDialog(
-      <Text variant="s1" weight="medium">Restore Key Backup</Text>,
+      'Restore Key Backup',
       () => <RestoreKeyBackupDialog keyData={keyData} />,
     );
   };
 
   const openDeleteKeyBackup = () => openReusableDialog(
-    <Text variant="s1" weight="medium">Delete Key Backup</Text>,
+    'Delete Key Backup',
     (requestClose) => (
       <DeleteKeyBackupDialog
         requestClose={(isDone) => {
