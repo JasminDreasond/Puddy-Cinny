@@ -349,48 +349,58 @@ function ImagePackUser() {
   const images = [...pack.images].slice(0, viewMore ? pack.images.size : 2);
 
   return (
-    <div className="image-pack">
-      <ImagePackProfile
-        avatarUrl={pack.avatarUrl ? mx.mxcUrlToHttp(pack.avatarUrl, 42, 42, 'crop') : null}
-        displayName={pack.displayName ?? 'Personal'}
-        attribution={pack.attribution}
-        usage={getUsage(pack.usage)}
-        onUsageChange={handleUsageChange}
-        onAvatarChange={handleAvatarChange}
-        onEditProfile={handleEditProfile}
-      />
-      <ImagePackUpload onUpload={handleAddItem} />
-      {images.length === 0 ? null : (
-        <div>
-          <div className="image-pack__header">
-            <div className="very-small text-gray">Image</div>
-            <div className="very-small text-gray">Shortcode</div>
-            <div className="very-small text-gray">Usage</div>
+    <div className="card noselect">
+      <ul className="list-group list-group-flush">
+
+        <ImagePackProfile
+          avatarUrl={pack.avatarUrl ? mx.mxcUrlToHttp(pack.avatarUrl, 42, 42, 'crop') : null}
+          displayName={pack.displayName ?? 'Personal'}
+          attribution={pack.attribution}
+          usage={getUsage(pack.usage)}
+          onUsageChange={handleUsageChange}
+          onAvatarChange={handleAvatarChange}
+          onEditProfile={handleEditProfile}
+        />
+
+        <ImagePackUpload onUpload={handleAddItem} />
+
+        {images.length === 0 ? null : (
+          <div>
+            <div className="image-pack__header">
+              <div className="very-small text-gray">Image</div>
+              <div className="very-small text-gray">Shortcode</div>
+              <div className="very-small text-gray">Usage</div>
+            </div>
+            {images.map(([shortcode, image]) => (
+              <ImagePackItem
+                key={shortcode}
+                url={mx.mxcUrlToHttp(image.mxc)}
+                shortcode={shortcode}
+                usage={getUsage(image.usage)}
+                onUsageChange={handleUsageItem}
+                onDelete={handleDeleteItem}
+                onRename={handleRenameItem}
+              />
+            ))}
           </div>
-          {images.map(([shortcode, image]) => (
-            <ImagePackItem
-              key={shortcode}
-              url={mx.mxcUrlToHttp(image.mxc)}
-              shortcode={shortcode}
-              usage={getUsage(image.usage)}
-              onUsageChange={handleUsageItem}
-              onDelete={handleDeleteItem}
-              onRename={handleRenameItem}
-            />
-          ))}
-        </div>
-      )}
-      {(pack.images.size > 2) && (
-        <div className="image-pack__footer">
-          <Button onClick={() => setViewMore(!viewMore)}>
-            {
-              viewMore
-                ? 'View less'
-                : `View ${pack.images.size - 2} more`
-            }
-          </Button>
-        </div>
-      )}
+        )}
+
+        {(pack.images.size > 2) && (
+          <li className="list-group-item">
+            <center>
+              <Button onClick={() => setViewMore(!viewMore)}>
+                {
+                  viewMore
+                    ? 'View less'
+                    : `View ${pack.images.size - 2} more`
+                }
+              </Button>
+            </center>
+          </li>
+        )}
+
+
+      </ul>
     </div>
   );
 }

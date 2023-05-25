@@ -68,7 +68,7 @@ function ImageUpload({
           type="button"
           onClick={uploadPromise === null ? onRequestRemove : cancelUpload}
         >
-          <div className="very-small text-gray">{uploadPromise ? 'Cancel' : 'Remove'}</div>
+          <div className="very-small text-danger">{uploadPromise ? 'Cancel' : 'Remove'}</div>
         </button>
       )}
       <input onChange={uploadImage} style={{ display: 'none' }} ref={uploadImageRef} type="file" accept="image/*" />
