@@ -9,7 +9,7 @@ const ScrollView = React.forwardRef(({
   if (horizontal) scrollbarClasses += ' scrollbar__h';
   if (vertical) scrollbarClasses += ' scrollbar__v';
   if (autoHide) scrollbarClasses += ' scrollbar--auto-hide';
-  if (invisible) scrollbarClasses += ' hide-scrollbar';
+  if (invisible) scrollbarClasses += ' scrollbar-hide';
   return (
     <div onScroll={onScroll} ref={ref} className={`scrollbar${scrollbarClasses}`}>
       {children}
