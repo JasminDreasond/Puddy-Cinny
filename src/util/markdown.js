@@ -496,6 +496,7 @@ const markdownRules = {
 
 };
 
+// Convert Code back to script
 function mapElement(el) {
   switch (el.tagName) {
     case 'MX-REPLY':
