@@ -159,12 +159,15 @@ function Image({
         {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
         {url !== null && (
           <img
+            draggable="false"
             style={{ display: blur ? 'none' : 'unset' }}
             onLoad={event => {
 
               setBlur(false);
+              let imageLoaded = false;
+              if (!imageLoaded && event.target) {
 
-              if (event.target) {
+                imageLoaded = true;
                 const img = event.target;
                 const imgAction = () => {
 
@@ -177,6 +180,7 @@ function Image({
                         height: img.naturalHeight,
                       },
                     ],
+                    padding: { top: 40, bottom: 40, left: 100, right: 100 },
                     showHideAnimationType: 'none'
                   });
 
