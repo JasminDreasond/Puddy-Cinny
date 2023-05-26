@@ -21,4 +21,20 @@ Made by Me
         "form_factor": "wide"
         }
 
-]
+    ]
+
+    Modal - Fullscreen quando no viewport
+    Ajeitar emojis desregulados
+    Ajeitar o header do nome do servidor (e também adicionar o HR)
+    Ajeitar o config do canal
+
+    add existing rooms - colocar o scroll
+    create space or room - concertar o espaçamento
+    manage rooms - espaçamento de novo
+    Invite to - espaçamento
+    space settings - espaçamento
+    pin spaces - espaçamento
+
+    View source - espaçamento
+
+    People está todo bagunçado, precisa ser concertado

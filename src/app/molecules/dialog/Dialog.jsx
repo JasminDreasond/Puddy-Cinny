@@ -18,7 +18,7 @@ function Dialog({
       onExited={onAfterClose}
       dialogClassName={className === null ? 'modal-dialog-centered modal-dialog-scrollable' : `${className} modal-dialog-scrollable`}
     >
-      <Modal.Header closeButton>
+      <Modal.Header className='noselect' closeButton>
         <Modal.Title className='h5'>
           {
             typeof title === 'string'
