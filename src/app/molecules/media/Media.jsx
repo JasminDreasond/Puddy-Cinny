@@ -182,7 +182,6 @@ function Image({
                       },
                     ],
                     padding: { top: 40, bottom: 40, left: 100, right: 100 },
-                    showHideAnimationType: 'none'
                   });
 
                   pswp.on('uiRegister', () => {
