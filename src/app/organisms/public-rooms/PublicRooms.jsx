@@ -217,6 +217,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
   return (
     <PopupWindow
       isOpen={isOpen}
+      size='modal-xl'
       title="Public rooms"
       onRequestClose={onRequestClose}
     >

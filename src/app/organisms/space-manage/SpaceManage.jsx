@@ -406,12 +406,10 @@ function SpaceManage() {
     <PopupWindow
       isOpen={roomId !== null}
       className="space-manage"
-      title={(
-        <Text variant="s1" weight="medium" primary>
-          {roomId && twemojify(room.name)}
-          <span style={{ color: 'var(--tc-surface-low)' }}> — manage rooms</span>
-        </Text>
-      )}
+      title={<>
+        {roomId && twemojify(room.name)}
+        <span style={{ color: 'var(--tc-surface-low)' }}> — manage rooms</span>
+      </>}
       onRequestClose={requestClose}
     >
       {

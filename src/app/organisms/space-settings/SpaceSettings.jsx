@@ -156,12 +156,10 @@ function SpaceSettings() {
     <PopupWindow
       isOpen={isOpen}
       className="space-settings"
-      title={(
-        <Text variant="s1" weight="medium" primary>
-          {isOpen && twemojify(room.name)}
-          <span style={{ color: 'var(--tc-surface-low)' }}> — space settings</span>
-        </Text>
-      )}
+      title={<>
+        {isOpen && twemojify(room.name)}
+        <span style={{ color: 'var(--tc-surface-low)' }}> — space settings</span>
+      </>}
       onRequestClose={requestClose}
     >
       {isOpen && (

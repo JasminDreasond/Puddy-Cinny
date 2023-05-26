@@ -46,8 +46,8 @@ PWContentSelector.propTypes = {
 
 function PopupWindow({
   className, isOpen, title, contentTitle,
-  drawer, drawerOptions, contentOptions,
-  onAfterClose, onRequestClose, children, size
+  drawer, onAfterClose, onRequestClose, children,
+  size
 }) {
   const haveDrawer = drawer !== null;
   const cTitle = contentTitle !== null ? contentTitle : title;
@@ -75,27 +75,16 @@ function PopupWindow({
       show={isOpen}
       onHide={onRequestClose}
       onExited={onAfterClose}
-      dialogClassName={className === null ? `modal-dialog-centered ${size}` : `${className} ${size}`}
+      dialogClassName={className === null ? `modal-dialog-centered ${size} modal-dialog-scrollable` : `${className} ${size} modal-dialog-scrollable`}
     >
       <Modal.Header closeButton>
         <Modal.Title>{finalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body className='bg-bg2'>
         {haveDrawer && (
-          <>
-            {drawerOptions}
-            <ScrollView invisible>
-              <div className="pw__drawer__content">
-                {drawer}
-              </div>
-            </ScrollView>
-          </>
+          { drawer }
         )}
-        {contentOptions}
-        <ScrollView autoHide>
-          {children}
-        </ScrollView>
-
+        {children}
       </Modal.Body>
     </Modal>
   );
@@ -107,8 +96,6 @@ PopupWindow.defaultProps = {
   size: null,
   drawer: null,
   contentTitle: null,
-  drawerOptions: null,
-  contentOptions: null,
   onAfterClose: null,
   onRequestClose: null,
 };
@@ -120,8 +107,6 @@ PopupWindow.propTypes = {
   title: PropTypes.node.isRequired,
   contentTitle: PropTypes.node,
   drawer: PropTypes.node,
-  drawerOptions: PropTypes.node,
-  contentOptions: PropTypes.node,
   onAfterClose: PropTypes.func,
   onRequestClose: PropTypes.func,
   children: PropTypes.node.isRequired,

@@ -167,7 +167,7 @@ function RoomsCategory({
     }
 
     rooms.push((
-      <div className="room-sub-category">
+      <div>
         <button className="py-2" id={roomIdB1} onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
           <RawIcon fa={tinyIsOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
           <span className="text-gray very-small text-uppercase ms-2">{roomCategory[item].name}</span>
@@ -185,9 +185,9 @@ function RoomsCategory({
 
   // Complete
   return (
-    <div className="room-category p-3">
+    <div className="p-3 pe-2">
       {!hideHeader && (
-        <div className="room-category">
+        <div>
           <button className="py-2" onClick={() => setIsOpen(!isOpen)} type="button">
             <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
             <span className="text-gray very-small text-uppercase ms-2" >{name}</span>
@@ -197,7 +197,7 @@ function RoomsCategory({
         </div>
       )}
       {(isOpen || hideHeader) && (
-        <div className="room-category-content">
+        <div>
           {rooms}
         </div>
       )}

@@ -7,8 +7,7 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 
 function Dialog({
   className, isOpen, title, onAfterOpen, onAfterClose,
-  contentOptions, onRequestClose, children,
-  invisibleScroll,
+  onRequestClose, children, invisibleScroll,
 }) {
 
   return (
@@ -17,7 +16,7 @@ function Dialog({
       onEntered={onAfterOpen}
       onHide={onRequestClose}
       onExited={onAfterClose}
-      dialogClassName={className === null ? 'modal-dialog-centered' : `${className} `}
+      dialogClassName={className === null ? 'modal-dialog-centered modal-dialog-scrollable' : `${className} modal-dialog-scrollable`}
     >
       <Modal.Header closeButton>
         <Modal.Title>
@@ -29,11 +28,8 @@ function Dialog({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {contentOptions}
         <ScrollView autoHide={!invisibleScroll} invisible={invisibleScroll}>
-          <div className="dialog__content-container">
-            {children}
-          </div>
+          {children}
         </ScrollView>
       </Modal.Body>
     </Modal>
@@ -43,7 +39,6 @@ function Dialog({
 
 Dialog.defaultProps = {
   className: null,
-  contentOptions: null,
   onAfterOpen: null,
   onAfterClose: null,
   onRequestClose: null,
@@ -54,7 +49,6 @@ Dialog.propTypes = {
   className: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   title: PropTypes.node.isRequired,
-  contentOptions: PropTypes.node,
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
   onRequestClose: PropTypes.func,

@@ -427,7 +427,7 @@ function Settings() {
     <PopupWindow
       isOpen={isOpen}
       size='modal-xl'
-      title={<Text variant="s1" weight="medium" primary>Settings</Text>}
+      title='Settings'
       onRequestClose={requestClose}
     >
       {isOpen && (
