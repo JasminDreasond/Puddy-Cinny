@@ -188,7 +188,6 @@ function Image({
                 img.removeEventListener('click', imgAction);
                 img.addEventListener('click', imgAction);
 
-                console.log(img);
               }
 
             }}
