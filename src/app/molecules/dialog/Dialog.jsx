@@ -19,7 +19,7 @@ function Dialog({
       dialogClassName={className === null ? 'modal-dialog-centered modal-dialog-scrollable' : `${className} modal-dialog-scrollable`}
     >
       <Modal.Header closeButton>
-        <Modal.Title>
+        <Modal.Title className='h5'>
           {
             typeof title === 'string'
               ? twemojify(title)
