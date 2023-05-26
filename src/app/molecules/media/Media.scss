@@ -88,3 +88,14 @@
     width: 100%;
   }
 }
+
+.pswp__icn.fa-solid {
+  color: var(--pswp-icon-color);
+}
+
+.pswp__icn {
+  height: 20px !important;
+  width: 20px !important;
+  font-size: 20px !important;
+  color: var(--pswp-icon-color);
+}

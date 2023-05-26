@@ -10,6 +10,7 @@ import { BlurhashCanvas } from 'react-blurhash';
 import Text from '../../atoms/text/Text';
 import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
+import FileSaver from 'file-saver';
 
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
 
@@ -182,6 +183,19 @@ function Image({
                     ],
                     padding: { top: 40, bottom: 40, left: 100, right: 100 },
                     showHideAnimationType: 'none'
+                  });
+
+                  pswp.on('uiRegister', () => {
+                    pswp.ui.registerElement({
+                      name: 'download-button',
+                      ariaLabel: 'Download Image',
+                      order: 9,
+                      isButton: true,
+                      html: '<i class="fa-solid fa-floppy-disk pswp__icn" height="32" width="32"></i>',
+                      onClick: () => {
+                        FileSaver.saveAs(url, name);
+                      }
+                    });
                   });
 
                   pswp.init();
