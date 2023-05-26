@@ -5,13 +5,15 @@ import './Media.scss';
 
 import encrypt from 'browser-encrypt-attachment';
 
+import PhotoSwipeLightbox from 'photoswipe';
 import { BlurhashCanvas } from 'react-blurhash';
 import Text from '../../atoms/text/Text';
 import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
-import ImageLightbox from '../image-lightbox/ImageLightbox';
 
 import { getBlobSafeMimeType } from '../../../util/mimetypes';
+
+import 'photoswipe/style.css';
 
 async function getDecryptedBlob(response, type, decryptData) {
   const arrayBuffer = await response.arrayBuffer();
@@ -145,36 +147,57 @@ function Image({
   };
 
   return (
-    <>
-      <div className="file-container">
-        <div
-          style={{ height: width !== null ? getNativeHeight(width, height) : 'unset' }}
-          className="image-container"
-          role="button"
-          tabIndex="0"
-          onClick={toggleLightbox}
-          onKeyDown={toggleLightbox}
-        >
-          {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
-          {url !== null && (
-            <img
-              style={{ display: blur ? 'none' : 'unset' }}
-              onLoad={() => setBlur(false)}
-              src={url || link}
-              alt={name}
-            />
-          )}
-        </div>
+    <div className="file-container">
+      <div
+        style={{ height: width !== null ? getNativeHeight(width, height) : 'unset' }}
+        className="image-container"
+        role="button"
+        tabIndex="0"
+        onClick={toggleLightbox}
+        onKeyDown={toggleLightbox}
+      >
+        {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
+        {url !== null && (
+          <img
+            style={{ display: blur ? 'none' : 'unset' }}
+            onLoad={event => {
+
+              setBlur(false);
+
+              if (event.target) {
+                const img = event.target;
+                const imgAction = () => {
+
+                  const pswp = new PhotoSwipeLightbox({
+                    dataSource: [
+                      {
+                        src: url,
+                        alt: name,
+                        width: img.naturalWidth,
+                        height: img.naturalHeight,
+                      },
+                    ],
+                    showHideAnimationType: 'none'
+                  });
+
+                  pswp.init();
+                  lightbox.loadAndOpen(0);
+
+                };
+
+                img.removeEventListener('click', imgAction);
+                img.addEventListener('click', imgAction);
+
+                console.log(img);
+              }
+
+            }}
+            src={url || link}
+            alt={name}
+          />
+        )}
       </div>
-      {url && (
-        <ImageLightbox
-          url={url}
-          alt={name}
-          isOpen={lightbox}
-          onRequestClose={toggleLightbox}
-        />
-      )}
-    </>
+    </div>
   );
 }
 Image.defaultProps = {
