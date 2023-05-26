@@ -35,6 +35,4 @@ Made by Me
     space settings - espaçamento
     pin spaces - espaçamento
 
-    View source - espaçamento
-
     People está todo bagunçado, precisa ser concertado

@@ -307,6 +307,89 @@
   --fw-normal: 350;
 
   --font-secondary: 'InterVariable', 'Roboto', sans-serif;
+
+  /* Code Dark Mode */
+  /* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #282a36;
+  }
+
+  .hljs-built_in,
+  .hljs-selector-tag,
+  .hljs-section,
+  .hljs-link {
+    color: #8be9fd;
+  }
+
+  .hljs-keyword {
+    color: #ff79c6;
+  }
+
+  .hljs,
+  .hljs-subst {
+    color: #f8f8f2;
+  }
+
+  .hljs-title,
+  .hljs-attr,
+  .hljs-meta-keyword {
+    font-style: italic;
+    color: #50fa7b;
+  }
+
+  .hljs-string,
+  .hljs-meta,
+  .hljs-name,
+  .hljs-type,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-addition,
+  .hljs-variable,
+  .hljs-template-tag,
+  .hljs-template-variable {
+    color: #f1fa8c;
+  }
+
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-deletion {
+    color: #6272a4;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-title,
+  .hljs-section,
+  .hljs-doctag,
+  .hljs-type,
+  .hljs-name,
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-literal,
+  .hljs-number {
+    color: #bd93f9;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
 }
 
 .dark-theme,
@@ -558,7 +641,11 @@ audio:not([controls]) {
 }
 
 .bg-bg2 {
-  background-color: var(--bg-surface-low);
+  background-color: var(--bg-surface-low) !important;
+}
+
+.bg-bg3 {
+  background-color: var(--bg-surface) !important;
 }
 
 .text-gray {
@@ -596,6 +683,7 @@ body {
   /*Why font-variant-ligatures => https://github.com/rsms/inter/issues/222 */
   font-variant-ligatures: no-contextual;
 }
+
 #root {
   width: 100%;
   height: 100%;
@@ -606,15 +694,15 @@ body {
   height: 0px;
 }
 
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: var(--bg-surface-hover);
 }
 
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }

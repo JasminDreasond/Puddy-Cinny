@@ -10,7 +10,6 @@ import {
 } from '../../../client/action/settings';
 import { usePermission } from '../../hooks/usePermission';
 
-import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import Toggle from '../../atoms/button/Toggle';
 import Tabs from '../../atoms/tabs/Tabs';

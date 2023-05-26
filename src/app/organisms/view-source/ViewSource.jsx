@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import './ViewSource.scss';
 
+import hljs from 'highlight.js';
 import cons from '../../../client/state/cons';
 import navigation from '../../../client/state/navigation';
 
-import IconButton from '../../atoms/button/IconButton';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
-import ScrollView from '../../atoms/scroll/ScrollView';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 
-function ViewSourceBlock({ title, json }) {
+
+function ViewSourceBlock({ title, json, className }) {
+
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
   return (
-    <div className="view-source__card">
-      <MenuHeader>{title}</MenuHeader>
-      <ScrollView horizontal vertical={false} autoHide>
-        <pre className="text text-b1">
-          <code className="language-json">
+    <div className={`card ${className}`}>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item very-small text-gray noselect">{title}</li>
+        <pre>
+          <code className='language-json bg-bg3'>
             {JSON.stringify(json, null, 2)}
           </code>
         </pre>
-      </ScrollView>
+      </ul>
     </div>
   );
+
 }
+ViewSourceBlock.defaultProps = {
+  className: '',
+};
 ViewSourceBlock.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   json: PropTypes.shape({}).isRequired,
 };
@@ -51,12 +59,13 @@ function ViewSource() {
   const renderViewSource = () => (
     <div className="view-source">
       {event.isEncrypted() && <ViewSourceBlock title="Decrypted source" json={event.getEffectiveEvent()} />}
-      <ViewSourceBlock title="Original source" json={event.event} />
+      <ViewSourceBlock className='mt-3' title="Original source" json={event.event} />
     </div>
   );
 
   return (
     <PopupWindow
+      size='modal-xl'
       isOpen={isOpen}
       title="View source"
       onAfterClose={handleAfterClose}
