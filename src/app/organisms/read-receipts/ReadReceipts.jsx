@@ -6,7 +6,6 @@ import navigation from '../../../client/state/navigation';
 import { getUsername, getUsernameOfRoomMember } from '../../../util/matrixUtil';
 import colorMXID from '../../../util/colorMXID';
 
-import IconButton from '../../atoms/button/IconButton';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 import Dialog from '../../molecules/dialog/Dialog';
 

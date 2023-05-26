@@ -9,7 +9,6 @@ import { join } from '../../../client/action/room';
 import { selectRoom, selectTab } from '../../../client/action/navigation';
 
 import Text from '../../atoms/text/Text';
-import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import Spinner from '../../atoms/spinner/Spinner';

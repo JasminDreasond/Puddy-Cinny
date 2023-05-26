@@ -14,7 +14,6 @@ import { getEventCords } from '../../../util/common';
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import Toggle from '../../atoms/button/Toggle';
-import IconButton from '../../atoms/button/IconButton';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
 import Input from '../../atoms/input/Input';
 import Spinner from '../../atoms/spinner/Spinner';

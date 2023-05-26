@@ -9,11 +9,10 @@ import { selectRoom, selectTab } from '../../../client/action/navigation';
 import { joinRuleToIconSrc } from '../../../util/matrixUtil';
 import { roomIdByActivity } from '../../../util/sort';
 
-import Text from '../../atoms/text/Text';
+import Dialog from '../../molecules/dialog/Dialog';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
-import RawModal from '../../atoms/modal/RawModal';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import RoomSelector from '../../molecules/room-selector/RoomSelector';
 
@@ -192,13 +191,13 @@ function Search() {
   };
 
   return (
-    <RawModal
-      className="search-dialog__modal dialog-modal"
+    <Dialog
+      className="modal-dialog-scrollable"
       isOpen={isOpen}
       onAfterOpen={handleAfterOpen}
       onAfterClose={handleAfterClose}
       onRequestClose={requestClose}
-      size="small"
+      title="Search"
     >
       <div className="search-dialog">
         <form className="search-dialog__input" onSubmit={(e) => { e.preventDefault(); openFirstResult(); }}>
@@ -221,7 +220,7 @@ function Search() {
           <div className="very-small text-gray">Type # for rooms, @ for DMs and * for spaces. Hotkey: Ctrl + k</div>
         </div>
       </div>
-    </RawModal>
+    </Dialog>
   );
 }
 

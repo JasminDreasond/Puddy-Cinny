@@ -18,7 +18,6 @@ import colorMXID from '../../../util/colorMXID';
 
 import Text from '../../atoms/text/Text';
 import Chip from '../../atoms/chip/Chip';
-import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import Avatar from '../../atoms/avatar/Avatar';
 import Button from '../../atoms/button/Button';

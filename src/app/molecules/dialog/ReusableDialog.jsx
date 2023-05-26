@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import cons from '../../../client/state/cons';
 
 import navigation from '../../../client/state/navigation';
-import IconButton from '../../atoms/button/IconButton';
 import Dialog from './Dialog';
 
 function ReusableDialog() {

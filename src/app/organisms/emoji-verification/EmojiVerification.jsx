@@ -11,7 +11,6 @@ import { hasPrivateKey } from '../../../client/state/secretStorageKeys';
 import { getDefaultSSKey, isCrossVerified } from '../../../util/matrixUtil';
 
 import Text from '../../atoms/text/Text';
-import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
 import Spinner from '../../atoms/spinner/Spinner';
 import Dialog from '../../molecules/dialog/Dialog';
