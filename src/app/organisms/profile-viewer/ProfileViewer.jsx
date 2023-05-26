@@ -423,7 +423,7 @@ function ProfileViewer() {
 
   return (
     <Dialog
-      className="profile-viewer__dialog"
+      className="modal-dialog-scrollable noselect"
       isOpen={isOpen}
       title={room?.name ?? ''}
       onAfterClose={handleAfterClose}

@@ -205,7 +205,7 @@ function SpaceAddExisting() {
   return (
     <Dialog
       isOpen={roomId !== null}
-      className="space-add-existing"
+      className="modal-dialog-scrollable noselect"
       title={(
         <Text variant="s1" weight="medium" primary>
           {roomId && twemojify(room.name)}

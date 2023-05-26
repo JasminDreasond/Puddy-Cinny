@@ -223,6 +223,7 @@ function InviteUser({
 
   return (
     <PopupWindow
+      className="modal-lg modal-dialog-scrollable noselect"
       isOpen={isOpen}
       title={(typeof roomId === 'string' ? `Invite to ${mx.getRoom(roomId).name}` : 'Direct message')}
       onRequestClose={onRequestClose}

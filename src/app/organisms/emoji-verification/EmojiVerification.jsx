@@ -177,7 +177,7 @@ function EmojiVerification() {
   return (
     <Dialog
       isOpen={data !== null}
-      className="emoji-verification"
+      className="modal-lg modal-dialog-scrollable noselect"
       title={(
         <Text variant="s1" weight="medium" primary>
           Emoji verification

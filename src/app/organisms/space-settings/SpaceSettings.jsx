@@ -155,7 +155,7 @@ function SpaceSettings() {
   return (
     <PopupWindow
       isOpen={isOpen}
-      className="space-settings"
+      className="modal-xl modal-dialog-scrollable noselect"
       title={<>
         {isOpen && twemojify(room.name)}
         <span style={{ color: 'var(--tc-surface-low)' }}> — space settings</span>

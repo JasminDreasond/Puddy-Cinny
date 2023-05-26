@@ -271,6 +271,7 @@ function CreateRoom() {
 
   return (
     <Dialog
+      className="modal-lg modal-dialog-scrollable noselect"
       isOpen={create !== null}
       title={(
         <Text variant="s1" weight="medium" primary>

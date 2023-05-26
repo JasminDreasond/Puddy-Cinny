@@ -192,7 +192,7 @@ function Search() {
 
   return (
     <Dialog
-      className="modal-dialog-scrollable"
+      className="modal-lg modal-dialog-scrollable noselect"
       isOpen={isOpen}
       onAfterOpen={handleAfterOpen}
       onAfterClose={handleAfterClose}

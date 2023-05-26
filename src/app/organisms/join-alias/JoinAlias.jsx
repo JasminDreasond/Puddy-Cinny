@@ -137,6 +137,7 @@ function JoinAlias() {
 
   return (
     <Dialog
+      className="modal-dialog-scrollable noselect"
       isOpen={data !== null}
       title={(
         <Text variant="s1" weight="medium" primary>Join with address</Text>

@@ -405,7 +405,7 @@ function SpaceManage() {
   return (
     <PopupWindow
       isOpen={roomId !== null}
-      className="space-manage"
+      className="modal-lg modal-dialog-scrollable noselect"
       title={<>
         {roomId && twemojify(room.name)}
         <span style={{ color: 'var(--tc-surface-low)' }}> — manage rooms</span>
