@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
+import hljs from 'highlight.js';
 import moment from 'moment-timezone';
 import SimpleMarkdown from '@khanacademy/simple-markdown';
 import { idRegex, parseIdUri } from './common';
@@ -139,9 +140,16 @@ const markdownRules = {
   codeBlock: {
     ...defaultRules.codeBlock,
     plain: (node) => `\`\`\`${node.lang || ''}\n${node.content}\n\`\`\`\n`,
-    html: (node) => htmlTag('pre', htmlTag('code', sanitizeText(node.content), {
-      class: node.lang ? `language-${node.lang}` : undefined,
-    })),
+    html: (node) => {
+
+      if (!node.lang) {
+        const tinyCode = hljs.highlightAuto(node.content);
+        return `<pre><code class='language-${tinyCode.language} hljs'>${tinyCode.value}</code></pre>`;
+      }
+
+      return `<pre><code class='language-${node.lang} hljs'>${hljs.highlight(node.content, { language: node.lang }).value}</code></pre>`;
+
+    },
   },
 
   // Fence

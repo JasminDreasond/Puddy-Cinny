@@ -96,6 +96,7 @@ function transformImgTag(tagName, attribs) {
   };
 }
 
+// Filter Custom HTML
 export function sanitizeCustomHtml(matrixClient, body) {
   mx = matrixClient;
   return sanitizeHtml(body, {
@@ -109,7 +110,8 @@ export function sanitizeCustomHtml(matrixClient, body) {
     allowedSchemesAppliedToAttributes: ['href'],
     allowProtocolRelative: false,
     allowedClasses: {
-      code: ['language-*'],
+      code: ['language-*', 'hljs'],
+      span: ['hljs-*'],
     },
     allowedStyles: {
       '*': {

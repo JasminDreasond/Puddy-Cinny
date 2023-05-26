@@ -390,30 +390,12 @@
       background: none !important;
       margin: 0 !important;
     }
-    span {
+    span,
+    code {
       background: none !important;
     }
     .linenumber {
       min-width: 2.25em !important;
-    }
-  }
-  & code {
-    padding: 0 !important;
-    color: var(--tc-code) !important;
-    white-space: pre-wrap;
-    @include scrollbar.scroll;
-    @include scrollbar.scroll__h;
-    @include scrollbar.scroll--auto-hide;
-  }
-  & pre {
-    width: fit-content;
-    max-width: 100%;
-    @include scrollbar.scroll;
-    @include scrollbar.scroll__h;
-    @include scrollbar.scroll--auto-hide;
-    & code {
-      color: var(--tc-surface-normal) !important;
-      white-space: pre;
     }
   }
   & blockquote {
