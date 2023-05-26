@@ -94,8 +94,15 @@
 }
 
 .pswp__icn {
+  height: 32px !important;
+  width: 32px !important;
+  color: var(--pswp-icon-color);
+}
+
+.pswp__icn.fa-solid {
   height: 20px !important;
   width: 20px !important;
+  top: 21px;
+  left: 17px;
   font-size: 20px !important;
-  color: var(--pswp-icon-color);
 }
