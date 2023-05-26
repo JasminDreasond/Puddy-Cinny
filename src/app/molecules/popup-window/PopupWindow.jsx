@@ -75,7 +75,7 @@ function PopupWindow({
       show={isOpen}
       onHide={onRequestClose}
       onExited={onAfterClose}
-      dialogClassName={className === null ? `modal-dialog-centered ${size} modal-dialog-scrollable` : `${className} ${size} modal-dialog-scrollable`}
+      dialogClassName={className === null ? `${size} modal-dialog-scrollable` : `${className} ${size} modal-dialog-scrollable`}
     >
       <Modal.Header closeButton>
         <Modal.Title className='h5'>{finalTitle}</Modal.Title>
