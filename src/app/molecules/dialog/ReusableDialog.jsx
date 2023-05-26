@@ -36,7 +36,6 @@ function ReusableDialog() {
       title={data?.title || ''}
       onAfterClose={handleAfterClose}
       onRequestClose={handleRequestClose}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={handleRequestClose} tooltip="Close" />}
       invisibleScroll
     >
       {data?.render(handleRequestClose) || <div />}

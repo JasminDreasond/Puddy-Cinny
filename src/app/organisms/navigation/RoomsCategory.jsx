@@ -2,7 +2,6 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './RoomsCategory.scss';
 
 import { updateName, sortName } from '../../../util/roomName';
 import initMatrix from '../../../client/initMatrix';
@@ -168,16 +167,16 @@ function RoomsCategory({
     }
 
     rooms.push((
-      <div className="room-category__header">
-        <button className="room-category__toggle" id={roomIdB1} onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
+      <div className="room-sub-category">
+        <button className="py-2" id={roomIdB1} onClick={() => { setCategoryOpen({ roomName: roomDivId }) }} type="button">
           <RawIcon fa={tinyIsOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
-          <Text className="cat-header" variant="b3" weight="medium">{roomCategory[item].name}</Text>
+          <span className="text-gray very-small text-uppercase ms-2">{roomCategory[item].name}</span>
         </button>
       </div>
     ));
 
     rooms.push(
-      <div className={tinyIsOpen ? "room-category__content" : "room-category__content category-hide"} id={roomIdB2}>
+      <div className={tinyIsOpen ? "room-sub-category-content" : "room-sub-category-content category-hide"} id={roomIdB2}>
         {tinyRooms}
       </div>
     );
@@ -186,19 +185,19 @@ function RoomsCategory({
 
   // Complete
   return (
-    <div className="room-category">
+    <div className="room-category p-3">
       {!hideHeader && (
-        <div className="room-category__header">
-          <button className="room-category__toggle" onClick={() => setIsOpen(!isOpen)} type="button">
+        <div className="room-category">
+          <button className="py-2" onClick={() => setIsOpen(!isOpen)} type="button">
             <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
-            <Text className="cat-header" variant="b3" weight="medium">{name}</Text>
+            <span className="text-gray very-small text-uppercase ms-2" >{name}</span>
           </button>
           {spaceId && <IconButton onClick={openSpaceOptions} tooltip="Space options" fa="bi bi-three-dots" size="extra-small" />}
           {spaceId && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="extra-small" />}
         </div>
       )}
       {(isOpen || hideHeader) && (
-        <div className="room-category__content">
+        <div className="room-category-content">
           {rooms}
         </div>
       )}

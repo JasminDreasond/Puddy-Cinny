@@ -429,7 +429,6 @@ function ProfileViewer() {
       title={room?.name ?? ''}
       onAfterClose={handleAfterClose}
       onRequestClose={closeDialog}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={closeDialog} tooltip="Close" />}
     >
       {roomId ? renderProfile() : <div />}
     </Dialog>

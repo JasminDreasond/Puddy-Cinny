@@ -281,7 +281,6 @@ function CreateRoom() {
           </span>
         </Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       {

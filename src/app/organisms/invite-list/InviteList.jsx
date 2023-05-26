@@ -84,7 +84,6 @@ function InviteList({ isOpen, onRequestClose }) {
     <PopupWindow
       isOpen={isOpen}
       title="Invites"
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="invites-content">

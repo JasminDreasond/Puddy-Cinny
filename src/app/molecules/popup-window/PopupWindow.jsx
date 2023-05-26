@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './PopupWindow.scss';
+import Modal from 'react-bootstrap/Modal';
 
 import { twemojify } from '../../../util/twemojify';
 
 import Text from '../../atoms/text/Text';
-import IconButton from '../../atoms/button/IconButton';
 import { MenuItem } from '../../atoms/context-menu/ContextMenu';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
-import RawModal from '../../atoms/modal/RawModal';
 import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';
 
 function PWContentSelector({
@@ -55,61 +52,54 @@ function PopupWindow({
   const haveDrawer = drawer !== null;
   const cTitle = contentTitle !== null ? contentTitle : title;
 
-  let tinySize = size;
-  if (typeof haveDrawer === 'string') {
-    tinySize = haveDrawer;
+  let finalTitle;
+
+  if (typeof title !== 'undefined') {
+    finalTitle = (
+      typeof title === 'string'
+        ? twemojify(title)
+        : title
+    );
+  }
+
+  else if (typeof cTitle !== 'undefined') {
+    finalTitle =
+      typeof cTitle === 'string'
+        ? <Text variant="h2" weight="medium" primary>{twemojify(cTitle)}</Text>
+        : cTitle
+      ;
   }
 
   return (
-    <RawModal
-      className={`${className === null ? '' : `${className} `}pw-modal`}
-      overlayClassName="pw-modal__overlay"
-      isOpen={isOpen}
-      onAfterClose={onAfterClose}
-      onRequestClose={onRequestClose}
-      size={tinySize ? 'large' : 'medium'}
+    <Modal
+      show={isOpen}
+      onHide={onRequestClose}
+      onExited={onAfterClose}
+      dialogClassName={className === null ? `modal-dialog-centered ${size}` : `${className} ${size}`}
     >
-      <div className="pw">
+      <Modal.Header closeButton>
+        <Modal.Title>{finalTitle}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className='bg-bg2'>
         {haveDrawer && (
-          <div className="pw__drawer">
-            <Header>
-              <IconButton size="small" fa="fa-solid fa-chevron-left" onClick={onRequestClose} tooltip="Back" />
-              <TitleWrapper>
-                {
-                  typeof title === 'string'
-                    ? <Text variant="s1" weight="medium" primary>{twemojify(title)}</Text>
-                    : title
-                }
-              </TitleWrapper>
-              {drawerOptions}
-            </Header>
-            <div className="pw__drawer__content__wrapper">
-              <ScrollView invisible>
-                <div className="pw__drawer__content">
-                  {drawer}
-                </div>
-              </ScrollView>
-            </div>
-          </div>
+          <>
+            {drawerOptions}
+            <ScrollView invisible>
+              <div className="pw__drawer__content">
+                {drawer}
+              </div>
+            </ScrollView>
+          </>
         )}
-        <div className="pw__content">
-          <Header>
-            <TitleWrapper>
-              {
-                typeof cTitle === 'string'
-                  ? <Text variant="h2" weight="medium" primary>{twemojify(cTitle)}</Text>
-                  : cTitle
-              }
-            </TitleWrapper>
-            {contentOptions}
-          </Header>
-          <ScrollView autoHide>
-            {children}
-          </ScrollView>
-        </div>
-      </div>
-    </RawModal>
+        {contentOptions}
+        <ScrollView autoHide>
+          {children}
+        </ScrollView>
+
+      </Modal.Body>
+    </Modal>
   );
+
 }
 
 PopupWindow.defaultProps = {

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Header.scss';
 
 function Header({ children }) {
   return (
-    <div className="header noselect">
+    <div className="noselect">
       {children}
     </div>
   );
@@ -15,11 +14,7 @@ Header.propTypes = {
 };
 
 function TitleWrapper({ children }) {
-  return (
-    <div className="header__title-wrapper">
-      {children}
-    </div>
-  );
+  return children;
 }
 
 TitleWrapper.propTypes = {

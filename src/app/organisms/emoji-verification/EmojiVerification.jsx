@@ -184,7 +184,6 @@ function EmojiVerification() {
           Emoji verification
         </Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

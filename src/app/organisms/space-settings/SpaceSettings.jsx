@@ -162,7 +162,6 @@ function SpaceSettings() {
           <span style={{ color: 'var(--tc-surface-low)' }}> — space settings</span>
         </Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {isOpen && (

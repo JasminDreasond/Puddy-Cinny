@@ -412,7 +412,6 @@ function SpaceManage() {
           <span style={{ color: 'var(--tc-surface-low)' }}> — manage rooms</span>
         </Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

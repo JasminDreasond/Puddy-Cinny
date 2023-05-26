@@ -218,7 +218,6 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
     <PopupWindow
       isOpen={isOpen}
       title="Public rooms"
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="public-rooms">

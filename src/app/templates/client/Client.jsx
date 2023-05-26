@@ -163,7 +163,7 @@ function Client() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="navigation__wrapper" ref={navWrapperRef}>
+      <div className="navigation-wrapper" ref={navWrapperRef}>
         <Navigation />
       </div>
       <div className={`room__wrapper ${classNameHidden}`} ref={roomWrapperRef}>

@@ -61,7 +61,6 @@ function ViewSource() {
       title="View source"
       onAfterClose={handleAfterClose}
       onRequestClose={() => setIsOpen(false)}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={() => setIsOpen(false)} tooltip="Close" />}
     >
       {event ? renderViewSource() : <div />}
     </PopupWindow>

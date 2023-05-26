@@ -150,7 +150,6 @@ function ShortcutSpaces() {
           Pin spaces
         </Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {

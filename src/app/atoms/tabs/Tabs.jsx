@@ -6,14 +6,14 @@ import { selectButtonInverse } from '../../../util/checkTheme';
 
 function TabItem({
   selected, iconSrc, faSrc,
-  onClick, children, disabled,
+  onClick, children, disabled, className
 }) {
   const isSelected = selected ? 'active' : '';
 
   return (
     <td className='p-0 border-0' style={{ minWidth: '150px' }}>
       <Button
-        className={`btn-${selectButtonInverse()} py-2 rounded-0 rounded-top w-100 ${isSelected}`}
+        className={`btn-${selectButtonInverse()} py-2 rounded-0 rounded-top w-100 ${isSelected} ${className}`}
         iconSrc={iconSrc}
         faSrc={faSrc}
         onClick={onClick}
@@ -31,10 +31,12 @@ TabItem.defaultProps = {
   faSrc: null,
   onClick: null,
   disabled: false,
+  className: '',
 };
 
 TabItem.propTypes = {
   selected: PropTypes.bool,
+  className: PropTypes.string,
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   onClick: PropTypes.func,
@@ -62,8 +64,9 @@ function Tabs({ items, defaultSelected, onSelect }) {
                 selected={selectedItem.text === item.text}
                 iconSrc={item.iconSrc}
                 faSrc={item.faSrc}
+                className={item.className}
+                onClick={typeof item.onClick !== 'function' ? () => handleTabSelection(item, index) : item.onClick}
                 disabled={item.disabled}
-                onClick={() => handleTabSelection(item, index)}
               >
                 {item.text}
               </TabItem>

@@ -61,7 +61,6 @@ function ReadReceipts() {
       title="Seen by"
       onAfterClose={handleAfterClose}
       onRequestClose={() => setIsOpen(false)}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={() => setIsOpen(false)} tooltip="Close" />}
     >
       <div style={{ marginTop: 'var(--sp-tight)', marginBottom: 'var(--sp-extra-loose)' }}>
         {

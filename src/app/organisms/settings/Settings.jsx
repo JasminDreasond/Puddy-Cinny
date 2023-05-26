@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Settings.scss';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -12,11 +11,9 @@ import {
 import { usePermission } from '../../hooks/usePermission';
 
 import Text from '../../atoms/text/Text';
-import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
 import Toggle from '../../atoms/button/Toggle';
 import Tabs from '../../atoms/tabs/Tabs';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SegmentedControls from '../../atoms/segmented-controls/SegmentedControls';
 
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
@@ -356,6 +353,7 @@ export const tabText = {
   SECURITY: 'Security',
   ABOUT: 'About',
   DONATE: 'Donate',
+  LOGOUT: 'Logout',
 };
 const tabItems = [{
   text: tabText.APPEARANCE,
@@ -387,6 +385,16 @@ const tabItems = [{
   faSrc: "fa-solid fa-circle-info",
   disabled: false,
   render: () => <AboutSection />,
+}, {
+  text: tabText.LOGOUT,
+  faSrc: "fa-solid fa-power-off",
+  className: 'btn-text-danger',
+  disabled: false,
+  onClick: async () => {
+    if (await confirmDialog('Logout', 'Are you sure that you want to logout your session?', 'Logout', 'danger')) {
+      initMatrix.logout();
+    }
+  }
 }];
 
 function useWindowToggle(setSelectedTab) {
@@ -414,26 +422,12 @@ function Settings() {
   const [isOpen, requestClose] = useWindowToggle(setSelectedTab);
 
   const handleTabChange = (tabItem) => setSelectedTab(tabItem);
-  const handleLogout = async () => {
-    if (await confirmDialog('Logout', 'Are you sure that you want to logout your session?', 'Logout', 'danger')) {
-      initMatrix.logout();
-    }
-  };
 
   return (
     <PopupWindow
       isOpen={isOpen}
-      className="settings-window"
-      size="large"
+      size='modal-xl'
       title={<Text variant="s1" weight="medium" primary>Settings</Text>}
-      contentOptions={(
-        <>
-          <Button className="btn-text-danger" faSrc="fa-solid fa-power-off" onClick={handleLogout}>
-            Logout
-          </Button>
-          <IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />
-        </>
-      )}
       onRequestClose={requestClose}
     >
       {isOpen && (

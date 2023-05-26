@@ -107,7 +107,7 @@ function ProfileEditor({ userId }) {
   );
 
   return (
-    <div className="profile-editor">
+    <div className="profile-editor pb-3">
       <ImageUpload
         text={username ?? userId}
         bgColor={colorMXID(userId)}

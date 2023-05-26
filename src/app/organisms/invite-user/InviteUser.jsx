@@ -225,7 +225,6 @@ function InviteUser({
     <PopupWindow
       isOpen={isOpen}
       title={(typeof roomId === 'string' ? `Invite to ${mx.getRoom(roomId).name}` : 'Direct message')}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={onRequestClose} tooltip="Close" />}
       onRequestClose={onRequestClose}
     >
       <div className="invite-user">

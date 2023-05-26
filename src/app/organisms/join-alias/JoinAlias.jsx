@@ -142,7 +142,6 @@ function JoinAlias() {
       title={(
         <Text variant="s1" weight="medium" primary>Join with address</Text>
       )}
-      contentOptions={<IconButton fa="fa-solid fa-xmark" onClick={requestClose} tooltip="Close" />}
       onRequestClose={requestClose}
     >
       {data ? <JoinAliasContent term={data.term} requestClose={requestClose} /> : <div />}

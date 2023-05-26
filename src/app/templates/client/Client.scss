@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-.navigation__wrapper {
+.navigation-wrapper {
   width: var(--navigation-width);
 
   @include screen.smallerThan(mobileBreakpoint) {
