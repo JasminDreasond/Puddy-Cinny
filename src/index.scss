@@ -601,6 +601,11 @@ body {
   height: 100%;
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 /* Link */
 a {
   color: var(--tc-link) !important;
