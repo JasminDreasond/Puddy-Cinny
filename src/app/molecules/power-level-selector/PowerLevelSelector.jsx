@@ -19,7 +19,7 @@ function PowerLevelSelector({
       <MenuHeader>Power level selector</MenuHeader>
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e); }}>
         <input
-          className="input"
+          className="form-control form-control-bg"
           defaultValue={value}
           type="number"
           name="power-level"
