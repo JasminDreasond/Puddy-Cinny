@@ -5,8 +5,8 @@ function Header({ children, title }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-nav p-0 w-100 d-block noselect border-bottom border-bg emoji-size-fix">
       <div className='container-fluid'>
-        <span className="navbar-brand">{title}</span>
-        <div className="collapse navbar-collapse" >
+        {(typeof title === 'string' && <span className="navbar-brand">{title}</span>)}
+        <div className="collapse navbar-collapse py-1 px-2" >
           {children}
         </div>
       </div>
