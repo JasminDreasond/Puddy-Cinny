@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Header({ children }) {
+function Header({ children, title }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-nav navbar-dark p-0 w-100 d-block noselect border-bottom border-bg emoji-size-fix">
-      {children}
+    <nav className="navbar navbar-expand-lg navbar-nav p-0 w-100 d-block noselect border-bottom border-bg emoji-size-fix">
+      <div className='container-fluid'>
+        <span className="navbar-brand">{title}</span>
+        <div className="collapse navbar-collapse" >
+          {children}
+        </div>
+      </div>
     </nav>
   );
 }
 
+Header.defaultProps = {
+  title: null,
+};
+
 Header.propTypes = {
+  title: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

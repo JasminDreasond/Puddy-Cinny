@@ -12,7 +12,6 @@ import colorMXID from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
 
 import { tabText } from './RoomSettings';
-import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import { Header } from '../../atoms/header/Header';
@@ -56,36 +55,45 @@ function RoomViewHeader({ roomId }) {
   return (
     <Header>
 
-      <ul className='navbar-nav mr-auto mt-2 mt-lg-0 small'>
+      <ul className='navbar-nav mr-auto mt-2 mt-lg-0 my-2 '>
 
-        <button
-          className="nav-link btn btn-bg border-0"
-          onClick={() => toggleRoomSettings()}
-          type="button"
-        >
-          <Avatar className='m-0' imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="small" />
-          {twemojify(roomName)}
-          <RawIcon fa="fa-solid fa-chevron-down" />
-        </button>
+        <li className="nav-item">
+          <button
+            className="nav-link btn btn-bg border-0 p-1"
+            onClick={() => toggleRoomSettings()}
+            type="button"
+          >
+            <Avatar className='d-inline-block me-2' imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="small" />
+            <span className='me-2'>{twemojify(roomName)}</span>
+            <RawIcon fa="fa-solid fa-chevron-down" />
+          </button>
+        </li>
 
       </ul>
 
       <ul className='navbar-nav ms-auto mb-2 mb-lg-0 small'>
 
-        {mx.isRoomEncrypted(roomId) === false && <IconButton className="nav-link btn btn-bg border-0" onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
+        {mx.isRoomEncrypted(roomId) === false && (
+          <li className="nav-item">
+            <IconButton className="nav-link btn btn-bg border-0" onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />
+          </li>
+        )}
 
-        <IconButton className="nav-link border-0" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />
-        <IconButton className="nav-link border-0" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" />
-        <IconButton
-          className="nav-link border-0"
-          onClick={openRoomOptions}
-          tooltip="Options"
-          fa="bi bi-three-dots-vertical"
-        />
+        <li className="nav-item"><IconButton className="nav-link border-0" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" /></li>
+        <li className="nav-item"><IconButton className="nav-link border-0" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" /></li>
 
-      </ul>
+        <li className="nav-item">
+          <IconButton
+            className="nav-link border-0"
+            onClick={openRoomOptions}
+            tooltip="Options"
+            fa="bi bi-three-dots-vertical"
+          />
+        </li>
 
-    </Header>
+      </ul >
+
+    </Header >
   );
 }
 RoomViewHeader.propTypes = {
