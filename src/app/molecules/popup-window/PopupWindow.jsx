@@ -78,7 +78,7 @@ function PopupWindow({
       dialogClassName={className === null ? `${size} modal-dialog-scrollable` : `${className} ${size} modal-dialog-scrollable`}
     >
       <Modal.Header className='noselect' closeButton>
-        <Modal.Title className='h5'>{finalTitle}</Modal.Title>
+        <Modal.Title className='h5 emoji-size-fix'>{finalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body className='bg-bg2'>
         {haveDrawer && (
