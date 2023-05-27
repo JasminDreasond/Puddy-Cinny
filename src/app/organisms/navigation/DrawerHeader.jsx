@@ -141,7 +141,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
             <RawIcon size="small" fa="fa-solid fa-chevron-down" />
           </button>
         ) : (
-          <Text variant="s1" weight="medium" primary>{tabName}</Text>
+          <strong className='p-1'>{tabName}</strong>
         )}
 
       </ul>
