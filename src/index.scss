@@ -635,9 +635,15 @@ audio:not([controls]) {
 .form-control-bg,
 .form-control-bg:focus,
 .form-control-bg:active {
-  background-color: var(--bg-surface-low);
   color: var(--tc-surface-normal);
   border: 1px solid var(--bg-surface-border);
+}
+
+.form-control-bg,
+.form-control-bg:focus,
+.form-control-bg:active,
+.form-control-bg:disabled {
+  background-color: var(--bg-surface-low);
 }
 
 .bg-bg2 {

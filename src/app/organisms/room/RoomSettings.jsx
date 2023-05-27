@@ -10,7 +10,6 @@ import navigation from '../../../client/state/navigation';
 import { openInviteUser, toggleRoomSettings } from '../../../client/action/navigation';
 import * as roomActions from '../../../client/action/room';
 
-import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import { Header } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
@@ -166,40 +165,43 @@ function RoomSettings({ roomId }) {
   if (!navigation.isRoomSettings) return null;
 
   return (
-    <div className="room-settings">
-      <ScrollView autoHide>
-        <div className="room-settings__content">
-          <Header>
-            <button
-              className="room-settings__header-btn"
-              onClick={() => toggleRoomSettings()}
-              type="button"
-              onMouseUp={(e) => blurOnBubbling(e, '.room-settings__header-btn')}
-            >
-              <Text variant="s1" weight="medium" primary>
-                {`${room.name}`}
-                <span style={{ color: 'var(--tc-surface-low)' }}> — room settings</span>
-              </Text>
-              <RawIcon size="small" fa="fa-solid fa-chevron-up" />
-            </button>
-          </Header>
-          <RoomProfile roomId={roomId} />
-          <Tabs
-            items={tabItems}
-            defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
-            onSelect={handleTabChange}
-          />
-          <div className="room-settings__cards-wrapper">
-            {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
-            {selectedTab.text === tabText.SEARCH && <RoomSearch roomId={roomId} />}
-            {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}
-            {selectedTab.text === tabText.EMOJIS && <RoomEmojis roomId={roomId} />}
-            {selectedTab.text === tabText.PERMISSIONS && <RoomPermissions roomId={roomId} />}
-            {selectedTab.text === tabText.SECURITY && <SecuritySettings roomId={roomId} />}
-          </div>
-        </div>
-      </ScrollView>
-    </div>
+    <ScrollView autoHide>
+
+      <Header>
+        <ul className='navbar-nav mr-auto mt-2 mt-lg-0 pt-2 pb-1'>
+
+          <button
+            className="nav-link btn btn-bg border-0 p-1"
+            onClick={() => toggleRoomSettings()}
+            type="button"
+            onMouseUp={(e) => blurOnBubbling(e, '.room-settings__header-btn')}
+          >
+            <strong className='me-2'>
+              {`${room.name}`}
+              <span style={{ color: 'var(--tc-surface-low)' }}> — room settings</span>
+            </strong>
+            <RawIcon size="small" fa="fa-solid fa-chevron-up" />
+          </button>
+
+        </ul>
+      </Header>
+
+      <RoomProfile roomId={roomId} />
+      <Tabs
+        items={tabItems}
+        defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
+        onSelect={handleTabChange}
+      />
+      <div className="room-settings__cards-wrapper">
+        {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
+        {selectedTab.text === tabText.SEARCH && <RoomSearch roomId={roomId} />}
+        {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}
+        {selectedTab.text === tabText.EMOJIS && <RoomEmojis roomId={roomId} />}
+        {selectedTab.text === tabText.PERMISSIONS && <RoomPermissions roomId={roomId} />}
+        {selectedTab.text === tabText.SECURITY && <SecuritySettings roomId={roomId} />}
+      </div>
+
+    </ScrollView>
   );
 }
 

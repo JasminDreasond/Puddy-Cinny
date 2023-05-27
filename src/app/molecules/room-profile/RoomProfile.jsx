@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './RoomProfile.scss';
 
 import { twemojify } from '../../../util/twemojify';
 
@@ -216,48 +215,51 @@ function RoomProfile({ roomId }) {
   // Render Edit Data
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
-      {canChangeName && <Input value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
-      {canChangeName && <Input value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
-      {canChangeName && <Input value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
-      {canChangeTopic && <Input value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
+
+      {canChangeName && <Input className='mb-3' value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
+      {canChangeName && <Input className='mb-3' value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
+      {canChangeName && <Input className='mb-3' value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
+      {canChangeTopic && <Input className='mb-3' value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
+
       {(!canChangeName || !canChangeTopic) && <div className="very-small text-gray">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</div>}
-      {status.type === cons.status.IN_FLIGHT && <Text variant="b2">{status.msg}</Text>}
-      {status.type === cons.status.SUCCESS && <Text style={{ color: 'var(--tc-positive-high)' }} variant="b2">{status.msg}</Text>}
-      {status.type === cons.status.ERROR && <Text style={{ color: 'var(--tc-danger-high)' }} variant="b2">{status.msg}</Text>}
+
+      {status.type === cons.status.IN_FLIGHT && <div className='very-small text-gray'>{status.msg}</div>}
+      {status.type === cons.status.SUCCESS && <div className='very-small text-success'>{status.msg}</div>}
+      {status.type === cons.status.ERROR && <div className='very-small text-danger' >{status.msg}</div>}
+
       {status.type !== cons.status.IN_FLIGHT && (
-        <div>
-          <Button type="submit" variant="primary">Save</Button>
-          <Button onClick={handleCancelEditing}>Cancel</Button>
+        <div className='mt-3'>
+          <Button className='mx-1' type="submit" variant="primary">Save</Button>
+          <Button className='mx-1' onClick={handleCancelEditing}>Cancel</Button>
         </div>
       )}
+
     </form>
   );
 
   // Render Panel
   const renderNameAndTopic = () => (
-    <div className="room-profile__display emoji-size-fix" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
+    <div className="emoji-size-fix" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
 
       <div>
 
-        <Text variant="h2" weight="medium" style={{ margin: '0px' }} primary>{twemojify(roomName)}</Text>
+        <h4 className='d-inline-block m-0 my-1'>{twemojify(roomName)}</h4>
 
         {(nameCinny.category.length > 0) && (
-          <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
+          <div className='d-inline-block m-0 my-1'>
             <span style={{ marginRight: '8px', marginLeft: '18px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.category)}</span>
-          </Text>
+          </div>
         )}
 
         {(nameCinny.index.length > 0) && (
-          <Text variant="h3" style={{ margin: '0px' }} weight="small" primary>
+          <div className='d-inline-block m-0 my-1'>
             <span style={{ marginRight: '8px', marginLeft: '8px' }}><RawIcon fa="fa-solid fa-grip-lines-vertical" /></span>
             <span>{twemojify(nameCinny.index)}</span>
-          </Text>
+          </div>
         )}
 
-        <Text variant="h3" weight="small" primary>
-          <span>{' '}</span>
-        </Text>
+        <span>{' '}</span>
 
         {(canChangeName || canChangeTopic) && (
           <IconButton
@@ -278,20 +280,27 @@ function RoomProfile({ roomId }) {
 
   // Complete
   return (
-    <div className="room-profile">
-      <div className="room-profile__content">
-        {!canChangeAvatar && <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />}
-        {canChangeAvatar && (
-          <ImageUpload
-            text={roomName}
-            bgColor={colorMXID(roomId)}
-            imageSrc={avatarSrc}
-            onUpload={handleAvatarUpload}
-            onRequestRemove={() => handleAvatarUpload(null)}
-          />
-        )}
-        {!isEditing && renderNameAndTopic()}
-        {isEditing && renderEditNameAndTopic()}
+    <div className="p-3">
+      <div className="row">
+
+        <div className='col-md-1 p-0'>
+          {!canChangeAvatar && <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />}
+          {canChangeAvatar && (
+            <ImageUpload
+              text={roomName}
+              bgColor={colorMXID(roomId)}
+              imageSrc={avatarSrc}
+              onUpload={handleAvatarUpload}
+              onRequestRemove={() => handleAvatarUpload(null)}
+            />
+          )}
+        </div>
+
+        <div className='col-md-11 p-0'>
+          {!isEditing && renderNameAndTopic()}
+          {isEditing && renderEditNameAndTopic()}
+        </div>
+
       </div>
     </div>
   );

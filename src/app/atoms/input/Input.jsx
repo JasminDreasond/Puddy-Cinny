@@ -7,7 +7,7 @@ function Input({
   id, label, name, value, placeholder,
   required, type, onChange, forwardRef,
   resizable, minHeight, onResize, state,
-  onKeyDown, disabled, autoFocus,
+  onKeyDown, disabled, autoFocus, className
 }) {
   return (
     <div>
@@ -21,7 +21,7 @@ function Input({
             style={{ minHeight: `${minHeight}px` }}
             name={name}
             id={id}
-            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}`}
+            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}${typeof className === 'string' ? ` ${className}` : ''}`}
             ref={forwardRef}
             type={type}
             placeholder={placeholder}
@@ -40,7 +40,7 @@ function Input({
             ref={forwardRef}
             id={id}
             name={name}
-            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}`}
+            className={`form-control ${state !== 'normal' ? ` form-control-${state}` : 'form-control-bg'}${typeof className === 'string' ? ` ${className}` : ''}`}
             type={type}
             placeholder={placeholder}
             required={required}
@@ -59,6 +59,7 @@ function Input({
 }
 
 Input.defaultProps = {
+  className: null,
   id: null,
   name: '',
   label: '',
@@ -78,6 +79,7 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  className: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,

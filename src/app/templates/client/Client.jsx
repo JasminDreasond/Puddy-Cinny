@@ -166,7 +166,7 @@ function Client() {
       <div className="navigation-wrapper" ref={navWrapperRef}>
         <Navigation />
       </div>
-      <div className={`room__wrapper ${classNameHidden}`} ref={roomWrapperRef}>
+      <div className={`room-wrapper ${classNameHidden}`} ref={roomWrapperRef}>
         <Room />
       </div>
       <Windows />
