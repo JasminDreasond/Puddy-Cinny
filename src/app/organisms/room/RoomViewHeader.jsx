@@ -59,6 +59,7 @@ function RoomViewHeader({ roomId }) {
 
         <li className="nav-item back-navigation">
           <IconButton
+            className="nav-link"
             fa="fa-solid fa-chevron-left"
             tooltip="Return to navigation"
             onClick={() => openNavigation()}
