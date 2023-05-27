@@ -60,9 +60,20 @@
   .navigation-mode .room-wrapper {
     display: none;
   }
+
+  .room-view > .navbar {
+    background-color: var(--bg-surface-low);
+  }
+
+  .room-view--dropped > .navbar {
+    top: 2px;
+  }
 }
 
 @media (min-width: 768px) {
+  .room-view > .navbar {
+    background-color: var(--bg-surface);
+  }
   .back-navigation {
     display: none;
   }
