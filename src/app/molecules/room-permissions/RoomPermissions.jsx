@@ -219,13 +219,14 @@ function RoomPermissions({ roomId }) {
 
   const permsGroups = room.isSpaceRoom() ? spacePermsGroups : roomPermsGroups;
   return (
-    <div className="room-permissions">
-      {
-        Object.keys(permsGroups).map((groupKey) => {
-          const groupedPermKeys = permsGroups[groupKey];
-          return (
-            <div className="room-permissions__card noselect" key={groupKey}>
-              <MenuHeader>{groupKey}</MenuHeader>
+    <div className="card noselect mb-3">
+      <ul className="list-group list-group-flush">
+        {
+          Object.keys(permsGroups).map((groupKey) => {
+            const groupedPermKeys = permsGroups[groupKey];
+            return (<>
+
+              <li className="list-group-item very-small text-gray">{groupKey}</li>
               {
                 groupedPermKeys.map((permKey) => {
                   const permInfo = permissionsInfo[permKey];
@@ -265,10 +266,11 @@ function RoomPermissions({ roomId }) {
                   );
                 })
               }
-            </div>
-          );
-        })
-      }
+
+            </>);
+          })
+        }
+      </ul>
     </div>
   );
 }
