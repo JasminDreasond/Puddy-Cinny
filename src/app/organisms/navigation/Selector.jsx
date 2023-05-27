@@ -64,16 +64,21 @@ function Selector({
   // Options
   const openOptions = (e) => {
 
+    // Get Cords
+    const cords = getEventCords(e, '.room-selector');
+
+    // Mobile Screen - Viewport
+    if (window.matchMedia('screen and (max-width: 768px)').matches) {
+      cords.x -= 290;
+    }
+
     e.preventDefault();
     openReusableContextMenu(
-
       'right',
-
-      getEventCords(e, '.room-selector'),
+      cords,
       room.isSpaceRoom()
         ? (closeMenu) => <SpaceOptions roomId={roomId} afterOptionSelect={closeMenu} />
         : (closeMenu) => <RoomOptions roomId={roomId} afterOptionSelect={closeMenu} />,
-
     );
 
   };
