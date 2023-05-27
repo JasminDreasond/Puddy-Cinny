@@ -4,7 +4,6 @@ import './RoomEncryption.scss';
 
 import initMatrix from '../../../client/initMatrix';
 
-import Text from '../../atoms/text/Text';
 import Toggle from '../../atoms/button/Toggle';
 import SettingTile from '../setting-tile/SettingTile';
 
@@ -43,6 +42,7 @@ function RoomEncryption({ roomId }) {
         )}
         options={(
           <Toggle
+            className='d-inline-flex'
             isActive={isEncrypted}
             onToggle={handleEncryptionEnable}
             disabled={isEncrypted || !canEnableEncryption}

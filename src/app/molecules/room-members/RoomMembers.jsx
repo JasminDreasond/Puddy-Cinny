@@ -2,7 +2,6 @@ import React, {
   useState, useEffect, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
-import './RoomMembers.scss';
 
 import initMatrix from '../../../client/initMatrix';
 import colorMXID from '../../../util/colorMXID';
@@ -14,7 +13,6 @@ import { memberByAtoZ, memberByPowerLevel } from '../../../util/sort';
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SegmentedControls from '../../atoms/segmented-controls/SegmentedControls';
 import PeopleSelector from '../people-selector/PeopleSelector';
 
@@ -123,57 +121,67 @@ function RoomMembers({ roomId }) {
 
   const mList = searchMembers ? searchMembers.data : members.slice(0, itemCount);
   return (
-    <div className="room-members noselect">
-      <MenuHeader>Search member</MenuHeader>
-      <Input
-        onChange={handleSearch}
-        placeholder="Search for name"
-        autoFocus
-      />
-      <div className="room-members__header">
-        <MenuHeader>{`${searchMembers ? `Found — ${mList.length}` : members.length} members`}</MenuHeader>
-        <SegmentedControls
-          selected={
-            (() => {
-              const getSegmentIndex = { join: 0, invite: 1, ban: 2 };
-              return getSegmentIndex[membership];
-            })()
-          }
-          segments={[{ text: 'Joined' }, { text: 'Invited' }, { text: 'Banned' }]}
-          onSelect={(index) => {
-            const memberships = ['join', 'invite', 'ban'];
-            setMembership(memberships[index]);
-          }}
-        />
-      </div>
-      <div className="room-members__list">
-        {mList.map((member) => (
-          <PeopleSelector
-            key={member.userId}
-            onClick={() => openProfileViewer(member.userId, roomId)}
-            avatarSrc={member.avatarSrc}
-            name={member.name}
-            color={colorMXID(member.userId)}
-            peopleRole={member.peopleRole}
+    <div className="card noselect">
+      <ul className="list-group list-group-flush">
+
+        <li className="list-group-item very-small text-gray">Search member</li>
+
+        <li className="list-group-item ">
+          <Input
+            onChange={handleSearch}
+            placeholder="Search for name"
+            autoFocus
           />
-        ))}
-        {
-          (searchMembers?.data.length === 0 || members.length === 0)
-          && (
-            <div className="room-members__status">
-              <Text variant="b2">
-                {searchMembers ? `No results found for "${searchMembers.term}"` : 'No members to display'}
-              </Text>
-            </div>
-          )
-        }
-        {
-          mList.length !== 0
-          && members.length > itemCount
-          && searchMembers === null
-          && <Button onClick={loadMorePeople}>View more</Button>
-        }
-      </div>
+        </li>
+
+        <li className="list-group-item very-small text-gray">{`${searchMembers ? `Found — ${mList.length}` : members.length} members`}</li>
+
+        <li className="list-group-item">
+          <SegmentedControls
+            selected={
+              (() => {
+                const getSegmentIndex = { join: 0, invite: 1, ban: 2 };
+                return getSegmentIndex[membership];
+              })()
+            }
+            segments={[{ text: 'Joined' }, { text: 'Invited' }, { text: 'Banned' }]}
+            onSelect={(index) => {
+              const memberships = ['join', 'invite', 'ban'];
+              setMembership(memberships[index]);
+            }}
+          />
+        </li>
+
+        <div>
+          {mList.map((member) => (
+            <PeopleSelector
+              key={member.userId}
+              onClick={() => openProfileViewer(member.userId, roomId)}
+              avatarSrc={member.avatarSrc}
+              name={member.name}
+              color={colorMXID(member.userId)}
+              peopleRole={member.peopleRole}
+            />
+          ))}
+          {
+            (searchMembers?.data.length === 0 || members.length === 0)
+            && (
+              <div className="room-members__status">
+                <Text variant="b2">
+                  {searchMembers ? `No results found for "${searchMembers.term}"` : 'No members to display'}
+                </Text>
+              </div>
+            )
+          }
+          {
+            mList.length !== 0
+            && members.length > itemCount
+            && searchMembers === null
+            && <center className='m-3'><Button onClick={loadMorePeople}>View more</Button></center>
+          }
+        </div>
+
+      </ul>
     </div>
   );
 }

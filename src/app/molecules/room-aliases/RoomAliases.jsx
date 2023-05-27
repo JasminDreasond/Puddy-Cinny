@@ -12,7 +12,6 @@ import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import Checkbox from '../../atoms/button/Checkbox';
 import Toggle from '../../atoms/button/Toggle';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SettingTile from '../setting-tile/SettingTile';
 
 import { useStore } from '../../hooks/useStore';
@@ -297,6 +296,7 @@ function RoomAliases({ roomId }) {
         content={<div className="very-small text-gray">{`Publish this ${room.isSpaceRoom() ? 'space' : 'room'} to the ${hsString}'s public room directory?`}</div>}
         options={(
           <Toggle
+            className='d-inline-flex'
             isActive={isPublic}
             onToggle={toggleDirectoryVisibility}
             disabled={!canPublishAlias}
