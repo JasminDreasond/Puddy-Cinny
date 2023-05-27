@@ -44,7 +44,7 @@ TabItem.propTypes = {
   disabled: PropTypes.bool,
 };
 
-function Tabs({ items, defaultSelected, onSelect }) {
+function Tabs({ items, defaultSelected, onSelect, className }) {
   const [selectedItem, setSelectedItem] = useState(items[defaultSelected]);
 
   const handleTabSelection = (item, index) => {
@@ -54,7 +54,7 @@ function Tabs({ items, defaultSelected, onSelect }) {
   };
 
   return (
-    <div className="table-responsive hide-scrollbar">
+    <div className={`table-responsive hide-scrollbar ${className}`}>
       <table className="table border-0 m-0">
         <tbody>
           <tr>
@@ -91,6 +91,7 @@ Tabs.propTypes = {
     }),
   ).isRequired,
   defaultSelected: PropTypes.number,
+  className: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
 };
 

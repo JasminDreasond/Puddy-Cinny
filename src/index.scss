@@ -646,6 +646,10 @@ audio:not([controls]) {
   background-color: var(--bg-surface-low);
 }
 
+.freedom-text {
+  white-space: pre;
+}
+
 .bg-bg2 {
   background-color: var(--bg-surface-low) !important;
 }

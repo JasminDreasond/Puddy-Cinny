@@ -188,11 +188,12 @@ function RoomSettings({ roomId }) {
 
       <RoomProfile roomId={roomId} />
       <Tabs
+        className='px-3'
         items={tabItems}
         defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
         onSelect={handleTabChange}
       />
-      <div className="room-settings__cards-wrapper">
+      <div className="border-top border-bg px-3">
         {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
         {selectedTab.text === tabText.SEARCH && <RoomSearch roomId={roomId} />}
         {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}

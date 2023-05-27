@@ -273,7 +273,7 @@ function RoomProfile({ roomId }) {
       </div>
 
       <div className="very-small text-gray">{room.getCanonicalAlias() || room.roomId}</div>
-      {roomTopic && <Text variant="b2">{twemojify(roomTopic, undefined, true)}</Text>}
+      {roomTopic && <div className="very-small freedom-text">{twemojify(roomTopic, undefined, true)}</div>}
 
     </div>
   );

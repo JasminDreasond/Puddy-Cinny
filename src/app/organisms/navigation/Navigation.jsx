@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <div className="sidebar">
       <div className='sidebar-1'><SideBar /></div>
-      <div className='sidebar-2'><Drawer /></div>
+      <div className='sidebar-2 border-end border-bg'><Drawer /></div>
     </div>
   );
 }
