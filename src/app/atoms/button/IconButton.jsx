@@ -11,6 +11,7 @@ const IconButton = React.forwardRef(({
   tooltip, tooltipPlacement, src,
   onClick, tabIndex, disabled, isImage,
   className, customColor,
+  style
 }, ref) => {
 
   let textColor = variant;
@@ -28,6 +29,7 @@ const IconButton = React.forwardRef(({
 
   const btn = (
     <button
+      style={style}
       ref={ref}
       className={`btn ic-btn ic-btn-${variant} btn-link btn-bg ${textColor} ${className}`}
       onClick={onClick}
@@ -69,6 +71,7 @@ IconButton.defaultProps = {
 };
 
 IconButton.propTypes = {
+  style: PropTypes.object,
   customColor: PropTypes.string,
   variant: PropTypes.oneOf(bsColorsArray),
   size: PropTypes.oneOf(['normal', 'small', 'extra-small']),

@@ -126,7 +126,7 @@ function PeopleDrawer({ roomId }) {
 
         <ul className='navbar-nav mr-auto pb-1'>
 
-          <li className="nav-item">
+          <li className="nav-item ps-2">
             People
             <div className="very-small text-gray">{`${room.getJoinedMemberCount()} members`}</div>
           </li>
@@ -140,75 +140,84 @@ function PeopleDrawer({ roomId }) {
         </ul>
 
       </Header>
+
       <div className="people-drawer__content-wrapper">
-        <div className="people-drawer__scrollable">
-          <ScrollView autoHide>
-            <div className="people-drawer__content">
-              <SegmentedControl
-                selected={
-                  (() => {
-                    const getSegmentIndex = {
-                      join: 0,
-                      invite: 1,
-                      ban: 2,
-                    };
-                    return getSegmentIndex[membership];
-                  })()
-                }
-                segments={[{ text: 'Joined' }, { text: 'Invited' }, { text: 'Banned' }]}
-                onSelect={(index) => {
-                  const selectSegment = [
-                    () => setMembership('join'),
-                    () => setMembership('invite'),
-                    () => setMembership('ban'),
-                  ];
-                  selectSegment[index]?.();
-                }}
+
+        <center className='p-3 w-100' style={{
+          'height': '100%',
+          'overflowY': 'auto'
+        }}>
+
+          <SegmentedControl
+            className='pb-3'
+            selected={
+              (() => {
+                const getSegmentIndex = {
+                  join: 0,
+                  invite: 1,
+                  ban: 2,
+                };
+                return getSegmentIndex[membership];
+              })()
+            }
+            segments={[{ text: 'Joined' }, { text: 'Invited' }, { text: 'Banned' }]}
+            onSelect={(index) => {
+              const selectSegment = [
+                () => setMembership('join'),
+                () => setMembership('invite'),
+                () => setMembership('ban'),
+              ];
+              selectSegment[index]?.();
+            }}
+          />
+
+          {
+            mList.map((member) => (
+              <PeopleSelector
+                key={member.userId}
+                onClick={() => openProfileViewer(member.userId, roomId)}
+                avatarSrc={member.avatarSrc}
+                name={member.name}
+                color={colorMXID(member.userId)}
+                peopleRole={member.peopleRole}
               />
-              {
-                mList.map((member) => (
-                  <PeopleSelector
-                    key={member.userId}
-                    onClick={() => openProfileViewer(member.userId, roomId)}
-                    avatarSrc={member.avatarSrc}
-                    name={member.name}
-                    color={colorMXID(member.userId)}
-                    peopleRole={member.peopleRole}
-                  />
-                ))
-              }
-              {
-                (searchedMembers?.data.length === 0 || memberList.length === 0)
-                && (
-                  <div className="people-drawer__noresult">
-                    <Text variant="b2">No results found!</Text>
-                  </div>
-                )
-              }
-              <div className="people-drawer__load-more">
-                {
-                  mList.length !== 0
-                  && memberList.length > itemCount
-                  && searchedMembers === null
-                  && (
-                    <Button onClick={loadMorePeople}>View more</Button>
-                  )
-                }
+            ))
+          }
+
+          {
+            (searchedMembers?.data.length === 0 || memberList.length === 0)
+            && (
+              <div className="people-drawer__noresult">
+                <Text variant="b2">No results found!</Text>
               </div>
-            </div>
-          </ScrollView>
-        </div>
-        <div className="people-drawer__sticky">
+            )
+          }
+
+          <div className="people-drawer__load-more">
+            {
+              mList.length !== 0
+              && memberList.length > itemCount
+              && searchedMembers === null
+              && (
+                <Button onClick={loadMorePeople}>View more</Button>
+              )
+            }
+          </div>
+
+        </center>
+
+        <div className="pt-1">
           <form onSubmit={(e) => e.preventDefault()} className="people-search">
-            <RawIcon size="small" fa="fa-solid fa-magnifying-glass" />
             <Input forwardRef={searchRef} type="text" onChange={handleSearch} placeholder="Search" required />
             {
               searchedMembers !== null
-              && <IconButton onClick={handleSearch} size="small" fa="fa-solid fa-xmark" />
+              && <center><IconButton onClick={handleSearch} size="small" fa="fa-solid fa-xmark" /></center>
             }
           </form>
         </div>
+
       </div>
+
     </div>
   );
 }

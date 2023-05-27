@@ -8,7 +8,7 @@ import Text from '../text/Text';
 import RawIcon from '../system-icons/RawIcon';
 
 function SegmentedControls({
-  selected, segments, onSelect,
+  selected, segments, onSelect, className
 }) {
   const [select, setSelect] = useState(selected);
 
@@ -22,7 +22,7 @@ function SegmentedControls({
   }, [selected]);
 
   return (
-    <div className="btn-group noselect" role="group">
+    <div className={`btn-group noselect ${className}`} role="group">
       {
         segments.map((segment, index) => (
           <button
@@ -41,6 +41,7 @@ function SegmentedControls({
 }
 
 SegmentedControls.propTypes = {
+  className: PropTypes.string,
   selected: PropTypes.number.isRequired,
   segments: PropTypes.arrayOf(PropTypes.shape({
     iconSrc: PropTypes.string,
