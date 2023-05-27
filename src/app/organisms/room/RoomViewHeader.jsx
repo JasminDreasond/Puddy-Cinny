@@ -55,7 +55,7 @@ function RoomViewHeader({ roomId }) {
   return (
     <Header>
 
-      <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
+      <ul className='navbar-nav mr-auto'>
 
         <li className="nav-item back-navigation">
           <IconButton
@@ -79,7 +79,7 @@ function RoomViewHeader({ roomId }) {
 
       </ul>
 
-      <ul className='navbar-nav ms-auto mb-2 mb-lg-0 small'>
+      <ul className='navbar-nav ms-auto mb-0 small'>
 
         {mx.isRoomEncrypted(roomId) === false && (
           <li className="nav-item">

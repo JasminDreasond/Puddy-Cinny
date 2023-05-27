@@ -188,7 +188,7 @@ function RoomSettings({ roomId }) {
     <ScrollView autoHide>
 
       <Header>
-        <ul className='navbar-nav mr-auto mt-2 mt-lg-0 pt-2 pb-1'>
+        <ul className='navbar-nav mr-auto mt-0 pt-2'>
 
           <button
             className="nav-link btn btn-bg border-0 p-1"
