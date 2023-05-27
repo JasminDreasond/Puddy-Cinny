@@ -22,7 +22,7 @@ function RoomTile({
           text={name}
         />
       </div>
-      <div className="room-tile__content">
+      <div className="room-tile__content emoji-size-fix">
         <Text variant="s1">{twemojify(name)}</Text>
         <div className="very-small text-gray">
           {
@@ -33,7 +33,7 @@ function RoomTile({
         </div>
         {
           desc !== null && (typeof desc === 'string')
-            ? <Text className="room-tile__content__desc" variant="b2">{twemojify(desc, undefined, true)}</Text>
+            ? <Text className="room-tile__content__desc emoji-size-fix" variant="b2">{twemojify(desc, undefined, true)}</Text>
             : desc
         }
       </div>
