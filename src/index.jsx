@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './font';
 import 'highlight.js/styles/github.css';
+import './default.scss';
 import './index.scss';
 
 import settings from './client/state/settings';
