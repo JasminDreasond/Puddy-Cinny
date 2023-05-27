@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function Header({ children }) {
   return (
-    <div className="noselect">
+    <nav className="navbar navbar-expand-lg navbar-nav navbar-dark p-0 w-100 d-block noselect border-bottom border-bg emoji-size-fix">
       {children}
-    </div>
+    </nav>
   );
 }
 
@@ -13,12 +13,4 @@ Header.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-function TitleWrapper({ children }) {
-  return children;
-}
-
-TitleWrapper.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export { Header as default, TitleWrapper };
+export { Header };

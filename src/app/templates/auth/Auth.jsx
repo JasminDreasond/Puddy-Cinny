@@ -16,7 +16,7 @@ import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import Spinner from '../../atoms/spinner/Spinner';
 import ScrollView from '../../atoms/scroll/ScrollView';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
+import { Header } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import ContextMenu, { MenuItem, MenuHeader } from '../../atoms/context-menu/ContextMenu';
 
@@ -559,9 +559,7 @@ function Auth() {
             <div className="auth-card">
               <Header>
                 <Avatar size="extra-small" imageSrc="./public/favicon.ico" />
-                <TitleWrapper>
-                  <Text variant="h2" weight="medium">Pony House</Text>
-                </TitleWrapper>
+                <Text variant="h2" weight="medium">Pony House</Text>
               </Header>
               <div className="auth-card__content">
                 <AuthCard />

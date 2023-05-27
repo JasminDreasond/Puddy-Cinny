@@ -33,7 +33,7 @@ function TimelineChange({
   }
 
   return (
-    <button style={{ cursor: onClick === null ? 'default' : 'pointer' }} onClick={onClick} type="button" className="timeline-change">
+    <button style={{ cursor: onClick === null ? 'default' : 'pointer' }} onClick={onClick} type="button" className="timeline-change emoji-size-fix">
       <div className="timeline-change__avatar-container">
         <RawIcon fa={faSrc} size="extra-small" />
       </div>

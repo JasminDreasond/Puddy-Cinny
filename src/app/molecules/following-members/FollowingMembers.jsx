@@ -38,7 +38,7 @@ function FollowingMembers({ roomTimeline }) {
 
   return filteredM.length !== 0 && (
     <button
-      className="following-members"
+      className="following-members emoji-size-fix"
       onClick={() => openReadReceipts(roomId, followingMembers)}
       type="button"
     >

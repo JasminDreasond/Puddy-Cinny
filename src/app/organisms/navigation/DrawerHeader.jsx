@@ -15,7 +15,7 @@ import { blurOnBubbling } from '../../atoms/button/script';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
+import { Header } from '../../atoms/header/Header';
 import IconButton from '../../atoms/button/IconButton';
 import { MenuItem, MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
@@ -137,15 +137,11 @@ function DrawerHeader({ selectedTab, spaceId }) {
           type="button"
           onMouseUp={(e) => blurOnBubbling(e, '.drawer-header__btn')}
         >
-          <TitleWrapper>
-            <Text variant="s1" weight="medium" primary>{twemojify(spaceName)}</Text>
-          </TitleWrapper>
+          <Text variant="s1" weight="medium" primary>{twemojify(spaceName)}</Text>
           <RawIcon size="small" fa="fa-solid fa-chevron-down" />
         </button>
       ) : (
-        <TitleWrapper>
-          <Text variant="s1" weight="medium" primary>{tabName}</Text>
-        </TitleWrapper>
+        <Text variant="s1" weight="medium" primary>{tabName}</Text>
       )}
 
       {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" fa="fa-solid fa-plus" size="small" />}

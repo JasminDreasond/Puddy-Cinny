@@ -11,7 +11,7 @@ import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
 const Avatar = React.forwardRef(({
-  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size,
+  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className
 }, ref) => {
   let textSize = 's1';
   if (size === 'large') textSize = 'h1';
@@ -19,7 +19,7 @@ const Avatar = React.forwardRef(({
   if (size === 'extra-small') textSize = 'b3';
 
   return (
-    <div ref={ref} className={`avatar-container avatar-container__${size} noselect`}>
+    <div ref={ref} className={`avatar-container avatar-container__${size} ${className} noselect`}>
       {
         // eslint-disable-next-line no-nested-ternary
         imageSrc !== null
@@ -66,6 +66,7 @@ const Avatar = React.forwardRef(({
 
 Avatar.defaultProps = {
   text: null,
+  className: '',
   bgColor: 'transparent',
   iconSrc: null,
   faSrc: null,
@@ -77,6 +78,7 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
   text: PropTypes.string,
   bgColor: PropTypes.string,
+  className: PropTypes.string,
   iconSrc: PropTypes.string,
   faSrc: PropTypes.string,
   iconColor: PropTypes.string,

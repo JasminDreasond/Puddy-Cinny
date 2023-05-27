@@ -235,7 +235,7 @@ function RoomProfile({ roomId }) {
 
   // Render Panel
   const renderNameAndTopic = () => (
-    <div className="room-profile__display" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
+    <div className="room-profile__display emoji-size-fix" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
 
       <div>
 

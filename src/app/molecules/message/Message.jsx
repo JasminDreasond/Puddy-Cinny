@@ -102,11 +102,11 @@ MessageHeader.propTypes = {
 // Message Reply
 function MessageReply({ name, color, body }) {
   return (
-    <div className="message__reply">
+    <div className="message__reply emoji-size-fix">
       <Text variant="b2">
         <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
         {' '}
-        <span className="username-title" style={{ color }}>{twemojify(name)}</span>
+        <span className="username-title emoji-size-fix" style={{ color }}>{twemojify(name)}</span>
         {' '}
         {twemojify(body)}
       </Text>

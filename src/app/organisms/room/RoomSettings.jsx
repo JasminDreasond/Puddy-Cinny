@@ -12,7 +12,7 @@ import * as roomActions from '../../../client/action/room';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
+import { Header } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import Tabs from '../../atoms/tabs/Tabs';
 import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
@@ -176,12 +176,10 @@ function RoomSettings({ roomId }) {
               type="button"
               onMouseUp={(e) => blurOnBubbling(e, '.room-settings__header-btn')}
             >
-              <TitleWrapper>
-                <Text variant="s1" weight="medium" primary>
-                  {`${room.name}`}
-                  <span style={{ color: 'var(--tc-surface-low)' }}> — room settings</span>
-                </Text>
-              </TitleWrapper>
+              <Text variant="s1" weight="medium" primary>
+                {`${room.name}`}
+                <span style={{ color: 'var(--tc-surface-low)' }}> — room settings</span>
+              </Text>
               <RawIcon size="small" fa="fa-solid fa-chevron-up" />
             </button>
           </Header>

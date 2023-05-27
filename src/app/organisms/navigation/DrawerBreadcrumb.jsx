@@ -90,7 +90,7 @@ function DrawerBreadcrumb({ spaceId }) {
   return (
     <div className="drawer-breadcrumb__wrapper">
       <ScrollView ref={scrollRef} horizontal vertical={false} invisible>
-        <div className="drawer-breadcrumb">
+        <div className="drawer-breadcrumb emoji-size-fix">
           {
             spacePath.map((id, index) => {
               const noti = (id !== cons.tabs.HOME && index < spacePath.length)

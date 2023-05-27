@@ -567,7 +567,7 @@ audio:not([controls]) {
 //@import 'bootstrap/scss/dropdown';
 @import 'bootstrap/scss/button-group';
 @import 'bootstrap/scss/nav';
-//@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/card';
 //@import 'bootstrap/scss/accordion';
 //@import 'bootstrap/scss/breadcrumb';
@@ -760,4 +760,16 @@ a {
   background-color: var(--bg-surface-low);
 
   display: flex;
+}
+
+/* Fix Emoji Size */
+.emoji-size-fix img {
+  max-height: 21px !important;
+}
+
+.btn > span.ic-base {
+  position: relative;
+  top: 4px;
+  right: 4px;
+  margin-right: 0px !important;
 }

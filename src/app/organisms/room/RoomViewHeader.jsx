@@ -1,15 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './RoomViewHeader.scss';
+
 
 import { twemojify } from '../../../util/twemojify';
-import { blurOnBubbling } from '../../atoms/button/script';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
-import navigation from '../../../client/state/navigation';
-import { toggleRoomSettings, openReusableContextMenu, openNavigation } from '../../../client/action/navigation';
-import { togglePeopleDrawer, startVoiceChat } from '../../../client/action/settings';
+import { toggleRoomSettings, openReusableContextMenu } from '../../../client/action/navigation';
+import { togglePeopleDrawer /* , startVoiceChat */ } from '../../../client/action/settings';
 import colorMXID from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
 
@@ -17,7 +15,7 @@ import { tabText } from './RoomSettings';
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
+import { Header } from '../../atoms/header/Header';
 import Avatar from '../../atoms/avatar/Avatar';
 import RoomOptions from '../../molecules/room-options/RoomOptions';
 
@@ -31,20 +29,6 @@ function RoomViewHeader({ roomId }) {
   let avatarSrc = room.getAvatarUrl(mx.baseUrl, 36, 36, 'crop');
   avatarSrc = isDM ? room.getAvatarFallbackMember()?.getAvatarUrl(mx.baseUrl, 36, 36, 'crop') : avatarSrc;
   const roomName = room.name;
-
-  const roomHeaderBtnRef = useRef(null);
-  useEffect(() => {
-    const settingsToggle = (isVisibile) => {
-      const rawIcon = roomHeaderBtnRef.current.lastElementChild;
-      rawIcon.style.transform = isVisibile
-        ? 'rotateX(180deg)'
-        : 'rotateX(0deg)';
-    };
-    navigation.on(cons.events.navigation.ROOM_SETTINGS_TOGGLED, settingsToggle);
-    return () => {
-      navigation.removeListener(cons.events.navigation.ROOM_SETTINGS_TOGGLED, settingsToggle);
-    };
-  }, []);
 
   useEffect(() => {
     const { roomList } = initMatrix;
@@ -71,25 +55,22 @@ function RoomViewHeader({ roomId }) {
 
   return (
     <Header>
-      <IconButton
-        fa="fa-solid fa-chevron-left"
-        className="room-header__back-btn"
-        tooltip="Return to navigation"
-        onClick={() => openNavigation()}
-      />
-      <button
-        ref={roomHeaderBtnRef}
-        className="room-header__btn"
-        onClick={() => toggleRoomSettings()}
-        type="button"
-        onMouseUp={(e) => blurOnBubbling(e, '.room-header__btn')}
-      >
-        <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="small" />
-        <TitleWrapper>
-          <Text variant="h2" weight="medium" primary>{twemojify(roomName)}</Text>
-        </TitleWrapper>
-        <RawIcon fa="fa-solid fa-chevron-down" />
-      </button>
+      <ul className='navbar-nav mr-auto mt-2 mt-lg-0 small'>
+        <button
+          className="nav-link btn btn-bg border-0"
+          onClick={() => toggleRoomSettings()}
+          type="button"
+        >
+          <Avatar className='m-0' imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="small" />
+          {twemojify(roomName)}
+          <RawIcon fa="fa-solid fa-chevron-down" />
+        </button>
+      </ul>
+      <ul className='navbar-nav ms-auto mb-2 mb-lg-0 small'>
+
+      </ul>
+
+
       {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
 
       <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />

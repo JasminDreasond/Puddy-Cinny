@@ -12,7 +12,7 @@ import AsyncSearch from '../../../util/AsyncSearch';
 import { memberByAtoZ, memberByPowerLevel } from '../../../util/sort';
 
 import Text from '../../atoms/text/Text';
-import Header, { TitleWrapper } from '../../atoms/header/Header';
+import { Header } from '../../atoms/header/Header';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
@@ -123,12 +123,10 @@ function PeopleDrawer({ roomId }) {
   return (
     <div className="people-drawer">
       <Header>
-        <TitleWrapper>
-          <Text variant="s1" primary>
-            People
-            <Text className="people-drawer__member-count" variant="b3">{`${room.getJoinedMemberCount()} members`}</Text>
-          </Text>
-        </TitleWrapper>
+        <Text variant="s1" primary>
+          People
+          <Text className="people-drawer__member-count" variant="b3">{`${room.getJoinedMemberCount()} members`}</Text>
+        </Text>
         <IconButton onClick={() => openInviteUser(roomId)} tooltip="Invite" fa="fa-solid fa-user-plus" disabled={!canInvite} />
       </Header>
       <div className="people-drawer__content-wrapper">

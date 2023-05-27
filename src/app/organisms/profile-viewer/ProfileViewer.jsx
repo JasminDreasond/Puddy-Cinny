@@ -398,7 +398,7 @@ function ProfileViewer() {
       <div className="profile-viewer">
         <div className="profile-viewer__user">
           <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
-          <div className="profile-viewer__user__info">
+          <div className="profile-viewer__user__info emoji-size-fix">
             <Text variant="s1" weight="medium">{twemojify(username)}</Text>
             <Text variant="b2">{twemojify(userId)}</Text>
           </div>
