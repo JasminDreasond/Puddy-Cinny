@@ -263,7 +263,8 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
   const images = [...pack.images].slice(0, viewMore ? pack.images.size : 2);
 
   return (
-    <div className="image-pack">
+    <li className="list-group-item image-pack">
+
       <ImagePackProfile
         avatarUrl={pack.avatarUrl ? mx.mxcUrlToHttp(pack.avatarUrl, 42, 42, 'crop') : null}
         displayName={pack.displayName ?? 'Unknown'}
@@ -276,6 +277,7 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
       {canChange && (
         <ImagePackUpload onUpload={handleAddItem} />
       )}
+
       {images.length === 0 ? null : (
         <div>
           <div className="image-pack__header">
@@ -296,6 +298,7 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
           ))}
         </div>
       )}
+
       {(pack.images.size > 2 || handlePackDelete) && (
         <div className="image-pack__footer">
           {pack.images.size > 2 && (
@@ -310,6 +313,7 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
           {handlePackDelete && <Button variant="danger" onClick={handleDeletePack}>Delete Pack</Button>}
         </div>
       )}
+
       <div className="image-pack__global">
         <Checkbox variant="success" onToggle={handleGlobalChange} isActive={isGlobal} />
         <div>
@@ -317,7 +321,8 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
           <div className="very-small text-gray">Add this pack to your account to use in all rooms.</div>
         </div>
       </div>
-    </div>
+
+    </li>
   );
 }
 

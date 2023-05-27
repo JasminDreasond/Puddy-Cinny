@@ -76,7 +76,7 @@ function MenuItem({
   onClick, children, disabled, className
 }) {
   return (
-    <li className="list-group-item very-small text-gray w-100">
+    <li className="list-group-item very-small text-gray w-100 p-0">
       <Button
         className={`${className} w-100 p-2 px-4`}
         variant={variant}
