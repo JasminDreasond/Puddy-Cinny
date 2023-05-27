@@ -269,3 +269,8 @@ a {
   user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
 }
+
+.message .avatar-container img {
+  height: 36px !important;
+  width: 36px !important;
+}

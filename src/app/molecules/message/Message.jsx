@@ -60,7 +60,7 @@ const MessageAvatar = React.memo(({
 }) => (
   <div className="message__avatar-container">
     <button type="button" onClick={() => openProfileViewer(userId, roomId)}>
-      <Avatar imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} size="small" />
+      <Avatar imgClass='' imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} size="small" />
     </button>
   </div>
 ));

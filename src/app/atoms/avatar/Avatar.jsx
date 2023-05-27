@@ -11,7 +11,7 @@ import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
 const Avatar = React.forwardRef(({
-  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className
+  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass
 }, ref) => {
   let textSize = 's1';
   if (size === 'large') textSize = 'h1';
@@ -25,7 +25,7 @@ const Avatar = React.forwardRef(({
         imageSrc !== null
           ? (
             <img
-              className='img-fluid'
+              className={imgClass}
               draggable="false"
               src={imageSrc}
               onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
@@ -65,6 +65,7 @@ const Avatar = React.forwardRef(({
 });
 
 Avatar.defaultProps = {
+  imgClass: 'img-fluid',
   text: null,
   className: '',
   bgColor: 'transparent',
@@ -77,6 +78,7 @@ Avatar.defaultProps = {
 
 Avatar.propTypes = {
   text: PropTypes.string,
+  imgClass: PropTypes.string,
   bgColor: PropTypes.string,
   className: PropTypes.string,
   iconSrc: PropTypes.string,
