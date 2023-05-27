@@ -55,7 +55,9 @@ function RoomViewHeader({ roomId }) {
 
   return (
     <Header>
+
       <ul className='navbar-nav mr-auto mt-2 mt-lg-0 small'>
+
         <button
           className="nav-link btn btn-bg border-0"
           onClick={() => toggleRoomSettings()}
@@ -65,21 +67,24 @@ function RoomViewHeader({ roomId }) {
           {twemojify(roomName)}
           <RawIcon fa="fa-solid fa-chevron-down" />
         </button>
+
       </ul>
+
       <ul className='navbar-nav ms-auto mb-2 mb-lg-0 small'>
 
+        {mx.isRoomEncrypted(roomId) === false && <IconButton className="nav-link btn btn-bg border-0" onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
+
+        <IconButton className="nav-link border-0" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />
+        <IconButton className="nav-link border-0" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" />
+        <IconButton
+          className="nav-link border-0"
+          onClick={openRoomOptions}
+          tooltip="Options"
+          fa="bi bi-three-dots-vertical"
+        />
+
       </ul>
 
-
-      {mx.isRoomEncrypted(roomId) === false && <IconButton onClick={() => toggleRoomSettings(tabText.SEARCH)} tooltip="Search" fa="fa-solid fa-magnifying-glass" />}
-
-      <IconButton className="room-header__drawer-btn" onClick={togglePeopleDrawer} tooltip="People" fa="fa-solid fa-user" />
-      <IconButton className="room-header__members-btn" onClick={() => toggleRoomSettings(tabText.MEMBERS)} tooltip="Members" fa="fa-solid fa-users" />
-      <IconButton
-        onClick={openRoomOptions}
-        tooltip="Options"
-        fa="bi bi-three-dots-vertical"
-      />
     </Header>
   );
 }

@@ -73,7 +73,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
   };
 
   return (
-    <div className="noselect" style={{ maxWidth: 'calc(var(--navigation-drawer-width) - var(--sp-normal))' }}>
+    <div className="noselect emoji-size-fix" style={{ maxWidth: 'calc(var(--navigation-drawer-width) - var(--sp-normal))' }}>
       <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
       <MenuItem className="text-start" faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
