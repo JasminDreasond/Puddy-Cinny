@@ -296,7 +296,7 @@ function RoomProfile({ roomId }) {
           )}
         </div>
 
-        <div className='col-md-11 p-0'>
+        <div className='col-md-11'>
           {!isEditing && renderNameAndTopic()}
           {isEditing && renderEditNameAndTopic()}
         </div>

@@ -63,54 +63,67 @@ function GeneralSettings({ roomId }) {
 
   return (
     <>
-      <div className="room-settings__card">
-        <MenuHeader>Options</MenuHeader>
-        <MenuItem
-          className='text-start'
-          onClick={() => {
-            if (isCategorized) unCategorizeSpace(roomId);
-            else categorizeSpace(roomId);
-            forceUpdate();
-          }}
-          faSrc={isCategorized ? "bi bi-grid" : "bi bi-grid-fill"}
-        >
-          {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
-        </MenuItem>
-        <MenuItem
-          className='text-start'
-          onClick={() => {
-            if (isPinned) deleteSpaceShortcut(roomId);
-            else createSpaceShortcut(roomId);
-            forceUpdate();
-          }}
-          faSrc={isPinned ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
-        >
-          {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
-        </MenuItem>
-        <MenuItem
-          className='text-start btn-text-danger'
-          onClick={async () => {
-            const isConfirmed = await confirmDialog(
-              'Leave space',
-              `Are you sure that you want to leave "${roomName}" space?`,
-              'Leave',
-              'danger',
-            );
-            if (isConfirmed) leave(roomId);
-          }}
-          faSrc="fa-solid fa-arrow-right-from-bracket"
-        >
-          Leave
-        </MenuItem>
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+
+          <MenuHeader>Options</MenuHeader>
+          <MenuItem
+            className='text-start'
+            onClick={() => {
+              if (isCategorized) unCategorizeSpace(roomId);
+              else categorizeSpace(roomId);
+              forceUpdate();
+            }}
+            faSrc={isCategorized ? "bi bi-grid" : "bi bi-grid-fill"}
+          >
+            {isCategorized ? 'Uncategorize subspaces' : 'Categorize subspaces'}
+          </MenuItem>
+
+          <MenuItem
+            className='text-start'
+            onClick={() => {
+              if (isPinned) deleteSpaceShortcut(roomId);
+              else createSpaceShortcut(roomId);
+              forceUpdate();
+            }}
+            faSrc={isPinned ? "bi bi-pin-angle-fill" : "bi bi-pin-angle"}
+          >
+            {isPinned ? 'Unpin from sidebar' : 'Pin to sidebar'}
+          </MenuItem>
+
+          <MenuItem
+            className='text-start btn-text-danger'
+            onClick={async () => {
+              const isConfirmed = await confirmDialog(
+                'Leave space',
+                `Are you sure that you want to leave "${roomName}" space?`,
+                'Leave',
+                'danger',
+              );
+              if (isConfirmed) leave(roomId);
+            }}
+            faSrc="fa-solid fa-arrow-right-from-bracket"
+          >
+            Leave
+          </MenuItem>
+
+        </ul>
       </div>
-      <div className="space-settings__card">
-        <MenuHeader>Space visibility (who can join)</MenuHeader>
-        <RoomVisibility roomId={roomId} />
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Space visibility (who can join)</li>
+          <RoomVisibility roomId={roomId} />
+        </ul>
       </div>
-      <div className="space-settings__card">
-        <MenuHeader>Space addresses</MenuHeader>
-        <RoomAliases roomId={roomId} />
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Space addresses</li>
+          <RoomAliases roomId={roomId} />
+        </ul>
       </div>
+
     </>
   );
 }
@@ -163,20 +176,21 @@ function SpaceSettings() {
       onRequestClose={requestClose}
     >
       {isOpen && (
-        <div className="space-settings__content">
+        <>
           <RoomProfile roomId={roomId} />
           <Tabs
+            className='border-bottom border-bg'
             items={tabItems}
             defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
             onSelect={handleTabChange}
           />
-          <div className="space-settings__cards-wrapper">
+          <div className="pt-3">
             {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
             {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}
             {selectedTab.text === tabText.EMOJIS && <RoomEmojis roomId={roomId} />}
             {selectedTab.text === tabText.PERMISSIONS && <RoomPermissions roomId={roomId} />}
           </div>
-        </div>
+        </>
       )}
     </PopupWindow>
   );

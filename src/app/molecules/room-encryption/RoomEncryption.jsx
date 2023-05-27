@@ -34,22 +34,20 @@ function RoomEncryption({ roomId }) {
   };
 
   return (
-    <div className="room-encryption">
-      <SettingTile
-        title="Enable room encryption"
-        content={(
-          <div className="very-small text-gray">Once enabled, encryption cannot be disabled.</div>
-        )}
-        options={(
-          <Toggle
-            className='d-inline-flex'
-            isActive={isEncrypted}
-            onToggle={handleEncryptionEnable}
-            disabled={isEncrypted || !canEnableEncryption}
-          />
-        )}
-      />
-    </div>
+    <SettingTile
+      title="Enable room encryption"
+      content={(
+        <div className="very-small text-gray">Once enabled, encryption cannot be disabled.</div>
+      )}
+      options={(
+        <Toggle
+          className='d-inline-flex'
+          isActive={isEncrypted}
+          onToggle={handleEncryptionEnable}
+          disabled={isEncrypted || !canEnableEncryption}
+        />
+      )}
+    />
   );
 }
 

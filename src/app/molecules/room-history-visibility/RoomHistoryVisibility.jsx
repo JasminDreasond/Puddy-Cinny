@@ -70,7 +70,8 @@ function RoomHistoryVisibility({ roomId }) {
   const canChange = currentState.maySendStateEvent('m.room.history_visibility', userId);
 
   return (
-    <div className="room-history-visibility">
+    <>
+
       {
         items.map((item) => {
 
@@ -85,17 +86,17 @@ function RoomHistoryVisibility({ roomId }) {
               onClick={() => setVisibility(item)}
               disabled={(!canChange)}
             >
-              <Text varient="b1">
-                <span>{item.text}</span>
-                <RadioButton isActive={activeType === item.type} />
-              </Text>
-            </MenuItem>
+              {item.text}
+              <span className='ms-4 float-end'><RadioButton isActive={activeType === item.type} /></span>
+            </MenuItem >
           );
 
         })
       }
-      <div className="very-small text-gray">Changes to history visibility will only apply to future messages. The visibility of existing history will have no effect.</div>
-    </div>
+
+      <li className="list-group-item very-small text-gray">Changes to history visibility will only apply to future messages. The visibility of existing history will have no effect.</li>
+
+    </>
   );
 }
 

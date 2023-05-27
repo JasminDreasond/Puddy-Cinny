@@ -137,13 +137,17 @@ GeneralSettings.propTypes = {
 function SecuritySettings({ roomId }) {
   return (
     <>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Encryption</MenuHeader>
-        <RoomEncryption roomId={roomId} />
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Encryption</li>
+          <RoomEncryption roomId={roomId} />
+        </ul>
       </div>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Message history visibility</MenuHeader>
-        <RoomHistoryVisibility roomId={roomId} />
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Message history visibility</li>
+          <RoomHistoryVisibility roomId={roomId} />
+        </ul>
       </div>
     </>
   );
