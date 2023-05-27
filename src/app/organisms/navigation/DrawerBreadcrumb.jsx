@@ -88,9 +88,9 @@ function DrawerBreadcrumb({ spaceId }) {
   }
 
   return (
-    <div className="drawer-breadcrumb__wrapper">
+    <div className="">
       <ScrollView ref={scrollRef} horizontal vertical={false} invisible>
-        <div className="drawer-breadcrumb emoji-size-fix">
+        <center className="emoji-size-fix py-2">
           {
             spacePath.map((id, index) => {
               const noti = (id !== cons.tabs.HOME && index < spacePath.length)
@@ -101,11 +101,11 @@ function DrawerBreadcrumb({ spaceId }) {
                 <React.Fragment
                   key={id}
                 >
-                  <span style={{ marginLeft: '10px' }}>{" "}</span>
+                  <span style={{ marginLeft: '5px' }}>{" "}</span>
                   {index !== 0 && <RawIcon size="extra-small" fa="fa-solid fa-chevron-right" />}
-                  <span style={{ marginRight: '10px' }}>{" "}</span>
+                  <span style={{ marginRight: '5px' }}>{" "}</span>
                   <Button
-                    className={index === spacePath.length - 1 ? 'drawer-breadcrumb__btn--selected' : ''}
+                    className={index === spacePath.length - 1 ? 'active' : ''}
                     onClick={() => {
                       if (id === cons.tabs.HOME) selectTab(id);
                       else selectSpace(id);
@@ -124,7 +124,7 @@ function DrawerBreadcrumb({ spaceId }) {
             })
           }
           <div style={{ width: 'var(--sp-extra-tight)', height: '100%' }} />
-        </div>
+        </center>
       </ScrollView>
     </div>
   );
