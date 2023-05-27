@@ -54,10 +54,16 @@
   }
 }
 
-@include screen.smallerThan(mobileBreakpoint) {
+@media (max-width: 768px) {
   .room-mode .navigation-wrapper,
   .navigation-mode .back-navigation,
   .navigation-mode .room-wrapper {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .back-navigation {
     display: none;
   }
 }
