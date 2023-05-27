@@ -209,7 +209,7 @@ function RoomSettings({ roomId }) {
         defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
         onSelect={handleTabChange}
       />
-      <div className="border-top border-bg p-3">
+      <div className="border-top border-bg p-3 pb-5 mb-4">
         {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
         {selectedTab.text === tabText.SEARCH && <RoomSearch roomId={roomId} />}
         {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}

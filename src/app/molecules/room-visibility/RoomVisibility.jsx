@@ -96,31 +96,27 @@ function RoomVisibility({ roomId }) {
   }];
 
   return (
-    <div className="room-visibility">
-      {
-        items.map((item) => {
+    items.map((item) => {
 
-          const variant = `${item.className} ${activeType === item.type ? 'btn-text-success' : ''}`;
+      const variant = `${item.className} ${activeType === item.type ? 'btn-text-success' : ''}`;
 
-          return (
-            <MenuItem
-              className={variant}
-              variant='link btn-bg'
-              key={item.type}
-              iconSrc={item.iconSrc}
-              onClick={() => setVisibility(item)}
-              disabled={(!canChange || item.unsupported)}
-            >
-              <Text varient="b1">
-                <span>{item.text}</span>
-                <RadioButton isActive={activeType === item.type} />
-              </Text>
-            </MenuItem>
-          );
+      return (
+        <MenuItem
+          className={variant}
+          variant='link btn-bg'
+          key={item.type}
+          iconSrc={item.iconSrc}
+          onClick={() => setVisibility(item)}
+          disabled={(!canChange || item.unsupported)}
+        >
 
-        })
-      }
-    </div>
+          {item.text}
+          <span className='ms-4 float-end'><RadioButton isActive={activeType === item.type} /></span>
+
+        </MenuItem>
+      );
+
+    })
   );
 }
 

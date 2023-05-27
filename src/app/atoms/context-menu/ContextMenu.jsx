@@ -76,9 +76,9 @@ function MenuItem({
   onClick, children, disabled, className
 }) {
   return (
-    <div className="context-menu__item">
+    <li className="list-group-item very-small text-gray w-100">
       <Button
-        className={className}
+        className={`${className} w-100 p-2`}
         variant={variant}
         iconSrc={iconSrc}
         faSrc={faSrc}
@@ -88,7 +88,7 @@ function MenuItem({
       >
         {children}
       </Button>
-    </div>
+    </li>
   );
 }
 
