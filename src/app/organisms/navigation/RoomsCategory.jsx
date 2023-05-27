@@ -9,7 +9,6 @@ import { selectSpace, selectRoom, openReusableContextMenu } from '../../../clien
 import { getEventCords } from '../../../util/common';
 import { getSpaceItem, setSpaceItem, removeSpaceItem } from '../../../util/selectedRoom';
 
-import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import Selector from './Selector';
