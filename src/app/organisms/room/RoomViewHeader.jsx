@@ -100,7 +100,7 @@ function RoomViewHeader({ roomId }) {
           />
         </li>
 
-      </ul >
+      </ul>
 
     </Header >
   );

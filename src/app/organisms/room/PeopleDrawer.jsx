@@ -123,11 +123,22 @@ function PeopleDrawer({ roomId }) {
   return (
     <div className="people-drawer">
       <Header>
-        <Text variant="s1" primary>
-          People
-          <Text className="people-drawer__member-count" variant="b3">{`${room.getJoinedMemberCount()} members`}</Text>
-        </Text>
-        <IconButton onClick={() => openInviteUser(roomId)} tooltip="Invite" fa="fa-solid fa-user-plus" disabled={!canInvite} />
+
+        <ul className='navbar-nav mr-auto pb-1'>
+
+          <li className="nav-item">
+            People
+            <div className="very-small text-gray">{`${room.getJoinedMemberCount()} members`}</div>
+          </li>
+
+        </ul>
+
+        <ul className='navbar-nav ms-auto mb-0 small'>
+          <li className="nav-item">
+            <IconButton onClick={() => openInviteUser(roomId)} tooltip="Invite" fa="fa-solid fa-user-plus" disabled={!canInvite} />
+          </li>
+        </ul>
+
       </Header>
       <div className="people-drawer__content-wrapper">
         <div className="people-drawer__scrollable">

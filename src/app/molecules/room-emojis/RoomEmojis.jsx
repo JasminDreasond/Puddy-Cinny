@@ -103,13 +103,14 @@ function RoomEmojis({ roomId }) {
             <li className="list-group-item very-small text-gray">Create Pack</li>
 
             <li className="list-group-item">
-              <form onSubmit={handlePackCreate}>
+              <form className="row" onSubmit={handlePackCreate}>
 
-                <Input name="nameInput" placeholder="Pack Name" required />
-
-                <center className='my-3'>
-                  <Button variant="primary" type="submit">Create pack</Button>
-                </center>
+                <div className="col-10">
+                  <Input name="nameInput" placeholder="Pack Name" required />
+                </div>
+                <div className="col-2">
+                  <center className='h-100'><Button className='h-100' variant="primary" type="submit">Create pack</Button></center>
+                </div>
 
               </form>
             </li>

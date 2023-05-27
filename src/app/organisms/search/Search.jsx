@@ -203,6 +203,7 @@ function Search() {
         <form className="search-dialog__input" onSubmit={(e) => { e.preventDefault(); openFirstResult(); }}>
           <RawIcon fa="fa-solid fa-magnifying-glass" size="small" />
           <Input
+            className='w-100'
             onChange={handleOnChange}
             forwardRef={searchRef}
             placeholder="Search"
