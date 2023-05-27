@@ -23,6 +23,7 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 
 const ROW_EMOJIS_COUNT = 7;
 
+// Get Emojis Group
 const EmojiGroup = React.memo(({ name, groupEmojis }) => {
   function getEmojiBoard() {
     const emojiBoard = [];
@@ -84,6 +85,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
   );
 });
 
+// Default
 EmojiGroup.propTypes = {
   name: PropTypes.string.isRequired,
   groupEmojis: PropTypes.arrayOf(
@@ -98,6 +100,7 @@ EmojiGroup.propTypes = {
   ).isRequired,
 };
 
+// Async Search
 const asyncSearch = new AsyncSearch();
 asyncSearch.setup(emojis, { keys: ['shortcode'], isContain: true, limit: 40 });
 function SearchedEmoji() {
@@ -130,6 +133,7 @@ function SearchedEmoji() {
   );
 }
 
+// Search Emoji HTML
 function EmojiBoard({ onSelect, searchRef }) {
   const scrollEmojisRef = useRef(null);
   const emojiInfo = useRef(null);
