@@ -64,14 +64,22 @@ function ModerationTools({
     <div className="moderation-tools">
       {canIKick && (
         <form onSubmit={handleKick}>
-          <Input label="Kick reason" name="kick-reason" />
-          <Button type="submit">Kick</Button>
+          <div className="col-10">
+            <Input label="Kick reason" name="kick-reason" />
+          </div>
+          <div className="col-2">
+            <Button className='w-100' type="submit">Kick</Button>
+          </div>
         </form>
       )}
       {canIBan && (
         <form onSubmit={handleBan}>
-          <Input label="Ban reason" name="ban-reason" />
-          <Button type="submit">Ban</Button>
+          <div className="col-10">
+            <Input label="Ban reason" name="ban-reason" />
+          </div>
+          <div className="col-2">
+            <Button className='w-100' type="submit">Ban</Button>
+          </div>
         </form>
       )}
     </div>
