@@ -94,31 +94,46 @@ function RoomEmojis({ roomId }) {
   };
 
   return (
-    <div className="room-emojis noselect">
-      {canChange && (
-        <div className="room-emojis__add-pack">
-          <MenuHeader>Create Pack</MenuHeader>
-          <form onSubmit={handlePackCreate}>
-            <Input name="nameInput" placeholder="Pack Name" required />
-            <Button variant="primary" type="submit">Create pack</Button>
-          </form>
-        </div>
-      )}
-      {
-        usablePacks.length > 0
-          ? usablePacks.reverse().map((mEvent) => (
-            <ImagePack
-              key={mEvent.getId()}
-              roomId={roomId}
-              stateKey={mEvent.getStateKey()}
-              handlePackDelete={canChange ? deletePack : undefined}
-            />
-          )) : (
-            <div className="room-emojis__empty">
-              <Text>No emoji or sticker pack.</Text>
-            </div>
-          )
-      }
+    <div className="card noselect mb-3">
+      <ul className="list-group list-group-flush">
+
+        {canChange && (
+          <>
+
+            <li className="list-group-item very-small text-gray">Create Pack</li>
+
+            <li className="list-group-item">
+              <form onSubmit={handlePackCreate}>
+
+                <Input name="nameInput" placeholder="Pack Name" required />
+
+                <center className='my-3'>
+                  <Button variant="primary" type="submit">Create pack</Button>
+                </center>
+
+              </form>
+            </li>
+
+          </>
+        )}
+
+        {
+          usablePacks.length > 0
+            ? usablePacks.reverse().map((mEvent) => (
+              <ImagePack
+                key={mEvent.getId()}
+                roomId={roomId}
+                stateKey={mEvent.getStateKey()}
+                handlePackDelete={canChange ? deletePack : undefined}
+              />
+            )) : (
+              <div className="room-emojis__empty">
+                <Text>No emoji or sticker pack.</Text>
+              </div>
+            )
+        }
+
+      </ul>
     </div>
   );
 }

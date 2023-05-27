@@ -78,7 +78,7 @@ function MenuItem({
   return (
     <li className="list-group-item very-small text-gray w-100">
       <Button
-        className={`${className} w-100 p-2`}
+        className={`${className} w-100 p-2 px-4`}
         variant={variant}
         iconSrc={iconSrc}
         faSrc={faSrc}
