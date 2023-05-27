@@ -23,12 +23,6 @@
   min-width: 0;
 }
 
-@include screen.smallerThan(mobileBreakpoint) {
-  .client-item-hidden {
-    display: none;
-  }
-}
-
 .loading-display {
   position: absolute;
   top: 0;
@@ -57,5 +51,13 @@
   cursor: pointer;
   .context-menu__item .text {
     margin: 0 !important;
+  }
+}
+
+@include screen.smallerThan(mobileBreakpoint) {
+  .room-mode .navigation-wrapper,
+  .room-mode .back-navigation,
+  .navigation-mode .room-wrapper {
+    display: none;
   }
 }

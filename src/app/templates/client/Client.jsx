@@ -24,18 +24,16 @@ function Client() {
   const [isLoading, changeLoading] = useState(true);
   const [loadingMsg, setLoadingMsg] = useState('Heating up');
   const [dragCounter, setDragCounter] = useState(0);
-  const classNameHidden = 'client-item-hidden';
 
   const navWrapperRef = useRef(null);
-  const roomWrapperRef = useRef(null);
 
   function onRoomSelected() {
-    navWrapperRef.current?.classList.add(classNameHidden);
-    roomWrapperRef.current?.classList.remove(classNameHidden);
+    navWrapperRef.current?.classList.add('room-mode');
+    navWrapperRef.current?.classList.remove('navigation-mode');
   }
   function onNavigationSelected() {
-    navWrapperRef.current?.classList.remove(classNameHidden);
-    roomWrapperRef.current?.classList.add(classNameHidden);
+    navWrapperRef.current?.classList.remove('room-mode');
+    navWrapperRef.current?.classList.add('navigation-mode');
   }
 
   useEffect(() => {
@@ -157,16 +155,17 @@ function Client() {
 
   return (
     <div
+      ref={navWrapperRef}
       className="client-container"
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="navigation-wrapper" ref={navWrapperRef}>
+      <div className="navigation-wrapper">
         <Navigation />
       </div>
-      <div className={`room-wrapper ${classNameHidden}`} ref={roomWrapperRef}>
+      <div className={`room-wrapper`}>
         <Room />
       </div>
       <Windows />

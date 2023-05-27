@@ -6,7 +6,7 @@ import { twemojify } from '../../../util/twemojify';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
-import { toggleRoomSettings, openReusableContextMenu } from '../../../client/action/navigation';
+import { toggleRoomSettings, openReusableContextMenu, openNavigation } from '../../../client/action/navigation';
 import { togglePeopleDrawer /* , startVoiceChat */ } from '../../../client/action/settings';
 import colorMXID from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
@@ -56,6 +56,14 @@ function RoomViewHeader({ roomId }) {
     <Header>
 
       <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
+
+        <li className="nav-item back-navigation">
+          <IconButton
+            fa="fa-solid fa-chevron-left"
+            tooltip="Return to navigation"
+            onClick={() => openNavigation()}
+          />
+        </li>
 
         <li className="nav-item">
           <button

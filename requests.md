@@ -23,8 +23,7 @@ Made by Me
 
     ]
 
-    Ajeitar emojis desregulados
-    Ajeitar o config do canal
-    Ajeitar o config do space
+    Corrigir o coisinha do mais info do space quando vai para outro canto
+    ajeitar a corzinha do panel no app
 
     People está todo bagunçado, precisa ser concertado
