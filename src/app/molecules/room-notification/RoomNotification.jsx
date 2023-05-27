@@ -112,23 +112,21 @@ function RoomNotification({ roomId }) {
   const [activeType, setNotification] = useNotifications(roomId);
 
   return (
-    <div className="room-notification">
-      {
-        items.map((item) => (
-          <MenuItem
-            className={activeType === item.type ? 'text-start btn-text-success' : 'text-start'}
-            key={item.type}
-            iconSrc={item.iconSrc}
-            onClick={() => setNotification(item)}
-          >
-            <Text varient="b1">
-              <span>{item.text}</span>
-              <RadioButton isActive={activeType === item.type} />
-            </Text>
-          </MenuItem>
-        ))
-      }
-    </div>
+    items.map((item) => (
+      <MenuItem
+        className={activeType === item.type ? 'text-start btn-text-success' : 'text-start'}
+        key={item.type}
+        iconSrc={item.iconSrc}
+        onClick={() => setNotification(item)}
+      >
+
+        {item.text}
+        <span className='ms-4 float-end'>
+          <RadioButton isActive={activeType === item.type} />
+        </span>
+
+      </MenuItem>
+    ))
   );
 }
 

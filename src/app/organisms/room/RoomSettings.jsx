@@ -71,45 +71,61 @@ function GeneralSettings({ roomId }) {
 
   return (
     <>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Options</MenuHeader>
-        <MenuItem
-          className="text-start"
-          disabled={!canInvite}
-          onClick={() => openInviteUser(roomId)}
-          faSrc="fa-solid fa-user-plus"
-        >
-          Invite
-        </MenuItem>
-        <MenuItem
-          className="text-start btn-text-danger"
-          onClick={async () => {
-            const isConfirmed = await confirmDialog(
-              'Leave room',
-              `Are you sure that you want to leave "${room.name}" room?`,
-              'Leave',
-              'danger',
-            );
-            if (!isConfirmed) return;
-            roomActions.leave(roomId);
-          }}
-          faSrc="fa-solid fa-arrow-right-from-bracket"
-        >
-          Leave
-        </MenuItem>
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+
+          <li className="list-group-item very-small text-gray">Options</li>
+          <MenuItem
+            className="text-start"
+            disabled={!canInvite}
+            onClick={() => openInviteUser(roomId)}
+            faSrc="fa-solid fa-user-plus"
+          >
+            Invite
+          </MenuItem>
+
+          <MenuItem
+            className="text-start btn-text-danger"
+            onClick={async () => {
+              const isConfirmed = await confirmDialog(
+                'Leave room',
+                `Are you sure that you want to leave "${room.name}" room?`,
+                'Leave',
+                'danger',
+              );
+              if (!isConfirmed) return;
+              roomActions.leave(roomId);
+            }}
+            faSrc="fa-solid fa-arrow-right-from-bracket"
+          >
+            Leave
+          </MenuItem>
+
+        </ul>
       </div>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Notification (Changing this will only affect you)</MenuHeader>
-        <RoomNotification roomId={roomId} />
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Notification (Changing this will only affect you)</li>
+          <RoomNotification roomId={roomId} />
+        </ul>
       </div>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Room visibility (who can join)</MenuHeader>
-        <RoomVisibility roomId={roomId} />
+
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Room visibility (who can join)</li>
+          <RoomVisibility roomId={roomId} />
+        </ul>
       </div>
-      <div className="room-settings__card noselect">
-        <MenuHeader>Room addresses</MenuHeader>
-        <RoomAliases roomId={roomId} />
+
+      <div className="card noselect">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item very-small text-gray">Room addresses</li>
+          <RoomAliases roomId={roomId} />
+        </ul>
       </div>
+
     </>
   );
 }
@@ -193,7 +209,7 @@ function RoomSettings({ roomId }) {
         defaultSelected={tabItems.findIndex((tab) => tab.text === selectedTab.text)}
         onSelect={handleTabChange}
       />
-      <div className="border-top border-bg px-3">
+      <div className="border-top border-bg p-3">
         {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
         {selectedTab.text === tabText.SEARCH && <RoomSearch roomId={roomId} />}
         {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}
