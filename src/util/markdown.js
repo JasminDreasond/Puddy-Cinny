@@ -150,7 +150,7 @@ const markdownRules = {
       if (!node.lang) { return autoCode(); }
 
       const langs = hljs.listLanguages();
-      if (langs.indexOf(node.lang)) {
+      if (langs.indexOf(node.lang) > -1) {
         return `<pre><code class='language-${node.lang} hljs'>${hljs.highlight(node.content, { language: node.lang }).value}</code></pre>`;
       }
 
