@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
 import cons from '../../../client/state/cons';
 import navigation from '../../../client/state/navigation';
 import settings from '../../../client/state/settings';
 
 import ContextMenu from '../../atoms/context-menu/ContextMenu';
+
 import EmojiBoard from './EmojiBoard';
 
 let requestCallback = null;
@@ -37,6 +40,17 @@ function EmojiBoardOpener() {
   }
 
   function addEmoji(emoji) {
+    console.log(emoji);
+    /*
+
+
+
+hexcode: null
+mxc: "mxc://matrix.org/sICoLfcJSZCrxtlicYZsuJYJ"
+shortcodes: ['pudding']
+unicode: ":pudding:"
+
+    */
     requestCallback(emoji);
   }
 
@@ -47,9 +61,31 @@ function EmojiBoardOpener() {
     };
   }, []);
 
-  return (
+  return <Picker data={data} onEmojiSelect={(emoji) => {
+
+    const tinyData = {
+      hexcode: emoji.unified.toUpperCase(),
+      mxc: null,
+      unicode: emoji.native
+    };
+
+    if (Array.isArray(emoji.shortcodes)) {
+      tinyData.shortcodes = emoji.shortcodes;
+    } else if (typeof emoji.shortcodes === 'string') {
+      tinyData.shortcodes = [emoji.shortcodes];
+    }
+
+    // Native Emoji
+    addEmoji(tinyData);
+
+  }} />;
+
+}
+
+/*
     <ContextMenu
       content={(
+        // 
         <EmojiBoard onSelect={addEmoji} searchRef={searchRef} />
       )}
       afterToggle={afterEmojiBoardToggle}
@@ -72,7 +108,6 @@ function EmojiBoardOpener() {
         />
       )}
     />
-  );
-}
+*/
 
 export default EmojiBoardOpener;
