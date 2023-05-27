@@ -783,3 +783,19 @@ a {
   right: 4px;
   margin-right: 0px !important;
 }
+
+/* Modal */
+@media (max-width: 768px) {
+  .modal-popup,
+  .modal-fullscreen {
+    margin: 0px;
+    min-height: 100%;
+    min-width: 100%;
+  }
+
+  .modal-popup .modal-content,
+  .modal-fullscreen .modal-content {
+    border-radius: 0px;
+    border: 0px;
+  }
+}

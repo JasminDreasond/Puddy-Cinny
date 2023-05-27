@@ -213,8 +213,8 @@ function CrossSignin() {
       content={<div className="very-small text-gray">Setup to verify and keep track of all your sessions. Also required to backup encrypted message.</div>}
       options={(
         isCSEnabled
-          ? <Button variant="outline-danger" onClick={resetDialog}>Reset</Button>
-          : <Button variant="outline-primary" onClick={setupDialog}>Setup</Button>
+          ? <Button className='my-2' variant="outline-danger" onClick={resetDialog}>Reset</Button>
+          : <Button className='my-2' variant="outline-primary" onClick={setupDialog}>Setup</Button>
       )}
     />
   );

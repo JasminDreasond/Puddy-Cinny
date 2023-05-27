@@ -23,9 +23,7 @@ Made by Me
 
     ]
 
-    Modal - Fullscreen quando no viewport
     Ajeitar emojis desregulados
-    Ajeitar o header do nome do servidor (e também adicionar o HR)
     Ajeitar o config do canal
     Ajeitar o config do space
 
