@@ -13,18 +13,16 @@ function PeopleSelector({
   avatarSrc, name, color, peopleRole, onClick,
 }) {
   return (
-    <div className="people-selector__container">
-      <button
-        className="people-selector"
-        onMouseUp={(e) => blurOnBubbling(e, '.people-selector')}
-        onClick={onClick}
-        type="button"
-      >
-        <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
-        <Text className="people-selector__name" variant="b1">{twemojify(name)}</Text>
-        {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
-      </button>
-    </div>
+    <button
+      className="people-selector"
+      onMouseUp={(e) => blurOnBubbling(e, '.people-selector')}
+      onClick={onClick}
+      type="button"
+    >
+      <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
+      <Text className="people-selector__name" variant="b1">{twemojify(name)}</Text>
+      {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
+    </button>
   );
 }
 

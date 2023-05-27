@@ -10,7 +10,6 @@ import { getUsernameOfRoomMember, getPowerLabel } from '../../../util/matrixUtil
 import AsyncSearch from '../../../util/AsyncSearch';
 import { memberByAtoZ, memberByPowerLevel } from '../../../util/sort';
 
-import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import SegmentedControls from '../../atoms/segmented-controls/SegmentedControls';
@@ -152,7 +151,7 @@ function RoomMembers({ roomId }) {
           />
         </li>
 
-        <div>
+        <li className="list-group-item">
           {mList.map((member) => (
             <PeopleSelector
               key={member.userId}
@@ -166,11 +165,9 @@ function RoomMembers({ roomId }) {
           {
             (searchMembers?.data.length === 0 || members.length === 0)
             && (
-              <div className="room-members__status">
-                <Text variant="b2">
-                  {searchMembers ? `No results found for "${searchMembers.term}"` : 'No members to display'}
-                </Text>
-              </div>
+              <center className='p-3'>
+                {searchMembers ? `No results found for "${searchMembers.term}"` : 'No members to display'}
+              </center>
             )
           }
           {
@@ -179,7 +176,7 @@ function RoomMembers({ roomId }) {
             && searchMembers === null
             && <center className='m-3'><Button onClick={loadMorePeople}>View more</Button></center>
           }
-        </div>
+        </li>
 
       </ul>
     </div>
