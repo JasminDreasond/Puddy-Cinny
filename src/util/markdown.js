@@ -142,12 +142,19 @@ const markdownRules = {
     plain: (node) => `\`\`\`${node.lang || ''}\n${node.content}\n\`\`\`\n`,
     html: (node) => {
 
-      if (!node.lang) {
+      const autoCode = () => {
         const tinyCode = hljs.highlightAuto(node.content);
         return `<pre><code class='language-${tinyCode.language} hljs'>${tinyCode.value}</code></pre>`;
+      };
+
+      if (!node.lang) { return autoCode(); }
+
+      const langs = hljs.listLanguages();
+      if (langs.indexOf(node.lang)) {
+        return `<pre><code class='language-${node.lang} hljs'>${hljs.highlight(node.content, { language: node.lang }).value}</code></pre>`;
       }
 
-      return `<pre><code class='language-${node.lang} hljs'>${hljs.highlight(node.content, { language: node.lang }).value}</code></pre>`;
+      return autoCode();
 
     },
   },
