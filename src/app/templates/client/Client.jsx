@@ -24,7 +24,7 @@ function Client() {
   const [isLoading, changeLoading] = useState(true);
   const [loadingMsg, setLoadingMsg] = useState('Heating up');
   const [dragCounter, setDragCounter] = useState(0);
-  const classNameHidden = 'client__item-hidden';
+  const classNameHidden = 'client-item-hidden';
 
   const navWrapperRef = useRef(null);
   const roomWrapperRef = useRef(null);
