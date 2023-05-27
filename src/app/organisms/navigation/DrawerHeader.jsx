@@ -11,8 +11,6 @@ import {
 } from '../../../client/action/navigation';
 import { getEventCords } from '../../../util/common';
 
-import { blurOnBubbling } from '../../atoms/button/script';
-
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import { Header } from '../../atoms/header/Header';
@@ -130,22 +128,31 @@ function DrawerHeader({ selectedTab, spaceId }) {
 
   return (
     <Header>
-      {spaceName ? (
-        <button
-          className="drawer-header__btn"
-          onClick={openSpaceOptions}
-          type="button"
-          onMouseUp={(e) => blurOnBubbling(e, '.drawer-header__btn')}
-        >
-          <Text variant="s1" weight="medium" primary>{twemojify(spaceName)}</Text>
-          <RawIcon size="small" fa="fa-solid fa-chevron-down" />
-        </button>
-      ) : (
-        <Text variant="s1" weight="medium" primary>{tabName}</Text>
-      )}
 
-      {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" fa="fa-solid fa-plus" size="small" />}
-      {!isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="small" />}
+      <ul className='navbar-nav mr-auto mt-2 mt-lg-0 pt-2 pb-1'>
+
+        {spaceName ? (
+          <button
+            className="nav-link btn btn-bg border-0 p-1"
+            onClick={openSpaceOptions}
+            type="button"
+          >
+            <strong className='me-2'>{twemojify(spaceName)}</strong>
+            <RawIcon size="small" fa="fa-solid fa-chevron-down" />
+          </button>
+        ) : (
+          <Text variant="s1" weight="medium" primary>{tabName}</Text>
+        )}
+
+      </ul>
+
+      <ul className='navbar-nav ms-auto mb-2 mb-lg-0 small'>
+
+        {isDMTab && <IconButton onClick={() => openInviteUser()} tooltip="Start DM" fa="fa-solid fa-plus" size="small" />}
+        {!isDMTab && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="small" />}
+
+      </ul >
+
     </Header>
   );
 }
