@@ -55,6 +55,10 @@ const GetTextarea = (textarea) => {
           insertAtCursor(textarea);
         });
 
+        textarea.addEventListener('focus', () => {
+          insertAtCursor(textarea);
+        });
+
         textarea.addEventListener('keyup', () => {
           insertAtCursor(textarea);
         });
