@@ -89,10 +89,13 @@ function DrawerBreadcrumb({ spaceId }) {
 
   return (
     <div className="">
-      <ScrollView ref={scrollRef} horizontal vertical={false} invisible>
-        <center className="emoji-size-fix py-2">
+
+      <nav className='p-3'>
+        <ol className="breadcrumb">
+
           {
             spacePath.map((id, index) => {
+
               const noti = (id !== cons.tabs.HOME && index < spacePath.length)
                 ? getNotiExcept(id, (index === spacePath.length - 1) ? null : spacePath[index + 1])
                 : getHomeNotiExcept((index === spacePath.length - 1) ? null : spacePath[index + 1]);
@@ -101,32 +104,37 @@ function DrawerBreadcrumb({ spaceId }) {
                 <React.Fragment
                   key={id}
                 >
-                  <span style={{ marginLeft: '5px' }}>{" "}</span>
-                  {index !== 0 && <RawIcon size="extra-small" fa="fa-solid fa-chevron-right" />}
-                  <span style={{ marginRight: '5px' }}>{" "}</span>
-                  <Button
-                    className={index === spacePath.length - 1 ? 'active' : ''}
-                    onClick={() => {
-                      if (id === cons.tabs.HOME) selectTab(id);
-                      else selectSpace(id);
-                    }}
-                  >
-                    <Text variant="b2">{id === cons.tabs.HOME ? 'Home' : twemojify(mx.getRoom(id).name)}</Text>
-                    {noti !== null && (
-                      <NotificationBadge
-                        alert={noti.highlight !== 0}
-                        content={noti.total > 0 ? abbreviateNumber(noti.total) : null}
-                      />
-                    )}
-                  </Button>
+
+                  <li className={`emoji-size-fix breadcrumb-item ${index === spacePath.length - 1 ? 'active' : ''}`}>
+                    <a
+                      href='#'
+                      onClick={() => {
+                        if (id === cons.tabs.HOME) selectTab(id);
+                        else selectSpace(id);
+                      }}
+                    >
+                      {id === cons.tabs.HOME ? 'Home' : twemojify(mx.getRoom(id).name)}
+                      {noti !== null && (
+                        <NotificationBadge
+                          className='ms-1'
+                          alert={noti.highlight !== 0}
+                          content={noti.total > 0 ? abbreviateNumber(noti.total) : null}
+                        />
+                      )}
+                    </a>
+                  </li>
+
                 </React.Fragment>
               );
             })
           }
-          <div style={{ width: 'var(--sp-extra-tight)', height: '100%' }} />
-        </center>
-      </ScrollView>
-    </div>
+
+        </ol>
+      </nav>
+
+      <hr className='m-0 border-bg' />
+
+    </div >
   );
 }
 
