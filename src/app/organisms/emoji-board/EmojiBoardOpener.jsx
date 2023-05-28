@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import Picker from '@emoji-mart/react';
+
+import { selectButton } from '../../../util/checkTheme';
 import initMatrix from '../../../client/initMatrix';
 import { getRelevantPacks } from './custom-emoji';
 
@@ -114,10 +116,19 @@ function EmojiBoardOpener() {
 
   return <Picker
 
+    theme={selectButton()}
     set='twitter'
     custom={customEmojis}
     categoryIcons={categoryIcons}
     locale='en'
+
+    emojiSize={24}
+    maxFrequentRows={4}
+    perLine={9}
+
+    onClickOutside={() => {
+
+    }}
 
     onEmojiSelect={(emoji) => {
 
