@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import './PublicRooms.scss';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -9,11 +8,12 @@ import * as roomActions from '../../../client/action/room';
 
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
-import IconButton from '../../atoms/button/IconButton';
 import Spinner from '../../atoms/spinner/Spinner';
 import Input from '../../atoms/input/Input';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
-import RoomTile from '../../molecules/room-tile/RoomTile';
+import Avatar from '../../atoms/avatar/Avatar';
+import colorMXID from '../../../util/colorMXID';
+import { twemojify } from '../../../util/twemojify';
 
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';
 
@@ -192,36 +192,58 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
   function renderRoomList(rooms) {
     return rooms.map((room) => {
+
       const alias = typeof room.canonical_alias === 'string' ? room.canonical_alias : room.room_id;
       const name = typeof room.name === 'string' ? room.name : alias;
       const isJoined = initMatrix.matrixClient.getRoom(room.room_id)?.getMyMembership() === 'join';
+      const desc = (typeof room.topic === 'string' ? room.topic : null);
+
       return (
-        <RoomTile
-          key={room.room_id}
-          avatarSrc={typeof room.avatar_url === 'string' ? initMatrix.matrixClient.mxcUrlToHttp(room.avatar_url, 42, 42, 'crop') : null}
-          name={name}
-          id={alias}
-          memberCount={room.num_joined_members}
-          desc={typeof room.topic === 'string' ? room.topic : null}
-          options={(
-            <>
-              {isJoined && <Button onClick={() => handleViewRoom(room.room_id)}>Open</Button>}
-              {!isJoined && (joiningRooms.has(room.room_id) ? <Spinner size="small" /> : <Button onClick={() => joinRoom(room.aliases?.[0] || room.room_id)} variant="primary">Join</Button>)}
-            </>
-          )}
-        />
+        <div className="col-md-4">
+          <div className="card p-3 m-2" style={{ 'height': '350px' }}>
+
+            <h4 className="card-title">
+              <Avatar
+                imageSrc={typeof room.avatar_url === 'string' ? initMatrix.matrixClient.mxcUrlToHttp(room.avatar_url, 42, 42, 'crop') : null}
+                bgColor={colorMXID(alias)}
+                text={name}
+              />
+            </h4>
+
+            <h4 className="card-title small emoji-size-fix">{twemojify(name)}</h4>
+
+            <p className="card-text p-y-1 text-freedom text-size-box very-small emoji-size-fix" style={{ 'height': '150px', 'maxHeight': '150px' }}>
+              {
+                desc !== null && (typeof desc === 'string')
+                  ? twemojify(desc, undefined, true)
+                  : desc
+              }
+            </p>
+
+            <p className="card-text p-y-1 very-small text-gray">
+              {alias + (room.num_joined_members === null ? '' : ` • ${room.num_joined_members} members`)}
+            </p>
+
+            {isJoined && <Button onClick={() => handleViewRoom(room.room_id)}>Open</Button>}
+            {!isJoined && (joiningRooms.has(room.room_id) ? <Spinner size="small" /> : <Button onClick={() => joinRoom(room.aliases?.[0] || room.room_id)} variant="primary">Join</Button>)}
+
+          </div>
+        </div>
       );
+
     });
   }
 
   return (
     <PopupWindow
       isOpen={isOpen}
-      size='modal-xl'
+      size='modal-xl modal-fullscreen'
       title="Public rooms"
       onRequestClose={onRequestClose}
     >
-      <div className="public-rooms">
+
+      <div className="public-rooms container">
+
         <form className="public-rooms__form" onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
           <div className="public-rooms__input-wrapper">
             <Input value={searchTerm} forwardRef={roomNameRef} label="Room name or alias" />
@@ -229,6 +251,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
           </div>
           <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
         </form>
+
         <div className="public-rooms__search-status">
           {
             typeof searchQuery.name !== 'undefined' && isSearching && (
@@ -263,19 +286,22 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
             </>
           )}
         </div>
+
         {publicRooms.length !== 0 && (
-          <div className="public-rooms__content">
+          <div className="row hidden-md-up">
             {renderRoomList(publicRooms)}
           </div>
         )}
+
         {publicRooms.length !== 0 && publicRooms.length % SEARCH_LIMIT === 0 && (
-          <div className="public-rooms__view-more">
+          <center className='d-grid gap-2 mt-3'>
             {isViewMore !== true && (
-              <Button onClick={() => searchRooms(true)}>View more</Button>
+              <Button variant='secondary' onClick={() => searchRooms(true)}>View more</Button>
             )}
             {isViewMore && <Spinner />}
-          </div>
+          </center>
         )}
+
       </div>
     </PopupWindow>
   );
