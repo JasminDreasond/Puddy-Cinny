@@ -1,5 +1,12 @@
 import React, { useRef } from 'react';
 import Picker from '@emoji-mart/react';
+import initMatrix from '../../../client/initMatrix';
+
+import { emojiGroups, emojis } from './emoji';
+import { getRelevantPacks } from './custom-emoji';
+import { addRecentEmoji, getRecentEmojis } from './recent';
+
+// initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)
 
 const tinyCache = {
   main: {}
@@ -14,7 +21,7 @@ function insertAtCursor(tinyField, myValue) {
     tinyCache.main.type = 'ie';
     myField.focus();
     tinyCache.main.sel = document.selection.createRange();
-    tinyCache.main.sel.text = myValue;
+    if (typeof myValue === 'string') tinyCache.main.sel.text = myValue;
   }
 
   // MOZILLA and others
@@ -23,11 +30,13 @@ function insertAtCursor(tinyField, myValue) {
     tinyCache.main.startPos = myField.selectionStart;
     tinyCache.main.endPos = myField.selectionEnd;
 
-    myField.value = myField.value.substring(0, tinyCache.main.startPos)
-      + myValue
-      + myField.value.substring(tinyCache.main.endPos, myField.value.length);
+    if (typeof myValue === 'string') {
+      myField.value = myField.value.substring(0, tinyCache.main.startPos)
+        + myValue
+        + myField.value.substring(tinyCache.main.endPos, myField.value.length);
+    }
 
-  } else {
+  } else if (typeof myValue === 'string') {
     myField.value += myValue;
   }
 
