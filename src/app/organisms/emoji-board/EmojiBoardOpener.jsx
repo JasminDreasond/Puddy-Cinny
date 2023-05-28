@@ -4,7 +4,6 @@ import initMatrix from '../../../client/initMatrix';
 
 import { emojiGroups, emojis } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
-import { addRecentEmoji, getRecentEmojis } from './recent';
 
 // initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)
 
@@ -81,6 +80,11 @@ function EmojiBoardOpener() {
   shortcodes: ['pudding']
   unicode: ":pudding:"
   */
+
+  const emojisPack = getRelevantPacks(initMatrix.matrixClient);
+  if (Array.isArray(emojisPack) && emojisPack.length > 0) {
+    console.log(emojisPack);
+  }
 
   return <Picker set='twitter' onEmojiSelect={(emoji) => {
 
