@@ -117,7 +117,6 @@ function EmojiBoardOpener() {
 
   return <Picker set='twitter' custom={customEmojis} categoryIcons={categoryIcons} onEmojiSelect={(emoji) => {
 
-    console.log(emoji);
     // Prepare Code Data
     tinyCache.emoji = {};
 
