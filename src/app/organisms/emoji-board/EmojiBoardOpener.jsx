@@ -49,17 +49,19 @@ const GetTextarea = (textarea) => {
   try {
 
     if (textarea) {
+      if (tinyCache.textarea !== textarea) {
 
-      textarea.addEventListener('change', () => {
-        insertAtCursor(textarea);
-      });
+        textarea.addEventListener('change', () => {
+          insertAtCursor(textarea);
+        });
 
-      textarea.addEventListener('keyup', () => {
-        insertAtCursor(textarea);
-      });
+        textarea.addEventListener('keyup', () => {
+          insertAtCursor(textarea);
+        });
 
-      tinyCache.textarea = textarea;
+        tinyCache.textarea = textarea;
 
+      }
     } else {
       setTimeout(() => GetTextarea(textarea), 100);
     }
