@@ -5,24 +5,31 @@ import Picker from '@emoji-mart/react';
 import cons from '../../../client/state/cons';
 import navigation from '../../../client/state/navigation';
 import settings from '../../../client/state/settings';
+import EmojiBoard from './EmojiBoard';
 
-function insertAtCursor(myField, myValue) {
-  //IE support
+function insertAtCursor(tinyField, myValue) {
+
+  const myField = tinyField;
+
+  // IE support
   if (document.selection) {
     myField.focus();
-    sel = document.selection.createRange();
+    let sel = document.selection.createRange();
     sel.text = myValue;
   }
-  //MOZILLA and others
+  // MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart == '0') {
-    var startPos = myField.selectionStart;
-    var endPos = myField.selectionEnd;
+    let startPos = myField.selectionStart;
+    let endPos = myField.selectionEnd;
     myField.value = myField.value.substring(0, startPos)
       + myValue
       + myField.value.substring(endPos, myField.value.length);
   } else {
     myField.value += myValue;
   }
+
+  return myField;
+
 }
 
 let requestCallback = null;
