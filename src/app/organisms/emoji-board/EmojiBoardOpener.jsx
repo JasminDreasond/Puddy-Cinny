@@ -58,6 +58,8 @@ const GetTextarea = (textarea) => {
         insertAtCursor(textarea);
       });
 
+      tinyCache.textarea = textarea;
+
     } else {
       setTimeout(() => GetTextarea(textarea), 100);
     }
