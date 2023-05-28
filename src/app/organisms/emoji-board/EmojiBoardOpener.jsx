@@ -70,13 +70,6 @@ function EmojiBoardOpener() {
   // Get Ref
   const openerRef = useRef(null);
 
-  /*
-  hexcode: null
-  mxc: "mxc://matrix.org/sICoLfcJSZCrxtlicYZsuJYJ"
-  shortcodes: ['pudding']
-  unicode: ":pudding:"
-  */
-
   const customEmojis = [];
   const categoryIcons = {};
   const mx = initMatrix.matrixClient;
