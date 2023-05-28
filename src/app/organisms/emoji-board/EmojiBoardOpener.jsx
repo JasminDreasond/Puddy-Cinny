@@ -112,37 +112,46 @@ function EmojiBoardOpener() {
     });
   }
 
-  return <Picker set='twitter' custom={customEmojis} categoryIcons={categoryIcons} onEmojiSelect={(emoji) => {
+  return <Picker
 
-    // Prepare Code Data
-    tinyCache.emoji = {};
+    set='twitter'
+    custom={customEmojis}
+    categoryIcons={categoryIcons}
+    locale='en'
 
-    if (Array.isArray(emoji.shortcodes)) {
-      tinyCache.emoji.shortcodes = emoji.shortcodes;
-    } else if (typeof emoji.shortcodes === 'string') {
-      tinyCache.emoji.shortcodes = [emoji.shortcodes];
-    }
+    onEmojiSelect={(emoji) => {
 
-    // Get Base
-    tinyCache.main.ref = openerRef;
-    const textarea = document.getElementById('message-textarea');
+      // Prepare Code Data
+      tinyCache.emoji = {};
 
-    // Insert Emoji
-    if (typeof emoji.src === 'string') {
+      if (Array.isArray(emoji.shortcodes)) {
+        tinyCache.emoji.shortcodes = emoji.shortcodes;
+      } else if (typeof emoji.shortcodes === 'string') {
+        tinyCache.emoji.shortcodes = [emoji.shortcodes];
+      }
 
-      tinyCache.mxc = emoji.src;
-      insertAtCursor(textarea, `:${emoji.id}:`);
+      // Get Base
+      tinyCache.main.ref = openerRef;
+      const textarea = document.getElementById('message-textarea');
 
-    } else if (typeof emoji.native === 'string') {
+      // Insert Emoji
+      if (typeof emoji.src === 'string') {
 
-      tinyCache.unicode = emoji.native;
-      tinyCache.hexcode = emoji.unified.toUpperCase();
+        tinyCache.mxc = emoji.src;
+        insertAtCursor(textarea, `:${emoji.id}:`);
 
-      insertAtCursor(textarea, emoji.native);
+      } else if (typeof emoji.native === 'string') {
 
-    }
+        tinyCache.unicode = emoji.native;
+        tinyCache.hexcode = emoji.unified.toUpperCase();
 
-  }} />;
+        insertAtCursor(textarea, emoji.native);
+
+      }
+
+    }}
+
+  />;
 
 }
 
