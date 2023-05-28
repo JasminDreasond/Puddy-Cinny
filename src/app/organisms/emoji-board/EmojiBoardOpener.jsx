@@ -67,10 +67,7 @@ const getTextarea = () => {
 
 window.addEventListener('load', getTextarea, false);
 
-function EmojiBoardOpener() {
-
-  // Get Ref
-  const openerRef = useRef(null);
+function emojiListBuilder() {
 
   const customEmojis = [];
   const categoryIcons = {};
@@ -114,12 +111,25 @@ function EmojiBoardOpener() {
     });
   }
 
+  return {
+    custom: customEmojis,
+    categoryIcons
+  };
+
+}
+
+function EmojiBoardOpener() {
+
+  // Get Ref
+  const openerRef = useRef(null);
+  const tinyEmojis = emojiListBuilder();
+
   return <Picker
 
     theme={selectButton()}
     set='twitter'
-    custom={customEmojis}
-    categoryIcons={categoryIcons}
+    custom={tinyEmojis.custom}
+    categoryIcons={tinyEmojis.categoryIcons}
     locale='en'
 
     emojiSize={24}
