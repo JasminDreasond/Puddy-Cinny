@@ -40,16 +40,11 @@ function EmojiBoardOpener() {
   }
 
   function addEmoji(emoji) {
-    console.log(emoji);
     /*
-
-
-
 hexcode: null
 mxc: "mxc://matrix.org/sICoLfcJSZCrxtlicYZsuJYJ"
 shortcodes: ['pudding']
 unicode: ":pudding:"
-
     */
     requestCallback(emoji);
   }
