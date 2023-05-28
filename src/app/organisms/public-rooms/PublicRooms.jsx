@@ -73,7 +73,7 @@ function TryJoinWithAlias({ alias, onRequestClose }) {
       {status.roomId !== null && (
         <Button onClick={() => { onRequestClose(); selectRoom(status.roomId); }}>Open</Button>
       )}
-      {status.error !== null && <Text variant="b2"><span style={{ color: 'var(--bg-danger)' }}>{status.error}</span></Text>}
+      {status.error !== null && <div className='small'><span style={{ color: 'var(--bg-danger)' }}>{status.error}</span></div>}
     </div>
   );
 }
@@ -245,38 +245,43 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
       <div className="public-rooms container">
 
         <form className="public-rooms__form" onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
+
           <div className="public-rooms__input-wrapper">
             <Input value={searchTerm} forwardRef={roomNameRef} label="Room name or alias" />
             <Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} label="Homeserver" required />
           </div>
           <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
+
         </form>
 
-        <div className="public-rooms__search-status">
+        <center className='py-3'>
+
           {
             typeof searchQuery.name !== 'undefined' && isSearching && (
               searchQuery.name === ''
                 ? (
-                  <div className="flex--center">
+                  <>
                     <Spinner size="small" />
-                    <Text variant="b2">{`Loading public rooms from ${searchQuery.homeserver}...`}</Text>
-                  </div>
+                    <div className='small'>{`Loading public rooms from ${searchQuery.homeserver}...`}</div>
+                  </>
                 )
                 : (
-                  <div className="flex--center">
+                  <>
                     <Spinner size="small" />
-                    <Text variant="b2">{`Searching for "${searchQuery.name}" on ${searchQuery.homeserver}...`}</Text>
-                  </div>
+                    <div className='small'>{`Searching for "${searchQuery.name}" on ${searchQuery.homeserver}...`}</div>
+                  </>
                 )
             )
           }
+
           {
             typeof searchQuery.name !== 'undefined' && !isSearching && (
               searchQuery.name === ''
-                ? <Text variant="b2">{`Public rooms on ${searchQuery.homeserver}.`}</Text>
-                : <Text variant="b2">{`Search result for "${searchQuery.name}" on ${searchQuery.homeserver}.`}</Text>
+                ? <div className='small'>{`Public rooms on ${searchQuery.homeserver}.`}</div>
+                : <div className='small'>{`Search result for "${searchQuery.name}" on ${searchQuery.homeserver}.`}</div>
             )
           }
+
           {searchQuery.error && (
             <>
               <Text className="public-rooms__search-error" variant="b2">{searchQuery.error}</Text>
@@ -285,7 +290,8 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
               )}
             </>
           )}
-        </div>
+
+        </center>
 
         {publicRooms.length !== 0 && (
           <div className="row hidden-md-up">
