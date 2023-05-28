@@ -5,10 +5,12 @@ import { selectButton } from '../../../util/checkTheme';
 import initMatrix from '../../../client/initMatrix';
 import { getRelevantPacks } from './custom-emoji';
 
+// Cache
 const tinyCache = {
   main: {}
 };
 
+// Insert Emoji Editor
 function insertAtCursor(tinyField, myValue, where = 'main') {
 
   const finishJob = () => {
@@ -42,10 +44,10 @@ function insertAtCursor(tinyField, myValue, where = 'main') {
 
 }
 
-const getTextarea = () => {
+// Get Textarea
+const GetTextarea = (textarea) => {
   try {
 
-    const textarea = document.getElementById('message-textarea');
     if (textarea) {
 
       textarea.addEventListener('change', () => {
@@ -57,17 +59,19 @@ const getTextarea = () => {
       });
 
     } else {
-      setTimeout(getTextarea, 100);
+      setTimeout(() => GetTextarea(textarea), 100);
     }
 
   } catch (err) {
-    setTimeout(getTextarea, 100);
+    setTimeout(() => GetTextarea(textarea), 100);
   }
 };
 
-window.addEventListener('load', getTextarea, false);
+window.addEventListener('load', () => {
+  GetTextarea(document.getElementById('message-textarea'));
+}, false);
 
-function emojiListBuilder() {
+function EmojiListBuilder(whereRead = 'emoticons') {
 
   const customEmojis = [];
   const categoryIcons = {};
@@ -76,8 +80,6 @@ function emojiListBuilder() {
   if (Array.isArray(emojisPack) && emojisPack.length > 0) {
     emojisPack.map(pack => {
       if (pack) {
-
-        const whereRead = 'emoticons';
 
         categoryIcons[pack.id] = {
           src: mx.mxcUrlToHttp(pack.avatarUrl),
@@ -122,7 +124,7 @@ function EmojiBoardOpener() {
 
   // Get Ref
   const openerRef = useRef(null);
-  const tinyEmojis = emojiListBuilder();
+  const tinyEmojis = EmojiListBuilder();
 
   return <Picker
 
