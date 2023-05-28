@@ -58,7 +58,7 @@ function PlaceholderMessage() {
 const MessageAvatar = React.memo(({
   roomId, avatarSrc, userId, username,
 }) => (
-  <div className="message__avatar-container">
+  <div className="pe-2">
     <button type="button" onClick={() => openProfileViewer(userId, roomId)}>
       <Avatar imgClass='' imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} size="small" />
     </button>
