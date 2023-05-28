@@ -1,33 +1,44 @@
 import React, { useRef } from 'react';
 import Picker from '@emoji-mart/react';
 
+const tinyCache = {
+  main: {}
+};
+
 function insertAtCursor(tinyField, myValue) {
 
   const myField = tinyField;
 
   // IE support
   if (document.selection) {
+    tinyCache.main.type = 'ie';
     myField.focus();
-    const sel = document.selection.createRange();
-    sel.text = myValue;
+    tinyCache.main.sel = document.selection.createRange();
+    tinyCache.main.sel.text = myValue;
   }
+
   // MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart === '0') {
-    const startPos = myField.selectionStart;
-    const endPos = myField.selectionEnd;
-    myField.value = myField.value.substring(0, startPos)
+
+    tinyCache.main.startPos = myField.selectionStart;
+    tinyCache.main.endPos = myField.selectionEnd;
+
+    myField.value = myField.value.substring(0, tinyCache.main.startPos)
       + myValue
-      + myField.value.substring(endPos, myField.value.length);
+      + myField.value.substring(tinyCache.main.endPos, myField.value.length);
+
   } else {
     myField.value += myValue;
   }
 
+  // Complete
   return myField;
 
 }
 
 function EmojiBoardOpener() {
 
+  // Get Ref
   const openerRef = useRef(null);
 
   /*
@@ -39,6 +50,7 @@ function EmojiBoardOpener() {
 
   return <Picker set='twitter' onEmojiSelect={(emoji) => {
 
+    // Prepare Code Data
     const tinyData = {
       hexcode: emoji.unified.toUpperCase(),
       mxc: null,
@@ -51,8 +63,11 @@ function EmojiBoardOpener() {
       tinyData.shortcodes = [emoji.shortcodes];
     }
 
-    // Insert Emoji
+    // Get Base
+    tinyCache.main.ref = openerRef;
     const textarea = document.getElementById('message-textarea');
+
+    // Insert Emoji
     insertAtCursor(textarea, emoji.native);
     textarea.focus();
 
