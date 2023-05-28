@@ -117,12 +117,9 @@ function EmojiBoardOpener() {
 
   return <Picker set='twitter' custom={customEmojis} categoryIcons={categoryIcons} onEmojiSelect={(emoji) => {
 
+    console.log(emoji);
     // Prepare Code Data
-    tinyCache.emoji = {
-      hexcode: emoji.unified.toUpperCase(),
-      mxc: null,
-      unicode: emoji.native
-    };
+    tinyCache.emoji = {};
 
     if (Array.isArray(emoji.shortcodes)) {
       tinyCache.emoji.shortcodes = emoji.shortcodes;
@@ -135,7 +132,19 @@ function EmojiBoardOpener() {
     const textarea = document.getElementById('message-textarea');
 
     // Insert Emoji
-    insertAtCursor(textarea, emoji.native);
+    if (typeof emoji.src === 'string') {
+
+      tinyCache.mxc = emoji.src;
+      insertAtCursor(textarea, `:${emoji.id}:`);
+
+    } else if (typeof emoji.native === 'string') {
+
+      tinyCache.unicode = emoji.native;
+      tinyCache.hexcode = emoji.unified.toUpperCase();
+
+      insertAtCursor(textarea, emoji.native);
+
+    }
 
   }} />;
 
