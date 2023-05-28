@@ -14,36 +14,61 @@ const tinyCache = {
 
 function insertAtCursor(tinyField, myValue, where = 'main') {
 
+  const finishJob = () => {
+    tinyField.focus();
+    tinyField.setSelectionRange(tinyCache[where].startPos + myValue.length, tinyCache[where].endPos + myValue.length)
+  };
+
   const myField = tinyField;
-
-  // IE support
-  if (document.selection) {
-    tinyCache[where].type = 'ie';
-    myField.focus();
-    tinyCache[where].sel = document.selection.createRange();
-    if (typeof myValue === 'string') tinyCache[where].sel.text = myValue;
-  }
-
-  // MOZILLA and others
-  else if (myField.selectionStart || myField.selectionStart === '0') {
+  if (myField.selectionStart || myField.selectionStart === '0') {
 
     tinyCache[where].startPos = myField.selectionStart;
     tinyCache[where].endPos = myField.selectionEnd;
 
     if (typeof myValue === 'string') {
+
       myField.value = myField.value.substring(0, tinyCache[where].startPos)
         + myValue
         + myField.value.substring(tinyCache[where].endPos, myField.value.length);
+
+      finishJob();
+
     }
 
   } else if (typeof myValue === 'string') {
     myField.value += myValue;
+    finishJob();
   }
 
   // Complete
   return myField;
 
 }
+
+const getTextarea = () => {
+  try {
+
+    const textarea = document.getElementById('message-textarea');
+    if (textarea) {
+
+      textarea.addEventListener('change', () => {
+        insertAtCursor(textarea);
+      });
+
+      textarea.addEventListener('keyup', () => {
+        insertAtCursor(textarea);
+      });
+
+    } else {
+      setTimeout(getTextarea, 100);
+    }
+
+  } catch (err) {
+    setTimeout(getTextarea, 100);
+  }
+};
+
+window.addEventListener('load', getTextarea, false);
 
 function EmojiBoardOpener() {
 
@@ -78,9 +103,6 @@ function EmojiBoardOpener() {
 
     // Insert Emoji
     insertAtCursor(textarea, emoji.native);
-    textarea.focus();
-
-    console.log(tinyCache);
 
   }} />;
 
