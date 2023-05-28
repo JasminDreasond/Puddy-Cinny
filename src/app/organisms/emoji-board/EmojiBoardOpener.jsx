@@ -85,6 +85,8 @@ function EmojiBoardOpener() {
     emojisPack.map(pack => {
       if (pack) {
 
+        const whereRead = 'emoticons';
+
         categoryIcons[pack.id] = {
           src: mx.mxcUrlToHttp(pack.avatarUrl),
         };
@@ -92,24 +94,21 @@ function EmojiBoardOpener() {
         const tinyPack = {
           id: pack.id,
           name: pack.displayName,
-          emojis: [
-            {
-              id: 'octocat',
-              name: 'Octocat',
-              keywords: ['github'],
-              skins: [{ src: './octocat.png' }],
-            },
-          ],
+          emojis: [],
         };
 
-        const isEmojis = (Array.isArray(pack.emoticons) && pack.emoticons.length > 0);
-        const isStickers = (Array.isArray(pack.stickers) && pack.stickers.length > 0);
-
-        if (isEmojis) {
-
+        if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
+          pack[whereRead].map(emoji => {
+            tinyPack.emojis.push({
+              id: emoji.shortcode,
+              name: emoji.body,
+              keywords: [emoji.shortcode],
+              skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
+            });
+          });
         }
 
-        console.log(pack);
+        customEmojis.push(tinyPack);
 
       }
       return pack;
