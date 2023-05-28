@@ -12,28 +12,28 @@ const tinyCache = {
   main: {}
 };
 
-function insertAtCursor(tinyField, myValue) {
+function insertAtCursor(tinyField, myValue, where = 'main') {
 
   const myField = tinyField;
 
   // IE support
   if (document.selection) {
-    tinyCache.main.type = 'ie';
+    tinyCache[where].type = 'ie';
     myField.focus();
-    tinyCache.main.sel = document.selection.createRange();
-    if (typeof myValue === 'string') tinyCache.main.sel.text = myValue;
+    tinyCache[where].sel = document.selection.createRange();
+    if (typeof myValue === 'string') tinyCache[where].sel.text = myValue;
   }
 
   // MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart === '0') {
 
-    tinyCache.main.startPos = myField.selectionStart;
-    tinyCache.main.endPos = myField.selectionEnd;
+    tinyCache[where].startPos = myField.selectionStart;
+    tinyCache[where].endPos = myField.selectionEnd;
 
     if (typeof myValue === 'string') {
-      myField.value = myField.value.substring(0, tinyCache.main.startPos)
+      myField.value = myField.value.substring(0, tinyCache[where].startPos)
         + myValue
-        + myField.value.substring(tinyCache.main.endPos, myField.value.length);
+        + myField.value.substring(tinyCache[where].endPos, myField.value.length);
     }
 
   } else if (typeof myValue === 'string') {
