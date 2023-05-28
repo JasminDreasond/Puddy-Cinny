@@ -51,16 +51,16 @@ function EmojiBoardOpener() {
   return <Picker set='twitter' onEmojiSelect={(emoji) => {
 
     // Prepare Code Data
-    const tinyData = {
+    tinyCache.emoji = {
       hexcode: emoji.unified.toUpperCase(),
       mxc: null,
       unicode: emoji.native
     };
 
     if (Array.isArray(emoji.shortcodes)) {
-      tinyData.shortcodes = emoji.shortcodes;
+      tinyCache.emoji.shortcodes = emoji.shortcodes;
     } else if (typeof emoji.shortcodes === 'string') {
-      tinyData.shortcodes = [emoji.shortcodes];
+      tinyCache.emoji.shortcodes = [emoji.shortcodes];
     }
 
     // Get Base
@@ -70,6 +70,8 @@ function EmojiBoardOpener() {
     // Insert Emoji
     insertAtCursor(textarea, emoji.native);
     textarea.focus();
+
+    console.log(tinyCache);
 
   }} />;
 
