@@ -1,11 +1,7 @@
 import React, { useRef } from 'react';
 import Picker from '@emoji-mart/react';
 import initMatrix from '../../../client/initMatrix';
-
-import { emojiGroups, emojis } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
-
-// initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)
 
 const tinyCache = {
   main: {}
@@ -82,20 +78,45 @@ function EmojiBoardOpener() {
   */
 
   const customEmojis = [];
-  const emojisPack = getRelevantPacks(initMatrix.matrixClient);
+  const categoryIcons = {};
+  const mx = initMatrix.matrixClient;
+  const emojisPack = getRelevantPacks(mx);
   if (Array.isArray(emojisPack) && emojisPack.length > 0) {
-    emojisPack.map((pack, index) => {
+    emojisPack.map(pack => {
+      if (pack) {
 
-      const isEmojis = (Array.isArray(pack.emoticons) && pack.emoticons.length > 0);
-      const isStickers = (Array.isArray(pack.stickers) && pack.stickers.length > 0);
-      if (pack && (isEmojis || isStickers)) {
+        categoryIcons[pack.id] = {
+          src: mx.mxcUrlToHttp(pack.avatarUrl),
+        };
+
+        const tinyPack = {
+          id: pack.id,
+          name: pack.displayName,
+          emojis: [
+            {
+              id: 'octocat',
+              name: 'Octocat',
+              keywords: ['github'],
+              skins: [{ src: './octocat.png' }],
+            },
+          ],
+        };
+
+        const isEmojis = (Array.isArray(pack.emoticons) && pack.emoticons.length > 0);
+        const isStickers = (Array.isArray(pack.stickers) && pack.stickers.length > 0);
+
+        if (isEmojis) {
+
+        }
+
         console.log(pack);
-      }
 
+      }
+      return pack;
     });
   }
 
-  return <Picker set='twitter' custom={customEmojis} onEmojiSelect={(emoji) => {
+  return <Picker set='twitter' custom={customEmojis} categoryIcons={categoryIcons} onEmojiSelect={(emoji) => {
 
     // Prepare Code Data
     tinyCache.emoji = {
