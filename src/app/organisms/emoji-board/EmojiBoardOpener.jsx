@@ -81,12 +81,21 @@ function EmojiBoardOpener() {
   unicode: ":pudding:"
   */
 
+  const customEmojis = [];
   const emojisPack = getRelevantPacks(initMatrix.matrixClient);
   if (Array.isArray(emojisPack) && emojisPack.length > 0) {
-    console.log(emojisPack);
+    emojisPack.map((pack, index) => {
+
+      const isEmojis = (Array.isArray(pack.emoticons) && pack.emoticons.length > 0);
+      const isStickers = (Array.isArray(pack.stickers) && pack.stickers.length > 0);
+      if (pack && (isEmojis || isStickers)) {
+        console.log(pack);
+      }
+
+    });
   }
 
-  return <Picker set='twitter' onEmojiSelect={(emoji) => {
+  return <Picker set='twitter' custom={customEmojis} onEmojiSelect={(emoji) => {
 
     // Prepare Code Data
     tinyCache.emoji = {
