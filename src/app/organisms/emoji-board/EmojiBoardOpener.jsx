@@ -99,12 +99,16 @@ function EmojiBoardOpener() {
 
         if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
           pack[whereRead].map(emoji => {
+
             tinyPack.emojis.push({
               id: emoji.shortcode,
               name: emoji.body,
               keywords: [emoji.shortcode],
               skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
             });
+
+            return emoji;
+
           });
         }
 
