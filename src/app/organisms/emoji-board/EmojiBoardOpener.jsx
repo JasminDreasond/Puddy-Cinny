@@ -6,9 +6,24 @@ import cons from '../../../client/state/cons';
 import navigation from '../../../client/state/navigation';
 import settings from '../../../client/state/settings';
 
-import ContextMenu from '../../atoms/context-menu/ContextMenu';
-
-import EmojiBoard from './EmojiBoard';
+function insertAtCursor(myField, myValue) {
+  //IE support
+  if (document.selection) {
+    myField.focus();
+    sel = document.selection.createRange();
+    sel.text = myValue;
+  }
+  //MOZILLA and others
+  else if (myField.selectionStart || myField.selectionStart == '0') {
+    var startPos = myField.selectionStart;
+    var endPos = myField.selectionEnd;
+    myField.value = myField.value.substring(0, startPos)
+      + myValue
+      + myField.value.substring(endPos, myField.value.length);
+  } else {
+    myField.value += myValue;
+  }
+}
 
 let requestCallback = null;
 let isEmojiBoardVisible = false;
@@ -70,39 +85,11 @@ unicode: ":pudding:"
       tinyData.shortcodes = [emoji.shortcodes];
     }
 
-    // Native Emoji
-    addEmoji(tinyData);
+    // Insert Emoji
+    insertAtCursor(document.getElementById('message-textarea'), emoji.native);
 
   }} />;
 
 }
-
-/*
-    <ContextMenu
-      content={(
-        // 
-        <EmojiBoard onSelect={addEmoji} searchRef={searchRef} />
-      )}
-      afterToggle={afterEmojiBoardToggle}
-      render={(toggleMenu) => (
-        <input
-          ref={openerRef}
-          onClick={toggleMenu}
-          type="button"
-          style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: 'transparent',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            padding: 0,
-            border: 'none',
-            visibility: 'hidden',
-          }}
-        />
-      )}
-    />
-*/
 
 export default EmojiBoardOpener;
