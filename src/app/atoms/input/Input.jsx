@@ -7,10 +7,10 @@ function Input({
   id, label, name, value, placeholder,
   required, type, onChange, forwardRef,
   resizable, minHeight, onResize, state,
-  onKeyDown, disabled, autoFocus, className
+  onKeyDown, disabled, autoFocus, className, className2
 }) {
   return (
-    <div>
+    <div className={className2}>
 
       {label !== '' && <label className="small text-gray" htmlFor={id}>{label}</label>}
 
@@ -59,6 +59,7 @@ function Input({
 }
 
 Input.defaultProps = {
+  className2: '',
   className: null,
   id: null,
   name: '',
@@ -80,6 +81,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   className: PropTypes.string,
+  className2: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,

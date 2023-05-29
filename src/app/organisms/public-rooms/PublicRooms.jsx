@@ -242,15 +242,35 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
       onRequestClose={onRequestClose}
     >
 
-      <div className="public-rooms container">
+      <div className="container">
 
-        <form className="public-rooms__form" onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
+        <form className='p-3 border-0 text-dark rounded d-flex justify-content-center w-100' style={{
+          height: '500px',
+          overflow: 'hidden',
+          backgroundImage: 'url("./public/img/discover.jpg")',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: '100%',
+          alignItems: 'center'
+        }} onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
 
-          <div className="public-rooms__input-wrapper">
-            <Input value={searchTerm} forwardRef={roomNameRef} label="Room name or alias" />
-            <Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} label="Homeserver" required />
-          </div>
-          <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
+          <center className='w-50'>
+
+            <h4>Find your community in Matrix</h4>
+            <h6>There will always be a place that is trying to teach you new things.</h6>
+
+            <Input
+              value={searchTerm}
+              forwardRef={roomNameRef}
+              className2='m-3'
+              className='text-center'
+              placeholder='Enter the name of your community here'
+            />
+
+            <Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} className2='mb-3' className='text-center' required />
+            <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
+
+          </center>
 
         </form>
 
