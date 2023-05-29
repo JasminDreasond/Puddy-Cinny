@@ -224,7 +224,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
               {alias + (room.num_joined_members === null ? '' : ` • ${room.num_joined_members} members`)}
             </p>
 
-            {isJoined && <Button onClick={() => handleViewRoom(room.room_id)}>Open</Button>}
+            {isJoined && <Button onClick={() => handleViewRoom(room.room_id)} variant="secondary">Open</Button>}
             {!isJoined && (joiningRooms.has(room.room_id) ? <Spinner size="small" /> : <Button onClick={() => joinRoom(room.aliases?.[0] || room.room_id)} variant="primary">Join</Button>)}
 
           </div>
@@ -264,7 +264,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
           </center>
 
-          <img src='./public/img/discover.jpg' />
+          <img src='./public/img/discover.jpg' alt='banner' />
 
         </form>
 
@@ -316,7 +316,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
         {publicRooms.length !== 0 && publicRooms.length % SEARCH_LIMIT === 0 && (
           <center className='d-grid gap-2 mt-3 noselect'>
             {isViewMore !== true && (
-              <Button variant='secondary' onClick={() => searchRooms(true)}>View more</Button>
+              <Button variant='primary' onClick={() => searchRooms(true)}>View more</Button>
             )}
             {isViewMore && <Spinner />}
           </center>

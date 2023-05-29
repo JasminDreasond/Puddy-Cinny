@@ -8,7 +8,6 @@ import cons from '../../../client/state/cons';
 import colorMXID from '../../../util/colorMXID';
 
 import RawIcon from '../../atoms/system-icons/RawIcon';
-import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
