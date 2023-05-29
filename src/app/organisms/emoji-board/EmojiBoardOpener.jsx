@@ -137,7 +137,6 @@ function EmojiListBuilder(whereRead = 'emoticons') {
 const closeDetector = { normal: false, delay: false };
 function EmojiBoardOpener() {
   const [isOpen, setIsOpen] = useState(false);
-  closeDetector.delay = false;
 
   // Get Ref
   const openerRef = useRef(null);
@@ -154,7 +153,7 @@ function EmojiBoardOpener() {
         setIsOpen(true);
         closeDetector.normal = true;
         closeDetector.delay = true;
-        setTimeout(() => { closeDetector.delay = false; }, 500);
+        setTimeout(() => { closeDetector.delay = false; }, 1000);
 
       }
     };
