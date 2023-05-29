@@ -244,15 +244,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
       <div className="container">
 
-        <form className='p-3 border-0 text-dark rounded d-flex justify-content-center w-100' style={{
-          height: '500px',
-          overflow: 'hidden',
-          backgroundImage: 'url("./public/img/discover.jpg")',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: '100%',
-          alignItems: 'center'
-        }} onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
+        <form className='p-3 border-0 text-dark rounded d-flex justify-content-center w-100 discover-banner' onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
 
           <center className='w-50'>
 

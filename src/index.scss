@@ -307,3 +307,13 @@ em-emoji-picker {
   right: 0;
   z-index: 1000;
 }
+
+.discover-banner {
+  height: 500px;
+  overflow: hidden;
+  background-image: url('./public/img/discover.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  align-items: center;
+}
