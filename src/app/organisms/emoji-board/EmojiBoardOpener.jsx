@@ -134,11 +134,10 @@ function EmojiListBuilder(whereRead = 'emoticons') {
 
 }
 
-let delayClose = false;
-let closeDetector = false;
+const closeDetector = { normal: false, delay: false };
 function EmojiBoardOpener() {
   const [isOpen, setIsOpen] = useState(false);
-  delayClose = false;
+  closeDetector.delay = false;
 
   // Get Ref
   const openerRef = useRef(null);
@@ -146,15 +145,16 @@ function EmojiBoardOpener() {
   useEffect(() => {
 
     const openEmojiList = (cords, requestEmojiCallback) => {
-      if (!closeDetector && !delayClose) {
+      if (!closeDetector.normal && !closeDetector.delay) {
 
         const tinyItems = EmojiListBuilder();
         tinyCache.items.custom = tinyItems.custom;
         tinyCache.items.categoryIcons = tinyItems.categoryIcons;
+
         setIsOpen(true);
-        closeDetector = true;
-        delayClose = true;
-        setTimeout(() => { delayClose = false; }, 500);
+        closeDetector.normal = true;
+        closeDetector.delay = true;
+        setTimeout(() => { closeDetector.delay = false; }, 500);
 
       }
     };
@@ -180,7 +180,7 @@ function EmojiBoardOpener() {
       perLine={9}
 
       onClickOutside={() => {
-        if (closeDetector && !delayClose) { closeDetector = false; setIsOpen(false); }
+        if (closeDetector.normal && !closeDetector.delay) { closeDetector.normal = false; setIsOpen(false); }
       }}
 
       onEmojiSelect={(emoji) => {
