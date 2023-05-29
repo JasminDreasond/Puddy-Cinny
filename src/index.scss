@@ -317,3 +317,9 @@ em-emoji-picker {
   background-size: 100%;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  .discover-banner {
+    background-size: 200%;
+  }
+}
