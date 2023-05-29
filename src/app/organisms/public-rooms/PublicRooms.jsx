@@ -244,7 +244,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
       <div className="container">
 
-        <form className='p-3 border-0 rounded d-flex justify-content-center w-100 discover-banner' onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
+        <form className='p-3 border-0 rounded d-flex justify-content-center w-100 discover-banner noselect' onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
 
           <center>
 
@@ -268,7 +268,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
         </form>
 
-        <center className='py-3'>
+        <center className='py-3 noselect'>
 
           {
             typeof searchQuery.name !== 'undefined' && isSearching && (
@@ -314,7 +314,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
         )}
 
         {publicRooms.length !== 0 && publicRooms.length % SEARCH_LIMIT === 0 && (
-          <center className='d-grid gap-2 mt-3'>
+          <center className='d-grid gap-2 mt-3 noselect'>
             {isViewMore !== true && (
               <Button variant='secondary' onClick={() => searchRooms(true)}>View more</Button>
             )}
