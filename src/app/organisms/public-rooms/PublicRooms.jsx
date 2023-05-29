@@ -244,9 +244,9 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
       <div className="container">
 
-        <form className='p-3 border-0 text-dark rounded d-flex justify-content-center w-100 discover-banner' onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
+        <form className='p-3 border-0 rounded d-flex justify-content-center w-100 discover-banner' onSubmit={(e) => { e.preventDefault(); searchRooms(); }}>
 
-          <center className='w-50'>
+          <center>
 
             <h4>Find your community in Matrix</h4>
             <h6>There will always be a place that is trying to teach you new things.</h6>
@@ -263,6 +263,8 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
             <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
 
           </center>
+
+          <img src='./public/img/discover.jpg' />
 
         </form>
 
