@@ -264,7 +264,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
 
           </center>
 
-          <img src='./public/img/discover.jpg' alt='banner' />
+          <img src='./public/img/page/discover.jpg' alt='banner' />
 
         </form>
 
