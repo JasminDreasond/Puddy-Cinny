@@ -7,7 +7,13 @@ import { getRelevantPacks } from './custom-emoji';
 import navigation from '../../../client/state/navigation';
 import cons from '../../../client/state/cons';
 
-// Cache
+// Selected Room Cache
+let roomEmojis = null;
+const updateAvailableEmoji = (selectedRoomId) => {
+  roomEmojis = selectedRoomId;
+};
+
+// Cache Items
 const tinyCache = {
 
   main: {},
@@ -98,48 +104,74 @@ window.addEventListener('load', () => {
   GetTextarea(document.getElementById('message-textarea'));
 }, false);
 
+// Emoji List Builder
 function EmojiListBuilder(whereRead = 'emoticons') {
 
+  // First Values
   const customEmojis = [];
   const categoryIcons = {};
   const mx = initMatrix.matrixClient;
-  const emojisPack = getRelevantPacks(mx);
-  if (Array.isArray(emojisPack) && emojisPack.length > 0) {
-    emojisPack.map(pack => {
-      if (pack) {
 
-        categoryIcons[pack.id] = {
-          src: mx.mxcUrlToHttp(pack.avatarUrl),
-        };
+  const room = mx.getRoom(roomEmojis);
+  const parentIds = initMatrix.roomList.getAllParentSpaces(room.roomId);
+  const parentRooms = [...parentIds].map((id) => mx.getRoom(id));
+  if (room) {
 
-        const tinyPack = {
-          id: pack.id,
-          name: pack.displayName,
-          emojis: [],
-        };
+    const emojisPack = getRelevantPacks(room.client, [room, ...parentRooms]).filter(
+      (pack) => pack.getEmojis().length !== 0
+    );
 
-        if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
-          pack[whereRead].map(emoji => {
+    // Set an index for each pack so that we know where to jump when the user uses the nav
+    for (let i = 0; i < emojisPack.length; i += 1) {
+      emojisPack[i].packIndex = i;
+    }
 
-            tinyPack.emojis.push({
-              id: emoji.shortcode,
-              name: emoji.body,
-              keywords: [emoji.shortcode, emoji.mxc],
-              skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
+    // Get Data
+    if (Array.isArray(emojisPack) && emojisPack.length > 0) {
+      emojisPack.map(pack => {
+        if (pack) {
+
+          categoryIcons[pack.id] = {
+            src: mx.mxcUrlToHttp(pack.avatarUrl),
+          };
+
+          const tinyPack = {
+            id: pack.id,
+            name: pack.displayName,
+            emojis: [],
+          };
+
+          if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
+            pack[whereRead].map(emoji => {
+
+              tinyPack.emojis.push({
+                id: emoji.shortcode,
+                name: emoji.body,
+                keywords: [emoji.shortcode, emoji.mxc],
+                skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
+              });
+
+              return emoji;
+
             });
+          }
 
-            return emoji;
+          customEmojis.push(tinyPack);
 
-          });
         }
+        return pack;
+      });
+    } else {
+      tinyCache.items.custom = [];
+      tinyCache.items.categoryIcons = {};
+    }
 
-        customEmojis.push(tinyPack);
-
-      }
-      return pack;
-    });
+  } else {
+    tinyCache.items.custom = [];
+    tinyCache.items.categoryIcons = {};
   }
 
+  // Send Result
   return {
     custom: customEmojis,
     categoryIcons
@@ -147,27 +179,35 @@ function EmojiListBuilder(whereRead = 'emoticons') {
 
 }
 
+// Request Action
 let requestEmoji = null;
 const closeDetector = { normal: false, delay: false };
+
+// Open Emoji List
 function EmojiBoardOpener() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
 
+    // Update Emoji list on open
     const openEmojiList = (cords, requestEmojiCallback) => {
       if (!closeDetector.normal && !closeDetector.delay) {
 
+        // Get Items
         const tinyItems = EmojiListBuilder();
         tinyCache.items.custom = tinyItems.custom;
         tinyCache.items.categoryIcons = tinyItems.categoryIcons;
 
+        // Set is Open
         setIsOpen(true);
         closeDetector.normal = true;
         closeDetector.delay = true;
         requestEmoji = requestEmojiCallback;
 
+        // Anti Issues
         setTimeout(() => { closeDetector.delay = false; }, 1000);
 
+        // Update Position
         setTimeout(() => {
           const tinyDom = document.getElementsByTagName('em-emoji-picker');
           if (tinyDom && tinyDom[0]) {
@@ -183,17 +223,22 @@ function EmojiBoardOpener() {
       }
     };
 
+    // Sockets Update
+    navigation.on(cons.events.navigation.ROOM_SELECTED, updateAvailableEmoji);
     navigation.on(cons.events.navigation.EMOJIBOARD_OPENED, openEmojiList);
     return () => {
+      navigation.removeListener(cons.events.navigation.ROOM_SELECTED, updateAvailableEmoji);
       navigation.removeListener(cons.events.navigation.EMOJIBOARD_OPENED, openEmojiList);
     };
 
   }, []);
 
+  // Close Board
   const closeEmojiBoard = () => {
     if (closeDetector.normal && !closeDetector.delay) { closeDetector.normal = false; requestEmoji = null; setIsOpen(false); }
   };
 
+  // Insert Data
   const insertEmoji = (emoji) => {
 
     // Prepare Code Data
@@ -233,6 +278,7 @@ function EmojiBoardOpener() {
 
   };
 
+  // HTML
   return (isOpen && (
     <Picker
 
@@ -254,4 +300,5 @@ function EmojiBoardOpener() {
 
 }
 
+// Export
 export default EmojiBoardOpener;
