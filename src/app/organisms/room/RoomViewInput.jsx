@@ -514,8 +514,8 @@ function RoomViewInput({
           <IconButton
             onClick={(e) => {
               const cords = getEventCords(e);
-              cords.x += (document.dir === 'rtl' ? -80 : 80);
-              cords.y -= 250;
+              cords.x -= (document.dir === 'rtl' ? -80 : 280);
+              cords.y -= 460;
               openEmojiBoard(cords, addEmoji);
             }}
             tooltip="Emoji"
