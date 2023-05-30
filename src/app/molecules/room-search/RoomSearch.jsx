@@ -11,7 +11,6 @@ import RawIcon from '../../atoms/system-icons/RawIcon';
 import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import Spinner from '../../atoms/spinner/Spinner';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import { Message } from '../message/Message';
 
 import { useStore } from '../../hooks/useStore';

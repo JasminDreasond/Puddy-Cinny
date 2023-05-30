@@ -14,7 +14,7 @@ import RawIcon from '../../atoms/system-icons/RawIcon';
 import { Header } from '../../atoms/header/Header';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import Tabs from '../../atoms/tabs/Tabs';
-import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
+import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 import RoomProfile from '../../molecules/room-profile/RoomProfile';
 import RoomSearch from '../../molecules/room-search/RoomSearch';
 import RoomNotification from '../../molecules/room-notification/RoomNotification';

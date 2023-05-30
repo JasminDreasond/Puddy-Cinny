@@ -5,7 +5,6 @@ import './RoomEmojis.scss';
 import initMatrix from '../../../client/initMatrix';
 import { suffixRename } from '../../../util/common';
 
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import Text from '../../atoms/text/Text';
 import Input from '../../atoms/input/Input';
 import Button from '../../atoms/button/Button';

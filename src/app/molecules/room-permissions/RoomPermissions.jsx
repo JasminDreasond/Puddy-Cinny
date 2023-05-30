@@ -9,7 +9,6 @@ import { getEventCords } from '../../../util/common';
 
 import Text from '../../atoms/text/Text';
 import Button from '../../atoms/button/Button';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 import PowerLevelSelector from '../power-level-selector/PowerLevelSelector';
 import SettingTile from '../setting-tile/SettingTile';
 

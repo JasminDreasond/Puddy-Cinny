@@ -12,7 +12,6 @@ import Button from '../../atoms/button/Button';
 import Text from '../../atoms/text/Text';
 import Input from '../../atoms/input/Input';
 import Checkbox from '../../atoms/button/Checkbox';
-import { MenuHeader } from '../../atoms/context-menu/ContextMenu';
 
 import { ImagePack as ImagePackBuilder } from '../../organisms/emoji-board/custom-emoji';
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
