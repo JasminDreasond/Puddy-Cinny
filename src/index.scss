@@ -301,13 +301,20 @@ a {
   color: var(--tc-surface-normal);
 }
 
+/* Emoji Picker */
 em-emoji-picker {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 1000;
 }
 
+.show-emoji-list {
+  display: flex;
+}
+
+/* Discover Banner */
 .discover-banner {
   color: #fff;
   height: 500px;

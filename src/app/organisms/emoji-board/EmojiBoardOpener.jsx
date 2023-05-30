@@ -168,7 +168,17 @@ function EmojiBoardOpener() {
 
         setTimeout(() => { closeDetector.delay = false; }, 1000);
 
-        console.log(cords);
+        setTimeout(() => {
+          const tinyDom = document.getElementsByTagName('em-emoji-picker');
+          if (tinyDom && tinyDom[0]) {
+
+            const emojiPicker = tinyDom[0];
+            emojiPicker.classList.add('show-emoji-list');
+            emojiPicker.style.top = `${cords.y}px`;
+            emojiPicker.style.left = `${cords.x}px`;
+
+          }
+        }, 100);
 
       }
     };
