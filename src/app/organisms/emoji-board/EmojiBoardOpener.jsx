@@ -23,6 +23,13 @@ const tinyCache = {
     categoryIcons: {}
   },
 
+  categories: {
+    items: [],
+    default: [
+      'people', 'nature', 'foods', 'activity', 'places', 'objects', 'symbols', 'flags'
+    ]
+  },
+
   config: {
 
     locale: 'en',
@@ -107,6 +114,9 @@ window.addEventListener('load', () => {
 // Emoji List Builder
 function EmojiListBuilder(whereRead = 'emoticons') {
 
+  // Reset Category List
+  tinyCache.categories.items = ['frequent'];
+
   // First Values
   const customEmojis = [];
   const categoryIcons = {};
@@ -156,6 +166,7 @@ function EmojiListBuilder(whereRead = 'emoticons') {
             });
           }
 
+          tinyCache.categories.items.push(pack.id);
           customEmojis.push(tinyPack);
 
         }
@@ -169,6 +180,10 @@ function EmojiListBuilder(whereRead = 'emoticons') {
   } else {
     tinyCache.items.custom = [];
     tinyCache.items.categoryIcons = {};
+  }
+
+  for (const item in tinyCache.categories.default) {
+    tinyCache.categories.items.push(tinyCache.categories.default[item]);
   }
 
   // Send Result
@@ -286,6 +301,7 @@ function EmojiBoardOpener() {
       set='twitter'
       custom={tinyCache.items.custom}
       categoryIcons={tinyCache.items.categoryIcons}
+      categories={tinyCache.categories.items}
       locale={tinyCache.config.locale}
 
       emojiSize={tinyCache.config.emojiSize}
