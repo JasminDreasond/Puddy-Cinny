@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
-  "author": "Ajay Bura",
+  "author": "JasminDreasond (Fork from Cinny by Ajay Bura)",
   "license": "AGPL-3.0-only",
   "dependencies": {
     "@cryptofonts/cryptofont": "1.3.5",
@@ -39,7 +39,7 @@
     "html-react-parser": "3.0.4",
     "katex": "0.16.4",
     "linkify-html": "4.0.2",
-    "linkifyjs": "4.0.2",
+    "linkifyjs": "4.1.1",
     "matrix-js-sdk": "24.0.0",
     "moment-timezone": "0.5.43",
     "photoswipe": "5.3.7",
