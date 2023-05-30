@@ -202,14 +202,20 @@ function EmojiBoardOpener() {
     if (typeof emoji.src === 'string') {
 
       tinyCache.emoji.mxc = emoji.src;
-      insertAtCursor(textarea, `:${emoji.id}:`);
+      tinyCache.emoji.unicode = `:${emoji.id}:`;
+      tinyCache.emoji.hexcode = null;
+
+      if (typeof requestEmoji === 'function') { console.log(requestEmoji, tinyCache.emoji); requestEmoji(tinyCache.emoji); }
+      // insertAtCursor(textarea, `:${emoji.id}:`);
+      closeEmojiBoard();
 
     } else if (typeof emoji.native === 'string') {
 
+      tinyCache.emoji.mxc = null;
       tinyCache.emoji.unicode = emoji.native;
       tinyCache.emoji.hexcode = emoji.unified.toUpperCase();
 
-      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
+      if (typeof requestEmoji === 'function') { console.log(requestEmoji, tinyCache.emoji); requestEmoji(tinyCache.emoji); }
       // insertAtCursor(textarea, emoji.native);
       closeEmojiBoard();
 
