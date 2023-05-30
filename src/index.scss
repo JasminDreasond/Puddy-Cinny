@@ -312,6 +312,20 @@ em-emoji-picker {
 
 .show-emoji-list {
   display: flex;
+  -webkit-animation: fadeInFromNone 0.3s ease-out;
+  -moz-animation: fadeInFromNone 0.3s ease-out;
+  -o-animation: fadeInFromNone 0.3s ease-out;
+  animation: fadeInFromNone 0.3s ease-out;
+}
+
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Discover Banner */
