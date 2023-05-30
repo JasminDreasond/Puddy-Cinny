@@ -9,11 +9,24 @@ import cons from '../../../client/state/cons';
 
 // Cache
 const tinyCache = {
+
   main: {},
+
   items: {
     custom: [],
     categoryIcons: {}
+  },
+
+  config: {
+
+    locale: 'en',
+
+    emojiSize: 24,
+    maxFrequentRows: 4,
+    perLine: 9
+
   }
+
 };
 
 // Insert Emoji Editor
@@ -134,12 +147,10 @@ function EmojiListBuilder(whereRead = 'emoticons') {
 
 }
 
+let requestEmoji = null;
 const closeDetector = { normal: false, delay: false };
 function EmojiBoardOpener() {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Get Ref
-  const openerRef = useRef(null);
 
   useEffect(() => {
 
@@ -153,7 +164,11 @@ function EmojiBoardOpener() {
         setIsOpen(true);
         closeDetector.normal = true;
         closeDetector.delay = true;
+        requestEmoji = requestEmojiCallback;
+
         setTimeout(() => { closeDetector.delay = false; }, 1000);
+
+        console.log(cords);
 
       }
     };
@@ -165,6 +180,43 @@ function EmojiBoardOpener() {
 
   }, []);
 
+  const closeEmojiBoard = () => {
+    if (closeDetector.normal && !closeDetector.delay) { closeDetector.normal = false; requestEmoji = null; setIsOpen(false); }
+  };
+
+  const insertEmoji = (emoji) => {
+
+    // Prepare Code Data
+    tinyCache.emoji = {};
+
+    if (Array.isArray(emoji.shortcodes)) {
+      tinyCache.emoji.shortcodes = emoji.shortcodes;
+    } else if (typeof emoji.shortcodes === 'string') {
+      tinyCache.emoji.shortcodes = [emoji.shortcodes];
+    }
+
+    // Get Base
+    const textarea = document.getElementById('message-textarea');
+
+    // Insert Emoji
+    if (typeof emoji.src === 'string') {
+
+      tinyCache.emoji.mxc = emoji.src;
+      insertAtCursor(textarea, `:${emoji.id}:`);
+
+    } else if (typeof emoji.native === 'string') {
+
+      tinyCache.emoji.unicode = emoji.native;
+      tinyCache.emoji.hexcode = emoji.unified.toUpperCase();
+
+      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
+      // insertAtCursor(textarea, emoji.native);
+      closeEmojiBoard();
+
+    }
+
+  };
+
   return (isOpen && (
     <Picker
 
@@ -172,47 +224,14 @@ function EmojiBoardOpener() {
       set='twitter'
       custom={tinyCache.items.custom}
       categoryIcons={tinyCache.items.categoryIcons}
-      locale='en'
+      locale={tinyCache.config.locale}
 
-      emojiSize={24}
-      maxFrequentRows={4}
-      perLine={9}
+      emojiSize={tinyCache.config.emojiSize}
+      maxFrequentRows={tinyCache.config.maxFrequentRows}
+      perLine={tinyCache.config.perLine}
 
-      onClickOutside={() => {
-        if (closeDetector.normal && !closeDetector.delay) { closeDetector.normal = false; setIsOpen(false); }
-      }}
-
-      onEmojiSelect={(emoji) => {
-
-        // Prepare Code Data
-        tinyCache.emoji = {};
-
-        if (Array.isArray(emoji.shortcodes)) {
-          tinyCache.emoji.shortcodes = emoji.shortcodes;
-        } else if (typeof emoji.shortcodes === 'string') {
-          tinyCache.emoji.shortcodes = [emoji.shortcodes];
-        }
-
-        // Get Base
-        tinyCache.main.ref = openerRef;
-        const textarea = document.getElementById('message-textarea');
-
-        // Insert Emoji
-        if (typeof emoji.src === 'string') {
-
-          tinyCache.mxc = emoji.src;
-          insertAtCursor(textarea, `:${emoji.id}:`);
-
-        } else if (typeof emoji.native === 'string') {
-
-          tinyCache.unicode = emoji.native;
-          tinyCache.hexcode = emoji.unified.toUpperCase();
-
-          insertAtCursor(textarea, emoji.native);
-
-        }
-
-      }}
+      onClickOutside={closeEmojiBoard}
+      onEmojiSelect={insertEmoji}
 
     />
   ));
