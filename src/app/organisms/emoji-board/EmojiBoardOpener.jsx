@@ -124,7 +124,7 @@ function EmojiListBuilder(whereRead = 'emoticons') {
             tinyPack.emojis.push({
               id: emoji.shortcode,
               name: emoji.body,
-              keywords: [emoji.shortcode],
+              keywords: [emoji.shortcode, emoji.mxc],
               skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
             });
 
@@ -196,16 +196,16 @@ function EmojiBoardOpener() {
     }
 
     // Get Base
-    const textarea = document.getElementById('message-textarea');
+    // const textarea = document.getElementById('message-textarea');
 
     // Insert Emoji
     if (typeof emoji.src === 'string') {
 
-      tinyCache.emoji.mxc = emoji.src;
+      tinyCache.emoji.mxc = emoji.keywords['1'];
       tinyCache.emoji.unicode = `:${emoji.id}:`;
       tinyCache.emoji.hexcode = null;
 
-      if (typeof requestEmoji === 'function') { console.log(requestEmoji, tinyCache.emoji); requestEmoji(tinyCache.emoji); }
+      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
       // insertAtCursor(textarea, `:${emoji.id}:`);
       closeEmojiBoard();
 
@@ -215,7 +215,7 @@ function EmojiBoardOpener() {
       tinyCache.emoji.unicode = emoji.native;
       tinyCache.emoji.hexcode = emoji.unified.toUpperCase();
 
-      if (typeof requestEmoji === 'function') { console.log(requestEmoji, tinyCache.emoji); requestEmoji(tinyCache.emoji); }
+      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
       // insertAtCursor(textarea, emoji.native);
       closeEmojiBoard();
 
