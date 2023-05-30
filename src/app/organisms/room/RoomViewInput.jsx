@@ -489,6 +489,14 @@ function RoomViewInput({
 
           <IconButton
             onClick={(e) => {
+
+              /*
+              const cords = getEventCords(e);
+              cords.x -= (document.dir === 'rtl' ? -80 : 280);
+              cords.y -= 460;
+              openEmojiBoard(cords, handleSendSticker);
+              */
+
               openReusableContextMenu(
                 'top',
                 (() => {
@@ -506,6 +514,7 @@ function RoomViewInput({
                   />
                 ),
               );
+
             }}
             tooltip="Sticker"
             fa="fa-solid fa-note-sticky"

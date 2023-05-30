@@ -22,3 +22,11 @@ Made by Me
         }
 
     ]
+
+    Fazer o sticker usar o mesmo script do emoji
+
+    Fazer o timestamp funcionar sem bug
+    Converter para bootstrap algumas partes do painel de mensagens.
+
+    Adicionar o sistema de banner do space.
+    Adicionar um botão para a pessoa abrir o gerenciador de canais quando o space está vazio

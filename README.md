@@ -57,6 +57,7 @@ If you are a developer interested in contributing to the project, I'll let the P
     Room
     
     src/app/molecules/room-profile/RoomProfile.jsx
+    src/app/molecules/room-permissions/RoomPermissions.jsx
 
     Message
 

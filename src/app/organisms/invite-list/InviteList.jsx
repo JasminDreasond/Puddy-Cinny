@@ -71,8 +71,8 @@ function InviteList({ isOpen, onRequestClose }) {
             ? (<Spinner size="small" />)
             : (
               <div className="invite-btn__container">
-                <Button onClick={() => rejectInvite(myRoom.roomId)}>Reject</Button>
-                <Button onClick={() => acceptInvite(myRoom.roomId)} variant="primary">Accept</Button>
+                <Button className='me-2' onClick={() => rejectInvite(myRoom.roomId)}>Reject</Button>
+                <Button className='ms-2' onClick={() => acceptInvite(myRoom.roomId)} variant="primary">Accept</Button>
               </div>
             )
         }
@@ -107,8 +107,8 @@ function InviteList({ isOpen, onRequestClose }) {
                     ? (<Spinner size="small" />)
                     : (
                       <div className="invite-btn__container">
-                        <Button onClick={() => rejectInvite(myRoom.roomId, true)}>Reject</Button>
-                        <Button onClick={() => acceptInvite(myRoom.roomId, true)} variant="primary">Accept</Button>
+                        <Button className='me-2' onClick={() => rejectInvite(myRoom.roomId, true)}>Reject</Button>
+                        <Button className='ms-2' onClick={() => acceptInvite(myRoom.roomId, true)} variant="primary">Accept</Button>
                       </div>
                     )
                 }

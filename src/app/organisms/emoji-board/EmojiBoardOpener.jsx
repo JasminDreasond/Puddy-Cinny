@@ -112,7 +112,7 @@ window.addEventListener('load', () => {
 }, false);
 
 // Emoji List Builder
-function EmojiListBuilder(whereRead = 'emoticons') {
+function EmojiListBuilder(whereRead, whereGet) {
 
   // Reset Category List
   tinyCache.categories.items = ['frequent'];
@@ -128,7 +128,7 @@ function EmojiListBuilder(whereRead = 'emoticons') {
   if (room) {
 
     const emojisPack = getRelevantPacks(room.client, [room, ...parentRooms]).filter(
-      (pack) => pack.getEmojis().length !== 0
+      (pack) => pack[whereGet]().length !== 0
     );
 
     // Set an index for each pack so that we know where to jump when the user uses the nav
@@ -209,7 +209,8 @@ function EmojiBoardOpener() {
       if (!closeDetector.normal && !closeDetector.delay) {
 
         // Get Items
-        const tinyItems = EmojiListBuilder();
+        // const tinyItems = EmojiListBuilder('stickers', 'getStickers');
+        const tinyItems = EmojiListBuilder('emoticons', 'getEmojis');
         tinyCache.items.custom = tinyItems.custom;
         tinyCache.items.categoryIcons = tinyItems.categoryIcons;
 
