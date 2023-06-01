@@ -377,7 +377,7 @@ const markdownRules = {
   // Inline Code
   inlineCode: {
     ...defaultRules.inlineCode,
-    match: inlineRegex(/^(`+)([^\n]*?[^`\n])\1(?!`)/),
+    match: inlineRegex(/^(`+)([^\n]*?[^`\n])\1(?!`)/g),
     plain: (node) => `\`${node.content}\``,
   },
 
@@ -419,7 +419,7 @@ const markdownRules = {
   // Math
   inlineMath: {
     order: defaultRules.del.order + 0.2,
-    match: inlineRegex(/^\$(\S[\s\S]+?\S|\S)\$(?!\d)/),
+    match: inlineRegex(/^\$(\S[\s\S]+?\S|\S)\$(?!\d)/g),
     parse: (capture) => ({ content: capture[1] }),
     plain: (node) => `$${node.content}$`,
     html: (node) => mathHtml('span', node),
