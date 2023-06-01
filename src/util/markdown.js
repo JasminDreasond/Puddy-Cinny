@@ -8,30 +8,37 @@ import { idRegex, parseIdUri } from './common';
 moment.locale('en');
 const timestampFormats = {
 
-  t: `hh:MM A`,
-  T: `hh:MM:SS A`,
+  t: `hh:mm A`,
+  T: `hh:mm:ss A`,
 
   d: `MM/DD/YYYY`,
   D: `MMMM DD, YYYY`,
 
-  f: `MMMM DD, YYYY hh:MM A`,
-  F: `dddd MMMM DD, YYYY hh:MM A`,
+  f: `MMMM DD, YYYY hh:mm A`,
+  F: `dddd MMMM DD, YYYY hh:mm A`,
 
   html: (item, fromNow = false) => ({
+
     order: defaultRules.inlineCode.order + 0.1,
     match: inlineRegex(new RegExp(`<t:([\\s\\S]+?):${item}>`, 'g')),
+
     parse: (capture, parse, state) => ({
       content: parse(capture[1], state)
     }),
+
     plain: (node, output, state) => `<t:${output(node.content, state)}:${item}>`,
     html: (node, output, state) => {
+
       const timestamp = Number(output(node.content, state)) * 1000;
+
       return htmlTag(
         'span',
         (!fromNow ? moment(timestamp).format(timestampFormats[item]) : moment(timestamp).fromNow()),
         { 'data-mx-timestamp': String(timestamp) },
       );
+
     },
+
   })
 
 };
