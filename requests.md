@@ -22,7 +22,3 @@ Made by Me
         }
 
     ]
-
-    Converter para bootstrap algumas partes do painel de mensagens.
-
-    Adicionar o sistema de banner do space.

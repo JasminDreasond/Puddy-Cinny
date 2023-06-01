@@ -15,10 +15,8 @@ import {
   unCategorizeSpace,
 } from '../../../client/action/accountData';
 
-import Text from '../../atoms/text/Text';
-import IconButton from '../../atoms/button/IconButton';
 import Tabs from '../../atoms/tabs/Tabs';
-import { MenuHeader, MenuItem } from '../../atoms/context-menu/ContextMenu';
+import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import RoomProfile from '../../molecules/room-profile/RoomProfile';
 import RoomVisibility from '../../molecules/room-visibility/RoomVisibility';
@@ -55,18 +53,28 @@ const tabItems = [{
   disabled: false,
 }];
 
+// Config
 function GeneralSettings({ roomId }) {
+
+  // Prepare Settings
   const isPinned = initMatrix.accountData.spaceShortcut.has(roomId);
   const isCategorized = initMatrix.accountData.categorizedSpaces.has(roomId);
-  const roomName = initMatrix.matrixClient.getRoom(roomId)?.name;
+  const mx = initMatrix.matrixClient;
+
+  const room = mx.getRoom(roomId);
+  const roomName = room?.name;
   const [, forceUpdate] = useForceUpdate();
+
+  // Pony Config
+  const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner');
 
   return (
     <>
       <div className="card noselect mb-3">
         <ul className="list-group list-group-flush">
 
-          <MenuHeader>Options</MenuHeader>
+          <li className='list-group-item very-small text-gray'>Options</li>
+
           <MenuItem
             className='text-start'
             onClick={() => {
@@ -124,8 +132,27 @@ function GeneralSettings({ roomId }) {
         </ul>
       </div>
 
+      <div className="card noselect mb-3">
+        <ul className="list-group list-group-flush">
+
+          <li className="list-group-item very-small text-gray">Pony House Settings</li>
+          <li className="list-group-item small">
+
+            Space Banner Background
+
+            <div className="very-small text-gray">
+              <p>This image will display at the top of your rooms list.</p>
+              The recommended minimum size is 960x540 and recommended aspect ratio is 16:9.
+            </div>
+
+          </li>
+
+        </ul>
+      </div>
+
     </>
   );
+
 }
 
 GeneralSettings.propTypes = {
