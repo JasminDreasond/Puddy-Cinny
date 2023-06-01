@@ -379,6 +379,10 @@ function pickEmoji(e, roomId, eventId, roomTimeline) {
     cords.x -= 395;
   }
 
+  if (Math.round(cords.y) >= document.body.offsetHeight - 320) {
+    cords.y -= 260;
+  }
+
   // Open the Emoji Board
   openEmojiBoard(cords, 'emoji', (emoji) => {
     toggleEmoji(roomId, eventId, emoji.mxc ?? emoji.unicode, emoji.shortcodes[0], roomTimeline);

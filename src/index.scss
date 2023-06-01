@@ -318,6 +318,17 @@ em-emoji-picker {
   animation: fadeInFromNone 0.3s ease-out;
 }
 
+@media (max-width: 576px) {
+  .show-emoji-list {
+    position: absolute;
+    bottom: 0px !important;
+    top: auto !important;
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: 84px;
+  }
+}
+
 @-webkit-keyframes fadeInFromNone {
   0% {
     opacity: 0;

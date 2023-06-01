@@ -1,3 +1,6 @@
+export function isBottomPage() {
+    return ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight);
+}
 
 export function selectButton() {
 
