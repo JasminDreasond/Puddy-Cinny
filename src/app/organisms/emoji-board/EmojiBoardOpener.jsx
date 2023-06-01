@@ -25,14 +25,14 @@ const tinyCache = {
 
   categories: {
     items: [],
-    default: [
-      'people', 'nature', 'foods', 'activity', 'places', 'objects', 'symbols', 'flags'
-    ]
+    default: []
   },
 
   config: {
 
     locale: 'en',
+
+    emojiButtonSize: 36,
 
     emojiSize: 24,
     maxFrequentRows: 4,
@@ -112,7 +112,9 @@ window.addEventListener('load', () => {
 }, false);
 
 // Emoji List Builder
-function EmojiListBuilder(whereRead, whereGet) {
+function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSize, defaultList = [
+  'people', 'nature', 'foods', 'activity', 'places', 'objects', 'symbols', 'flags'
+]) {
 
   // Reset Category List
   tinyCache.categories.items = ['frequent'];
@@ -121,6 +123,11 @@ function EmojiListBuilder(whereRead, whereGet) {
   const customEmojis = [];
   const categoryIcons = {};
   const mx = initMatrix.matrixClient;
+
+  if (typeof emojiButtonSize === 'number') tinyCache.config.emojiButtonSize = emojiButtonSize;
+  if (typeof emojiSize === 'number') tinyCache.config.emojiSize = emojiSize;
+  if (typeof perLine === 'number') tinyCache.config.perLine = perLine;
+  if (Array.isArray(defaultList)) tinyCache.categories.default = defaultList;
 
   const room = mx.getRoom(roomEmojis);
   const parentIds = initMatrix.roomList.getAllParentSpaces(room.roomId);
@@ -205,12 +212,17 @@ function EmojiBoardOpener() {
   useEffect(() => {
 
     // Update Emoji list on open
-    const openEmojiList = (cords, requestEmojiCallback) => {
+    const openEmojiList = (cords, requestEmojiCallback, dom) => {
       if (!closeDetector.normal && !closeDetector.delay) {
 
         // Get Items
-        // const tinyItems = EmojiListBuilder('stickers', 'getStickers');
-        const tinyItems = EmojiListBuilder('emoticons', 'getEmojis');
+        let tinyItems;
+        if (dom === 'emoji') {
+          tinyItems = EmojiListBuilder('emoticons', 'getEmojis', 24, 9, 36);
+        } else if (dom === 'sticker') {
+          tinyItems = EmojiListBuilder('stickers', 'getStickers', 64, 4, 76, []);
+        }
+
         tinyCache.items.custom = tinyItems.custom;
         tinyCache.items.categoryIcons = tinyItems.categoryIcons;
 
@@ -229,7 +241,13 @@ function EmojiBoardOpener() {
           if (tinyDom && tinyDom[0]) {
 
             const emojiPicker = tinyDom[0];
+
+            emojiPicker.classList.remove('emoji');
+            emojiPicker.classList.remove('stickers');
+            if (typeof dom === 'string') emojiPicker.classList.add(dom);
+
             emojiPicker.classList.add('show-emoji-list');
+
             emojiPicker.style.top = `${cords.y}px`;
             emojiPicker.style.left = `${cords.x}px`;
 
@@ -300,11 +318,13 @@ function EmojiBoardOpener() {
 
       theme={selectButton()}
       set='twitter'
+
       custom={tinyCache.items.custom}
       categoryIcons={tinyCache.items.categoryIcons}
       categories={tinyCache.categories.items}
       locale={tinyCache.config.locale}
 
+      emojiButtonSize={tinyCache.config.emojiButtonSize}
       emojiSize={tinyCache.config.emojiSize}
       maxFrequentRows={tinyCache.config.maxFrequentRows}
       perLine={tinyCache.config.perLine}
