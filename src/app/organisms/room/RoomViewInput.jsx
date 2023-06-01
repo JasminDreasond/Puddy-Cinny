@@ -8,7 +8,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
 import settings from '../../../client/state/settings';
-import { openEmojiBoard, openReusableContextMenu } from '../../../client/action/navigation';
+import { openEmojiBoard } from '../../../client/action/navigation';
 import navigation from '../../../client/state/navigation';
 import { bytesToSize, getEventCords } from '../../../util/common';
 import { getUsername } from '../../../util/matrixUtil';
@@ -506,10 +506,13 @@ function RoomViewInput({
 
           <IconButton
             onClick={(e) => {
+
               const cords = getEventCords(e);
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
+
               openEmojiBoard(cords, 'emoji', addEmoji);
+
             }}
             tooltip="Emoji"
             fa="fa-solid fa-face-smile"

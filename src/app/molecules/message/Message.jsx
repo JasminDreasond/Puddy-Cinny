@@ -380,7 +380,7 @@ function pickEmoji(e, roomId, eventId, roomTimeline) {
   }
 
   // Open the Emoji Board
-  openEmojiBoard(cords, (emoji) => {
+  openEmojiBoard(cords, 'emoji', (emoji) => {
     toggleEmoji(roomId, eventId, emoji.mxc ?? emoji.unicode, emoji.shortcodes[0], roomTimeline);
     e.target.click();
   });
