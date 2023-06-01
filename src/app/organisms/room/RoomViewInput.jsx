@@ -20,7 +20,6 @@ import IconButton from '../../atoms/button/IconButton';
 import ScrollView from '../../atoms/scroll/ScrollView';
 import { MessageReply } from '../../molecules/message/Message';
 
-import StickerBoard from '../sticker-board/StickerBoard';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
 import commands from './commands';
