@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Picker from '@emoji-mart/react';
 
 import { selectButton } from '../../../util/checkTheme';
@@ -112,7 +112,7 @@ window.addEventListener('load', () => {
 }, false);
 
 // Emoji List Builder
-function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSize, defaultList = [
+function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSize, previewPosition = 'bottom', defaultList = [
   'people', 'nature', 'foods', 'activity', 'places', 'objects', 'symbols', 'flags'
 ]) {
 
@@ -124,6 +124,7 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
   const categoryIcons = {};
   const mx = initMatrix.matrixClient;
 
+  if (typeof previewPosition === 'string') tinyCache.config.previewPosition = previewPosition;
   if (typeof emojiButtonSize === 'number') tinyCache.config.emojiButtonSize = emojiButtonSize;
   if (typeof emojiSize === 'number') tinyCache.config.emojiSize = emojiSize;
   if (typeof perLine === 'number') tinyCache.config.perLine = perLine;
@@ -220,7 +221,7 @@ function EmojiBoardOpener() {
         if (dom === 'emoji') {
           tinyItems = EmojiListBuilder('emoticons', 'getEmojis', 24, 9, 36);
         } else if (dom === 'sticker') {
-          tinyItems = EmojiListBuilder('stickers', 'getStickers', 64, 4, 76, []);
+          tinyItems = EmojiListBuilder('stickers', 'getStickers', 64, 4, 76, 'none', []);
         }
 
         tinyCache.items.custom = tinyItems.custom;
@@ -324,6 +325,7 @@ function EmojiBoardOpener() {
       categories={tinyCache.categories.items}
       locale={tinyCache.config.locale}
 
+      previewPosition={tinyCache.config.previewPosition}
       emojiButtonSize={tinyCache.config.emojiButtonSize}
       emojiSize={tinyCache.config.emojiSize}
       maxFrequentRows={tinyCache.config.maxFrequentRows}
