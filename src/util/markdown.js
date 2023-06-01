@@ -47,8 +47,20 @@ setInterval(() => {
   const timestamps = Array.from(document.querySelectorAll('[data-mx-timestamp]'));
   if (timestamps.length > 0) {
     timestamps.map(item => {
-      //item.innerHTML = "New text!";
+
+      const type = item.getAttribute('timestamp-type');
+      const timestamp = Number(item.getAttribute('data-mx-timestamp'));
+
+      if (!Number.isNaN(timestamp) && typeof type === 'string') {
+        if (type !== 'R') {
+          item.innerHTML = moment(timestamp).format(timestampFormats[type]);
+        } else {
+          item.innerHTML = moment(timestamp).fromNow();
+        }
+      }
+
       return item;
+
     })
   }
 }, 1000);
