@@ -490,40 +490,15 @@ function RoomViewInput({
           <IconButton
             onClick={(e) => {
 
-
-              /*
-              body: "cuteyay"
-              httpUrl: "https://matrix-server.matrix.horse/_matrix/media/r0/download/matrix.horse/teRPCRZbxzReRqdIynuVjDQy"
-              mxc: "mxc://matrix.horse/teRPCRZbxzReRqdIynuVjDQy"
-              */
-
               const cords = getEventCords(e);
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
-              openEmojiBoard(cords, 'sticker', data => {
-                console.log(data);
-              });
 
-
-              /* openReusableContextMenu(
-                'top',
-                (() => {
-                  const cords = getEventCords(e);
-                  cords.y -= 20;
-                  return cords;
-                })(),
-                (closeMenu) => (
-                  <StickerBoard
-                    roomId={roomId}
-                    onSelect={(data) => {
-                      console.log(data);
-                      handleSendSticker(data);
-                      closeMenu();
-                    }}
-                  />
-                ),
-              ); 
-              */
+              openEmojiBoard(cords, 'sticker', data => handleSendSticker({
+                body: data.unicode.substring(1, data.unicode.length - 1),
+                httpUrl: initMatrix.matrixClient.mxcUrlToHttp(data.mxc),
+                mxc: data.mxc
+              }));
 
             }}
             tooltip="Sticker"

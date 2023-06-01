@@ -118,7 +118,7 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
 ]) {
 
   // Reset Category List
-  tinyCache.categories.items = ['frequent'];
+  tinyCache.categories.items = [];
 
   // First Values
   const customEmojis = [];
@@ -132,6 +132,7 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
 
   if (whereRead !== 'stickers') {
     tinyCache.config.skinTonePosition = 'preview';
+    tinyCache.categories.items.push('frequent');
   } else {
     tinyCache.config.skinTonePosition = 'none';
   }
