@@ -371,7 +371,7 @@ function pickEmoji(e, roomId, eventId, roomTimeline) {
 
   // Mobile Screen - Viewport
   if (window.matchMedia('screen and (max-width: 479px)').matches) {
-    cords.x -= 280;
+    cords.x -= 230;
   }
 
   // Normal Screen
