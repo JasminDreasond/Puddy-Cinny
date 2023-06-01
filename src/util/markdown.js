@@ -34,7 +34,7 @@ const timestampFormats = {
       return htmlTag(
         'span',
         (!fromNow ? moment(timestamp).format(timestampFormats[item]) : moment(timestamp).fromNow()),
-        { 'data-mx-timestamp': String(timestamp) },
+        { 'data-mx-timestamp': String(timestamp), 'timestamp-type': item },
       );
 
     },
@@ -44,8 +44,13 @@ const timestampFormats = {
 };
 
 setInterval(() => {
-  const timestamps = document.getSelection('[data-mx-timestamp]');
-  console.log(timestamps);
+  const timestamps = Array.from(document.querySelectorAll('[data-mx-timestamp]'));
+  if (timestamps.length > 0) {
+    timestamps.map(item => {
+      //item.innerHTML = "New text!";
+      return item;
+    })
+  }
 }, 1000);
 
 const {
