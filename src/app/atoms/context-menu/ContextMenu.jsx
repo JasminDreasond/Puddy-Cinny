@@ -5,7 +5,6 @@ import './ContextMenu.scss';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/animations/scale-extreme.css';
 
-import Text from '../text/Text';
 import Button from '../button/Button';
 import ScrollView from '../scroll/ScrollView';
 import { arrayItems as bsColorsArray } from '../../../util/styles-bootstrap';

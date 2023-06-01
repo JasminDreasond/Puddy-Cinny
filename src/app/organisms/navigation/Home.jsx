@@ -11,6 +11,9 @@ import RoomsCategory from './RoomsCategory';
 
 import { useCategorizedSpaces } from '../../hooks/useCategorizedSpaces';
 
+import { openSpaceManage } from '../../../client/action/navigation';
+import Button from '../../atoms/button/Button';
+
 const drawerPostie = new Postie();
 function Home({ spaceId }) {
   const mx = initMatrix.matrixClient;
@@ -68,19 +71,27 @@ function Home({ spaceId }) {
 
   return (
     <>
-      { !isCategorized && spaceIds.length !== 0 && (
+      {!isCategorized && spaceIds.length !== 0 && (
         <RoomsCategory name="Spaces" roomIds={spaceIds.sort(roomIdByAtoZ)} drawerPostie={drawerPostie} />
       )}
 
-      { roomIds.length !== 0 && (
-        <RoomsCategory name="Rooms" roomIds={roomIds.sort(roomIdByAtoZ)} drawerPostie={drawerPostie} />
-      )}
+      {
+        (
+          roomIds.length !== 0 && (
+            <RoomsCategory name="Rooms" roomIds={roomIds.sort(roomIdByAtoZ)} drawerPostie={drawerPostie} />
+          )
+        ) ||
+        <center className='p-3 small text-warning'>
+          <div className='mb-3'>No rooms were found. Please enable some room.</div>
+          <Button variant='primary' onClick={() => { openSpaceManage(spaceId); }}>Manage rooms</Button>
+        </center>
+      }
 
-      { directIds.length !== 0 && (
+      {directIds.length !== 0 && (
         <RoomsCategory name="People" roomIds={directIds.sort(roomIdByActivity)} drawerPostie={drawerPostie} />
       )}
 
-      { isCategorized && [...categories.keys()].sort(roomIdByAtoZ).map((catId) => {
+      {isCategorized && [...categories.keys()].sort(roomIdByAtoZ).map((catId) => {
         const rms = [];
         const dms = [];
         categories.get(catId).forEach((id) => {
