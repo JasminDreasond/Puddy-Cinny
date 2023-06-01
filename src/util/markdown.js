@@ -19,7 +19,7 @@ const timestampFormats = {
 
   html: (item, fromNow = false) => ({
     order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(new RegExp(`<t:([\s\S]+?):${item}>`, 'g')),
+    match: inlineRegex(new RegExp(`<t:([\\s\\S]+?):${item}>`, 'g')),
     parse: (capture, parse, state) => ({
       content: parse(capture[1], state)
     }),
@@ -36,7 +36,7 @@ const timestampFormats = {
 
 };
 
-setInterval(function () {
+setInterval(() => {
   const timestamps = document.getSelection('[data-mx-timestamp]');
   console.log(timestamps);
 }, 1000);
