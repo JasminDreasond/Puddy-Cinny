@@ -379,7 +379,7 @@ function pickEmoji(e, roomId, eventId, roomTimeline) {
     cords.x -= 395;
   }
 
-  if (Math.round(cords.y) >= document.body.offsetHeight - 320) {
+  if (Math.round(cords.y) >= document.body.offsetHeight - 340) {
     cords.y -= 260;
   }
 
