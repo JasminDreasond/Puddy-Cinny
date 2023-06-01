@@ -31,6 +31,7 @@ const tinyCache = {
   config: {
 
     locale: 'en',
+    skinTonePosition: 'preview',
 
     emojiButtonSize: 36,
 
@@ -128,6 +129,13 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
   if (typeof emojiButtonSize === 'number') tinyCache.config.emojiButtonSize = emojiButtonSize;
   if (typeof emojiSize === 'number') tinyCache.config.emojiSize = emojiSize;
   if (typeof perLine === 'number') tinyCache.config.perLine = perLine;
+
+  if (whereRead !== 'stickers') {
+    tinyCache.config.skinTonePosition = 'preview';
+  } else {
+    tinyCache.config.skinTonePosition = 'none';
+  }
+
   if (Array.isArray(defaultList)) tinyCache.categories.default = defaultList;
 
   const room = mx.getRoom(roomEmojis);
@@ -325,6 +333,7 @@ function EmojiBoardOpener() {
       categories={tinyCache.categories.items}
       locale={tinyCache.config.locale}
 
+      skinTonePosition={tinyCache.config.skinTonePosition}
       previewPosition={tinyCache.config.previewPosition}
       emojiButtonSize={tinyCache.config.emojiButtonSize}
       emojiSize={tinyCache.config.emojiSize}
