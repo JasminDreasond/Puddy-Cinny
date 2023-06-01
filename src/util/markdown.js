@@ -6,6 +6,40 @@ import SimpleMarkdown from '@khanacademy/simple-markdown';
 import { idRegex, parseIdUri } from './common';
 
 moment.locale('en');
+const timestampFormats = {
+
+  t: `hh:MM A`,
+  T: `hh:MM:SS A`,
+
+  d: `MM/DD/YYYY`,
+  D: `MMMM DD, YYYY`,
+
+  f: `MMMM DD, YYYY hh:MM A`,
+  F: `dddd MMMM DD, YYYY hh:MM A`,
+
+  html: (item, fromNow = false) => ({
+    order: defaultRules.inlineCode.order + 0.1,
+    match: inlineRegex(new RegExp(`<t:([\s\S]+?):${item}>`, 'g')),
+    parse: (capture, parse, state) => ({
+      content: parse(capture[1], state)
+    }),
+    plain: (node, output, state) => `<t:${output(node.content, state)}:${item}>`,
+    html: (node, output, state) => {
+      const timestamp = Number(output(node.content, state)) * 1000;
+      return htmlTag(
+        'span',
+        (!fromNow ? moment(timestamp).format(timestampFormats[item]) : moment(timestamp).fromNow()),
+        { 'data-mx-timestamp': String(timestamp) },
+      );
+    },
+  })
+
+};
+
+setInterval(function () {
+  const timestamps = document.getSelection('[data-mx-timestamp]');
+  console.log(timestamps);
+}, 1000);
 
 const {
   defaultRules, parserFor, outputFor, anyScopeRegex, blockRegex, inlineRegex,
@@ -350,7 +384,7 @@ const markdownRules = {
   // Spoiler
   spoiler: {
     order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/^\|\|([\s\S]+?)\|\|(?:\(([\s\S]+?)\))?/),
+    match: inlineRegex(/^\|\|([\s\S]+?)\|\|(?:\(([\s\S]+?)\))?/g),
     parse: (capture, parse, state) => ({
       content: parse(capture[1], state),
       reason: capture[2],
@@ -373,124 +407,14 @@ const markdownRules = {
     ),
   },
 
-  timestamp_t: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):t>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:t>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      return htmlTag(
-        'span',
-        moment(timestamp).format(`hh:MM A`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_T: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):T>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:T>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      return htmlTag(
-        'span',
-        moment(timestamp).format(`hh:MM:SS A`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_d: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):d>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:d>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      return htmlTag(
-        'span',
-        moment(timestamp).format(`MM/DD/YYYY`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_D: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):D>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:D>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      return htmlTag(
-        'span',
-        moment(timestamp).format(`MMMM DD, YYYY`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_f: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):f>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:f>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      return htmlTag(
-        'span',
-        moment(timestamp).format(`MMMM DD, YYYY hh:MM A`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_F: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):F>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:F>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      htmlTag(
-        'span',
-        moment(timestamp).format(`dddd MMMM DD, YYYY hh:MM A`),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
-
-  timestamp_R: {
-    order: defaultRules.inlineCode.order + 0.1,
-    match: inlineRegex(/<t:([\s\S]+?):R>/),
-    parse: (capture, parse, state) => ({
-      content: parse(capture[1], state)
-    }),
-    plain: (node, output, state) => `<t:${output(node.content, state)}:R>`,
-    html: (node, output, state) => {
-      const timestamp = Number(output(node.content, state)) * 1000;
-      htmlTag(
-        'span',
-        moment(timestamp).fromNow(),
-        { 'data-mx-timestamp': String(timestamp) },
-      );
-    },
-  },
+  // Timestamp
+  timestamp_t: timestampFormats.html('t'),
+  timestamp_T: timestampFormats.html('T'),
+  timestamp_d: timestampFormats.html('d'),
+  timestamp_D: timestampFormats.html('D'),
+  timestamp_f: timestampFormats.html('f'),
+  timestamp_F: timestampFormats.html('F'),
+  timestamp_R: timestampFormats.html('R', true),
 
   // Math
   inlineMath: {

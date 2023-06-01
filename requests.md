@@ -23,7 +23,6 @@ Made by Me
 
     ]
 
-    Fazer o timestamp funcionar sem bug
     Converter para bootstrap algumas partes do painel de mensagens.
 
     Adicionar o sistema de banner do space.
