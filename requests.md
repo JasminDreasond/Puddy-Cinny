@@ -26,4 +26,3 @@ Made by Me
     Converter para bootstrap algumas partes do painel de mensagens.
 
     Adicionar o sistema de banner do space.
-    Adicionar um botão para a pessoa abrir o gerenciador de canais quando o space está vazio
