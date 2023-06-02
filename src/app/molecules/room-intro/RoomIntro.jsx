@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './RoomIntro.scss';
 
 import colorMXID from '../../../util/colorMXID';
 
@@ -11,14 +10,18 @@ function RoomIntro({
   roomId, avatarSrc, name, heading, desc, time,
 }) {
   return (
-    <div className="room-intro">
-      <Avatar imageSrc={avatarSrc} text={name} bgColor={colorMXID(roomId)} size="large" />
-      <div className="room-intro__content">
-        <Text className="room-intro__name" variant="h1" weight="medium" primary>{heading}</Text>
-        <Text className="room-intro__desc" variant="b1">{desc}</Text>
-        { time !== null && <Text className="room-intro__time" variant="b3">{time}</Text>}
-      </div>
-    </div>
+    <tr className="ph-msg">
+      <td colSpan="2">
+        <div className='ps-5 pt-5 pb-3'>
+          <Avatar imageSrc={avatarSrc} text={name} bgColor={colorMXID(roomId)} size="large" />
+          <div className="pt-4 text-bg">
+            <h3>{heading}</h3>
+            <div className="small">{desc}</div>
+            {time !== null && <div className="mt-2 very-small text-gray">{time}</div>}
+          </div>
+        </div>
+      </td>
+    </tr>
   );
 }
 
