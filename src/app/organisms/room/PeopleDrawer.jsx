@@ -13,10 +13,8 @@ import { memberByAtoZ, memberByPowerLevel } from '../../../util/sort';
 
 import Text from '../../atoms/text/Text';
 import { Header } from '../../atoms/header/Header';
-import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
-import ScrollView from '../../atoms/scroll/ScrollView';
 import Input from '../../atoms/input/Input';
 import SegmentedControl from '../../atoms/segmented-controls/SegmentedControls';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
@@ -24,6 +22,7 @@ import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
 function simplyfiMembers(members) {
   const mx = initMatrix.matrixClient;
   return members.map((member) => ({
+    user: member.user,
     userId: member.userId,
     name: getUsernameOfRoomMember(member),
     username: member.userId.slice(1, member.userId.indexOf(':')),
@@ -35,6 +34,7 @@ function simplyfiMembers(members) {
 
 const asyncSearch = new AsyncSearch();
 function PeopleDrawer({ roomId }) {
+
   const PER_PAGE_MEMBER = 50;
   const mx = initMatrix.matrixClient;
   const room = mx.getRoom(roomId);
@@ -80,8 +80,10 @@ function PeopleDrawer({ roomId }) {
   }, [memberList]);
 
   useEffect(() => {
+
     let isLoadingMembers = false;
     let isRoomChanged = false;
+
     const updateMemberList = (event) => {
       if (isLoadingMembers) return;
       if (event && event?.getRoomId() !== roomId) return;
@@ -92,6 +94,7 @@ function PeopleDrawer({ roomId }) {
         ),
       );
     };
+
     searchRef.current.value = '';
     updateMemberList();
     isLoadingMembers = true;
@@ -104,6 +107,8 @@ function PeopleDrawer({ roomId }) {
     asyncSearch.on(asyncSearch.RESULT_SENT, handleSearchData);
     mx.on('RoomMember.membership', updateMemberList);
     mx.on('RoomMember.powerLevel', updateMemberList);
+    mx.on('RoomMember.user', updateMemberList);
+
     return () => {
       isRoomChanged = true;
       setMemberList([]);
@@ -112,7 +117,9 @@ function PeopleDrawer({ roomId }) {
       asyncSearch.removeListener(asyncSearch.RESULT_SENT, handleSearchData);
       mx.removeListener('RoomMember.membership', updateMemberList);
       mx.removeListener('RoomMember.powerLevel', updateMemberList);
+      mx.removeListener('RoomMember.user', updateMemberList);
     };
+
   }, [roomId, membership]);
 
   useEffect(() => {
@@ -172,16 +179,22 @@ function PeopleDrawer({ roomId }) {
           />
 
           {
-            mList.map((member) => (
-              <PeopleSelector
-                key={member.userId}
-                onClick={() => openProfileViewer(member.userId, roomId)}
-                avatarSrc={member.avatarSrc}
-                name={member.name}
-                color={colorMXID(member.userId)}
-                peopleRole={member.peopleRole}
-              />
-            ))
+            mList.map((member) => {
+
+              console.log(member);
+
+              return (
+                <PeopleSelector
+                  key={member.userId}
+                  onClick={() => openProfileViewer(member.userId, roomId)}
+                  avatarSrc={member.avatarSrc}
+                  name={member.name}
+                  color={colorMXID(member.userId)}
+                  peopleRole={member.peopleRole}
+                />
+              );
+
+            })
           }
 
           {
