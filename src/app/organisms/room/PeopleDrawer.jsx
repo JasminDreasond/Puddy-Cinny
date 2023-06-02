@@ -18,6 +18,7 @@ import Button from '../../atoms/button/Button';
 import Input from '../../atoms/input/Input';
 import SegmentedControl from '../../atoms/segmented-controls/SegmentedControls';
 import PeopleSelector from '../../molecules/people-selector/PeopleSelector';
+import { getUserStatus } from '../../../util/onlineStatus';
 
 function simplyfiMembers(members) {
   const mx = initMatrix.matrixClient;
@@ -179,22 +180,17 @@ function PeopleDrawer({ roomId }) {
           />
 
           {
-            mList.map((member) => {
-
-              console.log(member);
-
-              return (
-                <PeopleSelector
-                  key={member.userId}
-                  onClick={() => openProfileViewer(member.userId, roomId)}
-                  avatarSrc={member.avatarSrc}
-                  name={member.name}
-                  color={colorMXID(member.userId)}
-                  peopleRole={member.peopleRole}
-                />
-              );
-
-            })
+            mList.map((member) => (
+              <PeopleSelector
+                key={member.userId}
+                presence={getUserStatus(member.user)}
+                onClick={() => openProfileViewer(member.userId, roomId)}
+                avatarSrc={member.avatarSrc}
+                name={member.name}
+                color={colorMXID(member.userId)}
+                peopleRole={member.peopleRole}
+              />
+            ))
           }
 
           {

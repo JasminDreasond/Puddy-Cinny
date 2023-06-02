@@ -10,7 +10,7 @@ import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
 
 function PeopleSelector({
-  avatarSrc, name, color, peopleRole, onClick,
+  avatarSrc, name, color, peopleRole, onClick, presence
 }) {
   return (
     <button
@@ -20,7 +20,11 @@ function PeopleSelector({
       type="button"
     >
       <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
-      <Text className="people-selector__name" variant="b1">{twemojify(name)}</Text>
+      <i className={`ps-3 ${presence}`} />
+      <Text className="people-selector__name" variant="b1">
+
+        {twemojify(name)}
+      </Text>
       {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
     </button>
   );
@@ -29,9 +33,11 @@ function PeopleSelector({
 PeopleSelector.defaultProps = {
   avatarSrc: null,
   peopleRole: null,
+  presence: ''
 };
 
 PeopleSelector.propTypes = {
+  presence: PropTypes.string,
   avatarSrc: PropTypes.string,
   name: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
