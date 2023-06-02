@@ -105,7 +105,12 @@ function DrawerHeader({ selectedTab, spaceId }) {
 
   const isDMTab = selectedTab === cons.tabs.DIRECTS;
   const room = mx.getRoom(spaceId);
-  const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
+
+  let bannerCfg;
+  if (room) {
+    bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
+  }
+
   const spaceName = isDMTab ? null : (room?.name || null);
   setSelectSpace(room);
 
