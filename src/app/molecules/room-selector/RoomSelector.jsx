@@ -22,7 +22,7 @@ function RoomSelectorWrapper({
   return (
     <div className={classes.join(' ')}>
       <button
-        className="room-selector__content"
+        className="room-selector__content emoji-size-fix"
         type="button"
         onClick={onClick}
         onMouseUp={(e) => blurOnBubbling(e, '.room-selector__content')}
