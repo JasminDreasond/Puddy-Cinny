@@ -71,12 +71,19 @@ function GeneralSettings({ roomId }) {
 
   // Pony Config
   const canPonyHouse = room.currentState.maySendStateEvent('pony.house.settings', userId);
-  const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner');
+  const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
+  let avatarSrc;
+
+  if (bannerCfg) {
+    avatarSrc = mx.mxcUrlToHttp(bannerCfg?.url, 400, 227);
+  }
+
   const handleBannerUpload = async url => {
 
     const spaceHeader = document.getElementById('space-header');
+    const bannerPlace = document.querySelector('.space-banner img');;
 
-    if (spaceHeader) {
+    if (spaceHeader && bannerPlace) {
       if (url === null) {
 
         const isConfirmed = await confirmDialog(
@@ -90,12 +97,14 @@ function GeneralSettings({ roomId }) {
           await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
           spaceHeader.classList.remove('banner-mode');
           spaceHeader.style.backgroundImage = '';
+          bannerPlace.src = '';
         }
 
       } else {
         await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
         spaceHeader.classList.add('banner-mode');
-        spaceHeader.style.backgroundImage = `url("${url}")`;
+        spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
+        bannerPlace.src = mx.mxcUrlToHttp(url, 400, 227);
       }
     }
 
@@ -178,12 +187,12 @@ function GeneralSettings({ roomId }) {
               The recommended minimum size is 960x540 and recommended aspect ratio is 16:9.
             </div>
 
-            {!canPonyHouse && <Avatar imageSrc={bannerCfg?.url} text={roomName} size="large" />}
+            {!canPonyHouse && <Avatar imageSrc={avatarSrc} text={roomName} size="large" />}
             {canPonyHouse && (
               <ImageUpload
                 className='space-banner'
                 text='Banner'
-                imageSrc={bannerCfg?.img}
+                imageSrc={avatarSrc}
                 onUpload={handleBannerUpload}
                 onRequestRemove={() => handleBannerUpload(null)}
               />

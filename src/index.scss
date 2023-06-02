@@ -383,16 +383,32 @@ em-emoji-picker {
   }
 }
 
+/* Space Banner */
+
 .space-banner {
-  width: 400px;
-  height: 227px;
   border: solid 1px var(--bg-surface-border);
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .img-upload {
+    padding: 0px;
+  }
 }
 
 .space-banner,
+.space-banner img {
+  height: 226px;
+  padding: 1px;
+}
+
+.space-banner,
+.space-banner img,
 .space-banner .avatar-container {
   width: 400px;
-  height: 227px;
+}
+
+.space-banner .avatar-container {
+  height: 225px;
 }
 
 @media (max-width: 576px) {
