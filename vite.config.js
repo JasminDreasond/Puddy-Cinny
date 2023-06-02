@@ -29,8 +29,8 @@ const copyFiles = {
       dest: 'public/',
     },
     {
-      src: 'public/favicon.ico',
-      dest: 'public/',
+      src: 'public/manifest.json',
+      dest: '',
     },
     {
       src: 'public/img/page',
