@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './ProfileViewer.scss';
 
 import { twemojify } from '../../../util/twemojify';
+import { getUserStatus } from '../../../util/onlineStatus';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -356,32 +357,6 @@ function ProfileViewer() {
     const username = roomMember ? getUsernameOfRoomMember(roomMember) : getUsername(userId);
     const user = mx.getUser(userId);
 
-    let presence = 'offline';
-    if (user && user.events && user.events.presence) {
-
-      presence = user.events.presence?.getContent();
-      if (typeof presence.presence === 'string' && (presence.presence === 'online' || presence.presence === 'offline' || presence.presence === 'bnb' || presence.presence === 'afk')) {
-        presence = presence.presence;
-      }
-
-    }
-
-    if (presence === 'online') {
-      presence += ' fa-solid fa-circle';
-    }
-
-    else if (presence === 'offline') {
-      presence += ' bi bi-record-circle-fill';
-    }
-
-    else if (presence === 'bnb') {
-      presence += ' fa-solid fa-circle-minus';
-    }
-
-    else if (presence === 'afk') {
-      presence += ' fa-solid fa-moon';
-    }
-
     const avatarMxc = roomMember?.getMxcAvatarUrl?.() || user?.avatarUrl;
     const avatarUrl = (avatarMxc && avatarMxc !== 'null') ? mx.mxcUrlToHttp(avatarMxc, 80, 80, 'crop') : null;
 
@@ -437,7 +412,7 @@ function ProfileViewer() {
           <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
           <div className="profile-viewer__user__info emoji-size-fix">
             <Text variant="s1" weight="medium">
-              <i className={`pe-2 user-presence-${presence}`} />
+              <i className={`pe-2 ${getUserStatus(user)}`} />
               {twemojify(username)}
             </Text>
             <Text variant="b2">{twemojify(userId)}</Text>
