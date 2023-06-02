@@ -442,3 +442,20 @@ em-emoji-picker {
 #space-header {
   padding-bottom: 163px !important;
 }
+
+/* Presence */
+.user-presence-offline {
+  color: #bdbdbd;
+}
+
+.user-presence-bnb {
+  color: #b83b3b;
+}
+
+.user-presence-online {
+  color: #45b83b;
+}
+
+.user-presence-afk {
+  color: #b8913b;
+}
