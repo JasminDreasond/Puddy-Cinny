@@ -22,3 +22,5 @@ Made by Me
         }
 
     ]
+
+    Corrigir a falha de cores na hora de mudar de tema. Isso também interfere no seletor automatico de tema.
