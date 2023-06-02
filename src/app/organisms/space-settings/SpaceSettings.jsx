@@ -80,10 +80,10 @@ function GeneralSettings({ roomId }) {
 
   const handleBannerUpload = async url => {
 
-    const spaceHeader = document.getElementById('space-header');
-    const bannerPlace = document.querySelector('.space-banner img');;
+    const spaceHeader = document.querySelector('#space-header > .navbar');
+    const bannerPlace = document.querySelector('.space-banner img');
 
-    if (spaceHeader && bannerPlace) {
+    if (spaceHeader) {
       if (url === null) {
 
         const isConfirmed = await confirmDialog(
@@ -97,14 +97,14 @@ function GeneralSettings({ roomId }) {
           await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
           spaceHeader.classList.remove('banner-mode');
           spaceHeader.style.backgroundImage = '';
-          bannerPlace.src = '';
+          if (bannerPlace) bannerPlace.src = '';
         }
 
       } else {
         await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
         spaceHeader.classList.add('banner-mode');
         spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
-        bannerPlace.src = mx.mxcUrlToHttp(url, 400, 227);
+        if (bannerPlace) bannerPlace.src = mx.mxcUrlToHttp(url, 400, 227);
       }
     }
 
@@ -180,7 +180,7 @@ function GeneralSettings({ roomId }) {
           <li className="list-group-item very-small text-gray">Pony House Settings</li>
           <li className="list-group-item small">
 
-            Space Banner Background
+            Space banner background
 
             <div className="very-small text-gray">
               <p>This image will display at the top of your rooms list.</p>
