@@ -153,6 +153,28 @@
     height: 36px !important;
     width: 36px !important;
   }
+  .hc-time {
+    display: none;
+  }
+
+  .username {
+    display: inline-block;
+  }
+  .user-id {
+    display: none;
+  }
+}
+
+#chatbox tr:hover {
+  .hc-time {
+    display: block;
+  }
+  .username {
+    display: none;
+  }
+  .user-id {
+    display: inline-block;
+  }
 }
 
 /* Textarea */

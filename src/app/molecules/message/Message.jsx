@@ -68,8 +68,8 @@ const MessageHeader = React.memo(({
   userId, username,
 }) => (
   <span style={{ color: colorMXID(userId) }}>
-    <span>{twemojify(username)}</span>
-    <span>{twemojify(userId)}</span>
+    <span className='username'>{twemojify(username)}</span>
+    <span className='user-id'>{twemojify(userId)}</span>
   </span>
 ));
 
@@ -873,6 +873,7 @@ function Message({
                 />
               )
               : <MessageTime
+                className='hc-time'
                 timestamp={mEvent.getTs()}
                 fullTime={fullTime}
               />
