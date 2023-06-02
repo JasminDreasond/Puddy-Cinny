@@ -2,12 +2,6 @@
   font-size: var(--fs-#{$type});
   letter-spacing: var(--ls-#{$type});
   line-height: var(--lh-#{$type});
-
-  & img.emoji,
-  & img[data-mx-emoticon] {
-    height: calc(var(--lh-emoji-#{$type}) - 0.25rem) !important;
-    max-width: 96px !important;
-  }
 }
 
 .text {

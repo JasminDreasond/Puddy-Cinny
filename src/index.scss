@@ -77,6 +77,10 @@
   padding: 12px;
 }
 
+.text-bg {
+  color: var(--tc-surface-normal);
+}
+
 .modal {
   --bs-modal-bg: var(--bg-surface);
   --bs-modal-header-border-color: var(--bg-surface-border);

@@ -257,7 +257,7 @@ const MessageBody = React.memo(({
   }
 
   return (
-    <div className={`${emojiOnly ? 'text-h1' : 'text-b1'}`}>
+    <div className='small text-bg'>
       {msgType === 'm.emote' && (
         <>
           {'* '}

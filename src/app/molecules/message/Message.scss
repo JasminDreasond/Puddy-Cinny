@@ -149,6 +149,12 @@
 }
 
 #chatbox {
+  img.emoji,
+  img[data-mx-emoticon] {
+    height: 46px;
+    max-width: 96px !important;
+  }
+
   .avatar-container img {
     height: 36px !important;
     width: 36px !important;
