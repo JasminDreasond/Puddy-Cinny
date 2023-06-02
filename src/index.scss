@@ -382,3 +382,23 @@ em-emoji-picker {
     width: 320px;
   }
 }
+
+.space-banner {
+  width: 400px;
+  height: 227px;
+  border: solid 1px var(--bg-surface-border);
+}
+
+.space-banner,
+.space-banner .avatar-container {
+  width: 400px;
+  height: 227px;
+}
+
+@media (max-width: 576px) {
+  .space-banner,
+  .space-banner .avatar-container {
+    width: 300px;
+    height: 171px;
+  }
+}

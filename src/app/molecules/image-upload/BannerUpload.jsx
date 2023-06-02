@@ -37,7 +37,7 @@ function BannerUpload({
   }
 
   return (
-    <div className="img-upload__wrapper">
+    <div className="img-upload__wrapper space-banner">
       <button
         type="button"
         className="img-upload"

@@ -71,7 +71,23 @@ function GeneralSettings({ roomId }) {
   // Pony Config
   const canPonyHouse = room.currentState.maySendStateEvent('pony.house.settings', userId);
   const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner');
-  const handleBannerUpload = () => {
+  const handleBannerUpload = async url => {
+    if (url === null) {
+
+      const isConfirmed = await confirmDialog(
+        'Remove space banner',
+        'Are you sure that you want to remove room banner?',
+        'Remove',
+        'warning',
+      );
+
+      if (isConfirmed) {
+        // await mx.sendStateEvent(roomId, 'm.room.avatar', { url }, '');
+      }
+
+    } else {
+      // await mx.sendStateEvent(roomId, 'm.room.avatar', { url }, '');
+    }
 
   };
 
