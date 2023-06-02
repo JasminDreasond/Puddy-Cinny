@@ -197,6 +197,7 @@ MessageReplyWrapper.propTypes = {
 
 // Message Body
 const MessageBody = React.memo(({
+  className,
   senderName,
   body,
   isCustomHTML,
@@ -231,10 +232,10 @@ const MessageBody = React.memo(({
   // Criteria:
   // - Contains only emoji
   // - Contains no more than 10 emoji
-  let emojiOnly = false;
+  // let emojiOnly = false;
   if (content.type === 'img') {
     // If this messages contains only a single (inline) image
-    emojiOnly = true;
+    // emojiOnly = true;
   } else if (content.constructor.name === 'Array') {
     // Otherwise, it might be an array of images / texb
 
@@ -246,7 +247,7 @@ const MessageBody = React.memo(({
       (typeof element === 'object' && element.type === 'img')
       || (typeof element === 'string' && /^[\s\ufe0f]*$/g.test(element))
     ))) {
-      emojiOnly = true;
+      // emojiOnly = true;
     }
   }
 
@@ -257,7 +258,7 @@ const MessageBody = React.memo(({
   }
 
   return (
-    <div className='small text-bg'>
+    <div className={`small text-bg ${className}`}>
       {msgType === 'm.emote' && (
         <>
           {'* '}
@@ -271,6 +272,7 @@ const MessageBody = React.memo(({
   );
 });
 MessageBody.defaultProps = {
+  className: '',
   isCustomHTML: false,
   isSystem: false,
   isEdited: false,
@@ -283,6 +285,7 @@ MessageBody.propTypes = {
   isCustomHTML: PropTypes.bool,
   isEdited: PropTypes.bool,
   msgType: PropTypes.string,
+  className: PropTypes.string,
 };
 
 // Message Edit
@@ -883,24 +886,22 @@ function Message({
 
         <td className='p-0 pe-3 py-1'>
 
-          <div className=''>
-            {!isBodyOnly && (
-              <>
+          {!isBodyOnly && (
+            <div className='mb-1'>
 
-                <MessageHeader
-                  userId={senderId}
-                  username={username}
-                />
+              <MessageHeader
+                userId={senderId}
+                username={username}
+              />
 
-                <MessageTime
-                  className='ms-2'
-                  timestamp={mEvent.getTs()}
-                  fullTime={fullTime}
-                />
+              <MessageTime
+                className='ms-2'
+                timestamp={mEvent.getTs()}
+                fullTime={fullTime}
+              />
 
-              </>
-            )}
-          </div>
+            </div>
+          )}
 
           {roomTimeline && isReply && (
             <MessageReplyWrapper
