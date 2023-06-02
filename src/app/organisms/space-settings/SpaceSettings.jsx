@@ -95,19 +95,27 @@ function GeneralSettings({ roomId }) {
         );
 
         if (isConfirmed) {
+
           await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
+
           spaceHeader.classList.remove('banner-mode');
           spaceHeader.style.backgroundImage = '';
+
           if (bannerPlace) bannerPlace.style.backgroundImage = ''; bannerPlace.classList.remove('banner-added');
           if (bannerImg) bannerImg.src = '';
+
         }
 
       } else {
+
         await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
+
         spaceHeader.classList.add('banner-mode');
         spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
+
         if (bannerPlace) bannerPlace.style.backgroundImage = `url('${mx.mxcUrlToHttp(url, 400, 227)}')`; bannerPlace.classList.add('banner-added');
         if (bannerImg) bannerImg.src = mx.mxcUrlToHttp(url, 400, 227);
+
       }
     }
 
