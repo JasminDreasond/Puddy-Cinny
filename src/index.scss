@@ -291,44 +291,6 @@ a {
                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
-.message .avatar-container img {
-  height: 36px !important;
-  width: 36px !important;
-}
-
-/* Textarea */
-#message-textarea {
-  color: var(--tc-surface-normal);
-}
-
-/* Emoji Picker */
-em-emoji-picker {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.show-emoji-list {
-  display: flex;
-  -webkit-animation: fadeInFromNone 0.3s ease-out;
-  -moz-animation: fadeInFromNone 0.3s ease-out;
-  -o-animation: fadeInFromNone 0.3s ease-out;
-  animation: fadeInFromNone 0.3s ease-out;
-}
-
-@media (max-width: 576px) {
-  .show-emoji-list {
-    position: absolute;
-    bottom: 0px !important;
-    top: auto !important;
-    width: 100%;
-    min-width: 100%;
-    margin-bottom: 84px;
-  }
-}
-
 @-webkit-keyframes fadeInFromNone {
   0% {
     opacity: 0;

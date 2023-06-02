@@ -58,45 +58,43 @@ function PlaceholderMessage() {
 const MessageAvatar = React.memo(({
   roomId, avatarSrc, userId, username,
 }) => (
-  <div className="pe-2">
-    <button type="button" onClick={() => openProfileViewer(userId, roomId)}>
-      <Avatar imgClass='' imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} size="small" />
-    </button>
-  </div>
+  <button type="button" onClick={() => openProfileViewer(userId, roomId)}>
+    <Avatar imgClass='' imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} />
+  </button>
 ));
 
 // Message Header
 const MessageHeader = React.memo(({
-  userId, username, timestamp, fullTime,
+  userId, username,
 }) => (
-  <div className="message__header">
-    <Text
-      style={{ color: colorMXID(userId) }}
-      className="message__profile"
-      variant="b1"
-      weight="medium"
-      span
-    >
-      <span>{twemojify(username)}</span>
-      <span>{twemojify(userId)}</span>
-    </Text>
-    <div className="message__time">
-      <div className="very-small text-gray">
-        <Time timestamp={timestamp} fullTime={fullTime} />
-      </div>
-    </div>
-  </div>
+  <span style={{ color: colorMXID(userId) }}>
+    <span>{twemojify(username)}</span>
+    <span>{twemojify(userId)}</span>
+  </span>
 ));
-
-MessageHeader.defaultProps = {
-  fullTime: false,
-};
 
 MessageHeader.propTypes = {
   userId: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+};
+
+const MessageTime = React.memo(({
+  timestamp, fullTime, className
+}) => (
+  <span className={`${className} very-small text-gray`}>
+    <Time timestamp={timestamp} fullTime={fullTime} />
+  </span>
+));
+
+MessageTime.defaultProps = {
+  fullTime: false,
+  className: '',
+};
+
+MessageTime.propTypes = {
   timestamp: PropTypes.number.isRequired,
   fullTime: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 // Message Reply
@@ -255,22 +253,20 @@ const MessageBody = React.memo(({
   if (!isCustomHTML) {
     // If this is a plaintext message, wrap it in a <p> element (automatically applying
     // white-space: pre-wrap) in order to preserve newlines
-    content = (<p className="message__body-plain">{content}</p>);
+    content = (<p className="m-0">{content}</p>);
   }
 
   return (
-    <div className="message__body">
-      <div dir="auto" className={`text ${emojiOnly ? 'text-h1' : 'text-b1'}`}>
-        {msgType === 'm.emote' && (
-          <>
-            {'* '}
-            {twemojify(senderName)}
-            {' '}
-          </>
-        )}
-        {content}
-      </div>
-      {isEdited && <Text className="message__body-edited" variant="b3">(edited)</Text>}
+    <div className={`${emojiOnly ? 'text-h1' : 'text-b1'}`}>
+      {msgType === 'm.emote' && (
+        <>
+          {'* '}
+          {twemojify(senderName)}
+          {' '}
+        </>
+      )}
+      {content}
+      {isEdited && <div className="very-small text-gray">(edited)</div>}
     </div>
   );
 });
@@ -783,7 +779,7 @@ function getEditedBody(editedMEvent) {
   return [parsedContent.body, isCustomHTML, newContent.formatted_body ?? null];
 }
 
-// Message Receive
+// Message Base Receive
 function Message({
   mEvent, isBodyOnly, roomTimeline,
   focus, fullTime, isEdit, setEdit, cancelEdit,
@@ -794,8 +790,8 @@ function Message({
   const { editedTimeline, reactionTimeline } = roomTimeline ?? {};
 
   // Content Body
-  const className = ['message', (isBodyOnly ? 'message--body-only' : 'message--full')];
-  if (focus) className.push('message--focus');
+  const className = [];
+  if (focus) className.push('message-focus');
   const content = mEvent.getContent();
   const eventId = mEvent.getId();
   const msgType = content?.msgtype;
@@ -861,32 +857,49 @@ function Message({
     // Return Data
     return (
 
-      <div className={className.join(' ')}>
+      <tr className={className.join(' ')}>
 
-        {
-          // User Avatar
-          isBodyOnly
-            ? <div className="message__avatar-container" />
-            : (
-              <MessageAvatar
-                roomId={roomId}
-                avatarSrc={avatarSrc}
-                userId={senderId}
-                username={username}
+        <td className='p-0 ps-4 py-1 align-top chat-base'>
+
+          {
+            // User Avatar
+            !isBodyOnly
+              ? (
+                <MessageAvatar
+                  roomId={roomId}
+                  avatarSrc={avatarSrc}
+                  userId={senderId}
+                  username={username}
+                />
+              )
+              : <MessageTime
+                className='ms-2'
+                timestamp={mEvent.getTs()}
+                fullTime={fullTime}
               />
-            )
-        }
+          }
 
-        <div className="message__main-container">
+        </td>
 
-          {!isBodyOnly && (
-            <MessageHeader
-              userId={senderId}
-              username={username}
-              timestamp={mEvent.getTs()}
-              fullTime={fullTime}
-            />
-          )}
+        <td className='p-0 pe-3 py-1'>
+
+          <div className=''>
+            {!isBodyOnly && (
+              <>
+
+                <MessageHeader
+                  userId={senderId}
+                  username={username}
+                />
+
+                <MessageTime
+                  timestamp={mEvent.getTs()}
+                  fullTime={fullTime}
+                />
+
+              </>
+            )}
+          </div>
 
           {roomTimeline && isReply && (
             <MessageReplyWrapper
@@ -933,8 +946,9 @@ function Message({
             />
           )}
 
-        </div>
-      </div>
+        </td>
+
+      </tr>
     );
 
   }
