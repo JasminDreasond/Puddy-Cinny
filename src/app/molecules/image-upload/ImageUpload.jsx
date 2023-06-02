@@ -9,7 +9,7 @@ import Spinner from '../../atoms/spinner/Spinner';
 import RawIcon from '../../atoms/system-icons/RawIcon';
 
 function ImageUpload({
-  text, bgColor, imageSrc, onUpload, onRequestRemove,
+  text, bgColor, imageSrc, onUpload, onRequestRemove, className,
   size,
 }) {
   const [uploadPromise, setUploadPromise] = useState(null);
@@ -38,7 +38,7 @@ function ImageUpload({
   }
 
   return (
-    <div className="img-upload__wrapper">
+    <div className={`img-upload__wrapper ${className}`}>
       <button
         type="button"
         className="img-upload"
@@ -77,6 +77,7 @@ function ImageUpload({
 }
 
 ImageUpload.defaultProps = {
+  className: '',
   text: null,
   bgColor: 'transparent',
   imageSrc: null,
@@ -85,6 +86,7 @@ ImageUpload.defaultProps = {
 
 ImageUpload.propTypes = {
   text: PropTypes.string,
+  className: PropTypes.string,
   bgColor: PropTypes.string,
   imageSrc: PropTypes.string,
   onUpload: PropTypes.func.isRequired,

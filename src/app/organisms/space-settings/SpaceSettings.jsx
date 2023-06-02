@@ -24,7 +24,8 @@ import RoomAliases from '../../molecules/room-aliases/RoomAliases';
 import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
-import BannerUpload from '../../molecules/image-upload/BannerUpload.jsx';
+import ImageUpload from '../../molecules/image-upload/ImageUpload.jsx';
+import Avatar from '../../atoms/avatar/Avatar';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -72,21 +73,30 @@ function GeneralSettings({ roomId }) {
   const canPonyHouse = room.currentState.maySendStateEvent('pony.house.settings', userId);
   const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner');
   const handleBannerUpload = async url => {
-    if (url === null) {
 
-      const isConfirmed = await confirmDialog(
-        'Remove space banner',
-        'Are you sure that you want to remove room banner?',
-        'Remove',
-        'warning',
-      );
+    const spaceHeader = document.getElementById('space-header');
 
-      if (isConfirmed) {
-        // await mx.sendStateEvent(roomId, 'm.room.avatar', { url }, '');
+    if (spaceHeader) {
+      if (url === null) {
+
+        const isConfirmed = await confirmDialog(
+          'Remove space banner',
+          'Are you sure that you want to remove room banner?',
+          'Remove',
+          'warning',
+        );
+
+        if (isConfirmed) {
+          await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
+          spaceHeader.classList.remove('banner-mode');
+          spaceHeader.style.backgroundImage = '';
+        }
+
+      } else {
+        await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
+        spaceHeader.classList.add('banner-mode');
+        spaceHeader.style.backgroundImage = `url("${url}")`;
       }
-
-    } else {
-      // await mx.sendStateEvent(roomId, 'm.room.avatar', { url }, '');
     }
 
   };
@@ -168,9 +178,10 @@ function GeneralSettings({ roomId }) {
               The recommended minimum size is 960x540 and recommended aspect ratio is 16:9.
             </div>
 
-            {!canPonyHouse && <Avatar imageSrc={bannerCfg?.img} text={roomName} size="large" />}
+            {!canPonyHouse && <Avatar imageSrc={bannerCfg?.url} text={roomName} size="large" />}
             {canPonyHouse && (
-              <BannerUpload
+              <ImageUpload
+                className='space-banner'
                 text='Banner'
                 imageSrc={bannerCfg?.img}
                 onUpload={handleBannerUpload}
