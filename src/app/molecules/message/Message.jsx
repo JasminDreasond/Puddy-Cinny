@@ -37,20 +37,17 @@ import { html, plain } from '../../../util/markdown';
 
 function PlaceholderMessage() {
   return (
-    <div className="ph-msg">
-      <div className="ph-msg__avatar-container">
-        <div className="ph-msg__avatar" />
-      </div>
-      <div className="ph-msg__main-container">
-        <div className="ph-msg__header" />
-        <div className="ph-msg__body">
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      </div>
-    </div>
+    <tr className="ph-msg">
+      <td colSpan="2">
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
+      </td>
+    </tr>
   );
 }
 
