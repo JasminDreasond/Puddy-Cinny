@@ -24,6 +24,7 @@ import RoomAliases from '../../molecules/room-aliases/RoomAliases';
 import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
+import BannerUpload from '../../molecules/image-upload/BannerUpload.jsx';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -61,12 +62,18 @@ function GeneralSettings({ roomId }) {
   const isCategorized = initMatrix.accountData.categorizedSpaces.has(roomId);
   const mx = initMatrix.matrixClient;
 
+  const userId = mx.getUserId();
   const room = mx.getRoom(roomId);
+
   const roomName = room?.name;
   const [, forceUpdate] = useForceUpdate();
 
   // Pony Config
+  const canPonyHouse = room.currentState.maySendStateEvent('pony.house.settings', userId);
   const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner');
+  const handleBannerUpload = () => {
+
+  };
 
   return (
     <>
@@ -144,6 +151,16 @@ function GeneralSettings({ roomId }) {
               <p>This image will display at the top of your rooms list.</p>
               The recommended minimum size is 960x540 and recommended aspect ratio is 16:9.
             </div>
+
+            {!canPonyHouse && <Avatar imageSrc={bannerCfg?.img} text={roomName} size="large" />}
+            {canPonyHouse && (
+              <BannerUpload
+                text='Banner'
+                imageSrc={bannerCfg?.img}
+                onUpload={handleBannerUpload}
+                onRequestRemove={() => handleBannerUpload(null)}
+              />
+            )}
 
           </li>
 

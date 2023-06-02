@@ -245,8 +245,7 @@ function ImagePack({ roomId, stateKey, handlePackDelete }) {
     else removeGlobalImagePack(mx, roomId, stateKey);
   };
 
-  const myPowerlevel = room.getMember(mx.getUserId())?.powerLevel || 0;
-  const canChange = room.currentState.hasSufficientPowerLevelFor('state_default', myPowerlevel);
+  const canChange = room.currentState.maySendStateEvent('im.ponies.room_emotes', mx.getUserId());
 
   const handleDeletePack = async () => {
     const isConfirmed = await confirmDialog(
