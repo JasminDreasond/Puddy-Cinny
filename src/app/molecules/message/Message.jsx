@@ -859,7 +859,7 @@ function Message({
 
       <tr className={className.join(' ')}>
 
-        <td className='p-0 ps-4 py-1 align-top chat-base'>
+        <td className='p-0 ps-4 py-1 pe-2 align-top chat-base'>
 
           {
             // User Avatar
@@ -873,7 +873,6 @@ function Message({
                 />
               )
               : <MessageTime
-                className='ms-2'
                 timestamp={mEvent.getTs()}
                 fullTime={fullTime}
               />
@@ -893,6 +892,7 @@ function Message({
                 />
 
                 <MessageTime
+                  className='ms-2'
                   timestamp={mEvent.getTs()}
                   fullTime={fullTime}
                 />
