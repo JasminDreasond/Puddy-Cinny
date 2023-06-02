@@ -67,7 +67,7 @@ const MessageAvatar = React.memo(({
 const MessageHeader = React.memo(({
   userId, username,
 }) => (
-  <span style={{ color: colorMXID(userId) }}>
+  <span className='username-base' style={{ color: colorMXID(userId) }}>
     <span className='username'>{twemojify(username)}</span>
     <span className='user-id'>{twemojify(userId)}</span>
   </span>
