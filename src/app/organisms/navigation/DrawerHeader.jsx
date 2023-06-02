@@ -105,8 +105,14 @@ function DrawerHeader({ selectedTab, spaceId }) {
 
   const isDMTab = selectedTab === cons.tabs.DIRECTS;
   const room = mx.getRoom(spaceId);
+  const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
   const spaceName = isDMTab ? null : (room?.name || null);
   setSelectSpace(room);
+
+  let avatarSrc = '';
+  if (bannerCfg && typeof bannerCfg?.url === 'string') {
+    avatarSrc = mx.mxcUrlToHttp(bannerCfg.url, 960, 540);
+  }
 
   const openSpaceOptions = (e) => {
     e.preventDefault();
@@ -127,7 +133,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
   };
 
   return (
-    <Header>
+    <Header banner={avatarSrc}>
 
       <ul className='navbar-nav mr-auto'>
 

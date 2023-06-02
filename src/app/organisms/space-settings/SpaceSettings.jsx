@@ -74,8 +74,8 @@ function GeneralSettings({ roomId }) {
   const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
   let avatarSrc;
 
-  if (bannerCfg) {
-    avatarSrc = mx.mxcUrlToHttp(bannerCfg?.url, 400, 227);
+  if (bannerCfg && typeof bannerCfg?.url === 'string') {
+    avatarSrc = mx.mxcUrlToHttp(bannerCfg.url, 400, 227);
   }
 
   const handleBannerUpload = async url => {
