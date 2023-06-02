@@ -443,6 +443,12 @@ em-emoji-picker {
   padding-bottom: 163px !important;
 }
 
+.space-banner .avatar__border {
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 /* Presence */
 .user-presence-offline {
   color: #bdbdbd;

@@ -81,7 +81,8 @@ function GeneralSettings({ roomId }) {
   const handleBannerUpload = async url => {
 
     const spaceHeader = document.querySelector('#space-header > .navbar');
-    const bannerPlace = document.querySelector('.space-banner img');
+    const bannerPlace = document.querySelector('.space-banner .avatar__border');
+    const bannerImg = document.querySelector('.space-banner img');
 
     if (spaceHeader) {
       if (url === null) {
@@ -97,14 +98,16 @@ function GeneralSettings({ roomId }) {
           await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
           spaceHeader.classList.remove('banner-mode');
           spaceHeader.style.backgroundImage = '';
-          if (bannerPlace) bannerPlace.src = '';
+          if (bannerPlace) bannerPlace.style.backgroundImage = '';
+          if (bannerImg) bannerImg.src = '';
         }
 
       } else {
         await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
         spaceHeader.classList.add('banner-mode');
         spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
-        if (bannerPlace) bannerPlace.src = mx.mxcUrlToHttp(url, 400, 227);
+        if (bannerPlace) bannerPlace.style.backgroundImage = `url('${mx.mxcUrlToHttp(url, 400, 227)}')`;
+        if (bannerImg) bannerImg.src = mx.mxcUrlToHttp(url, 400, 227);
       }
     }
 
