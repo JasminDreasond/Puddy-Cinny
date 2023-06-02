@@ -449,6 +449,10 @@ em-emoji-picker {
   background-repeat: no-repeat;
 }
 
+.space-banner .banner-added > * {
+  display: none;
+}
+
 /* Presence */
 .user-presence-offline {
   color: #bdbdbd;
