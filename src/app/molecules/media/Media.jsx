@@ -353,20 +353,15 @@ function Video({
   return (
     <div className="file-container">
       <FileHeader name={name} link={file !== null ? url : url || link} type={type} external />
-      <div
-        style={{
-          height: width !== null ? getNativeHeight(width, height) : 'unset',
-        }}
-        className="video-container"
-      >
+      <div className="video-container">
         {url === null ? (
           <>
+            {!isLoading && <IconButton onClick={handlePlayVideo} tooltip="Play video" fa="fa-solid fa-circle-play" />}
             {blurhash && blur && <BlurhashCanvas hash={blurhash} punch={1} />}
             {thumbUrl !== null && (
               <img style={{ display: blur ? 'none' : 'unset' }} src={thumbUrl} onLoad={() => setBlur(false)} alt={name} />
             )}
             {isLoading && <Spinner size="small" />}
-            {!isLoading && <IconButton onClick={handlePlayVideo} tooltip="Play video" fa="fa-solid fa-circle-play" />}
           </>
         ) : (
           /* eslint-disable-next-line jsx-a11y/media-has-caption */

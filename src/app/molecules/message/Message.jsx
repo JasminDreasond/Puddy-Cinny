@@ -45,7 +45,6 @@ function PlaceholderMessage() {
         <p className="placeholder-glow"><span className="placeholder col-12" /></p>
         <p className="placeholder-glow"><span className="placeholder col-12" /></p>
         <p className="placeholder-glow"><span className="placeholder col-12" /></p>
-        <p className="placeholder-glow"><span className="placeholder col-12" /></p>
       </td>
     </tr>
   );
