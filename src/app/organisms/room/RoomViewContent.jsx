@@ -579,7 +579,7 @@ function RoomViewContent({ eventId, roomTimeline }) {
       }
       const dayDivider = prevMEvent && !isInSameDay(mEvent.getDate(), prevMEvent.getDate());
       if (dayDivider) {
-        tl.push(<Divider key={`divider-${mEvent.getId()}`} text={`${moment(mEvent.getDate()).format('MMMM DD, YYYY')}`} />);
+        tl.push(<Divider variant="bg" key={`divider-${mEvent.getId()}`} text={`${moment(mEvent.getDate()).format('MMMM DD, YYYY')}`} />);
         itemCountIndex += 1;
       }
 
