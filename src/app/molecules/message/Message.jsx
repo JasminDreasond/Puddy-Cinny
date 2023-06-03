@@ -857,7 +857,6 @@ function Message({
 
     // Return Data
     return (
-
       <tr className={className.join(' ')}>
 
         <td className='p-0 ps-4 py-1 pe-2 align-top text-center chat-base'>
@@ -957,24 +956,31 @@ function Message({
   const errorMessage = `<i class="bi bi-slash-circle"></i> <strong>Unable to decrypt message.</strong>`;
   isCustomHTML = true;
   return (
+    <tr className={className.join(' ')}>
 
-    <div className={className.join(' ')}>
+      <td className='p-0 ps-4 py-1 pe-2 align-top text-center chat-base'>
 
-      {
-        // User Avatar
-        isBodyOnly
-          ? <div className="message__avatar-container" />
-          : (
-            <MessageAvatar
-              roomId={roomId}
-              avatarSrc={avatarSrc}
-              userId={senderId}
-              username={username}
+        {
+          // User Avatar
+          !isBodyOnly
+            ? (
+              <MessageAvatar
+                roomId={roomId}
+                avatarSrc={avatarSrc}
+                userId={senderId}
+                username={username}
+              />
+            )
+            : <MessageTime
+              className='hc-time'
+              timestamp={mEvent.getTs()}
+              fullTime={fullTime}
             />
-          )
-      }
+        }
 
-      <div className="message__main-container">
+      </td>
+
+      <td className='p-0 pe-3 py-1'>
 
         {roomTimeline && !isEdit && (
           <MessageOptions
@@ -986,28 +992,61 @@ function Message({
         )}
 
         {!isBodyOnly && (
-          <MessageHeader
-            userId={senderId}
-            username={username}
-            timestamp={mEvent.getTs()}
-            fullTime={fullTime}
+          <div className='mb-1'>
+
+            <MessageHeader
+              userId={senderId}
+              username={username}
+            />
+
+            <MessageTime
+              className='ms-2'
+              timestamp={mEvent.getTs()}
+              fullTime={fullTime}
+            />
+
+          </div>
+        )}
+
+        {roomTimeline && isReply && (
+          <MessageReplyWrapper
+            roomTimeline={roomTimeline}
+            eventId={mEvent.replyEventId}
           />
         )}
 
-        <MessageBody
-          senderName={username}
-          isSystem={isCustomHTML}
-          body={errorMessage}
-          msgType={msgType}
-          isEdited={isEdited}
-        />
+        {!isEdit && (
+          <MessageBody
+            senderName={username}
+            isSystem={isCustomHTML}
+            body={errorMessage}
+            msgType={msgType}
+            isEdited={isEdited}
+          />
+        )}
+
+        {isEdit && (
+          <MessageEdit
+            body={(customHTML
+              ? html(customHTML, { kind: 'edit', onlyPlain: true }).plain
+              : plain(body, { kind: 'edit', onlyPlain: true }).plain)}
+            onSave={(newBody, oldBody) => {
+              if (newBody !== oldBody) {
+                initMatrix.roomsInput.sendEditedMessage(roomId, mEvent, newBody);
+              }
+              cancelEdit();
+            }}
+            onCancel={cancelEdit}
+          />
+        )}
 
         {haveReactions && (
           <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
         )}
 
-      </div>
-    </div>
+      </td>
+
+    </tr>
   );
 
 }
