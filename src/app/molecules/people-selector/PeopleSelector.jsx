@@ -21,8 +21,7 @@ function PeopleSelector({
     >
       <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
       <i className={`ps-3 ${presence}`} />
-      <Text className="people-selector__name" variant="b1">
-
+      <Text className="people-selector__name emoji-size-fix" variant="b1">
         {twemojify(name)}
       </Text>
       {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
