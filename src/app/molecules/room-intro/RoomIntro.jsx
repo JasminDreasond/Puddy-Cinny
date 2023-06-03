@@ -10,7 +10,7 @@ function RoomIntro({
   roomId, avatarSrc, name, heading, desc, time,
 }) {
   return (
-    <tr className="ph-msg">
+    <tr className="welcome-msg">
       <td colSpan="2">
         <div className='ps-5 pt-5 pb-3'>
           <Avatar imageSrc={avatarSrc} text={name} bgColor={colorMXID(roomId)} size="large" />
