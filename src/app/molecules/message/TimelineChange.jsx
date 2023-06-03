@@ -32,21 +32,19 @@ function TimelineChange({
   }
 
   return (
-    <button style={{ cursor: onClick === null ? 'default' : 'pointer' }} onClick={onClick} type="button" className="timeline-change emoji-size-fix">
-      <div className="timeline-change__avatar-container">
+    <tr onClick={onClick} style={{ cursor: onClick === null ? 'default' : 'pointer' }} className="emoji-size-fix chat-status">
+
+      <td className='p-0 ps-4 py-1 pe-2 align-top text-center chat-base'>
         <RawIcon fa={faSrc} size="extra-small" />
-      </div>
-      <div className="timeline-change__content">
-        <Text variant="b2">
-          {content}
-        </Text>
-      </div>
-      <div className="timeline-change__time">
-        <div className="very-small text-gray">
-          <Time timestamp={timestamp} />
+      </td>
+
+      <td className='p-0 pe-3 py-1'>
+        <div className="very-small">
+          {content} <Time timestamp={timestamp} className='ms-2' />
         </div>
-      </div>
-    </button>
+      </td>
+
+    </tr>
   );
 }
 

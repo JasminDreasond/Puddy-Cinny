@@ -14,7 +14,7 @@ function RoomIntro({
       <td colSpan="2">
         <div className='ps-5 pt-5 pb-3'>
           <Avatar imageSrc={avatarSrc} text={name} bgColor={colorMXID(roomId)} size="large" />
-          <div className="pt-4 text-bg">
+          <div className="pt-4 text-bg emoji-size-fix">
             <h3>{heading}</h3>
             <div className="small">{desc}</div>
             {time !== null && <div className="mt-2 very-small text-gray">{time}</div>}

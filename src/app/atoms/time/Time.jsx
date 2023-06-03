@@ -6,7 +6,7 @@ import { isInSameDay } from '../../../util/common';
 
 moment.locale('en');
 
-function Time({ timestamp, fullTime }) {
+function Time({ timestamp, fullTime, className }) {
   const date = new Date(timestamp);
 
   const formattedFullTime = moment(date).format('DD MMMM YYYY, hh:MM A');
@@ -26,6 +26,7 @@ function Time({ timestamp, fullTime }) {
 
   return (
     <time
+      className={className}
       dateTime={date.toISOString()}
       title={formattedFullTime}
     >
@@ -36,9 +37,11 @@ function Time({ timestamp, fullTime }) {
 
 Time.defaultProps = {
   fullTime: false,
+  className: '',
 };
 
 Time.propTypes = {
+  className: PropTypes.string,
   timestamp: PropTypes.number.isRequired,
   fullTime: PropTypes.bool,
 };
