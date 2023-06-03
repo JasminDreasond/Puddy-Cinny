@@ -227,10 +227,10 @@ const MessageBody = React.memo(({
   // Criteria:
   // - Contains only emoji
   // - Contains no more than 10 emoji
-  // let emojiOnly = false;
+  let emojiOnly = false;
   if (content.type === 'img') {
     // If this messages contains only a single (inline) image
-    // emojiOnly = true;
+    emojiOnly = true;
   } else if (content.constructor.name === 'Array') {
     // Otherwise, it might be an array of images / texb
 
@@ -242,7 +242,7 @@ const MessageBody = React.memo(({
       (typeof element === 'object' && element.type === 'img')
       || (typeof element === 'string' && /^[\s\ufe0f]*$/g.test(element))
     ))) {
-      // emojiOnly = true;
+      emojiOnly = true;
     }
   }
 
@@ -253,7 +253,7 @@ const MessageBody = React.memo(({
   }
 
   return (
-    <div className={`message-body small text-bg ${className}`}>
+    <div className={`message-body small text-bg${!emojiOnly ? ' emoji-size-fix' : ''} ${className}`}>
       {msgType === 'm.emote' && (
         <>
           {'* '}

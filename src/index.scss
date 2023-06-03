@@ -249,7 +249,8 @@ a {
 }
 
 /* Fix Emoji Size */
-.emoji-size-fix img.emoji {
+.emoji-size-fix img.emoji,
+.message-body.emoji-size-fix [data-mx-emoticon] {
   max-height: 21px !important;
 }
 
