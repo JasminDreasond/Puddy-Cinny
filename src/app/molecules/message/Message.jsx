@@ -97,14 +97,12 @@ MessageTime.propTypes = {
 // Message Reply
 function MessageReply({ name, color, body }) {
   return (
-    <div className="pb-2 emoji-size-fix">
-      <Text variant="b2">
-        <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
-        {' '}
-        <span className="username-title emoji-size-fix" style={{ color }}>{twemojify(name)}</span>
-        {' '}
-        {twemojify(body)}
-      </Text>
+    <div className="pb-2 emoji-size-fix small text-reply">
+      <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
+      {' '}
+      <span className="username-title emoji-size-fix" style={{ color }}>{twemojify(name)}</span>
+      {' '}
+      {twemojify(body)}
     </div>
   );
 }
