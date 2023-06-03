@@ -156,6 +156,13 @@
 html,
 body {
   height: 100%;
+}
+
+html,
+body,
+#root,
+.client-container,
+.client-container > div {
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
