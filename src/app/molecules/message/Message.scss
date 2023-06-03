@@ -231,6 +231,11 @@ em-emoji-picker {
 }
 
 @media (max-width: 576px) {
+  #chatbox {
+    .message__options {
+      margin-top: -36px;
+    }
+  }
   .show-emoji-list {
     position: absolute;
     bottom: 0px !important;
