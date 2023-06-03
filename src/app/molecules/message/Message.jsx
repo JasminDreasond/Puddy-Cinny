@@ -953,7 +953,7 @@ function Message({
   }
 
   // Bad Message
-  const errorMessage = `<i class="bi bi-slash-circle"></i> <strong>Unable to decrypt message.</strong>`;
+  const errorMessage = `<i class="bi bi-key-fill text-warning"></i> <strong>Unable to decrypt message.</strong>`;
   isCustomHTML = true;
   return (
     <tr className={className.join(' ')}>
