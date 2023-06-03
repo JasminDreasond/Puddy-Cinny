@@ -255,7 +255,7 @@ const MessageBody = React.memo(({
   }
 
   return (
-    <div className={`small text-bg ${className}`}>
+    <div className={`message-body small text-bg ${className}`}>
       {msgType === 'm.emote' && (
         <>
           {'* '}
@@ -884,6 +884,15 @@ function Message({
 
         <td className='p-0 pe-3 py-1'>
 
+          {roomTimeline && !isEdit && (
+            <MessageOptions
+              roomTimeline={roomTimeline}
+              mEvent={mEvent}
+              edit={edit}
+              reply={reply}
+            />
+          )}
+
           {!isBodyOnly && (
             <div className='mb-1'>
 
@@ -937,15 +946,6 @@ function Message({
             <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
           )}
 
-          {roomTimeline && !isEdit && (
-            <MessageOptions
-              roomTimeline={roomTimeline}
-              mEvent={mEvent}
-              edit={edit}
-              reply={reply}
-            />
-          )}
-
         </td>
 
       </tr>
@@ -976,6 +976,15 @@ function Message({
 
       <div className="message__main-container">
 
+        {roomTimeline && !isEdit && (
+          <MessageOptions
+            roomTimeline={roomTimeline}
+            mEvent={mEvent}
+            edit={edit}
+            reply={reply}
+          />
+        )}
+
         {!isBodyOnly && (
           <MessageHeader
             userId={senderId}
@@ -995,15 +1004,6 @@ function Message({
 
         {haveReactions && (
           <MessageReactionGroup roomTimeline={roomTimeline} mEvent={mEvent} />
-        )}
-
-        {roomTimeline && !isEdit && (
-          <MessageOptions
-            roomTimeline={roomTimeline}
-            mEvent={mEvent}
-            edit={edit}
-            reply={reply}
-          />
         )}
 
       </div>
