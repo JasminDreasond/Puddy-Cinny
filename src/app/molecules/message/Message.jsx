@@ -97,7 +97,7 @@ MessageTime.propTypes = {
 // Message Reply
 function MessageReply({ name, color, body }) {
   return (
-    <div className="message__reply emoji-size-fix">
+    <div className="pb-2 emoji-size-fix">
       <Text variant="b2">
         <RawIcon color={color} size="normal" fa="fa-solid fa-reply" />
         {' '}

@@ -6,6 +6,11 @@
 #chatbox {
   word-break: break-word;
 
+  .message-focus {
+    border-left: 2px solid var(--bg-caution);
+    background-color: var(--bg-caution-hover);
+  }
+
   .message__reactions {
     display: flex;
     flex-wrap: wrap;
