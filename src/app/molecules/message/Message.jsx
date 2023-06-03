@@ -495,7 +495,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
   }
 
   return (
-    <div className="message__reactions text text-b3 noselect">
+    <div className="noselect">
       {
         Object.keys(reactions).map((key) => (
           <MessageReaction
@@ -513,6 +513,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
       }
       {canSendReaction && (
         <IconButton
+          className='ms-2'
           onClick={(e) => {
             pickEmoji(e, roomId, mEvent.getId(), roomTimeline);
           }}
