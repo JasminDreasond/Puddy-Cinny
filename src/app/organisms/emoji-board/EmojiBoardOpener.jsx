@@ -284,42 +284,46 @@ function EmojiBoardOpener() {
 
   // Insert Data
   const insertEmoji = (emoji) => {
+    if (emoji) {
 
-    // Prepare Code Data
-    tinyCache.emoji = {};
+      // Prepare Code Data
+      tinyCache.emoji = {};
 
-    if (Array.isArray(emoji.shortcodes)) {
-      tinyCache.emoji.shortcodes = emoji.shortcodes;
-    } else if (typeof emoji.shortcodes === 'string') {
-      tinyCache.emoji.shortcodes = [emoji.shortcodes];
+      if (Array.isArray(emoji.shortcodes)) {
+        tinyCache.emoji.shortcodes = emoji.shortcodes;
+      } else if (typeof emoji.shortcodes === 'string') {
+        tinyCache.emoji.shortcodes = [emoji.shortcodes];
+      }
+
+      // Get Base
+      // const textarea = document.getElementById('message-textarea');
+
+      // Insert Emoji
+      if (typeof emoji.id === 'string') {
+        if (typeof emoji.src === 'string') {
+
+          tinyCache.emoji.mxc = emoji.keywords['1'];
+          tinyCache.emoji.unicode = `:${emoji.id}:`;
+          tinyCache.emoji.hexcode = null;
+
+          if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
+          // insertAtCursor(textarea, `:${emoji.id}:`);
+          closeEmojiBoard();
+
+        } else if (typeof emoji.native === 'string') {
+
+          tinyCache.emoji.mxc = null;
+          tinyCache.emoji.unicode = emoji.native;
+          tinyCache.emoji.hexcode = emoji.unified.toUpperCase();
+
+          if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
+          // insertAtCursor(textarea, emoji.native);
+          closeEmojiBoard();
+
+        }
+      }
+
     }
-
-    // Get Base
-    // const textarea = document.getElementById('message-textarea');
-
-    // Insert Emoji
-    if (typeof emoji.src === 'string') {
-
-      tinyCache.emoji.mxc = emoji.keywords['1'];
-      tinyCache.emoji.unicode = `:${emoji.id}:`;
-      tinyCache.emoji.hexcode = null;
-
-      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
-      // insertAtCursor(textarea, `:${emoji.id}:`);
-      closeEmojiBoard();
-
-    } else if (typeof emoji.native === 'string') {
-
-      tinyCache.emoji.mxc = null;
-      tinyCache.emoji.unicode = emoji.native;
-      tinyCache.emoji.hexcode = emoji.unified.toUpperCase();
-
-      if (typeof requestEmoji === 'function') { requestEmoji(tinyCache.emoji); }
-      // insertAtCursor(textarea, emoji.native);
-      closeEmojiBoard();
-
-    }
-
   };
 
   // HTML
