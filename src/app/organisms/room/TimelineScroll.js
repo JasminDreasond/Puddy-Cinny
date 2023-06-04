@@ -76,7 +76,7 @@ class TimelineScroll {
   // to restore the scroll position when
   // messages gets removed from either end and added to other.
   _updateTopBottomMsg() {
-    const msgs = this.scroll.lastElementChild.lastElementChild.children;
+    const msgs = document.querySelector('#chatbox > tbody').getElementsByTagName('tr');
     const lMsgIndex = msgs.length - 1;
 
     // TODO: classname 'ph-msg' prevent this class from being used
