@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import React, { useEffect, useState } from 'react';
 import Picker from '@emoji-mart/react';
 
@@ -171,12 +173,14 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
           if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
             pack[whereRead].map(emoji => {
 
-              tinyPack.emojis.push({
-                id: emoji.shortcode,
-                name: emoji.body,
-                keywords: [emoji.shortcode, emoji.mxc],
-                skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
-              });
+              if (emoji) {
+                tinyPack.emojis.push({
+                  id: emoji.shortcode,
+                  name: emoji.body,
+                  keywords: [emoji.shortcode, emoji.mxc],
+                  skins: [{ src: mx.mxcUrlToHttp(emoji.mxc) }],
+                });
+              }
 
               return emoji;
 
