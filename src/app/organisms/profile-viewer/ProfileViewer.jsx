@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import './ProfileViewer.scss';
 
 import { twemojify } from '../../../util/twemojify';
 import { getUserStatus } from '../../../util/onlineStatus';
@@ -62,7 +61,7 @@ function ModerationTools({
   };
 
   return (
-    <div className="moderation-tools">
+    <div className="card-body">
       {canIKick && (
         <form onSubmit={handleKick}>
           <div className="col-10">
@@ -120,7 +119,7 @@ function SessionInfo({ userId }) {
   function renderSessionChips() {
     if (!isVisible) return null;
     return (
-      <div className="session-info__chips">
+      <li className='list-group-item bg-bg2 text-center'>
         {devices === null && <Text variant="b2">Loading sessions...</Text>}
         {devices?.length === 0 && <Text variant="b2">No session found.</Text>}
         {devices !== null && (devices.map((device) => (
@@ -130,12 +129,12 @@ function SessionInfo({ userId }) {
             text={device.getDisplayName() || device.deviceId}
           />
         )))}
-      </div>
+      </li>
     );
   }
 
   return (
-    <div className="session-info">
+    <ul className='list-group list-group-flush mt-3 border border-bg'>
       <MenuItem
         onClick={() => setIsVisible(!isVisible)}
         faSrc={isVisible ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"}
@@ -143,7 +142,7 @@ function SessionInfo({ userId }) {
         {`View ${devices?.length > 0 ? `${devices.length} ` : ''}sessions`}
       </MenuItem>
       {renderSessionChips()}
-    </div>
+    </ul>
   );
 }
 
@@ -358,7 +357,7 @@ function ProfileViewer() {
     const user = mx.getUser(userId);
 
     const avatarMxc = roomMember?.getMxcAvatarUrl?.() || user?.avatarUrl;
-    const avatarUrl = (avatarMxc && avatarMxc !== 'null') ? mx.mxcUrlToHttp(avatarMxc, 80, 80, 'crop') : null;
+    const avatarUrl = (avatarMxc && avatarMxc !== 'null') ? mx.mxcUrlToHttp(avatarMxc) : null;
 
     const powerLevel = roomMember?.powerLevel || 0;
     const myPowerLevel = room.getMember(mx.getUserId())?.powerLevel || 0;
@@ -407,39 +406,60 @@ function ProfileViewer() {
     };
 
     return (
-      <div className="profile-viewer">
-        <div className="profile-viewer__user">
-          <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
-          <div className="profile-viewer__user__info emoji-size-fix">
-            <Text variant="s1" weight="medium">
-              <i className={`pe-2 ${getUserStatus(user)}`} />
-              {twemojify(username)}
-            </Text>
-            <Text variant="b2">{twemojify(userId)}</Text>
+      <>
+
+        <center className="row">
+
+          <div className='col-md-3 '>
+            <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
+            <i className={`pe-2 ${getUserStatus(user)}`} />
           </div>
-          <div className="profile-viewer__user__role noselect">
-            <div className="very-small text-gray">Role</div>
-            <Button
-              onClick={canChangeRole ? handlePowerSelector : null}
-              faSrc={canChangeRole ? "fa-solid fa-check" : null}
-            >
-              {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
-            </Button>
+
+          <div className='col-md-5' />
+
+          <div className='col-md-4'>
+            <div className="profile-viewer__user__role noselect">
+              <div className="very-small text-gray">Role</div>
+              <Button
+                onClick={canChangeRole ? handlePowerSelector : null}
+                faSrc={canChangeRole ? "fa-solid fa-check" : null}
+              >
+                {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
+              </Button>
+            </div>
           </div>
+
+        </center>
+
+        <div className="card bg-bg2">
+
+          <div className="card-body">
+
+            <h6 className='emoji-size-fix'><strong>{twemojify(username)}</strong></h6>
+            <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
+
+          </div>
+
+          <ModerationTools roomId={roomId} userId={userId} />
+
+          <div className="card-body">
+            {userId !== mx.getUserId() && (
+              <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
+            )}
+          </div>
+
         </div>
-        <ModerationTools roomId={roomId} userId={userId} />
+
         <SessionInfo userId={userId} />
-        {userId !== mx.getUserId() && (
-          <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
-        )}
-      </div>
+
+      </>
     );
 
   };
 
   return (
     <Dialog
-      className="modal-dialog-scrollable noselect"
+      className="modal-dialog-scrollable modal-lg noselect"
       isOpen={isOpen}
       title={room?.name ?? ''}
       onAfterClose={handleAfterClose}
