@@ -6,6 +6,10 @@
 #chatbox {
   word-break: break-word;
 
+  .reaction-message {
+    display: none;
+  }
+
   .text-reply {
     color: var(--tc-surface-low);
   }
@@ -35,6 +39,8 @@
 
   .msg__reaction {
     height: 26px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     padding: 0 var(--sp-ultra-tight);
     display: inline-flex;
     align-items: center;
@@ -218,6 +224,9 @@
   }
   .message-body {
     margin-top: 0px;
+  }
+  .reaction-message {
+    display: inline;
   }
 }
 

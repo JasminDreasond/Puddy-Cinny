@@ -510,7 +510,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
       }
       {canSendReaction && (
         <IconButton
-          className='ms-2'
+          className='ms-2 btn-sm reaction-message'
           onClick={(e) => {
             pickEmoji(e, roomId, mEvent.getId(), roomTimeline);
           }}
