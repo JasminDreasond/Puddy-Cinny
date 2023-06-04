@@ -357,19 +357,19 @@ function toggleEmoji(roomId, eventId, emojiKey, shortcode, roomTimeline) {
 }
 
 // Pick Emoji Modal
-function pickEmoji(e, roomId, eventId, roomTimeline) {
+function pickEmoji(e, roomId, eventId, roomTimeline, extraX = 0, extraX2 = 0) {
 
   // Get Cords
   const cords = getEventCords(e);
 
   // Mobile Screen - Viewport
   if (window.matchMedia('screen and (max-width: 479px)').matches) {
-    cords.x -= 230;
+    cords.x -= 230 + extraX2;
   }
 
   // Normal Screen
   else {
-    cords.x -= 395;
+    cords.x -= 395 + extraX;
   }
 
   if (Math.round(cords.y) >= document.body.offsetHeight - 340) {
@@ -512,7 +512,7 @@ function MessageReactionGroup({ roomTimeline, mEvent }) {
         <IconButton
           className='ms-2 btn-sm reaction-message'
           onClick={(e) => {
-            pickEmoji(e, roomId, mEvent.getId(), roomTimeline);
+            pickEmoji(e, roomId, mEvent.getId(), roomTimeline, -430);
           }}
           fa="fa-solid fa-heart-circle-plus"
           size="normal"
