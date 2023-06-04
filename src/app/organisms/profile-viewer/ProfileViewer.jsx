@@ -247,24 +247,29 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
   };
 
   return (
-    <div className="profile-viewer__buttons">
+    <>
       <Button
+        className='me-2'
         variant="primary"
         onClick={openDM}
         disabled={isCreatingDM}
       >
         {isCreatingDM ? 'Creating room...' : 'Message'}
       </Button>
+
       {isBanned && canIKick && (
         <Button
+          className='mx-2'
           variant="success"
           onClick={() => roomActions.unban(roomId, userId)}
         >
           Unban
         </Button>
       )}
+
       {(isInvited ? canIKick : room.canInvite(mx.getUserId())) && isInvitable && (
         <Button
+          className='mx-2'
           onClick={toggleInvite}
           disabled={isInviting}
         >
@@ -275,7 +280,9 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
           }
         </Button>
       )}
+
       <Button
+        className='ms-2'
         variant={isUserIgnored ? 'success' : 'danger'}
         onClick={toggleIgnore}
         disabled={isIgnoring}
@@ -286,7 +293,8 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
             : `${isIgnoring ? 'Ignoring...' : 'Ignore'}`
         }
       </Button>
-    </div>
+
+    </>
   );
 }
 ProfileFooter.propTypes = {
@@ -408,28 +416,23 @@ function ProfileViewer() {
     return (
       <>
 
-        <center className="row">
+        <div className="row pb-3">
 
-          <div className='col-md-3 '>
+          <div className='col-md-3 text-center d-flex justify-content-center'>
             <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
             <i className={`pe-2 ${getUserStatus(user)}`} />
           </div>
 
-          <div className='col-md-5' />
 
-          <div className='col-md-4'>
-            <div className="profile-viewer__user__role noselect">
-              <div className="very-small text-gray">Role</div>
-              <Button
-                onClick={canChangeRole ? handlePowerSelector : null}
-                faSrc={canChangeRole ? "fa-solid fa-check" : null}
-              >
-                {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
-              </Button>
+          <div className='col-md-9'>
+            <div className='float-end'>
+              {userId !== mx.getUserId() && (
+                <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
+              )}
             </div>
           </div>
 
-        </center>
+        </div>
 
         <div className="card bg-bg">
 
@@ -443,10 +446,20 @@ function ProfileViewer() {
           <ModerationTools roomId={roomId} userId={userId} />
 
           <div className="card-body">
-            {userId !== mx.getUserId() && (
-              <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
-            )}
+
+            <div className="profile-viewer__user__role noselect">
+              <div className="very-small text-gray">Role</div>
+              <Button
+                onClick={canChangeRole ? handlePowerSelector : null}
+                faSrc={canChangeRole ? "fa-solid fa-check" : null}
+              >
+                {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
+              </Button>
+            </div>
+
           </div>
+
+
 
         </div>
 
@@ -462,7 +475,7 @@ function ProfileViewer() {
       bodyClass='bg-bg2'
       className="modal-dialog-scrollable modal-lg noselect"
       isOpen={isOpen}
-      title={room?.name ?? ''}
+      title='User Profile'
       onAfterClose={handleAfterClose}
       onRequestClose={closeDialog}
     >
