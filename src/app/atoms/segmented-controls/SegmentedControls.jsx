@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './SegmentedControls.scss';
 
-import { selectButton } from '../../../util/checkTheme';
-
 import Text from '../text/Text';
 import RawIcon from '../system-icons/RawIcon';
 
@@ -27,7 +25,7 @@ function SegmentedControls({
         segments.map((segment, index) => (
           <button
             key={Math.random().toString(20).substring(2, 6)}
-            className={`btn btn-${selectButton()} ${select === index ? ' active' : ''}`}
+            className={`btn btn-theme ${select === index ? ' active' : ''}`}
             type="button"
             onClick={() => selectSegment(index)}
           >

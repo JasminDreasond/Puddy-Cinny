@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../button/Button';
-import { selectButtonInverse } from '../../../util/checkTheme';
 
 function TabItem({
   selected, iconSrc, faSrc,
@@ -13,7 +12,7 @@ function TabItem({
   return (
     <td className='p-0 border-0' style={{ minWidth: '150px' }}>
       <Button
-        className={`btn-${selectButtonInverse()} py-2 rounded-0 rounded-top w-100 ${isSelected} ${className}`}
+        className={`btn-outline-theme-bg py-2 rounded-0 rounded-top w-100 ${isSelected} ${className}`}
         iconSrc={iconSrc}
         faSrc={faSrc}
         onClick={onClick}
