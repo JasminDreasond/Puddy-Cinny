@@ -173,7 +173,12 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
           if (Array.isArray(pack[whereRead]) && pack[whereRead].length > 0) {
             pack[whereRead].map(emoji => {
 
-              if (emoji) {
+              if (
+                emoji &&
+                typeof emoji.shortcode === 'string' &&
+                typeof emoji.body === 'string' &&
+                typeof emoji.mxc === 'string'
+              ) {
                 tinyPack.emojis.push({
                   id: emoji.shortcode,
                   name: emoji.body,
