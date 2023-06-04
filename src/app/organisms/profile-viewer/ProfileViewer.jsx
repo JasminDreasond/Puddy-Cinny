@@ -119,7 +119,7 @@ function SessionInfo({ userId }) {
   function renderSessionChips() {
     if (!isVisible) return null;
     return (
-      <li className='list-group-item bg-bg2 text-center'>
+      <li className='list-group-item bg-bg text-center'>
         {devices === null && <Text variant="b2">Loading sessions...</Text>}
         {devices?.length === 0 && <Text variant="b2">No session found.</Text>}
         {devices !== null && (devices.map((device) => (
@@ -431,7 +431,7 @@ function ProfileViewer() {
 
         </center>
 
-        <div className="card bg-bg2">
+        <div className="card bg-bg">
 
           <div className="card-body">
 
@@ -459,6 +459,7 @@ function ProfileViewer() {
 
   return (
     <Dialog
+      bodyClass='bg-bg2'
       className="modal-dialog-scrollable modal-lg noselect"
       isOpen={isOpen}
       title={room?.name ?? ''}

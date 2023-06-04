@@ -7,7 +7,7 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 
 function Dialog({
   className, isOpen, title, onAfterOpen, onAfterClose,
-  onRequestClose, children, invisibleScroll,
+  onRequestClose, children, invisibleScroll, bodyClass,
 }) {
 
   return (
@@ -27,7 +27,7 @@ function Dialog({
           }
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={bodyClass}>
         <ScrollView autoHide={!invisibleScroll} invisible={invisibleScroll}>
           {children}
         </ScrollView>
@@ -38,6 +38,7 @@ function Dialog({
 }
 
 Dialog.defaultProps = {
+  bodyClass: '',
   className: null,
   onAfterOpen: null,
   onAfterClose: null,
@@ -46,6 +47,7 @@ Dialog.defaultProps = {
 };
 
 Dialog.propTypes = {
+  bodyClass: PropTypes.string,
   className: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   title: PropTypes.node.isRequired,
