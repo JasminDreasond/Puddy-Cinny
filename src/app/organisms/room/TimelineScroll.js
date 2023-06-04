@@ -42,7 +42,7 @@ class TimelineScroll {
 
   scrollToIndex(index, offset = 0) {
     const scrollInfo = getScrollInfo(this.scroll);
-    const msgs = this.scroll.lastElementChild.lastElementChild.children;
+    const msgs = document.querySelector('#chatbox > tbody').getElementsByTagName('tr');
     const offsetTop = msgs[index]?.offsetTop;
 
     if (offsetTop === undefined) return;
