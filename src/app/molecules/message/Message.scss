@@ -258,6 +258,11 @@ em-emoji-picker {
       margin-top: -36px;
     }
   }
+  #chatbox tr:hover {
+    .reaction-message {
+      display: none;
+    }
+  }
   .show-emoji-list {
     position: absolute;
     bottom: 0px !important;
