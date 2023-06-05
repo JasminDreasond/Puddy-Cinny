@@ -20,7 +20,7 @@ function PeopleSelector({
       type="button"
     >
       <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
-      <i className={`ps-3 ${presence}`} />
+      <i className={presence} />
       <Text className="people-selector__name emoji-size-fix" variant="b1">
         {twemojify(name)}
       </Text>

@@ -1,6 +1,14 @@
 @use '../../partials/text';
 
 .people-selector {
+  i {
+    margin-left: -11px;
+    font-size: 12px;
+    position: relative;
+    top: 11px;
+    left: 4px;
+  }
+
   width: 100%;
   padding: var(--sp-extra-tight) var(--sp-normal);
   display: flex;
