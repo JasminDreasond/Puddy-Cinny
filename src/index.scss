@@ -408,6 +408,9 @@ a {
   .user-status {
     margin-top: -109px;
   }
+  .avatar__border {
+    background-color: var(--bg-surface-low) !important;
+  }
 }
 
 @media (max-width: 576px) {
