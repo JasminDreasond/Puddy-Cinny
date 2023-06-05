@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../button/Button';
@@ -45,6 +45,7 @@ TabItem.propTypes = {
 
 function Tabs({ items, defaultSelected, onSelect, className }) {
   const [selectedItem, setSelectedItem] = useState(items[defaultSelected]);
+  const tabRef = useRef(null);
 
   const handleTabSelection = (item, index) => {
     if (selectedItem === item) return;
@@ -53,7 +54,14 @@ function Tabs({ items, defaultSelected, onSelect, className }) {
   };
 
   return (
-    <div className={`table-responsive hide-scrollbar ${className}`}>
+    <div ref={tabRef} id='tabs-scroll' className={`table-responsive hide-scrollbar ${className}`}
+
+      onWheel={e => {
+        const scrollContainer = tabRef.current;
+        scrollContainer.scrollLeft -= e.deltaY;
+      }}
+
+    >
       <table className="table border-0 m-0">
         <tbody>
           <tr>
