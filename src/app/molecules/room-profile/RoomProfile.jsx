@@ -5,7 +5,7 @@ import { twemojify } from '../../../util/twemojify';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 
 import RawIcon from '../../atoms/system-icons/RawIcon';
 import Avatar from '../../atoms/avatar/Avatar';

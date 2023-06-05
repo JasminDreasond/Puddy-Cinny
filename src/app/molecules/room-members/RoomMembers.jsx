@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 
 import initMatrix from '../../../client/initMatrix';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 import { openProfileViewer } from '../../../client/action/navigation';
 import { getUsernameOfRoomMember, getPowerLabel } from '../../../util/matrixUtil';
 import AsyncSearch from '../../../util/AsyncSearch';

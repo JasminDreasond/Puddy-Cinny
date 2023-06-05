@@ -22,6 +22,6 @@ export function cssColorMXID(userId) {
   return `--mx-uc-${colorNumber + 1}`;
 }
 
-export default function colorMXID(userId) {
+export function colorMXID(userId) {
   return `var(${cssColorMXID(userId)})`;
 }

@@ -12,7 +12,7 @@ import Spinner from '../../atoms/spinner/Spinner';
 import Input from '../../atoms/input/Input';
 import PopupWindow from '../../molecules/popup-window/PopupWindow';
 import Avatar from '../../atoms/avatar/Avatar';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 import { twemojify } from '../../../util/twemojify';
 
 import HashSearchIC from '../../../../public/res/ic/outlined/hash-search.svg';

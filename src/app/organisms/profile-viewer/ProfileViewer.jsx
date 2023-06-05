@@ -14,7 +14,7 @@ import {
   getUsername, getUsernameOfRoomMember, getPowerLabel, hasDMWith, hasDevices,
 } from '../../../util/matrixUtil';
 import { getEventCords } from '../../../util/common';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID, cssColorMXID } from '../../../util/colorMXID';
 
 import Text from '../../atoms/text/Text';
 import Chip from '../../atoms/chip/Chip';
@@ -413,7 +413,7 @@ function ProfileViewer() {
     return (
       <>
 
-        <div className='profile-banner' />
+        <div className={`profile-banner profile-bg-${cssColorMXID(userId)}`} />
 
         <div className='p-4'>
 

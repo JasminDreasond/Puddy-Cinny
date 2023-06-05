@@ -8,7 +8,7 @@ import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
 import { toggleRoomSettings, openReusableContextMenu, openNavigation } from '../../../client/action/navigation';
 import { togglePeopleDrawer /* , startVoiceChat */ } from '../../../client/action/settings';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
 
 import { tabText } from './RoomSettings';

@@ -7,7 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 import {
   selectTab, openShortcutSpaces, openInviteList,
   openSearch, openSettings, openReusableContextMenu,

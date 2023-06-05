@@ -12,7 +12,7 @@ import initMatrix from '../../../client/initMatrix';
 import {
   getUsername, getUsernameOfRoomMember, parseReply, trimHTMLReply,
 } from '../../../util/matrixUtil';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 import { getEventCords } from '../../../util/common';
 import { redactEvent, sendReaction } from '../../../client/action/roomTimeline';
 import {

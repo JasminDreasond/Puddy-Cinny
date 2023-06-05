@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './RoomSelector.scss';
 
 import { twemojify } from '../../../util/twemojify';
-import colorMXID from '../../../util/colorMXID';
+import { colorMXID } from '../../../util/colorMXID';
 
 import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
