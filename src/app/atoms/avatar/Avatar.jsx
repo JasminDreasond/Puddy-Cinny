@@ -21,6 +21,7 @@ const Avatar = React.forwardRef(({
   if (size === 'large') textSize = 'h1';
   if (size === 'small') textSize = 'b1';
   if (size === 'extra-small') textSize = 'b3';
+  let imageLoaded = false;
 
   return (
     <div ref={ref} className={`avatar-container avatar-container__${size} ${className} noselect`}>
@@ -45,23 +46,26 @@ const Avatar = React.forwardRef(({
               draggable="false"
               src={imageAnimSrc}
               onLoad={(e) => {
-                getFileContentType(e, imageAnimSrc).then(data => {
-                  e.target.style.backgroundColor = 'transparent';
-                  if (Array.isArray(data.type) && typeof data.type[0] === 'string' && typeof data.type[1] === 'string') {
-                    if (data.type[0] === 'image') {
+                if (!imageLoaded) {
+                  imageLoaded = true;
+                  getFileContentType(e, imageAnimSrc).then(data => {
+                    e.target.style.backgroundColor = 'transparent';
+                    if (Array.isArray(data.type) && typeof data.type[0] === 'string' && typeof data.type[1] === 'string') {
+                      if (data.type[0] === 'image') {
 
-                      if (data.type[1] !== 'gif') {
-                        e.target.classList.remove('anim-avatar');
-                      } else {
+                        if (data.type[1] !== 'gif') {
+                          e.target.classList.remove('anim-avatar');
+                        } else {
 
-                      }
+                        }
 
+                      } else { e.target.src = ImageBrokenSVG; }
                     } else { e.target.src = ImageBrokenSVG; }
-                  } else { e.target.src = ImageBrokenSVG; }
-                }).catch(err => {
-                  console.error(err);
-                  e.target.src = ImageBrokenSVG;
-                })
+                  }).catch(err => {
+                    console.error(err);
+                    e.target.src = ImageBrokenSVG;
+                  });
+                }
               }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
