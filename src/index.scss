@@ -372,8 +372,8 @@ a {
 
   .user-status {
     position: relative;
-    top: 120px;
-    left: -20px;
+    top: 108px;
+    left: -32px;
     font-size: 30px;
     height: 31px;
     width: 31px;
@@ -388,6 +388,11 @@ a {
   .avatar-container img {
     height: 140px;
     width: 140px;
+    background-color: var(--bg-surface-low);
+  }
+
+  .avatar-container img {
+    padding: 12px;
   }
 
   .avatar-container,
