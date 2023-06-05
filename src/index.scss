@@ -314,6 +314,10 @@ a {
 }
 
 .discover-spaces {
+  @media (min-width: 1400px) {
+    --bs-modal-width: 1350px;
+  }
+
   /* Discover Banner */
   .discover-banner {
     color: #fff;
