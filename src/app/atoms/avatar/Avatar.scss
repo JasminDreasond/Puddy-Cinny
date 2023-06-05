@@ -24,7 +24,8 @@
     height: var(--av-extra-small);
   }
 
-  > img {
+  > img,
+  > canvas {
     border-radius: inherit;
     background-color: var(--bg-surface-hover);
   }

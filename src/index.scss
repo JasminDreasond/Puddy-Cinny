@@ -391,13 +391,15 @@ a {
   }
 
   .avatar-container,
-  .avatar-container img {
+  .avatar-container img,
+  .avatar-container canvas {
     height: 140px;
     width: 140px;
     background-color: var(--bg-surface-low);
   }
 
-  .avatar-container img {
+  .avatar-container img,
+  .avatar-container canvas {
     padding: 12px;
     border-radius: 21px;
   }

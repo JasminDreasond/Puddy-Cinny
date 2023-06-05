@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.scss';
@@ -9,6 +11,53 @@ import RawIcon from '../system-icons/RawIcon';
 
 import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
+
+function freezeGif(img) {
+
+  function createElement(type, callback) {
+    const element = document.createElement(type);
+
+    callback(element);
+
+    return element;
+  }
+
+  const { width } = img;
+  const { height } = img;
+
+  const canvas = createElement('canvas', clone => {
+    clone.width = width;
+    clone.height = height;
+  });
+  let attr;
+  let i = 0;
+
+  const freeze = () => {
+
+    canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+
+    for (i = 0; i < img.attributes.length; i++) {
+      attr = img.attributes[i];
+
+      if (attr.name !== '"') { // test for invalid attributes
+        canvas.setAttribute(attr.name, attr.value);
+      }
+    }
+
+    canvas.classList.add('normal-avatar');
+    canvas.classList.remove('anim-avatar');
+
+    img.parentNode.insertBefore(canvas, img);
+
+  };
+
+  if (img.complete) {
+    freeze();
+  } else {
+    img.addEventListener('load', freeze, true);
+  }
+
+};
 
 const Avatar = React.forwardRef(({
   text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass, imageAnimSrc
@@ -36,24 +85,14 @@ const Avatar = React.forwardRef(({
 
             :
 
-            <>
-              <img
-                className={`normal-avatar ${imgClass}`}
-                draggable="false"
-                src={imageSrc}
-                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
-                onError={(e) => { e.target.src = ImageBrokenSVG; }}
-                alt=""
-              />
-              <img
-                className={`anim-avatar ${imgClass}`}
-                draggable="false"
-                src={imageAnimSrc}
-                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
-                onError={(e) => { e.target.src = ImageBrokenSVG; }}
-                alt=""
-              />
-            </>
+            <img
+              className={`anim-avatar ${imgClass}`}
+              draggable="false"
+              src={imageAnimSrc}
+              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target); }}
+              onError={(e) => { e.target.src = ImageBrokenSVG; }}
+              alt=""
+            />
 
           )
           : faSrc !== null

@@ -8,7 +8,8 @@
   align-items: center;
   gap: var(--sp-normal);
 
-  & .avatar-container img {
+  & .avatar-container img,
+  & .avatar-container canvas {
     object-fit: contain;
     border-radius: 0;
   }

@@ -179,7 +179,8 @@
   .avatar-container {
     margin-right: 5px;
     margin-left: 5px;
-    img {
+    img,
+    canvas {
       height: 42px !important;
       width: 42px !important;
     }
@@ -203,7 +204,8 @@
   .username-base {
     font-size: 11.4pt;
   }
-  .welcome-msg .avatar-container > img {
+  .welcome-msg .avatar-container > img,
+  .welcome-msg .avatar-container > canvas {
     height: 80px !important;
     width: 80px !important;
   }
