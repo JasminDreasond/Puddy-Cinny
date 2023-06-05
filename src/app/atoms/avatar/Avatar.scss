@@ -45,3 +45,25 @@
     }
   }
 }
+
+#chatbox > tbody {
+  > tr {
+    .avatar-container {
+      .anim-avatar {
+        display: none;
+      }
+    }
+  }
+
+  > tr:hover {
+    .avatar-container {
+      .anim-avatar {
+        display: inherit;
+      }
+
+      .normal-avatar {
+        display: none;
+      }
+    }
+  }
+}

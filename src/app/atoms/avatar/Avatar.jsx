@@ -88,6 +88,7 @@ const Avatar = React.forwardRef(({
 });
 
 Avatar.defaultProps = {
+  imageAnimSrc: null,
   imgClass: 'img-fluid',
   text: null,
   className: '',
@@ -100,6 +101,7 @@ Avatar.defaultProps = {
 };
 
 Avatar.propTypes = {
+  imageAnimSrc: PropTypes.string,
   text: PropTypes.string,
   imgClass: PropTypes.string,
   bgColor: PropTypes.string,

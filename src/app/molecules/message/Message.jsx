@@ -52,10 +52,10 @@ function PlaceholderMessage() {
 
 // Avatar Generator
 const MessageAvatar = React.memo(({
-  roomId, avatarSrc, userId, username,
+  roomId, avatarSrc, avatarAnimSrc, userId, username,
 }) => (
   <button type="button" onClick={() => openProfileViewer(userId, roomId)}>
-    <Avatar imgClass='' imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} />
+    <Avatar imgClass='' imageAnimSrc={avatarAnimSrc} imageSrc={avatarSrc} text={username} bgColor={colorMXID(userId)} />
   </button>
 ));
 
@@ -804,6 +804,7 @@ function Message({
   // User Data
   const username = mEvent.sender ? getUsernameOfRoomMember(mEvent.sender) : getUsername(senderId);
   const avatarSrc = mEvent.sender?.getAvatarUrl(initMatrix.matrixClient.baseUrl, 36, 36, 'crop') ?? null;
+  const avatarAnimSrc = mEvent.sender?.getAvatarUrl(initMatrix.matrixClient.baseUrl) ?? null;
 
   // Content Data
   let isCustomHTML = content.format === 'org.matrix.custom.html';
@@ -867,6 +868,7 @@ function Message({
                 <MessageAvatar
                   roomId={roomId}
                   avatarSrc={avatarSrc}
+                  avatarAnimSrc={avatarAnimSrc}
                   userId={senderId}
                   username={username}
                 />
