@@ -36,9 +36,14 @@ function freezeGif(img, wantedWidth) {
 
     const ctx = canvas.getContext('2d');
 
-    const aspect = width / height;
-    canvas.width = wantedWidth;
-    canvas.height = wantedWidth / aspect;
+    if (wantedWidth) {
+      const aspect = width / height;
+      canvas.width = wantedWidth;
+      canvas.height = wantedWidth / aspect;
+    } else {
+      canvas.width = width;
+      canvas.height = height;
+    }
 
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
@@ -95,7 +100,7 @@ const Avatar = React.forwardRef(({
               className={`anim-avatar ${imgClass}`}
               draggable="false"
               src={imageAnimSrc}
-              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target, 42); }}
+              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target, /* 42 */); }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
             />
