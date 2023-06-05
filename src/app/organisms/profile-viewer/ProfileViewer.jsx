@@ -415,54 +415,52 @@ function ProfileViewer() {
 
         <div className='profile-banner' />
 
-        <div className="row pb-3">
+        <div className='p-4'>
 
-          <div className='col-md-3 text-center d-flex justify-content-center'>
-            <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
-            <i className={`pe-2 ${getUserStatus(user)}`} />
-          </div>
+          <div className="row pb-3">
 
-
-          <div className='col-md-9'>
-            <div className='float-end'>
-              {userId !== mx.getUserId() && (
-                <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
-              )}
+            <div className='col-md-3 text-center d-flex justify-content-center'>
+              <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
+              <i className={`pe-2 ${getUserStatus(user)}`} />
             </div>
-          </div>
 
-        </div>
 
-        <div className="card bg-bg">
-
-          <div className="card-body">
-
-            <h6 className='emoji-size-fix'><strong>{twemojify(username)}</strong></h6>
-            <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
-
-          </div>
-
-          <ModerationTools roomId={roomId} userId={userId} />
-
-          <div className="card-body">
-
-            <div className="profile-viewer__user__role noselect">
-              <div className="very-small text-gray">Role</div>
-              <Button
-                onClick={canChangeRole ? handlePowerSelector : null}
-                faSrc={canChangeRole ? "fa-solid fa-check" : null}
-              >
-                {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
-              </Button>
+            <div className='col-md-9'>
+              <div className='float-end'>
+                {userId !== mx.getUserId() && (
+                  <ProfileFooter roomId={roomId} userId={userId} onRequestClose={closeDialog} />
+                )}
+              </div>
             </div>
 
           </div>
 
+          <div className="card bg-bg">
 
+            <div className="card-body">
+
+              <div className="profile-viewer__user__role float-end noselect">
+                <div className="very-small text-gray">Role</div>
+                <Button
+                  onClick={canChangeRole ? handlePowerSelector : null}
+                  faSrc={canChangeRole ? "fa-solid fa-check" : null}
+                >
+                  {`${getPowerLabel(powerLevel) || 'Member'} - ${powerLevel}`}
+                </Button>
+              </div>
+
+              <h6 className='emoji-size-fix'><strong>{twemojify(username)}</strong></h6>
+              <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
+
+            </div>
+
+            <ModerationTools roomId={roomId} userId={userId} />
+
+          </div>
+
+          <SessionInfo userId={userId} />
 
         </div>
-
-        <SessionInfo userId={userId} />
 
       </>
     );
@@ -471,8 +469,8 @@ function ProfileViewer() {
 
   return (
     <Dialog
-      bodyClass='bg-bg2'
-      className="modal-dialog-scrollable modal-lg noselect"
+      bodyClass='bg-bg2 p-0'
+      className="modal-dialog-scrollable modal-lg noselect user-profile"
       isOpen={isOpen}
       title='User Profile'
       onAfterClose={handleAfterClose}
