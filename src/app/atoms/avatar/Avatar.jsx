@@ -11,7 +11,7 @@ import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
 const Avatar = React.forwardRef(({
-  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass
+  text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass, imageAnimSrc
 }, ref) => {
   let textSize = 's1';
   if (size === 'large') textSize = 'h1';
@@ -23,7 +23,8 @@ const Avatar = React.forwardRef(({
       {
         // eslint-disable-next-line no-nested-ternary
         imageSrc !== null
-          ? (
+          ? (!imageAnimSrc ?
+
             <img
               className={imgClass}
               draggable="false"
@@ -32,6 +33,28 @@ const Avatar = React.forwardRef(({
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
             />
+
+            :
+
+            <>
+              <img
+                className={`normal-avatar ${imgClass}`}
+                draggable="false"
+                src={imageSrc}
+                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
+                onError={(e) => { e.target.src = ImageBrokenSVG; }}
+                alt=""
+              />
+              <img
+                className={`anim-avatar ${imgClass}`}
+                draggable="false"
+                src={imageAnimSrc}
+                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
+                onError={(e) => { e.target.src = ImageBrokenSVG; }}
+                alt=""
+              />
+            </>
+
           )
           : faSrc !== null
             ? (
