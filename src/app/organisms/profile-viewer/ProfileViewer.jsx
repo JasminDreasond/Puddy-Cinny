@@ -413,6 +413,8 @@ function ProfileViewer() {
     return (
       <>
 
+        <div className='profile-banner' />
+
         <div className="row pb-3">
 
           <div className='col-md-3 text-center d-flex justify-content-center'>

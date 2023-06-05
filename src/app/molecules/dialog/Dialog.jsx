@@ -28,9 +28,7 @@ function Dialog({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className={bodyClass}>
-        <ScrollView autoHide={!invisibleScroll} invisible={invisibleScroll}>
-          {children}
-        </ScrollView>
+        {children}
       </Modal.Body>
     </Modal>
   );
