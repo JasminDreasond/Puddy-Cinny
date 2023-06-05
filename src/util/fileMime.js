@@ -23,9 +23,18 @@ export function getFileContentType(e, where) {
             mimeTypeCache[where].height = e.target.height;
 
             fetch(where, { method: 'HEAD' }).then(response => {
+
                 mimeTypeCache[where].loaded = true;
                 mimeTypeCache[where].type = response.headers.get('Content-type');
+
+                if (typeof mimeTypeCache[where].type === 'string') {
+                    mimeTypeCache[where].type = mimeTypeCache[where].type.split('/');
+                } else {
+                    mimeTypeCache[where].type = null;
+                }
+
                 resolve(mimeTypeCache[where]);
+
             }).catch(err => {
                 mimeTypeCache[where].error = true;
                 reject(err);
