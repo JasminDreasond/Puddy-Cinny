@@ -359,9 +359,22 @@ a {
 
 /* Banner Profile */
 
-.profile-banner {
-  height: 212px;
-  min-height: 212px;
+.user-profile {
+  .profile-banner {
+    height: 212px;
+    min-height: 212px;
+  }
+
+  .avatar-container {
+    position: relative;
+    top: -98px;
+  }
+
+  .avatar-container,
+  .avatar-container img {
+    height: 140px;
+    width: 140px;
+  }
 }
 
 /* Space Banner */
