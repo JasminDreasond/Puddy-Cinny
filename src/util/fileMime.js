@@ -5,6 +5,8 @@ setInterval(() => {
     for (const item in mimeTypeCache) {
         if (mimeTypeCache[item].error || typeof mimeTypeCache[item].timeout !== 'number' || Number.isNaN(mimeTypeCache[item].timeout) || !Number.isFinite(mimeTypeCache[item].timeout) || mimeTypeCache[item].timeout < 1) {
             delete mimeTypeCache[item];
+        } else {
+            mimeTypeCache[item].timeout--;
         }
     }
 }, 60000);
