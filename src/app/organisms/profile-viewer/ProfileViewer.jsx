@@ -413,7 +413,7 @@ function ProfileViewer() {
     return (
       <>
 
-        <div className={`profile-banner profile-bg-${cssColorMXID(userId)}`} />
+        <div className={`profile-banner profile-bg${cssColorMXID(userId)}`} />
 
         <div className='p-4'>
 
