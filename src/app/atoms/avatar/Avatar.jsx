@@ -41,7 +41,7 @@ const Avatar = React.forwardRef(({
             <img
               className={`anim-avatar ${imgClass}`}
               draggable="false"
-              src={imageSrc}
+              src={imageAnimSrc}
               onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
