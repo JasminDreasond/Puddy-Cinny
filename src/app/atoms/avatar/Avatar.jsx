@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.scss';
@@ -13,15 +12,7 @@ import RawIcon from '../system-icons/RawIcon';
 
 import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
-
-const mimeTypeCache = {};
-setInterval(() => {
-  for (const item in mimeTypeCache) {
-    if (typeof mimeTypeCache[item].timeout !== 'number' || Number.isNaN(mimeTypeCache[item].timeout) || !Number.isFinite(mimeTypeCache[item].timeout) || mimeTypeCache[item].timeout < 1) {
-      delete mimeTypeCache[item];
-    }
-  }
-}, 60000);
+import { getFileContentType } from '../../../util/fileMime';
 
 const Avatar = React.forwardRef(({
   text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass, imageAnimSrc
@@ -54,35 +45,15 @@ const Avatar = React.forwardRef(({
               draggable="false"
               src={imageAnimSrc}
               onLoad={(e) => {
-
-                const tinyComplete = () => {
+                getFileContentType(e).then(data => {
 
                   e.target.style.backgroundColor = 'transparent';
-                  console.log(mimeTypeCache[imageAnimSrc]);
+                  console.log(data);
 
-                }
-
-                if (!mimeTypeCache[imageAnimSrc]) {
-
-                  mimeTypeCache[imageAnimSrc] = { loaded: false, error: false, timeout: 60 };
-
-                  mimeTypeCache[imageAnimSrc].width = e.target.width;
-                  mimeTypeCache[imageAnimSrc].height = e.target.height;
-
-                  fetch(imageAnimSrc, { method: 'HEAD' })
-                    .then(response => {
-                      mimeTypeCache[imageAnimSrc].loaded = true;
-                      mimeTypeCache[imageAnimSrc].type = response.headers.get('Content-type');
-                      tinyComplete();
-                    }).catch(err => {
-                      console.error(err);
-                      mimeTypeCache[imageAnimSrc].error = true;
-                      e.target.src = ImageBrokenSVG;
-                    });
-                } else {
-                  tinyComplete();
-                }
-
+                }).catch(err => {
+                  console.error(err);
+                  e.target.src = ImageBrokenSVG;
+                })
               }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
