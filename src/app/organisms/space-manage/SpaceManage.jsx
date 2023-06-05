@@ -108,7 +108,7 @@ function SpaceManageItem({
     />
   );
   const roomNameJSX = (
-    <Text>
+    <Text className='emoji-size-fix'>
       {twemojify(name)}
       <span className="very-small text-gray" span>{` • ${roomInfo.num_joined_members} members`}</span>
     </Text>
