@@ -65,7 +65,7 @@ function ModerationTools({
       {canIKick && (
         <form onSubmit={handleKick}>
           <div className="input-group mb-3">
-            <Input label="Kick reason" name="kick-reason" />
+            <Input placeholder="Kick reason" name="kick-reason" />
             <Button className="border-bg" variant='outline-secondary' type="submit">Kick</Button>
           </div>
         </form>
@@ -73,7 +73,7 @@ function ModerationTools({
       {canIBan && (
         <form onSubmit={handleBan}>
           <div className="input-group mb-3">
-            <Input label="Ban reason" name="ban-reason" />
+            <Input placeholder="Ban reason" name="ban-reason" />
             <Button className="border-bg" variant='outline-secondary' type="submit">Kick</Button>
           </div>
         </form>
