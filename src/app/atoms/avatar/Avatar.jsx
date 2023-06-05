@@ -42,7 +42,6 @@ const Avatar = React.forwardRef(({
             :
 
             <img
-              className={`anim-avatar ${imgClass}`}
               draggable="false"
               src={imageAnimSrc}
               onLoad={(e) => {
@@ -53,12 +52,19 @@ const Avatar = React.forwardRef(({
                     if (Array.isArray(data.type) && typeof data.type[0] === 'string' && typeof data.type[1] === 'string') {
                       if (data.type[0] === 'image') {
 
-                        if (data.type[1] !== 'gif') {
-                          e.target.src = imageSrc;
-                          e.target.classList.remove('anim-avatar');
-                        } else {
+                        if (data.type[1] === 'gif') {
+
+                          e.target.parentNode.parentNode.parentNode.parentNode.addEventListener('mouseover', () => {
+                            e.target.src = imageAnimSrc;
+                          }, false);
+
+                          e.target.parentNode.parentNode.parentNode.parentNode.addEventListener('mouseout', () => {
+                            e.target.src = imageSrc;
+                          }, false);
 
                         }
+
+                        e.target.src = imageSrc;
 
                       } else { e.target.src = ImageBrokenSVG; }
                     } else { e.target.src = ImageBrokenSVG; }
