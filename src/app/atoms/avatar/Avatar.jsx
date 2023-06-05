@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
@@ -14,6 +15,14 @@ import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
 const mimeTypeCache = {};
+setInterval(() => {
+  for (const item in mimeTypeCache) {
+    if (typeof mimeTypeCache[item].timeout !== 'number' || Number.isNaN(mimeTypeCache[item].timeout) || !Number.isFinite(mimeTypeCache[item].timeout) || mimeTypeCache[item].timeout < 1) {
+      delete mimeTypeCache[item];
+    }
+  }
+}, 60000);
+
 const Avatar = React.forwardRef(({
   text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass, imageAnimSrc
 }, ref) => {
@@ -49,17 +58,16 @@ const Avatar = React.forwardRef(({
                 const tinyComplete = () => {
 
                   e.target.style.backgroundColor = 'transparent';
-                  // console.log(mimeTypeCache[imageAnimSrc]);
+                  console.log(mimeTypeCache[imageAnimSrc]);
 
                 }
 
                 if (!mimeTypeCache[imageAnimSrc]) {
 
-                  mimeTypeCache[imageAnimSrc] = { loaded: false, error: false };
+                  mimeTypeCache[imageAnimSrc] = { loaded: false, error: false, timeout: 60 };
 
                   mimeTypeCache[imageAnimSrc].width = e.target.width;
                   mimeTypeCache[imageAnimSrc].height = e.target.height;
-                  mimeTypeCache[imageAnimSrc].timeout = 60;
 
                   fetch(imageAnimSrc, { method: 'HEAD' })
                     .then(response => {
