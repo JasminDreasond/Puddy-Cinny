@@ -27,6 +27,17 @@ Made by Me
 
     ]
 
-    Corrigir a falha de cores na hora de mudar de tema. Isso também interfere no seletor automatico de tema.
-    Cor de notificações precisa ser trocada no light mode
+
+
+
+    const user = mx.getUser(mx.getUserId());
+
+    user.on('user.status', (data) => {
+      console.log('user.status', data);
+    });
+
+    user.emit('user.status', { presence: 'online' });
+
+
+
     O upload de imagens está desregulado
