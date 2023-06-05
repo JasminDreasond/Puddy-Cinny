@@ -421,7 +421,7 @@ function ProfileViewer() {
 
             <div className='col-md-3 text-center d-flex justify-content-center'>
               <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
-              <i className={`pe-2 ${getUserStatus(user)}`} />
+              <i className={`user-status pe-2 ${getUserStatus(user)}`} />
             </div>
 
 

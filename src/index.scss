@@ -370,6 +370,20 @@ a {
     top: -98px;
   }
 
+  .user-status {
+    position: relative;
+    top: 11px;
+    left: -28px;
+    font-size: 36px;
+    height: 31px;
+    width: 31px;
+  }
+
+  .user-status:before {
+    top: -2px;
+    position: relative;
+  }
+
   .avatar-container,
   .avatar-container img {
     height: 140px;
