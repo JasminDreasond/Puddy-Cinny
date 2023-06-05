@@ -449,7 +449,7 @@ function ProfileViewer() {
                 </Button>
               </div>
 
-              <h6 className='emoji-size-fix'><strong>{twemojify(username)}</strong></h6>
+              <h6 className='emoji-size-fix m-0 mb-1'><strong>{twemojify(username)}</strong></h6>
               <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
 
             </div>

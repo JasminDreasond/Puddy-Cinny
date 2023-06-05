@@ -21,7 +21,7 @@ function ProfileEditor({ userId }) {
   const user = mx.getUser(mx.getUserId());
 
   const displayNameRef = useRef(null);
-  const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl, 80, 80, 'crop') : null);
+  const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl) : null);
   const [username, setUsername] = useState(user.displayName);
   const [disabled, setDisabled] = useState(true);
 
@@ -29,7 +29,7 @@ function ProfileEditor({ userId }) {
     let isMounted = true;
     mx.getProfileInfo(mx.getUserId()).then((info) => {
       if (!isMounted) return;
-      setAvatarSrc(info.avatar_url ? mx.mxcUrlToHttp(info.avatar_url, 80, 80, 'crop') : null);
+      setAvatarSrc(info.avatar_url ? mx.mxcUrlToHttp(info.avatar_url) : null);
       setUsername(info.displayname);
     });
     return () => {
