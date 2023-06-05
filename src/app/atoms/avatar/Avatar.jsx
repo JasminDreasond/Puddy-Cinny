@@ -45,7 +45,7 @@ const Avatar = React.forwardRef(({
               draggable="false"
               src={imageAnimSrc}
               onLoad={(e) => {
-                getFileContentType(e).then(data => {
+                getFileContentType(e, imageAnimSrc).then(data => {
 
                   e.target.style.backgroundColor = 'transparent';
                   console.log(data);
