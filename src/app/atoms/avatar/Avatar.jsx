@@ -100,7 +100,7 @@ const Avatar = React.forwardRef(({
               className={`anim-avatar ${imgClass}`}
               draggable="false"
               src={imageAnimSrc}
-              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target, /* 42 */); }}
+              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; /*freezeGif(e.target, 42);*/ }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
             />
