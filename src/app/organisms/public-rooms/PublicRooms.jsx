@@ -237,7 +237,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
   return (
     <PopupWindow
       isOpen={isOpen}
-      size='modal-xl modal-fullscreen'
+      size='modal-xl'
       title="Public rooms"
       onRequestClose={onRequestClose}
     >
@@ -260,7 +260,7 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
               />
             </div>
 
-            <div><Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} className2='mb-3' className='text-center' required /></div>
+            <div className='mb-3'><Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} className2='mb-3' className='text-center' required /></div>
             <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
 
           </center>
