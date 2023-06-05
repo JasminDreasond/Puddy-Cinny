@@ -46,10 +46,18 @@ const Avatar = React.forwardRef(({
               src={imageAnimSrc}
               onLoad={(e) => {
                 getFileContentType(e, imageAnimSrc).then(data => {
-
                   e.target.style.backgroundColor = 'transparent';
-                  console.log(data);
+                  if (Array.isArray(data.type) && typeof data.type[0] === 'string' && typeof data.type[1] === 'string') {
+                    if (data.type[0] === 'image') {
 
+                      if (data.type[1] !== 'gif') {
+                        e.target.classList.remove('anim-avatar');
+                      } else {
+
+                      }
+
+                    } else { e.target.src = ImageBrokenSVG; }
+                  } else { e.target.src = ImageBrokenSVG; }
                 }).catch(err => {
                   console.error(err);
                   e.target.src = ImageBrokenSVG;
