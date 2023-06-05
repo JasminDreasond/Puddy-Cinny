@@ -120,7 +120,7 @@ function RoomMembers({ roomId }) {
 
   const mList = searchMembers ? searchMembers.data : members.slice(0, itemCount);
   return (
-    <div className="card noselect">
+    <div className="card noselect room-members">
       <ul className="list-group list-group-flush">
 
         <li className="list-group-item very-small text-gray">Search member</li>
