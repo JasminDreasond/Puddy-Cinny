@@ -1,7 +1,7 @@
 {
   "name": "Pony House",
   "short_name": "Pony House",
-  "description": "The tiny Pony House matrix client",
+  "description": "The tiny Pony House matrix client.",
   "dir": "auto",
   "lang": "en-US",
   "display_override": [
@@ -11,8 +11,15 @@
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
+  "scope": "/",
   "background_color": "#212121",
   "theme_color": "#212121",
+  "categories": [
+    "matrix",
+    "matrix-client",
+    "social",
+    "chat"
+  ],
   "icons": [
     {
       "src": "/public/android/android-chrome-36x36.png",
