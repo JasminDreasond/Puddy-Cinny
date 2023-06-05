@@ -251,15 +251,16 @@ function PublicRooms({ isOpen, searchTerm, onRequestClose }) {
             <h4>Find your community in Matrix</h4>
             <h6>There will always be a place that is trying to teach you new things.</h6>
 
-            <Input
-              value={searchTerm}
-              forwardRef={roomNameRef}
-              className2='m-3'
-              className='text-center'
-              placeholder='Enter the name of your community here'
-            />
+            <div className='m-3'>
+              <Input
+                value={searchTerm}
+                forwardRef={roomNameRef}
+                className='text-center'
+                placeholder='Enter the name of your community here'
+              />
+            </div>
 
-            <Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} className2='mb-3' className='text-center' required />
+            <div><Input forwardRef={hsRef} value={userId.slice(userId.indexOf(':') + 1)} className2='mb-3' className='text-center' required /></div>
             <Button disabled={isSearching} iconSrc={HashSearchIC} variant="primary" type="submit">Search</Button>
 
           </center>

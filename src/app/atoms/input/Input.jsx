@@ -10,7 +10,7 @@ function Input({
   onKeyDown, disabled, autoFocus, className, className2
 }) {
   return (
-    <div className={className2}>
+    <>
 
       {label !== '' && <label className="small text-gray" htmlFor={id}>{label}</label>}
 
@@ -54,7 +54,7 @@ function Input({
           />
         )}
 
-    </div>
+    </>
   );
 }
 

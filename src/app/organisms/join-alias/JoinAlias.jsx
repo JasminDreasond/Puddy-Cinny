@@ -84,12 +84,14 @@ function JoinAliasContent({ term, requestClose }) {
 
   return (
     <form className="join-alias" onSubmit={handleSubmit}>
-      <Input
-        label="Address"
-        value={term}
-        name="alias"
-        required
-      />
+      <div>
+        <Input
+          label="Address"
+          value={term}
+          name="alias"
+          required
+        />
+      </div>
       {error && <Text className="join-alias__error" variant="b3">{error}</Text>}
       <div className="join-alias__btn">
         {

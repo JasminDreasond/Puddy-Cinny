@@ -64,21 +64,17 @@ function ModerationTools({
     <div className="card-body">
       {canIKick && (
         <form onSubmit={handleKick}>
-          <div className="col-10">
+          <div className="input-group mb-3">
             <Input label="Kick reason" name="kick-reason" />
-          </div>
-          <div className="col-2">
-            <Button className='w-100' type="submit">Kick</Button>
+            <Button className="border-bg" variant='outline-secondary' type="submit">Kick</Button>
           </div>
         </form>
       )}
       {canIBan && (
         <form onSubmit={handleBan}>
-          <div className="col-10">
+          <div className="input-group mb-3">
             <Input label="Ban reason" name="ban-reason" />
-          </div>
-          <div className="col-2">
-            <Button className='w-100' type="submit">Ban</Button>
+            <Button className="border-bg" variant='outline-secondary' type="submit">Kick</Button>
           </div>
         </form>
       )}
@@ -270,6 +266,7 @@ function ProfileFooter({ roomId, userId, onRequestClose }) {
       {(isInvited ? canIKick : room.canInvite(mx.getUserId())) && isInvitable && (
         <Button
           className='mx-2'
+          variant='secondary'
           onClick={toggleInvite}
           disabled={isInviting}
         >

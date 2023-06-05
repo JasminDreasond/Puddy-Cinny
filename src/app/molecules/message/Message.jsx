@@ -307,15 +307,17 @@ function MessageEdit({ body, onSave, onCancel }) {
 
   return (
     <form className="message__edit" onSubmit={(e) => { e.preventDefault(); onSave(editInputRef.current.value, body); }}>
-      <Input
-        forwardRef={editInputRef}
-        onKeyDown={handleKeyDown}
-        value={body}
-        placeholder="Edit message"
-        required
-        resizable
-        autoFocus
-      />
+      <div>
+        <Input
+          forwardRef={editInputRef}
+          onKeyDown={handleKeyDown}
+          value={body}
+          placeholder="Edit message"
+          required
+          resizable
+          autoFocus
+        />
+      </div>
       <div className="message__edit-btns">
         <Button type="submit" variant="primary">Save</Button>
         <Button onClick={onCancel}>Cancel</Button>

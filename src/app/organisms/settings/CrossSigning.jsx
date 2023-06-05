@@ -146,25 +146,29 @@ function CrossSigningSetup() {
               so you don't have to remember long Security Key,
               and optionally save the Key as backup.
             </Text>
-            <Input
-              name="phrase"
-              value={values.phrase}
-              onChange={handleChange}
-              label="Security Phrase"
-              type="password"
-              required
-              disabled={genWithPhrase !== undefined}
-            />
+            <div>
+              <Input
+                name="phrase"
+                value={values.phrase}
+                onChange={handleChange}
+                label="Security Phrase"
+                type="password"
+                required
+                disabled={genWithPhrase !== undefined}
+              />
+            </div>
             {errors.phrase && <div className="very-small text-gray cross-signing__error">{errors.phrase}</div>}
-            <Input
-              name="confirmPhrase"
-              value={values.confirmPhrase}
-              onChange={handleChange}
-              label="Confirm Security Phrase"
-              type="password"
-              required
-              disabled={genWithPhrase !== undefined}
-            />
+            <div>
+              <Input
+                name="confirmPhrase"
+                value={values.confirmPhrase}
+                onChange={handleChange}
+                label="Confirm Security Phrase"
+                type="password"
+                required
+                disabled={genWithPhrase !== undefined}
+              />
+            </div>
             {errors.confirmPhrase && <div className="very-small text-gray cross-signing__error">{errors.confirmPhrase}</div>}
             {genWithPhrase !== true && <Button variant="primary" type="submit" disabled={genWithPhrase !== undefined}>Set Phrase & Generate Key</Button>}
             {genWithPhrase === true && <Spinner size="small" />}

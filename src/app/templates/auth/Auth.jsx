@@ -109,14 +109,16 @@ function Homeserver({ onChange }) {
   return (
     <>
       <div className="homeserver-form">
-        <Input
-          name="homeserver"
-          onChange={handleHsInput}
-          value={hs?.selected}
-          forwardRef={hsRef}
-          label="Homeserver"
-          disabled={hs === null || !hs.allowCustom}
-        />
+        <div>
+          <Input
+            name="homeserver"
+            onChange={handleHsInput}
+            value={hs?.selected}
+            forwardRef={hsRef}
+            label="Homeserver"
+            disabled={hs === null || !hs.allowCustom}
+          />
+        </div>
         <ContextMenu
           placement="right"
           content={(hideMenu) => (
@@ -241,12 +243,12 @@ function Login({ loginFlow, baseUrl }) {
             <>
               {isSubmitting && <LoadingScreen message="Login in progress..." />}
               <form className="auth-form" onSubmit={handleSubmit}>
-                {typeIndex === 0 && <Input values={values.username} name="username" onChange={handleChange} label="Username" type="username" required />}
+                {typeIndex === 0 && <div><Input values={values.username} name="username" onChange={handleChange} label="Username" type="username" required /></div>}
                 {errors.username && <Text className="auth-form__error" variant="b3">{errors.username}</Text>}
-                {typeIndex === 1 && <Input values={values.email} name="email" onChange={handleChange} label="Email" type="email" required />}
+                {typeIndex === 1 && <div><Input values={values.email} name="email" onChange={handleChange} label="Email" type="email" required /></div>}
                 {errors.email && <Text className="auth-form__error" variant="b3">{errors.email}</Text>}
                 <div className="auth-form__pass-eye-wrapper">
-                  <Input values={values.password} name="password" onChange={handleChange} label="Password" type={passVisible ? 'text' : 'password'} required />
+                  <div><Input values={values.password} name="password" onChange={handleChange} label="Password" type={passVisible ? 'text' : 'password'} required /></div>
                   <IconButton onClick={() => setPassVisible(!passVisible)} fa={passVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} size="extra-small" />
                 </div>
                 {errors.password && <Text className="auth-form__error" variant="b3">{errors.password}</Text>}
@@ -450,19 +452,19 @@ function Register({ registerInfo, loginFlow, baseUrl }) {
             <>
               {process.type === undefined && isSubmitting && <LoadingScreen message="Registration in progress..." />}
               <form className="auth-form" ref={formRef} onSubmit={handleSubmit}>
-                <Input values={values.username} name="username" onChange={handleChange} label="Username" type="username" required />
+                <div><Input values={values.username} name="username" onChange={handleChange} label="Username" type="username" required /></div>
                 {errors.username && <Text className="auth-form__error" variant="b3">{errors.username}</Text>}
                 <div className="auth-form__pass-eye-wrapper">
-                  <Input values={values.password} name="password" onChange={handleChange} label="Password" type={passVisible ? 'text' : 'password'} required />
+                  <div><Input values={values.password} name="password" onChange={handleChange} label="Password" type={passVisible ? 'text' : 'password'} required /></div>
                   <IconButton onClick={() => setPassVisible(!passVisible)} src={passVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} size="extra-small" />
                 </div>
                 {errors.password && <Text className="auth-form__error" variant="b3">{errors.password}</Text>}
                 <div className="auth-form__pass-eye-wrapper">
-                  <Input values={values.confirmPassword} name="confirmPassword" onChange={handleChange} label="Confirm password" type={cPassVisible ? 'text' : 'password'} required />
+                  <div><Input values={values.confirmPassword} name="confirmPassword" onChange={handleChange} label="Confirm password" type={cPassVisible ? 'text' : 'password'} required /></div>
                   <IconButton onClick={() => setCPassVisible(!cPassVisible)} src={cPassVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} size="extra-small" />
                 </div>
                 {errors.confirmPassword && <Text className="auth-form__error" variant="b3">{errors.confirmPassword}</Text>}
-                {isEmail && <Input values={values.email} name="email" onChange={handleChange} label={`Email${isEmailRequired ? '' : ' (optional)'}`} type="email" required={isEmailRequired} />}
+                {isEmail && <div><Input values={values.email} name="email" onChange={handleChange} label={`Email${isEmailRequired ? '' : ' (optional)'}`} type="email" required={isEmailRequired} /></div>}
                 {errors.email && <Text className="auth-form__error" variant="b3">{errors.email}</Text>}
                 {errors.other && <Text className="auth-form__error" variant="b3">{errors.other}</Text>}
                 <div className="auth-form__btns">

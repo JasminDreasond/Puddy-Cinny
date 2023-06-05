@@ -139,12 +139,14 @@ function RoomSearch({ roomId }) {
           <li className="list-group-item very-small text-gray">Room search</li>
 
           <center className='p-3'>
-            <Input
-              placeholder="Search for keywords"
-              name="room-search-input"
-              disabled={isRoomEncrypted}
-              autoFocus
-            />
+            <div>
+              <Input
+                placeholder="Search for keywords"
+                name="room-search-input"
+                disabled={isRoomEncrypted}
+                autoFocus
+              />
+            </div>
             <Button className='my-3' faSrc="fa-solid fa-magnifying-glass" variant="primary" type="submit">Search</Button>
           </center>
 

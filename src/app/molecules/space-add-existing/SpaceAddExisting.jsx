@@ -113,12 +113,14 @@ function SpaceAddExistingContent({ roomId }) {
     <>
       <form onSubmit={(ev) => { ev.preventDefault(); }}>
         <RawIcon size="small" fa="fa-solid fa-magnifying-glass" />
-        <Input
-          name="searchInput"
-          onChange={handleSearch}
-          placeholder="Search room"
-          autoFocus
-        />
+        <div>
+          <Input
+            name="searchInput"
+            onChange={handleSearch}
+            placeholder="Search room"
+            autoFocus
+          />
+        </div>
         <IconButton size="small" type="button" onClick={handleSearchClear} fa="fa-solid fa-xmark" />
       </form>
       {searchIds?.length === 0 && <Text>No results found</Text>}

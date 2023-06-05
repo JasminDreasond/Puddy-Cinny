@@ -80,12 +80,14 @@ function ProfileEditor({ userId }) {
       style={{ marginBottom: avatarSrc ? '24px' : '0' }}
       onSubmit={(e) => { e.preventDefault(); saveDisplayName(); }}
     >
-      <Input
-        label={`Display name of ${mx.getUserId()}`}
-        onChange={onDisplayNameInputChange}
-        value={mx.getUser(mx.getUserId()).displayName}
-        forwardRef={displayNameRef}
-      />
+      <div>
+        <Input
+          label={`Display name of ${mx.getUserId()}`}
+          onChange={onDisplayNameInputChange}
+          value={mx.getUser(mx.getUserId()).displayName}
+          forwardRef={displayNameRef}
+        />
+      </div>
       <Button variant="primary" type="submit" disabled={disabled}>Save</Button>
       <Button onClick={cancelDisplayNameChanges}>Cancel</Button>
     </form>

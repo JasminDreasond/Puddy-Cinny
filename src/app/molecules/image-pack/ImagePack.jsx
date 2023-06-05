@@ -36,13 +36,15 @@ const renameImagePackItem = (shortcode) => new Promise((resolve) => {
             requestClose();
           }}
         >
-          <Input
-            value={shortcode}
-            name="shortcode"
-            label="Shortcode"
-            autoFocus
-            required
-          />
+          <div>
+            <Input
+              value={shortcode}
+              name="shortcode"
+              label="Shortcode"
+              autoFocus
+              required
+            />
+          </div>
           <div style={{ height: 'var(--sp-normal)' }} />
           <Button variant="primary" type="submit">Rename</Button>
         </form>

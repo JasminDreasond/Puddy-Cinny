@@ -103,7 +103,9 @@ function RoomEmojis({ roomId }) {
               <form className="row" onSubmit={handlePackCreate}>
 
                 <div className="col-10">
-                  <Input name="nameInput" placeholder="Pack Name" required />
+                  <div>
+                    <Input name="nameInput" placeholder="Pack Name" required />
+                  </div>
                 </div>
                 <div className="col-2">
                   <center className='h-100'><Button className='h-100' variant="primary" type="submit">Create pack</Button></center>

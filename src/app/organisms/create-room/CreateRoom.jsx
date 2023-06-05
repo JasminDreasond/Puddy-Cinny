@@ -177,14 +177,16 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
             <Text className="create-room__address__label" variant="b2">{isSpace ? 'Space address' : 'Room address'}</Text>
             <div className="create-room__address">
               <Text variant="b1">#</Text>
-              <Input
-                value={addressValue}
-                onChange={validateAddress}
-                state={(isValidAddress === false) ? 'error' : 'normal'}
-                forwardRef={addressRef}
-                placeholder="my_address"
-                required
-              />
+              <div>
+                <Input
+                  value={addressValue}
+                  onChange={validateAddress}
+                  state={(isValidAddress === false) ? 'error' : 'normal'}
+                  forwardRef={addressRef}
+                  placeholder="my_address"
+                  required
+                />
+              </div>
               <Text variant="b1">{`:${userHs}`}</Text>
             </div>
             {isValidAddress === false && <Text className="create-room__address__tip" variant="b3"><span style={{ color: 'var(--bg-danger)' }}>{`#${addressValue}:${userHs} is already in use`}</span></Text>}
@@ -210,9 +212,9 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
             <div className="very-small text-gray">Selecting Admin sets 100 power level whereas Founder sets 101.</div>
           )}
         />
-        <Input name="topic" minHeight={174} resizable label="Topic (optional)" />
+        <div><Input name="topic" minHeight={174} resizable label="Topic (optional)" /></div>
         <div className="create-room__name-wrapper">
-          <Input name="name" label={`${isSpace ? 'Space' : 'Room'} name`} required />
+          <div><Input name="name" label={`${isSpace ? 'Space' : 'Room'} name`} required /></div>
           <Button
             disabled={isValidAddress === false || isCreatingRoom}
             iconSrc={isSpace ? SpacePlusIC : HashPlusIC}

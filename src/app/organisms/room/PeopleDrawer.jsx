@@ -217,7 +217,7 @@ function PeopleDrawer({ roomId }) {
 
         <div className="pt-1">
           <form onSubmit={(e) => e.preventDefault()} className="people-search">
-            <Input forwardRef={searchRef} type="text" onChange={handleSearch} placeholder="Search" required />
+            <div><Input forwardRef={searchRef} type="text" onChange={handleSearch} placeholder="Search" required /></div>
             {
               searchedMembers !== null
               && <center><IconButton onClick={handleSearch} size="small" fa="fa-solid fa-xmark" /></center>

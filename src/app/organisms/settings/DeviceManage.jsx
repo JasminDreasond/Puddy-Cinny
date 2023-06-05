@@ -35,7 +35,9 @@ const promptDeviceName = async (deviceName) => new Promise((resolve) => {
     };
     return (
       <form className="device-manage__rename" onSubmit={handleSubmit}>
-        <Input value={deviceName} label="Session name" name="session" />
+        <div>
+          <Input value={deviceName} label="Session name" name="session" />
+        </div>
         <div className="device-manage__rename-btn">
           <Button variant="primary" type="submit">Save</Button>
           <Button onClick={() => onComplete(null)}>Cancel</Button>

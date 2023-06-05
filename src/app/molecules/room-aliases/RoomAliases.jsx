@@ -330,13 +330,15 @@ function RoomAliases({ roomId }) {
           <Text className="room-aliases__form-label" variant="b2">Add local address</Text>
           <form className="room-aliases__form" onSubmit={handleAliasSubmit}>
             <div className="room-aliases__input-wrapper">
-              <Input
-                name="alias-input"
-                state={inputState}
-                onChange={handleAliasChange}
-                placeholder={`my_${room.isSpaceRoom() ? 'space' : 'room'}_address`}
-                required
-              />
+              <div>
+                <Input
+                  name="alias-input"
+                  state={inputState}
+                  onChange={handleAliasChange}
+                  placeholder={`my_${room.isSpaceRoom() ? 'space' : 'room'}_address`}
+                  required
+                />
+              </div>
             </div>
             <Button variant="primary" type="submit">Add</Button>
           </form>

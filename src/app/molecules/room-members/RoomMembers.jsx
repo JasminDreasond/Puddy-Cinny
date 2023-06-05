@@ -126,11 +126,13 @@ function RoomMembers({ roomId }) {
         <li className="list-group-item very-small text-gray">Search member</li>
 
         <li className="list-group-item ">
-          <Input
-            onChange={handleSearch}
-            placeholder="Search for name"
-            autoFocus
-          />
+          <div>
+            <Input
+              onChange={handleSearch}
+              placeholder="Search for name"
+              autoFocus
+            />
+          </div>
         </li>
 
         <li className="list-group-item very-small text-gray">{`${searchMembers ? `Found — ${mList.length}` : members.length} members`}</li>

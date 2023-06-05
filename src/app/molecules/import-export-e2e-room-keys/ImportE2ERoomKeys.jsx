@@ -113,7 +113,7 @@ function ImportE2ERoomKeys() {
           </div>
         )}
         {keyFile === null && <Button className='me-3' onClick={() => inputRef.current.click()}>Import keys</Button>}
-        <Input forwardRef={passwordRef} type="password" placeholder="Password" required />
+        <div><Input forwardRef={passwordRef} type="password" placeholder="Password" required /></div>
         <Button className='ms-3' disabled={status.isOngoing} variant="primary" type="submit">Decrypt</Button>
       </form>
       {status.type === cons.status.IN_FLIGHT && (

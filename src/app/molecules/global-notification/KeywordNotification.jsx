@@ -215,7 +215,9 @@ function GlobalNotification() {
             <div className="keyword-notification__keyword">
               <div className="very-small text-gray">Get notification when a message contains keyword.</div>
               <form onSubmit={handleSubmit}>
-                <Input name="keywordInput" required />
+                <div>
+                  <Input name="keywordInput" required />
+                </div>
                 <Button variant="primary" type="submit">Add</Button>
               </form>
               {keywordRules.length > 0 && (

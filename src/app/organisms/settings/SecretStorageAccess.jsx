@@ -74,13 +74,15 @@ function SecretStorageAccess({ onComplete }) {
   return (
     <div className="secret-storage-access">
       <form onSubmit={handleForm}>
-        <Input
-          name="password"
-          label={`Security ${withPhrase ? 'Phrase' : 'Key'}`}
-          type="password"
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <Input
+            name="password"
+            label={`Security ${withPhrase ? 'Phrase' : 'Key'}`}
+            type="password"
+            onChange={handleChange}
+            required
+          />
+        </div>
         {error && <div className="very-small text-gray">{error}</div>}
         {!process && (
           <div className="secret-storage-access__btn">

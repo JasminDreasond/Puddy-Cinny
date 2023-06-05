@@ -215,10 +215,10 @@ function RoomProfile({ roomId }) {
   const renderEditNameAndTopic = () => (
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
 
-      {canChangeName && <Input className='mb-3' value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" />}
-      {canChangeName && <Input className='mb-3' value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" />}
-      {canChangeName && <Input className='mb-3' value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" />}
-      {canChangeTopic && <Input className='mb-3' value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" />}
+      {canChangeName && <div><Input className='mb-3' value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" /></div>}
+      {canChangeName && <div><Input className='mb-3' value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" /></div>}
+      {canChangeName && <div><Input className='mb-3' value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" /></div>}
+      {canChangeTopic && <div><Input className='mb-3' value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" /></div>}
 
       {(!canChangeName || !canChangeTopic) && <div className="very-small text-gray">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</div>}
 

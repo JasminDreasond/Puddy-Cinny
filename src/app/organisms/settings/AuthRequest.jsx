@@ -55,13 +55,15 @@ function AuthRequest({ onComplete, makeRequest }) {
   return (
     <div className="auth-request">
       <form onSubmit={handleForm}>
-        <Input
-          name="password"
-          label="Account password"
-          type="password"
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <Input
+            name="password"
+            label="Account password"
+            type="password"
+            onChange={handleChange}
+            required
+          />
+        </div>
         {status.ongoing && <Spinner size="small" />}
         {status.error && <div className="very-small text-gray">{status.error}</div>}
         {(status === false || status.error) && <Button variant="primary" type="submit" disabled={!!status.error}>Continue</Button>}

@@ -67,8 +67,8 @@ function ImagePackProfile({
           isEdit
             ? (
               <form onSubmit={handleSubmit}>
-                <Input name="nameInput" label="Name" value={displayName} required />
-                <Input name="attributionInput" label="Attribution" value={attribution} resizable />
+                <div><Input name="nameInput" label="Name" value={displayName} required /></div>
+                <div><Input name="attributionInput" label="Attribution" value={attribution} resizable /></div>
                 <div>
                   <Button variant="primary" type="submit">Save</Button>
                   <Button onClick={() => setIsEdit(false)}>Cancel</Button>
