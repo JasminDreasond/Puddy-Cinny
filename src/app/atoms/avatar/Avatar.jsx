@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 import React from 'react';
@@ -12,6 +13,7 @@ import RawIcon from '../system-icons/RawIcon';
 import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
+const mimeTypeCache = {};
 const Avatar = React.forwardRef(({
   text, bgColor, iconSrc, faSrc, iconColor, imageSrc, size, className, imgClass, imageAnimSrc
 }, ref) => {
@@ -42,7 +44,38 @@ const Avatar = React.forwardRef(({
               className={`anim-avatar ${imgClass}`}
               draggable="false"
               src={imageAnimSrc}
-              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
+              onLoad={(e) => {
+
+                const tinyComplete = () => {
+
+                  e.target.style.backgroundColor = 'transparent';
+                  // console.log(mimeTypeCache[imageAnimSrc]);
+
+                }
+
+                if (!mimeTypeCache[imageAnimSrc]) {
+
+                  mimeTypeCache[imageAnimSrc] = { loaded: false, error: false };
+
+                  mimeTypeCache[imageAnimSrc].width = e.target.width;
+                  mimeTypeCache[imageAnimSrc].height = e.target.height;
+                  mimeTypeCache[imageAnimSrc].timeout = 60;
+
+                  fetch(imageAnimSrc, { method: 'HEAD' })
+                    .then(response => {
+                      mimeTypeCache[imageAnimSrc].loaded = true;
+                      mimeTypeCache[imageAnimSrc].type = response.headers.get('Content-type');
+                      tinyComplete();
+                    }).catch(err => {
+                      console.error(err);
+                      mimeTypeCache[imageAnimSrc].error = true;
+                      e.target.src = ImageBrokenSVG;
+                    });
+                } else {
+                  tinyComplete();
+                }
+
+              }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
             />
