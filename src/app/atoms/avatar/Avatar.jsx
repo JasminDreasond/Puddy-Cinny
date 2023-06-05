@@ -12,7 +12,7 @@ import RawIcon from '../system-icons/RawIcon';
 import ImageBrokenSVG from '../../../../public/res/svg/image-broken.svg';
 import { avatarInitials } from '../../../util/common';
 
-function freezeGif(img) {
+function freezeGif(img, wantedWidth) {
 
   function createElement(type, callback) {
     const element = document.createElement(type);
@@ -34,7 +34,13 @@ function freezeGif(img) {
 
   const freeze = () => {
 
-    canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+    const ctx = canvas.getContext('2d');
+
+    const aspect = width / height;
+    canvas.width = wantedWidth;
+    canvas.height = wantedWidth / aspect;
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
     for (i = 0; i < img.attributes.length; i++) {
       attr = img.attributes[i];
@@ -89,7 +95,7 @@ const Avatar = React.forwardRef(({
               className={`anim-avatar ${imgClass}`}
               draggable="false"
               src={imageAnimSrc}
-              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target); }}
+              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; freezeGif(e.target, 46); }}
               onError={(e) => { e.target.src = ImageBrokenSVG; }}
               alt=""
             />
