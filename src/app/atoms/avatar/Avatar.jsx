@@ -96,14 +96,24 @@ const Avatar = React.forwardRef(({
 
             :
 
-            <img
-              className={`anim-avatar ${imgClass}`}
-              draggable="false"
-              src={imageAnimSrc}
-              onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; /*freezeGif(e.target, 42);*/ }}
-              onError={(e) => { e.target.src = ImageBrokenSVG; }}
-              alt=""
-            />
+            <>
+              <img
+                className={`anim-avatar ${imgClass}`}
+                draggable="false"
+                src={imageAnimSrc}
+                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; /*freezeGif(e.target, 42);*/ }}
+                onError={(e) => { e.target.src = ImageBrokenSVG; }}
+                alt=""
+              />
+              <img
+                className={`normal-avatar ${imgClass}`}
+                draggable="false"
+                src={imageSrc}
+                onLoad={(e) => { e.target.style.backgroundColor = 'transparent'; }}
+                onError={(e) => { e.target.src = ImageBrokenSVG; }}
+                alt=""
+              />
+            </>
 
           )
           : faSrc !== null
