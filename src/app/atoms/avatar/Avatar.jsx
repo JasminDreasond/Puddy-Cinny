@@ -54,6 +54,7 @@ const Avatar = React.forwardRef(({
                       if (data.type[0] === 'image') {
 
                         if (data.type[1] !== 'gif') {
+                          e.target.src = imageSrc;
                           e.target.classList.remove('anim-avatar');
                         } else {
 
