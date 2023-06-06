@@ -100,7 +100,7 @@ function RoomIntroContainer({ event, timeline }) {
       name={room.name}
       heading={twemojify(heading)}
       desc={desc}
-      time={event ? `Created at ${moment(event.getDate()).format('DD MMMM YYYY, hh:MM A')}` : null}
+      time={event ? `Created at ${moment(event.getDate()).format('DD MMMM YYYY, hh:mm A')}` : null}
     />
   );
 }

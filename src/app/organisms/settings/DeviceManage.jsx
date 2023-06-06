@@ -182,7 +182,7 @@ function DeviceManage() {
               <div className="very-small text-gray">
                 Last activity
                 <span style={{ color: 'var(--tc-surface-normal)' }}>
-                  {moment(new Date(lastTS)).format(' hh:MM A, DD/MM/YYYY')}
+                  {moment(new Date(lastTS)).format(' hh:mm A, DD/MM/YYYY')}
                 </span>
                 {lastIP ? ` at ${lastIP}` : ''}
               </div>

@@ -9,7 +9,7 @@ moment.locale('en');
 function Time({ timestamp, fullTime, className }) {
   const date = new Date(timestamp);
 
-  const formattedFullTime = moment(date).format('DD MMMM YYYY, hh:MM A');
+  const formattedFullTime = moment(date).format('DD MMMM YYYY, hh:mm A');
   let formattedDate = formattedFullTime;
 
   if (!fullTime) {
@@ -18,7 +18,7 @@ function Time({ timestamp, fullTime, className }) {
     compareDate.setDate(compareDate.getDate() - 1);
     const isYesterday = isInSameDay(date, compareDate);
 
-    formattedDate = moment(date).format(isToday || isYesterday ? 'hh:MM A' : 'DD/MM/YYYY');
+    formattedDate = moment(date).format(isToday || isYesterday ? 'hh:mm A' : 'DD/MM/YYYY');
     if (isYesterday) {
       formattedDate = `Yesterday, ${formattedDate}`;
     }
