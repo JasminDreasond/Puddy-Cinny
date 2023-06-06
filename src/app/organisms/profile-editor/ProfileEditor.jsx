@@ -132,6 +132,7 @@ function ProfileEditor({ userId }) {
       <div ref={spaceProfileRef} className='very-small'>{profileId || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
         mx.createRoom({
           name: `Pony-House -> ${userId}'s Profile`,
+          creation_content: { type: 'm.space' },
           visibility: 'private',
           preset: 'public_chat',
         }).then(data => {
