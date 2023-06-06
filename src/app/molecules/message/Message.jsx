@@ -252,7 +252,7 @@ const MessageBody = React.memo(({
   }
 
   return (
-    <div className={`message-body small text-bg${!emojiOnly ? ' emoji-size-fix' : ''} ${className}`}>
+    <div className={`text-freedom message-body small text-bg${!emojiOnly ? ' emoji-size-fix' : ''} ${className}`}>
       {msgType === 'm.emote' && (
         <>
           {'* '}
