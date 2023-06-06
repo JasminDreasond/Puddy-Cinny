@@ -8,17 +8,24 @@ const statusList = {
     afk: 'fa-solid fa-moon',
 };
 
-export function getPresence(user, canPresence = true) {
+export function getPresence(user, canStatus = true, canPresence = true) {
 
     if (user) {
 
-        const content = { presence: 'offline', lastActiveAgo: null, currentlyActive: false };
+        const content = {};
         if (canPresence) content.presenceStatusMsg = null;
+
+        if (canStatus) {
+            content.presence = 'offline';
+            content.lastActiveAgo = null;
+            content.currentlyActive = false;
+        }
+
         if (user.events && user.events.presence) {
 
             const data = user.events.presence?.getContent();
 
-            if (typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'bnb' || data.presence === 'afk')) {
+            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'bnb' || data.presence === 'afk')) {
                 content.presence = data.presence;
             }
 
@@ -26,17 +33,17 @@ export function getPresence(user, canPresence = true) {
                 content.presenceStatusMsg = data.status_msg;
             }
 
-            if (typeof data.currently_active === 'boolean') {
+            if (canStatus && typeof data.currently_active === 'boolean') {
                 content.currentlyActive = data.currently_active;
             }
 
-            if (typeof data.last_active_ago === 'number') {
+            if (canStatus && typeof data.last_active_ago === 'number') {
                 content.lastActiveAgo = data.last_active_ago;
             }
 
         } else {
 
-            if (typeof user.presence === 'string') {
+            if (canStatus && typeof user.presence === 'string') {
                 content.presence = user.presence;
             }
 
@@ -44,7 +51,7 @@ export function getPresence(user, canPresence = true) {
                 content.presenceStatusMsg = user.presenceStatusMsg;
             }
 
-            if (typeof user.lastActiveAgo === 'number') {
+            if (canStatus && typeof user.lastActiveAgo === 'number') {
                 content.lastActiveAgo = user.lastActiveAgo;
                 content.currentlyActive = true;
             }
