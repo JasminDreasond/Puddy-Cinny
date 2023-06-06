@@ -364,8 +364,6 @@ function ProfileViewer() {
   useEffect(() => {
     if (user) {
 
-      console.log(user);
-
       // Update Status Profile
       const updateProfileStatus = (mEvent, user) => {
         if (statusRef && statusRef.current) {
@@ -375,7 +373,6 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, user);
-          console.log(content);
 
         }
       };
