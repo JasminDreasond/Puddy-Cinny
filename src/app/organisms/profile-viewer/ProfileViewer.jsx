@@ -365,14 +365,14 @@ function ProfileViewer() {
     if (user) {
 
       // Update Status Profile
-      const updateProfileStatus = (mEvent, user) => {
+      const updateProfileStatus = (mEvent, tinyUser) => {
         if (statusRef && statusRef.current) {
 
           // Get Status
           const status = statusRef.current;
 
           // Update Status Icon
-          const content = updateUserStatusIcon(status, user);
+          const content = updateUserStatusIcon(status, tinyUser);
 
         }
       };
