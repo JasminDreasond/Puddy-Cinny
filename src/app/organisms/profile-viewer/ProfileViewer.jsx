@@ -369,16 +369,14 @@ function ProfileViewer() {
       // Update Status Profile
       const updateProfileStatus = (mEvent, user) => {
         if (statusRef && statusRef.current) {
-          const content = mEvent?.getContent();
-          if (content) {
 
-            // Get Status
-            const status = statusRef.current;
+          // Get Status
+          const status = statusRef.current;
 
-            // Update Status Icon
-            updateUserStatusIcon(status, user);
+          // Update Status Icon
+          const content = updateUserStatusIcon(status, user);
+          console.log(content);
 
-          }
         }
       };
 

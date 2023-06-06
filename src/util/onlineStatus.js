@@ -74,9 +74,15 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
 }
 
-export function getUserStatus(user) {
+export function getUserStatus(user, tinyData) {
 
-    const data = getPresence(user);
+    let data;
+
+    if (!tinyData) {
+        data = getPresence(user);
+    } else {
+        data = tinyData;
+    }
 
     if (data) {
 
@@ -93,17 +99,29 @@ export function getUserStatus(user) {
 
 }
 
-export function updateUserStatusIcon(status, user) {
+export function updateUserStatusIcon(status, user, tinyData, canStatus = true, canPresence = true) {
+
+    let useData;
+    if (!tinyData) {
+        useData = getPresence(user, canStatus, canPresence);
+    }
 
     for (const item in statusList) {
         status.classList.remove(`user-presence-${item}`);
-        status.classList.remove(statusList[item]);
+
+        const statusClasses = statusList[item].split(' ');
+        for (const item2 in statusClasses) {
+            status.classList.remove(statusClasses[item2]);
+        }
+
     }
 
-    const newClasses = getUserStatus(user).split(' ');
+    const newClasses = getUserStatus(user, useData).split(' ');
 
     for (const item in newClasses) {
         status.classList.add(newClasses[item]);
     }
+
+    return useData;
 
 }
