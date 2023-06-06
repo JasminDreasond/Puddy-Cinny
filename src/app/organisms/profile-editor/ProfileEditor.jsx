@@ -16,15 +16,21 @@ import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import './ProfileEditor.scss';
 
 function ProfileEditor({ userId }) {
+
+  // Values
   const [isEditing, setIsEditing] = useState(false);
   const mx = initMatrix.matrixClient;
   const user = mx.getUser(mx.getUserId());
 
+  // Config Base
   const displayNameRef = useRef(null);
+  const spaceProfileRef = useRef(null);
   const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl) : null);
   const [username, setUsername] = useState(user.displayName);
+  const [profileId, setProfileId] = useState(user.displayName);
   const [disabled, setDisabled] = useState(true);
 
+  // User Effect
   useEffect(() => {
     let isMounted = true;
     mx.getProfileInfo(mx.getUserId()).then((info) => {
@@ -37,6 +43,7 @@ function ProfileEditor({ userId }) {
     };
   }, [userId]);
 
+  // Avatar Upload
   const handleAvatarUpload = async (url) => {
     if (url === null) {
       const isConfirmed = await confirmDialog(
@@ -52,9 +59,10 @@ function ProfileEditor({ userId }) {
       return;
     }
     mx.setAvatarUrl(url);
-    setAvatarSrc(mx.mxcUrlToHttp(url, 80, 80, 'crop'));
+    setAvatarSrc(mx.mxcUrlToHttp(url));
   };
 
+  // Display Name
   const saveDisplayName = () => {
     const newDisplayName = displayNameRef.current.value;
     if (newDisplayName !== null && newDisplayName !== username) {
@@ -74,6 +82,27 @@ function ProfileEditor({ userId }) {
     setIsEditing(false);
   };
 
+  // Space Profile
+  const saveSpaceProfile = () => {
+    const newSpaceProfile = spaceProfileRef.current.value;
+    if (newSpaceProfile !== null && newSpaceProfile !== profileId) {
+      mx.setDisplayName(newSpaceProfile);
+      setUsername(newSpaceProfile);
+      setDisabled(true);
+      setIsEditing(false);
+    }
+  };
+
+  const onSpaceProfileInputChange = () => {
+    setDisabled(profileId === spaceProfileRef.current.value || spaceProfileRef.current.value == null);
+  };
+  const cancelSpaceProfileChanges = () => {
+    spaceProfileRef.current.value = profileId;
+    onDisplayNameInputChange();
+    setIsEditing(false);
+  };
+
+  // Render
   const renderForm = () => (
     <form
       className="profile-editor__form"
@@ -108,6 +137,7 @@ function ProfileEditor({ userId }) {
     </div>
   );
 
+  // Complete
   return (
     <div className="profile-editor pb-3">
       <ImageUpload
@@ -122,6 +152,7 @@ function ProfileEditor({ userId }) {
       }
     </div>
   );
+
 }
 
 ProfileEditor.defaultProps = {
