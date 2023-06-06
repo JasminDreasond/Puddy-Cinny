@@ -51,6 +51,14 @@ export function getPresence(user, canPresence = true) {
 
         }
 
+        if (canPresence && typeof content.presenceStatusMsg === 'string') {
+            try {
+                content.presenceStatusMsg = JSON.parse(content.presenceStatusMsg);
+            } catch (err) {
+                content.presenceStatusMsg = String(content.presenceStatusMsg);
+            }
+        }
+
         return content;
 
     }
