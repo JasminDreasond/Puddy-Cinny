@@ -27,21 +27,35 @@ function ProfileEditor({ userId }) {
   const spaceProfileRef = useRef(null);
   const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl) : null);
   const [username, setUsername] = useState(user.displayName);
-  const [profileId, setProfileId] = useState(user.displayName);
   const [disabled, setDisabled] = useState(true);
+
+  // Profile Base
+  const profileSetting = mx.getAccountData('pony.house.profile');
+  const [profileId, setProfileId] = useState(null);
+  if (profileSetting && typeof profileSetting.id === 'string') { setProfileId(profileSetting.id); }
 
   // User Effect
   useEffect(() => {
+
     let isMounted = true;
     mx.getProfileInfo(mx.getUserId()).then((info) => {
       if (!isMounted) return;
       setAvatarSrc(info.avatar_url ? mx.mxcUrlToHttp(info.avatar_url) : null);
       setUsername(info.displayname);
     });
+
+    if (user) {
+      const newProfSetting = mx.getAccountData('pony.house.profile');
+      if (newProfSetting && typeof newProfSetting.id === 'string') { setProfileId(newProfSetting.id); } else {
+        setProfileId(null);
+      }
+    }
+
     return () => {
       isMounted = false;
     };
-  }, [userId]);
+
+  }, [userId, user]);
 
   // Avatar Upload
   const handleAvatarUpload = async (url) => {
@@ -86,8 +100,8 @@ function ProfileEditor({ userId }) {
   const saveSpaceProfile = () => {
     const newSpaceProfile = spaceProfileRef.current.value;
     if (newSpaceProfile !== null && newSpaceProfile !== profileId) {
-      mx.setDisplayName(newSpaceProfile);
-      setUsername(newSpaceProfile);
+      // mx.setDisplayName(newSpaceProfile);
+      setProfileId(newSpaceProfile);
       setDisabled(true);
       setIsEditing(false);
     }
