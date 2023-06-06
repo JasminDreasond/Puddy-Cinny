@@ -8,11 +8,12 @@ const statusList = {
     afk: 'fa-solid fa-moon',
 };
 
-export function getPresence(user) {
+export function getPresence(user, canPresence = true) {
 
     if (user) {
 
-        const content = { presence: 'offline', lastActiveAgo: null, currentlyActive: false, presenceStatusMsg: null };
+        const content = { presence: 'offline', lastActiveAgo: null, currentlyActive: false };
+        if (canPresence) content.presenceStatusMsg = null;
         if (user.events && user.events.presence) {
 
             const data = user.events.presence?.getContent();
@@ -21,7 +22,7 @@ export function getPresence(user) {
                 content.presence = data.presence;
             }
 
-            if (typeof data.status_msg === 'string') {
+            if (canPresence && typeof data.status_msg === 'string') {
                 content.presenceStatusMsg = data.status_msg;
             }
 
@@ -39,7 +40,7 @@ export function getPresence(user) {
                 content.presence = user.presence;
             }
 
-            if (typeof user.presenceStatusMsg === 'string') {
+            if (canPresence && typeof user.presenceStatusMsg === 'string') {
                 content.presenceStatusMsg = user.presenceStatusMsg;
             }
 
