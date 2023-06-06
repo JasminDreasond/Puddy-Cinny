@@ -137,6 +137,7 @@ function ProfileEditor({ userId }) {
           preset: 'public_chat',
         }).then(data => {
           mx.setAccountData('pony.house.profile', { roomId: data.room_id });
+          setProfileId(data.room_id);
         });
       }}>Create Profile</Button>
       }</div>
