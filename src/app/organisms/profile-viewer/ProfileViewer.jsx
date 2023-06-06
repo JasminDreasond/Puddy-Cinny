@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { twemojify } from '../../../util/twemojify';
-import { getUserStatus } from '../../../util/onlineStatus';
+import { getUserStatus, updateUserStatusIcon } from '../../../util/onlineStatus';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -348,18 +348,58 @@ function useRerenderOnProfileChange(roomId, userId) {
   }, [roomId, userId]);
 }
 
+// Read Profile
 function ProfileViewer() {
+
+  // Prepare
+  const statusRef = useRef(null);
   const [isOpen, roomId, userId, closeDialog, handleAfterClose] = useToggleDialog();
   useRerenderOnProfileChange(roomId, userId);
 
+  // Get Data
   const mx = initMatrix.matrixClient;
+  const user = mx.getUser(userId);
   const room = mx.getRoom(roomId);
 
+  useEffect(() => {
+    if (user) {
+
+      console.log(user);
+
+      // Update Status Profile
+      const updateProfileStatus = (mEvent, user) => {
+        if (statusRef && statusRef.current) {
+          const content = mEvent?.getContent();
+          if (content) {
+
+            // Get Status
+            const status = statusRef.current;
+
+            // Update Status Icon
+            updateUserStatusIcon(status, user);
+
+          }
+        }
+      };
+
+      // Read Events
+      user.on('User.currentlyActive', updateProfileStatus);
+      user.on('User.lastPresenceTs', updateProfileStatus);
+      user.on('User.presence', updateProfileStatus);
+      return () => {
+        user.removeListener('User.currentlyActive', updateProfileStatus);
+        user.removeListener('User.lastPresenceTs', updateProfileStatus);
+        user.removeListener('User.presence', updateProfileStatus);
+      };
+
+    }
+  }, [user]);
+
+  // Render Profile
   const renderProfile = () => {
 
     const roomMember = room.getMember(userId);
     const username = roomMember ? getUsernameOfRoomMember(roomMember) : getUsername(userId);
-    const user = mx.getUser(userId);
 
     const avatarMxc = roomMember?.getMxcAvatarUrl?.() || user?.avatarUrl;
     const avatarUrl = (avatarMxc && avatarMxc !== 'null') ? mx.mxcUrlToHttp(avatarMxc) : null;
@@ -421,7 +461,7 @@ function ProfileViewer() {
 
             <div className='col-md-3 text-center d-flex justify-content-center'>
               <Avatar imageSrc={avatarUrl} text={username} bgColor={colorMXID(userId)} size="large" />
-              <i className={`user-status pe-2 ${getUserStatus(user)}`} />
+              <i ref={statusRef} className={`user-status pe-2 ${getUserStatus(user)}`} />
             </div>
 
 
@@ -467,6 +507,7 @@ function ProfileViewer() {
 
   };
 
+  // Read Modal
   return (
     <Dialog
       bodyClass='bg-bg2 p-0'

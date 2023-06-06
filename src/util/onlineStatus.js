@@ -1,3 +1,12 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+const statusList = {
+    online: 'fa-solid fa-circle',
+    offline: 'bi bi-record-circle-fill',
+    bnb: 'fa-solid fa-circle-minus',
+    afk: 'fa-solid fa-moon',
+};
+
 export function getUserStatus(user) {
 
     let presence = 'offline';
@@ -10,22 +19,25 @@ export function getUserStatus(user) {
 
     }
 
-    if (presence === 'online') {
-        presence += ' fa-solid fa-circle';
-    }
-
-    else if (presence === 'offline') {
-        presence += ' bi bi-record-circle-fill';
-    }
-
-    else if (presence === 'bnb') {
-        presence += ' fa-solid fa-circle-minus';
-    }
-
-    else if (presence === 'afk') {
-        presence += ' fa-solid fa-moon';
+    if (statusList[presence]) {
+        presence += ` ${statusList[presence]}`;
     }
 
     return `user-presence-${presence}`;
+
+}
+
+export function updateUserStatusIcon(status, user) {
+
+    for (const item in statusList) {
+        status.classList.remove(`user-presence-${item}`);
+        status.classList.remove(statusList[item]);
+    }
+
+    const newClasses = getUserStatus(user).split(' ');
+
+    for (const item in newClasses) {
+        status.classList.add(newClasses[item]);
+    }
 
 }
