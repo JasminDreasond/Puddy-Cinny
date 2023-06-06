@@ -14,6 +14,17 @@ import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
 import './ProfileEditor.scss';
 
+const getProfileID = () => {
+
+  const profileSetting = initMatrix.matrixClient.getAccountData('pony.house.profile');
+  if (profileSetting && profileSetting.event && profileSetting.event.type === 'pony.house.profile') {
+    return profileSetting.event.content;
+  }
+
+  return null;
+
+};
+
 function ProfileEditor({ userId }) {
 
   // Values
@@ -27,13 +38,7 @@ function ProfileEditor({ userId }) {
   const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl) : null);
   const [username, setUsername] = useState(user.displayName);
   const [disabled, setDisabled] = useState(true);
-
-  // Profile Base
-  const profileSetting = mx.getAccountData('pony.house.profile');
   const [profileId, setProfileId] = useState(null);
-  if (profileSetting && typeof profileSetting.roomId === 'string') { setProfileId(profileSetting.roomId); }
-
-  console.log(profileSetting);
 
   // User Effect
   useEffect(() => {
@@ -46,8 +51,10 @@ function ProfileEditor({ userId }) {
     });
 
     if (user) {
-      const newProfSetting = mx.getAccountData('pony.house.profile');
-      if (newProfSetting && typeof newProfSetting.roomId === 'string') { setProfileId(newProfSetting.roomId); } else {
+      const profileSetting = getProfileID();
+      if (profileSetting && typeof profileSetting.roomId === 'string') {
+        setProfileId(profileSetting.roomId);
+      } else {
         setProfileId(null);
       }
     }
