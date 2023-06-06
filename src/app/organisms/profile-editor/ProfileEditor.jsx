@@ -5,7 +5,6 @@ import { twemojify } from '../../../util/twemojify';
 import initMatrix from '../../../client/initMatrix';
 import { colorMXID } from '../../../util/colorMXID';
 
-import Text from '../../atoms/text/Text';
 import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
 import ImageUpload from '../../molecules/image-upload/ImageUpload';
@@ -32,7 +31,9 @@ function ProfileEditor({ userId }) {
   // Profile Base
   const profileSetting = mx.getAccountData('pony.house.profile');
   const [profileId, setProfileId] = useState(null);
-  if (profileSetting && typeof profileSetting.id === 'string') { setProfileId(profileSetting.id); }
+  if (profileSetting && typeof profileSetting.roomId === 'string') { setProfileId(profileSetting.roomId); }
+
+  console.log(profileSetting);
 
   // User Effect
   useEffect(() => {
@@ -46,7 +47,7 @@ function ProfileEditor({ userId }) {
 
     if (user) {
       const newProfSetting = mx.getAccountData('pony.house.profile');
-      if (newProfSetting && typeof newProfSetting.id === 'string') { setProfileId(newProfSetting.id); } else {
+      if (newProfSetting && typeof newProfSetting.roomId === 'string') { setProfileId(newProfSetting.roomId); } else {
         setProfileId(null);
       }
     }
@@ -96,26 +97,6 @@ function ProfileEditor({ userId }) {
     setIsEditing(false);
   };
 
-  // Space Profile
-  const saveSpaceProfile = () => {
-    const newSpaceProfile = spaceProfileRef.current.value;
-    if (newSpaceProfile !== null && newSpaceProfile !== profileId) {
-      // mx.setDisplayName(newSpaceProfile);
-      setProfileId(newSpaceProfile);
-      setDisabled(true);
-      setIsEditing(false);
-    }
-  };
-
-  const onSpaceProfileInputChange = () => {
-    setDisabled(profileId === spaceProfileRef.current.value || spaceProfileRef.current.value == null);
-  };
-  const cancelSpaceProfileChanges = () => {
-    spaceProfileRef.current.value = profileId;
-    onDisplayNameInputChange();
-    setIsEditing(false);
-  };
-
   // Render
   const renderForm = () => (
     <form
@@ -139,7 +120,7 @@ function ProfileEditor({ userId }) {
   const renderInfo = () => (
     <div className="profile-editor__info" style={{ marginBottom: avatarSrc ? '24px' : '0' }}>
       <div>
-        <Text variant="h2" primary weight="medium">{twemojify(username) ?? userId}</Text>
+        <div className='h5 emoji-size-fix'>{twemojify(username) ?? userId}</div>
         <IconButton
           fa="fa-solid fa-pencil"
           size="extra-small"
@@ -147,7 +128,17 @@ function ProfileEditor({ userId }) {
           onClick={() => setIsEditing(true)}
         />
       </div>
-      <Text variant="b2">{mx.getUserId()}</Text>
+      <div className='small'>{mx.getUserId()}</div>
+      <div ref={spaceProfileRef} className='very-small'>{profileId || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
+        mx.createRoom({
+          name: `Pony-House -> ${userId}'s Profile`,
+          visibility: 'private',
+          preset: 'public_chat',
+        }).then(data => {
+          mx.setAccountData('pony.house.profile', { roomId: data.room_id });
+        });
+      }}>Create Profile</Button>
+      }</div>
     </div>
   );
 
