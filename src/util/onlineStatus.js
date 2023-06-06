@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 const statusList = {
@@ -7,23 +8,72 @@ const statusList = {
     afk: 'fa-solid fa-moon',
 };
 
-export function getUserStatus(user) {
+export function getPresence(user) {
 
-    let presence = 'offline';
-    if (user && user.events && user.events.presence) {
+    if (user) {
 
-        presence = user.events.presence?.getContent();
-        if (typeof presence.presence === 'string' && (presence.presence === 'online' || presence.presence === 'offline' || presence.presence === 'bnb' || presence.presence === 'afk')) {
-            presence = presence.presence;
+        const content = { presence: 'offline', lastActiveAgo: null, currentlyActive: false, presenceStatusMsg: null };
+        if (user.events && user.events.presence) {
+
+            const data = user.events.presence?.getContent();
+
+            if (typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'bnb' || data.presence === 'afk')) {
+                content.presence = data.presence;
+            }
+
+            if (typeof data.status_msg === 'string') {
+                content.presenceStatusMsg = data.status_msg;
+            }
+
+            if (typeof data.currently_active === 'boolean') {
+                content.currentlyActive = data.currently_active;
+            }
+
+            if (typeof data.last_active_ago === 'number') {
+                content.lastActiveAgo = data.last_active_ago;
+            }
+
+        } else {
+
+            if (typeof user.presence === 'string') {
+                content.presence = user.presence;
+            }
+
+            if (typeof user.presenceStatusMsg === 'string') {
+                content.presenceStatusMsg = user.presenceStatusMsg;
+            }
+
+            if (typeof user.lastActiveAgo === 'number') {
+                content.lastActiveAgo = user.lastActiveAgo;
+                content.currentlyActive = true;
+            }
+
         }
 
+        return content;
+
     }
 
-    if (statusList[presence]) {
-        presence += ` ${statusList[presence]}`;
+    return null;
+
+}
+
+export function getUserStatus(user) {
+
+    const data = getPresence(user);
+
+    if (data) {
+
+        let presence = data.presence;
+        if (statusList[presence]) {
+            presence += ` ${statusList[presence]}`;
+        }
+
+        return `user-presence-${presence}`;
+
     }
 
-    return `user-presence-${presence}`;
+    return '';
 
 }
 
