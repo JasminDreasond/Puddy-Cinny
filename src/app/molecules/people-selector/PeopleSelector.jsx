@@ -52,7 +52,7 @@ function PeopleSelector({
       type="button"
     >
       <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
-      <i ref={statusRef} className={user ? getUserStatus(user) : 'ms-1'} />
+      <i ref={statusRef} className={getUserStatus(user)} />
       <Text className="people-selector__name emoji-size-fix" variant="b1">
         {twemojify(name)}
       </Text>

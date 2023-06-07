@@ -56,7 +56,7 @@ const tabItems = [{
 }];
 
 // Config
-function GeneralSettings({ roomId }) {
+function GeneralSettings({ roomId, profileMode }) {
 
   // Prepare Settings
   const isPinned = initMatrix.accountData.spaceShortcut.has(roomId);
@@ -221,6 +221,7 @@ function GeneralSettings({ roomId }) {
 
 GeneralSettings.propTypes = {
   roomId: PropTypes.string.isRequired,
+  profileMode: PropTypes.bool,
 };
 
 function useWindowToggle(setSelectedTab, setProfileMode) {
@@ -278,10 +279,10 @@ function SpaceSettings() {
             onSelect={handleTabChange}
           />
           <div className="pt-3">
-            {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} />}
-            {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} />}
-            {selectedTab.text === tabText.EMOJIS && <RoomEmojis roomId={roomId} />}
-            {selectedTab.text === tabText.PERMISSIONS && <RoomPermissions roomId={roomId} />}
+            {selectedTab.text === tabText.GENERAL && <GeneralSettings roomId={roomId} profileMode={profileMode} />}
+            {selectedTab.text === tabText.MEMBERS && <RoomMembers roomId={roomId} profileMode={profileMode} />}
+            {selectedTab.text === tabText.EMOJIS && <RoomEmojis roomId={roomId} profileMode={profileMode} />}
+            {selectedTab.text === tabText.PERMISSIONS && <RoomPermissions roomId={roomId} profileMode={profileMode} />}
           </div>
         </>
       )}

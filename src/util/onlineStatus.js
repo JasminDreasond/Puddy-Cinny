@@ -4,6 +4,7 @@
 const statusList = {
     online: 'fa-solid fa-circle',
     offline: 'bi bi-record-circle-fill',
+    unavailable: 'bi bi-record-circle-fill',
     bnb: 'fa-solid fa-circle-minus',
     afk: 'fa-solid fa-moon',
 };
@@ -25,7 +26,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
             const data = user.events.presence?.getContent();
 
-            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'bnb' || data.presence === 'afk')) {
+            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'bnb' || data.presence === 'afk')) {
                 content.presence = data.presence;
             }
 
@@ -76,26 +77,30 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
 export function getUserStatus(user, tinyData) {
 
-    let data;
+    if (user) {
 
-    if (!tinyData) {
-        data = getPresence(user);
-    } else {
-        data = tinyData;
-    }
+        let data;
 
-    if (data) {
-
-        let presence = data.presence;
-        if (statusList[presence]) {
-            presence += ` ${statusList[presence]}`;
+        if (!tinyData) {
+            data = getPresence(user);
+        } else {
+            data = tinyData;
         }
 
-        return `user-presence-${presence}`;
+        if (data) {
+
+            let presence = data.presence;
+            if (statusList[presence]) {
+                presence += ` ${statusList[presence]}`;
+            }
+
+            return `user-presence-${presence}`;
+
+        }
 
     }
 
-    return '';
+    return `user-presence-unavailable ${statusList.unavailable}`;
 
 }
 

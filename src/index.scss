@@ -511,7 +511,8 @@ a {
 }
 
 /* Presence */
-.user-presence-offline {
+.user-presence-offline,
+.user-presence-unavailable {
   color: #bdbdbd;
 }
 
