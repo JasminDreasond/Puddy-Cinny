@@ -140,11 +140,11 @@ function DrawerHeader({ selectedTab, spaceId }) {
   return (
     <Header banner={avatarSrc}>
 
-      <ul className='navbar-nav mr-auto'>
+      <ul className='navbar-nav mr-auto w-100 space-menu-1'>
 
         {spaceName ? (
           <button
-            className="nav-link btn btn-bg border-0 p-1"
+            className="nav-link btn btn-bg border-0 p-1 text-truncate d-inline-block space-title"
             onClick={openSpaceOptions}
             type="button"
           >
@@ -157,7 +157,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
 
       </ul>
 
-      <ul className='navbar-nav ms-auto mt-0 mt-md-1 small'>
+      <ul className='navbar-nav ms-auto mt-0 mt-md-1 small space-menu-2'>
 
         {isDMTab && <IconButton className='nav-link' onClick={() => openInviteUser()} tooltip="Start DM" fa="fa-solid fa-plus" size="small" />}
         {!isDMTab && <IconButton className='nav-link' onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="small" />}

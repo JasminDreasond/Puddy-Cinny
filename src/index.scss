@@ -59,8 +59,26 @@
   --bs-success-rgb: 69, 184, 59;
 }
 
+.space-title {
+  margin-right: 35px !important;
+}
+
+.space-menu-2 {
+  margin-left: -35px !important;
+}
+
 .border-bg {
   border-color: var(--bg-surface-border) !important;
+}
+
+.fake-a {
+  color: var(--tc-link) !important;
+  text-decoration: none !important;
+}
+
+.fake-a:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
 }
 
 /* Bootstrap Fix */

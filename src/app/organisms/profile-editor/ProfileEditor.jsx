@@ -11,6 +11,7 @@ import ImageUpload from '../../molecules/image-upload/ImageUpload';
 import Input from '../../atoms/input/Input';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
+import { openSpaceSettings } from '../../../client/action/navigation';
 
 import './ProfileEditor.scss';
 
@@ -136,17 +137,22 @@ function ProfileEditor({ userId }) {
         />
       </div>
       <div className='small'>{mx.getUserId()}</div>
-      <div ref={spaceProfileRef} className='very-small'>{profileId || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
-        mx.createRoom({
-          name: `Pony-House -> ${userId}'s Profile`,
-          creation_content: { type: 'm.space' },
-          visibility: 'private',
-          preset: 'public_chat',
-        }).then(data => {
-          mx.setAccountData('pony.house.profile', { roomId: data.room_id });
-          setProfileId(data.room_id);
-        });
-      }}>Create Profile</Button>
+      <div ref={spaceProfileRef} className='very-small'>{
+        <span className='fake-a' onClick={() => { openSpaceSettings(profileId, true); }}>
+          {profileId}
+        </span> || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
+          mx.createRoom({
+            name: `Pony-House -> ${userId}'s Profile`,
+            creation_content: { type: 'm.space' },
+            visibility: 'private',
+            preset: 'public_chat',
+          }).then(data => {
+            mx.setAccountData('pony.house.profile', { roomId: data.room_id });
+            setProfileId(data.room_id);
+          });
+        }}>
+          Create Profile
+        </Button>
       }</div>
     </div>
   );

@@ -9,10 +9,6 @@ import { selectTab, selectSpace } from '../../../client/action/navigation';
 import navigation from '../../../client/state/navigation';
 import { abbreviateNumber } from '../../../util/common';
 
-import Text from '../../atoms/text/Text';
-import RawIcon from '../../atoms/system-icons/RawIcon';
-import Button from '../../atoms/button/Button';
-import ScrollView from '../../atoms/scroll/ScrollView';
 import NotificationBadge from '../../atoms/badge/NotificationBadge';
 
 function DrawerBreadcrumb({ spaceId }) {
