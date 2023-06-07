@@ -42,6 +42,7 @@ function ReadReceipts() {
     };
     return (
       <PeopleSelector
+        disableStatus
         key={userId}
         onClick={() => {
           setIsOpen(false);

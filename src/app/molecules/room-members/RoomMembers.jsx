@@ -156,6 +156,7 @@ function RoomMembers({ roomId, profileMode }) {
         <li className="list-group-item">
           {mList.map((member) => (
             <PeopleSelector
+              disableStatus
               key={member.userId}
               onClick={() => openProfileViewer(member.userId, roomId)}
               avatarSrc={member.avatarSrc}

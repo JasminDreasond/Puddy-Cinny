@@ -11,7 +11,7 @@ import Avatar from '../../atoms/avatar/Avatar';
 import { getUserStatus, updateUserStatusIcon } from '../../../util/onlineStatus';
 
 function PeopleSelector({
-  avatarSrc, name, color, peopleRole, onClick, user
+  avatarSrc, name, color, peopleRole, onClick, user, disableStatus
 }) {
 
   const statusRef = React.useRef(null);
@@ -52,7 +52,7 @@ function PeopleSelector({
       type="button"
     >
       <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
-      <i ref={statusRef} className={getUserStatus(user)} />
+      {!disableStatus ? <i ref={statusRef} className={getUserStatus(user)} /> : ''}
       <Text className="people-selector__name emoji-size-fix" variant="b1">
         {twemojify(name)}
       </Text>
@@ -65,10 +65,12 @@ function PeopleSelector({
 PeopleSelector.defaultProps = {
   avatarSrc: null,
   peopleRole: null,
-  user: null
+  user: null,
+  disableStatus: false,
 };
 
 PeopleSelector.propTypes = {
+  disableStatus: PropTypes.bool,
   user: PropTypes.node,
   avatarSrc: PropTypes.string,
   name: PropTypes.string.isRequired,
