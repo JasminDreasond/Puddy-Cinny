@@ -57,6 +57,8 @@ function RoomsCategory({
   const { spaces, directs } = initMatrix.roomList;
   const [isOpen, setIsOpen] = useState(true);
 
+  const profileSetting = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+
   // Create Space Options
   const openSpaceOptions = (e) => {
     e.preventDefault();
@@ -82,11 +84,13 @@ function RoomsCategory({
     const roomId = room.roomId;
     const isSpace = spaces.has(roomId);
     const isDM = directs.has(roomId);
+    const isProfile = (profileSetting.roomId === roomId);
 
     const roomReady = true;
 
     return (
       <Selector
+        isProfile={isProfile}
         roomReady={roomReady}
         key={roomId}
         roomId={roomId}

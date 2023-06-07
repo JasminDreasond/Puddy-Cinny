@@ -52,7 +52,7 @@ RoomSelectorWrapper.propTypes = {
 function RoomSelector({
   name, parentName, roomId, imageSrc, iconSrc,
   isSelected, isMuted, isUnread, notificationCount, isAlert,
-  options, onClick, onContextMenu,
+  options, onClick, onContextMenu, isProfile,
 }) {
   return (
     <RoomSelectorWrapper
@@ -66,7 +66,8 @@ function RoomSelector({
             bgColor={colorMXID(roomId)}
             imageSrc={imageSrc}
             iconColor="var(--ic-surface-low)"
-            iconSrc={iconSrc}
+            iconSrc={!isProfile ? iconSrc : null}
+            faSrc={isProfile ? 'bi bi-person-badge-fill profile-icon-fa' : null}
             size="extra-small"
           />
           <Text variant="b1" weight={isUnread ? 'medium' : 'normal'}>
@@ -93,6 +94,7 @@ function RoomSelector({
   );
 }
 RoomSelector.defaultProps = {
+  isProfile: false,
   parentName: null,
   isSelected: false,
   imageSrc: null,
@@ -102,6 +104,7 @@ RoomSelector.defaultProps = {
   onContextMenu: null,
 };
 RoomSelector.propTypes = {
+  isProfile: PropTypes.bool,
   name: PropTypes.string.isRequired,
   parentName: PropTypes.string,
   roomId: PropTypes.string.isRequired,

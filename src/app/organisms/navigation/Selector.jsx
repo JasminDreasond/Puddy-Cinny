@@ -19,7 +19,7 @@ import { useForceUpdate } from '../../hooks/useForceUpdate';
 
 // Selector Function
 function Selector({
-  roomId, isDM, drawerPostie, onClick, roomObject
+  roomId, isDM, drawerPostie, onClick, roomObject, isProfile
 }) {
 
   // Base Script
@@ -87,6 +87,7 @@ function Selector({
   return (
     <RoomSelector
       key={roomId}
+      isProfile={isProfile}
       name={room.name}
       roomId={roomId}
       imageSrc={isDM ? imageSrc : null}
@@ -115,10 +116,12 @@ function Selector({
 // Default
 Selector.defaultProps = {
   isDM: true,
+  isProfile: false,
 };
 
 Selector.propTypes = {
 
+  isProfile: PropTypes.bool,
   roomId: PropTypes.string.isRequired,
   isDM: PropTypes.bool,
 
