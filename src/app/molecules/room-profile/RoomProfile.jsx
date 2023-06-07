@@ -253,7 +253,10 @@ function RoomProfile({ roomId, profileMode }) {
 
         <h4 className='d-inline-block m-0 my-1'>
           {twemojify(roomName)}
-          {profileMode ? <small className='ms-3 very-small text-success'>{`(${profileName}'s Profile)`}</small> : ''}
+          {profileMode ? <small className='ms-3 very-small text-success'>
+            <i className="bi bi-patch-check-fill me-1" />
+            {`(${profileName}'s Profile)`}
+          </small> : ''}
         </h4>
 
         {(nameCinny.category.length > 0) && (
