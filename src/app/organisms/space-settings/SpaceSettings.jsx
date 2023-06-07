@@ -223,11 +223,12 @@ GeneralSettings.propTypes = {
   roomId: PropTypes.string.isRequired,
 };
 
-function useWindowToggle(setSelectedTab) {
+function useWindowToggle(setSelectedTab, setProfileMode) {
   const [window, setWindow] = useState(null);
 
   useEffect(() => {
-    const openSpaceSettings = (roomId, tab) => {
+    const openSpaceSettings = (roomId, tab, isProfile) => {
+      setProfileMode(isProfile);
       setWindow({ roomId, tabText });
       const tabItem = tabItems.find((item) => item.text === tab);
       if (tabItem) setSelectedTab(tabItem);
@@ -244,8 +245,9 @@ function useWindowToggle(setSelectedTab) {
 }
 
 function SpaceSettings() {
+  const [profileMode, setProfileMode] = useState(false);
   const [selectedTab, setSelectedTab] = useState(tabItems[0]);
-  const [window, requestClose] = useWindowToggle(setSelectedTab);
+  const [window, requestClose] = useWindowToggle(setSelectedTab, setProfileMode);
   const isOpen = window !== null;
   const roomId = window?.roomId;
 

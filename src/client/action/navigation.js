@@ -30,11 +30,12 @@ export function openNavigation() {
   });
 }
 
-export function openSpaceSettings(roomId, tabText) {
+export function openSpaceSettings(roomId, tabText, isProfile = false) {
   appDispatcher.dispatch({
     type: cons.actions.navigation.OPEN_SPACE_SETTINGS,
     roomId,
     tabText,
+    isProfile
   });
 }
 

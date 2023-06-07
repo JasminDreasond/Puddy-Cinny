@@ -299,7 +299,7 @@ class Navigation extends EventEmitter {
         this._selectRoom(action.roomId, action.eventId);
       },
       [cons.actions.navigation.OPEN_SPACE_SETTINGS]: () => {
-        this.emit(cons.events.navigation.SPACE_SETTINGS_OPENED, action.roomId, action.tabText);
+        this.emit(cons.events.navigation.SPACE_SETTINGS_OPENED, action.roomId, action.tabText, action.isProfile);
       },
       [cons.actions.navigation.OPEN_SPACE_MANAGE]: () => {
         this.emit(cons.events.navigation.SPACE_MANAGE_OPENED, action.roomId);

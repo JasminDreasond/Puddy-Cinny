@@ -138,7 +138,7 @@ function ProfileEditor({ userId }) {
       </div>
       <div className='small'>{mx.getUserId()}</div>
       <div ref={spaceProfileRef} className='very-small'>{
-        <span className='fake-a' onClick={() => { openSpaceSettings(profileId, true); }}>
+        <span className='fake-a' onClick={() => { openSpaceSettings(profileId, null, true); }}>
           {profileId}
         </span> || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
           mx.createRoom({
