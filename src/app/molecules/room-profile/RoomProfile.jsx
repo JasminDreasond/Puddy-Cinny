@@ -18,7 +18,7 @@ import { useStore } from '../../hooks/useStore';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 
-function RoomProfile({ roomId }) {
+function RoomProfile({ roomId, profileMode }) {
 
   // First Data
   const isMountStore = useStore();
@@ -236,13 +236,25 @@ function RoomProfile({ roomId }) {
     </form>
   );
 
+  // Room Name
+  let profileName = '';
+  if (profileMode) {
+
+    const user = mx.getUser(mx.getUserId());
+    profileName = user.displayName;
+
+  };
+
   // Render Panel
   const renderNameAndTopic = () => (
     <div className="emoji-size-fix" style={{ marginBottom: avatarSrc && canChangeAvatar ? '24px' : '0' }}>
 
       <div>
 
-        <h4 className='d-inline-block m-0 my-1'>{twemojify(roomName)}</h4>
+        <h4 className='d-inline-block m-0 my-1'>
+          {twemojify(roomName)}
+          {profileMode ? <small className='ms-3 very-small text-success'>{`(${profileName}'s Profile)`}</small> : ''}
+        </h4>
 
         {(nameCinny.category.length > 0) && (
           <div className='d-inline-block m-0 my-1'>
@@ -308,6 +320,7 @@ function RoomProfile({ roomId }) {
 
 RoomProfile.propTypes = {
   roomId: PropTypes.string.isRequired,
+  profileMode: PropTypes.bool,
 };
 
 export default RoomProfile;

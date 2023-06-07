@@ -53,6 +53,12 @@
 @import 'bootstrap/scss/utilities/api';
 // scss-docs-end import-stack
 
+:root {
+  --bs-green: #45b83b;
+  --bs-success: #45b83b;
+  --bs-success-rgb: 69, 184, 59;
+}
+
 .profile-icon-fa {
   font-size: 16px !important;
   color: var(--ic-surface-low) !important;

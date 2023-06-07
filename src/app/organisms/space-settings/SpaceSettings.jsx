@@ -271,7 +271,7 @@ function SpaceSettings() {
     >
       {isOpen && (
         <>
-          <RoomProfile roomId={roomId} />
+          <RoomProfile profileMode={profileMode} roomId={roomId} />
           <Tabs
             className='border-bottom border-bg'
             items={tabItems}

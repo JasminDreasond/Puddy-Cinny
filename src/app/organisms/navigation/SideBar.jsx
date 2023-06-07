@@ -55,6 +55,10 @@ function ProfileAvatarMenu() {
   useEffect(() => {
 
     const user = mx.getUser(mx.getUserId());
+    const profileSetting = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+
+    console.log(profileSetting);
+
     const setNewProfile = (avatarUrl, displayName) => setProfile({
       avatarUrl: avatarUrl || null,
       displayName: displayName || profile.displayName,
