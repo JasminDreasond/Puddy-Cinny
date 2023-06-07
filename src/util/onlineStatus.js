@@ -17,9 +17,53 @@ const statusIcons = {
     afk: '🟠',
 };
 
+const statusIcons2 = {};
+for (const item in statusIcons) {
+    statusIcons2[statusIcons[item]] = item;
+}
+
 export function getStatusIcon(presence) {
     if (statusIcons[presence]) {
-        return statusList[presence];
+        return statusIcons[presence];
+    }
+    return null;
+}
+
+export function getStatusIconReverse(presence) {
+    if (statusIcons2[presence]) {
+        return statusIcons2[presence];
+    }
+    return null;
+}
+
+export function validatorStatusIcon(presence) {
+    if (presence === statusIcons2[presence]) {
+        return presence;
+    }
+    return null;
+}
+
+export function parsePresenceStatus(presence) {
+    if (typeof presence === 'string') {
+
+        const tinyResult = {};
+        const tinyParse = presence.split(' - ');
+        if (tinyParse.length > 1) {
+            tinyResult.status = validatorStatusIcon(tinyParse[0]);
+        } else {
+            tinyResult.status = 'online';
+            tinyResult.roomId = null;
+            tinyResult.msg = tinyParse[0];
+        }
+
+        tinyParse.map(item => {
+
+            return item;
+
+        });
+
+        return tinyResult;
+
     }
     return null;
 }
