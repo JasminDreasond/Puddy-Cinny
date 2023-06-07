@@ -49,18 +49,19 @@ export function parsePresenceStatus(presence) {
         const tinyResult = {};
         const tinyParse = presence.split(' - ');
         if (tinyParse.length > 1) {
+
             tinyResult.status = validatorStatusIcon(tinyParse[0]);
+            if (tinyParse[1].length) tinyResult.msg = tinyParse[1];
+
+            if (tinyParse.length > 2 && tinyParse[3].length > 0) {
+                tinyResult.roomId = tinyParse[3];
+            }
+
         } else {
             tinyResult.status = 'online';
             tinyResult.roomId = null;
             tinyResult.msg = tinyParse[0];
         }
-
-        tinyParse.map(item => {
-
-            return item;
-
-        });
 
         return tinyResult;
 
