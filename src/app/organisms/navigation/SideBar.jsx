@@ -56,7 +56,14 @@ function ProfileAvatarMenu() {
   useEffect(() => {
 
     const onProfileUpdate = (event) => {
-      console.log(event);
+
+      /*
+      mx.setPresence({
+        presence: 'online',
+        status_msg: 'Pudding! :3'
+      });
+      */
+
     };
 
     const user = mx.getUser(mx.getUserId());
