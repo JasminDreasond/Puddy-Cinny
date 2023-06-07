@@ -2,40 +2,36 @@
 
 import initMatrix from "../client/initMatrix";
 
-export function getUserProfile(content, profileRoom) {
+const mx = initMatrix.matrixClient;
+const getStateEvent = (roomId, where, path) => new Promise((resolve) => {
+    mx.getStateEvent(roomId, where, path).then(resolve).catch(err => {
+        console.error(err);
+        resolve({});
+    });
+});
 
-    const mx = initMatrix.matrixClient;
+export async function getUserProfile(content, profileRoom) {
+
     if (content && content.presenceStatusMsg && typeof content.presenceStatusMsg.roomId === 'string') {
 
         // Profile Room
         try {
 
-            let room;
-            if (!profileRoom) {
-                room = mx.getRoom(content.presenceStatusMsg.roomId);
-            } else {
-                room = profileRoom;
+            const roomTopic = await getStateEvent(content.presenceStatusMsg.roomId, 'm.room.topic');
+            const bannerCfg = await getStateEvent(content.presenceStatusMsg.roomId, 'pony.house.settings', 'banner');
+
+            let bannerSrc = '';
+            let topic = '';
+
+            if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
+                bannerSrc = mx.mxcUrlToHttp(bannerCfg.url);
             }
 
-            if (room && room.roomId) {
-
-                const roomTopic = room.currentState.getStateEvents('m.room.topic')[0]?.getContent() ?? {};
-                const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent() ?? {};
-
-                let bannerSrc = '';
-                let topic = '';
-
-                if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
-                    bannerSrc = mx.mxcUrlToHttp(bannerCfg.url);
-                }
-
-                if (roomTopic && typeof roomTopic?.topic === 'string' && roomTopic?.topic.length > 0) {
-                    topic = roomTopic?.topic;
-                }
-
-                return { banner: bannerSrc, topic };
-
+            if (roomTopic && typeof roomTopic?.topic === 'string' && roomTopic?.topic.length > 0) {
+                topic = roomTopic?.topic;
             }
+
+            return { banner: bannerSrc, topic };
 
         } catch (err) {
             console.error(err);
