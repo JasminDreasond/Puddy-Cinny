@@ -53,8 +53,8 @@ export function parsePresenceStatus(presence) {
             tinyResult.status = validatorStatusIcon(tinyParse[0]);
             if (tinyParse[1].length) tinyResult.msg = tinyParse[1];
 
-            if (tinyParse.length > 2 && tinyParse[3].length > 0) {
-                tinyResult.roomId = tinyParse[3];
+            if (tinyParse.length > 2 && tinyParse[2].length > 0) {
+                tinyResult.roomId = tinyParse[2];
             }
 
         } else {

@@ -69,13 +69,20 @@ function ProfileAvatarMenu() {
         } else { newPresence = '🟢'; }
 
         if (typeof event.status === 'string') {
+
           const status = event.status.trim();
           if (status.length > 0) newPresence += ` - ${status}`;
+
+          if (typeof event.roomId === 'string') {
+            const roomId = event.roomId.trim();
+            if (roomId.length > 0) newPresence += ` - ${roomId}`;
+          }
+
         }
 
-        if (typeof event.roomId === 'string') {
+        else if (typeof event.roomId === 'string') {
           const roomId = event.roomId.trim();
-          if (roomId.length > 0) newPresence += ` - ${roomId}`;
+          if (roomId.length > 0) newPresence += ` -  - ${roomId}`;
         }
 
         if (newPresence.length > 0) {
