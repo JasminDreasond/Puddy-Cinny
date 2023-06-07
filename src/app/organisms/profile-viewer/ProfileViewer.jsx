@@ -373,11 +373,18 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
+          if (content) {
+
+            // Edit Status
+            console.log(content);
+
+          }
 
         }
       };
 
       // Read Events
+      updateProfileStatus(null, user);
       user.on('User.currentlyActive', updateProfileStatus);
       user.on('User.lastPresenceTs', updateProfileStatus);
       user.on('User.presence', updateProfileStatus);
