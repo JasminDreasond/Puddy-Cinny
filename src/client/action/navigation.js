@@ -184,3 +184,10 @@ export function openEmojiVerification(request, targetDevice) {
     targetDevice,
   });
 }
+
+export function emitUpdateProfile(content) {
+  appDispatcher.dispatch({
+    type: cons.actions.navigation.PROFILE_UPDATE,
+    content,
+  });
+}

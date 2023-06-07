@@ -409,6 +409,9 @@ class Navigation extends EventEmitter {
           action.targetDevice,
         );
       },
+      [cons.actions.navigation.PROFILE_UPDATE]: () => {
+        this.emit(cons.events.navigation.PROFILE_UPDATED, action.content);
+      },
     };
     actions[action.type]?.();
   }

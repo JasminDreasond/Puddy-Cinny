@@ -7,6 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
+import navigation from '../../../client/state/navigation';
 import { colorMXID } from '../../../util/colorMXID';
 import {
   selectTab, openShortcutSpaces, openInviteList,
@@ -54,10 +55,12 @@ function ProfileAvatarMenu() {
 
   useEffect(() => {
 
-    const user = mx.getUser(mx.getUserId());
-    const profileSetting = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+    const onProfileUpdate = (event) => {
+      console.log(event);
+    };
 
-    console.log(profileSetting);
+    const user = mx.getUser(mx.getUserId());
+    onProfileUpdate(mx.getAccountData('pony.house.profile')?.getContent() ?? {});
 
     const setNewProfile = (avatarUrl, displayName) => setProfile({
       avatarUrl: avatarUrl || null,
@@ -73,8 +76,13 @@ function ProfileAvatarMenu() {
     });
 
     user.on('User.avatarUrl', onAvatarChange);
+    navigation.on(cons.events.navigation.PROFILE_UPDATED, onProfileUpdate);
     return () => {
       user.removeListener('User.avatarUrl', onAvatarChange);
+      navigation.removeListener(
+        cons.events.navigation.PROFILE_UPDATED,
+        onProfileUpdate,
+      );
     };
 
   }, []);

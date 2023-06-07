@@ -14,7 +14,7 @@ import Input from '../../atoms/input/Input';
 import { leave } from '../../../client/action/room';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
-import { openSpaceSettings } from '../../../client/action/navigation';
+import { openSpaceSettings, emitUpdateProfile } from '../../../client/action/navigation';
 
 import './ProfileEditor.scss';
 
@@ -193,6 +193,7 @@ function ProfileEditor({ userId }) {
             preset: 'public_chat',
           }).then(data => {
             mx.setAccountData('pony.house.profile', { roomId: data.room_id });
+            emitUpdateProfile({ roomId: data.room_id });
             setProfileId(data.room_id);
           });
 
