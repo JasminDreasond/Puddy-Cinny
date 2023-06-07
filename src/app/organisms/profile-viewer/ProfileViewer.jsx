@@ -17,6 +17,8 @@ import {
 import { getEventCords } from '../../../util/common';
 import { colorMXID, cssColorMXID } from '../../../util/colorMXID';
 
+import { getUserProfile } from '../../../util/getUserProfile';
+
 import Text from '../../atoms/text/Text';
 import Chip from '../../atoms/chip/Chip';
 import Input from '../../atoms/input/Input';
@@ -374,36 +376,8 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
-          if (content && content.presenceStatusMsg && typeof content.presenceStatusMsg.roomId === 'string') {
-
-            // Profile Room
-            try {
-
-              const profileRoom = mx.getRoom(content.presenceStatusMsg.roomId);
-              if (profileRoom && profileRoom.roomId) {
-
-                const roomTopic = profileRoom.currentState.getStateEvents('m.room.topic')[0]?.getContent() ?? {};
-                const bannerCfg = profileRoom.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent() ?? {};
-
-                let bannerSrc = '';
-                let topic = '';
-
-                if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
-                  bannerSrc = mx.mxcUrlToHttp(bannerCfg.url);
-                }
-
-                if (roomTopic && typeof roomTopic?.topic === 'string' && roomTopic?.topic.length > 0) {
-                  topic = roomTopic?.topic;
-                }
-                console.log(topic, bannerSrc);
-
-              }
-
-            } catch (err) {
-              console.error();
-            }
-
-          }
+          const profileData = getUserProfile(content);
+          console.log(profileData);
 
         }
       };
