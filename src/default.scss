@@ -693,24 +693,10 @@
   --ic-surface-low: rgba(255, 251, 222, 64%);
 }
 
-button,
-textarea {
-  background-color: transparent;
-  border: none;
-}
-button {
-  max-width: 100%;
-  text-align: inherit;
-}
-
-audio:not([controls]) {
-  display: none !important;
-}
-
-.flex--center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+:root {
+  --bs-green: #45b83b;
+  --bs-success: #45b83b;
+  --bs-success-rgb: 69, 184, 59;
 }
 
 .user-profile {
@@ -747,4 +733,18 @@ audio:not([controls]) {
       background-color: var(--mx-uc-8);
     }
   }
+}
+
+.fake-a {
+  color: var(--tc-link) !important;
+  text-decoration: none !important;
+  &--text-danger {
+    color: var(--bs-danger) !important;
+  }
+}
+
+.fake-a:hover,
+.fake-a--text-danger:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
 }

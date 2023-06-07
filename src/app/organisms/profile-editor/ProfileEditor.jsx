@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { twemojify } from '../../../util/twemojify';
@@ -9,6 +11,7 @@ import IconButton from '../../atoms/button/IconButton';
 import Button from '../../atoms/button/Button';
 import ImageUpload from '../../molecules/image-upload/ImageUpload';
 import Input from '../../atoms/input/Input';
+import { leave } from '../../../client/action/room';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { openSpaceSettings } from '../../../client/action/navigation';
@@ -137,10 +140,36 @@ function ProfileEditor({ userId }) {
         />
       </div>
       <div className='small'>{mx.getUserId()}</div>
-      <div ref={spaceProfileRef} className='very-small'>{
-        <span className='fake-a' onClick={() => { openSpaceSettings(profileId, null, true); }}>
-          {profileId}
-        </span> || <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
+      <div ref={spaceProfileRef} className='very-small'>{profileId ?
+        <>
+
+          <div className='fake-a d-inline-block' onClick={() => { openSpaceSettings(profileId, null, true); }}>
+            {profileId}
+          </div>
+
+          <br />
+
+          <div className='fake-a--text-danger d-inline-block' onClick={async () => {
+
+            const isConfirmed = await confirmDialog(
+              'Unlink profile space',
+              'Are you sure that you want to unlink the profile space?',
+              'Remove',
+              'warning',
+            );
+
+            if (isConfirmed) {
+              mx.setAccountData('pony.house.profile', {});
+              leave(profileId);
+              setProfileId(null);
+            }
+
+          }}>
+            Unlink profile space
+          </div>
+
+        </> : <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
+
           mx.createRoom({
             name: `Pony-House -> ${userId}'s Profile`,
             creation_content: { type: 'm.space' },
@@ -150,6 +179,7 @@ function ProfileEditor({ userId }) {
             mx.setAccountData('pony.house.profile', { roomId: data.room_id });
             setProfileId(data.room_id);
           });
+
         }}>
           Create Profile
         </Button>

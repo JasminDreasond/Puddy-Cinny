@@ -53,10 +53,24 @@
 @import 'bootstrap/scss/utilities/api';
 // scss-docs-end import-stack
 
-:root {
-  --bs-green: #45b83b;
-  --bs-success: #45b83b;
-  --bs-success-rgb: 69, 184, 59;
+button,
+textarea {
+  background-color: transparent;
+  border: none;
+}
+button {
+  max-width: 100%;
+  text-align: inherit;
+}
+
+audio:not([controls]) {
+  display: none !important;
+}
+
+.flex--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .space-title {
@@ -69,16 +83,6 @@
 
 .border-bg {
   border-color: var(--bg-surface-border) !important;
-}
-
-.fake-a {
-  color: var(--tc-link) !important;
-  text-decoration: none !important;
-}
-
-.fake-a:hover {
-  text-decoration: underline !important;
-  cursor: pointer;
 }
 
 /* Bootstrap Fix */
