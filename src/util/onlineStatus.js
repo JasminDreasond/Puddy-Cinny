@@ -119,6 +119,14 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
         }
 
+        if (typeof content.presenceStatusMsg === 'string') {
+            content.presenceStatusMsg = parsePresenceStatus(content.presenceStatusMsg);
+            if (content.presenceStatusMsg.status) {
+                content.presence = content.presenceStatusMsg.status;
+                delete content.presenceStatusMsg.status;
+            };
+        }
+
         return content;
 
     }
