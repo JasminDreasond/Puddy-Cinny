@@ -74,7 +74,7 @@ function GeneralSettings({ roomId, profileMode }) {
   const bannerCfg = room.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent();
   let avatarSrc;
 
-  if (bannerCfg && typeof bannerCfg?.url === 'string') {
+  if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
     avatarSrc = mx.mxcUrlToHttp(bannerCfg.url, 400, 227);
   }
 

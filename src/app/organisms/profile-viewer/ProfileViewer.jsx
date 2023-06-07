@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -373,10 +374,34 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
-          if (content) {
+          if (content && content.presenceStatusMsg && typeof content.presenceStatusMsg.roomId === 'string') {
 
-            // Edit Status
-            console.log(content);
+            // Profile Room
+            try {
+
+              const profileRoom = mx.getRoom(content.presenceStatusMsg.roomId);
+              if (profileRoom && profileRoom.roomId) {
+
+                const roomTopic = profileRoom.currentState.getStateEvents('m.room.topic')[0]?.getContent() ?? {};
+                const bannerCfg = profileRoom.currentState.getStateEvents('pony.house.settings', 'banner')?.getContent() ?? {};
+
+                let bannerSrc = '';
+                let topic = '';
+
+                if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
+                  bannerSrc = mx.mxcUrlToHttp(bannerCfg.url);
+                }
+
+                if (roomTopic && typeof roomTopic?.topic === 'string' && roomTopic?.topic.length > 0) {
+                  topic = roomTopic?.topic;
+                }
+                console.log(topic, bannerSrc);
+
+              }
+
+            } catch (err) {
+              console.error();
+            }
 
           }
 

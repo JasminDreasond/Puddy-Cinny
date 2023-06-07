@@ -115,7 +115,7 @@ function DrawerHeader({ selectedTab, spaceId }) {
   setSelectSpace(room);
 
   let avatarSrc = '';
-  if (bannerCfg && typeof bannerCfg?.url === 'string') {
+  if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
     avatarSrc = mx.mxcUrlToHttp(bannerCfg.url, 960, 540);
   }
 
