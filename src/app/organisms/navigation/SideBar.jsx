@@ -66,7 +66,7 @@ function ProfileAvatarMenu() {
           if (typeof type === 'string' && type.length > 0) {
             newPresence = type;
           } else { newPresence = '🟢'; }
-        }
+        } else { newPresence = '🟢'; }
 
         if (typeof event.status === 'string') {
           const status = event.status.trim();
