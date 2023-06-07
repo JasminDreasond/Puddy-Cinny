@@ -52,8 +52,16 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
     afterOptionSelect();
   };
   const handleSettingsClick = () => {
-    openSpaceSettings(roomId);
+
+    const profileSetting = initMatrix.matrixClient.getAccountData('pony.house.profile');
+    if (profileSetting && profileSetting.event && profileSetting.event.type === 'pony.house.profile' && profileSetting.event.content === roomId) {
+      openSpaceSettings(roomId, null, true);
+    } else {
+      openSpaceSettings(roomId);
+    }
+
     afterOptionSelect();
+
   };
   const handleManageRoom = () => {
     openSpaceManage(roomId);
@@ -74,7 +82,7 @@ function SpaceOptions({ roomId, afterOptionSelect }) {
 
   return (
     <div className="noselect emoji-size-fix" style={{ maxWidth: 'calc(var(--navigation-drawer-width) - var(--sp-normal))' }}>
-      <MenuHeader>{twemojify(`Options for ${initMatrix.matrixClient.getRoom(roomId)?.name}`)}</MenuHeader>
+      <MenuHeader>{twemojify(`Options for ${room?.name}`)}</MenuHeader>
       <MenuItem className="text-start" faSrc="fa-solid fa-check-double" onClick={handleMarkAsRead}>Mark as read</MenuItem>
       <MenuItem
         onClick={handleCategorizeClick}
