@@ -5,9 +5,24 @@ const statusList = {
     online: 'fa-solid fa-circle',
     offline: 'bi bi-record-circle-fill',
     unavailable: 'bi bi-record-circle-fill',
-    bnb: 'fa-solid fa-circle-minus',
+    dnd: 'fa-solid fa-circle-minus',
     afk: 'fa-solid fa-moon',
 };
+
+const statusIcons = {
+    online: '🟢',
+    offline: '🔘',
+    unavailable: '🔘',
+    dnd: '🔴',
+    afk: '🟠',
+};
+
+export function getStatusIcon(presence) {
+    if (statusIcons[presence]) {
+        return statusList[presence];
+    }
+    return null;
+}
 
 export function getPresence(user, canStatus = true, canPresence = true) {
 
@@ -26,7 +41,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
             const data = user.events.presence?.getContent();
 
-            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'bnb' || data.presence === 'afk')) {
+            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'afk')) {
                 content.presence = data.presence;
             }
 

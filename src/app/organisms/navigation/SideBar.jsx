@@ -27,6 +27,7 @@ import { useSelectedTab } from '../../hooks/useSelectedTab';
 import { useDeviceList } from '../../hooks/useDeviceList';
 
 import { tabText as settingTabText } from '../settings/Settings';
+import { getStatusIcon } from '../../../util/onlineStatus';
 
 const notificationClasses = 'position-absolute top-0 start-100 translate-middle badge rounded-pill sidebar-mode';
 
@@ -55,15 +56,40 @@ function ProfileAvatarMenu() {
 
   useEffect(() => {
 
-    const onProfileUpdate = (event) => {
+    const onProfileUpdate = (event = {}) => {
+      if (event) {
 
-      /*
-      mx.setPresence({
-        presence: 'online',
-        status_msg: 'Pudding! :3'
-      });
-      */
+        let newPresence = '';
 
+        if (typeof event.type === 'string') {
+          const type = getStatusIcon(event.type.trim());
+          if (typeof type === 'string' && type.length > 0) {
+            newPresence = type;
+          } else { newPresence = '🟢'; }
+        }
+
+        if (typeof event.status === 'string') {
+          const status = event.status.trim();
+          if (status.length > 0) newPresence += ` - ${status}`;
+        }
+
+        if (typeof event.roomId === 'string') {
+          const roomId = event.roomId.trim();
+          if (roomId.length > 0) newPresence += ` - ${roomId}`;
+        }
+
+        if (newPresence.length > 0) {
+          mx.setPresence({
+            presence: 'online',
+            status_msg: newPresence
+          });
+        } else {
+          mx.setPresence({
+            presence: 'online',
+          });
+        }
+
+      }
     };
 
     const user = mx.getUser(mx.getUserId());
