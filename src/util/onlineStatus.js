@@ -37,8 +37,8 @@ export function getStatusIconReverse(presence) {
 }
 
 export function validatorStatusIcon(presence) {
-    if (presence === statusIcons2[presence]) {
-        return presence;
+    if (statusIcons2[presence]) {
+        return statusIcons2[presence];
     }
     return null;
 }
