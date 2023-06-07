@@ -83,7 +83,7 @@ function Home({ spaceId }) {
         ) ||
         <center className='p-3 small text-warning'>
           <div className='mb-3'>No rooms were found. Please enable some room.</div>
-          <Button variant='primary' onClick={() => { openSpaceManage(spaceId); }}>Manage rooms</Button>
+          {spaceId && <Button variant='primary' onClick={() => { openSpaceManage(spaceId); }}>Manage rooms</Button>}
         </center>
       }
 
