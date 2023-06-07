@@ -51,16 +51,31 @@ export function parsePresenceStatus(presence) {
         if (tinyParse.length > 1) {
 
             tinyResult.status = validatorStatusIcon(tinyParse[0]);
-            if (tinyParse[1].length) tinyResult.msg = tinyParse[1];
+            if (tinyParse[1].length) {
+                tinyResult.msg = tinyParse[1];
+            } else {
+                tinyResult.msg = null;
+            }
 
             if (tinyParse.length > 2 && tinyParse[2].length > 0) {
                 tinyResult.roomId = tinyParse[2];
+            } else {
+                tinyResult.roomId = null;
             }
 
         } else {
+
             tinyResult.status = 'online';
             tinyResult.roomId = null;
-            tinyResult.msg = tinyParse[0];
+
+            const validateIcon = validatorStatusIcon(tinyParse[0]);
+            if (typeof validateIcon !== 'string') {
+                tinyResult.msg = tinyParse[0];
+            } else {
+                tinyResult.status = validateIcon;
+                tinyResult.msg = null;
+            }
+
         }
 
         return tinyResult;
