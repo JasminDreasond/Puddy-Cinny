@@ -74,7 +74,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
     if (user) {
 
         const content = {};
-        if (canPresence) content.presenceStatusMsg = null;
+        if (!canPresence) content.presenceStatusMsg = null;
 
         if (canStatus) {
             content.presence = 'offline';
@@ -85,10 +85,6 @@ export function getPresence(user, canStatus = true, canPresence = true) {
         if (user.events && user.events.presence) {
 
             const data = user.events.presence?.getContent();
-
-            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'afk')) {
-                content.presence = data.presence;
-            }
 
             if (canPresence && typeof data.status_msg === 'string') {
                 content.presenceStatusMsg = data.status_msg;
@@ -102,14 +98,14 @@ export function getPresence(user, canStatus = true, canPresence = true) {
                 content.lastActiveAgo = data.last_active_ago;
             }
 
+            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'afk')) {
+                content.presence = data.presence;
+            }
+
         } else {
 
             if (canStatus && typeof user.presence === 'string') {
                 content.presence = user.presence;
-            }
-
-            if (canPresence && typeof user.presenceStatusMsg === 'string') {
-                content.presenceStatusMsg = user.presenceStatusMsg;
             }
 
             if (canStatus && typeof user.lastActiveAgo === 'number') {
@@ -117,14 +113,10 @@ export function getPresence(user, canStatus = true, canPresence = true) {
                 content.currentlyActive = true;
             }
 
-        }
-
-        if (canPresence && typeof content.presenceStatusMsg === 'string') {
-            try {
-                content.presenceStatusMsg = JSON.parse(content.presenceStatusMsg);
-            } catch (err) {
-                content.presenceStatusMsg = String(content.presenceStatusMsg);
+            if (canPresence && typeof user.presenceStatusMsg === 'string') {
+                content.presenceStatusMsg = user.presenceStatusMsg;
             }
+
         }
 
         return content;
