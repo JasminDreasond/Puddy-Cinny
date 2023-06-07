@@ -402,6 +402,9 @@ a {
   .profile-banner {
     height: 212px;
     min-height: 212px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
   }
 
   .avatar-container {

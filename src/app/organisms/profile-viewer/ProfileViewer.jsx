@@ -356,6 +356,7 @@ function ProfileViewer() {
 
   // Prepare
   const statusRef = useRef(null);
+  const profileBanner = useRef(null);
   const [isOpen, roomId, userId, closeDialog, handleAfterClose] = useToggleDialog();
   useRerenderOnProfileChange(roomId, userId);
 
@@ -376,8 +377,27 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
-          const profileData = getUserProfile(content);
-          console.log(profileData);
+          if (content && profileBanner.current) {
+
+            // Get Profile Data
+            const bannerDOM = profileBanner.current;
+            const profileData = getUserProfile(content);
+
+            // Banner
+            if (profileData.banner) {
+              bannerDOM.style.backgroundImage = `url("${profileData.banner}")`;
+            } else {
+              bannerDOM.style.backgroundImage = '';
+            }
+
+            // Bio
+            if (profileData.topic) {
+
+            }
+
+            console.log(profileData, profileBanner);
+
+          }
 
         }
       };
@@ -454,7 +474,7 @@ function ProfileViewer() {
     return (
       <>
 
-        <div className={`profile-banner profile-bg${cssColorMXID(userId)}`} />
+        <div ref={profileBanner} className={`profile-banner profile-bg${cssColorMXID(userId)}`} />
 
         <div className='p-4'>
 
