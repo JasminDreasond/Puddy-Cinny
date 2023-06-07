@@ -159,9 +159,15 @@ function ProfileEditor({ userId }) {
             );
 
             if (isConfirmed) {
+
               mx.setAccountData('pony.house.profile', {});
-              leave(profileId);
+
+              try {
+                leave(profileId);
+              } catch (err) { }
+
               setProfileId(null);
+
             }
 
           }}>
