@@ -49,6 +49,7 @@ function useNotificationUpdate() {
 function ProfileAvatarMenu() {
   const mx = initMatrix.matrixClient;
 
+  // Get Display
   const [profile, setProfile] = useState({
     avatarUrl: null,
     displayName: mx.getUser(mx.getUserId()).displayName,
@@ -56,11 +57,14 @@ function ProfileAvatarMenu() {
 
   useEffect(() => {
 
+    // Get New User Status
     const onProfileUpdate = (event = {}) => {
       if (event) {
 
+        // Prepare Data
         let newPresence = '';
 
+        // Status Icon
         if (typeof event.type === 'string') {
           const type = getStatusIcon(event.type.trim());
           if (typeof type === 'string' && type.length > 0) {
@@ -68,11 +72,14 @@ function ProfileAvatarMenu() {
           } else { newPresence = '🟢'; }
         } else { newPresence = '🟢'; }
 
+        // Message Prepare
         if (typeof event.status === 'string') {
 
+          // Fix Status
           const status = event.status.trim();
           if (status.length > 0) newPresence += ` - ${status}`;
 
+          // Insert Room Id
           if (typeof event.roomId === 'string') {
             const roomId = event.roomId.trim();
             if (roomId.length > 0) newPresence += ` - ${roomId}`;
@@ -80,11 +87,13 @@ function ProfileAvatarMenu() {
 
         }
 
+        // Insert Room Id
         else if (typeof event.roomId === 'string') {
           const roomId = event.roomId.trim();
           if (roomId.length > 0) newPresence += ` -  - ${roomId}`;
         }
 
+        // Insert Status
         if (newPresence.length > 0) {
           mx.setPresence({
             presence: 'online',
@@ -99,6 +108,7 @@ function ProfileAvatarMenu() {
       }
     };
 
+    // Get User and update data
     const user = mx.getUser(mx.getUserId());
     onProfileUpdate(mx.getAccountData('pony.house.profile')?.getContent() ?? {});
 
@@ -115,6 +125,7 @@ function ProfileAvatarMenu() {
       setNewProfile(info.avatar_url, info.displayname);
     });
 
+    // Socket
     user.on('User.avatarUrl', onAvatarChange);
     navigation.on(cons.events.navigation.PROFILE_UPDATED, onProfileUpdate);
     return () => {
@@ -127,6 +138,7 @@ function ProfileAvatarMenu() {
 
   }, []);
 
+  // Complete
   return (
     <SidebarAvatar
       onClick={openSettings}
