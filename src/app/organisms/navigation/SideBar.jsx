@@ -46,27 +46,33 @@ function useNotificationUpdate() {
 
 function ProfileAvatarMenu() {
   const mx = initMatrix.matrixClient;
+
   const [profile, setProfile] = useState({
     avatarUrl: null,
     displayName: mx.getUser(mx.getUserId()).displayName,
   });
 
   useEffect(() => {
+
     const user = mx.getUser(mx.getUserId());
     const setNewProfile = (avatarUrl, displayName) => setProfile({
       avatarUrl: avatarUrl || null,
       displayName: displayName || profile.displayName,
     });
+
     const onAvatarChange = (event, myUser) => {
       setNewProfile(myUser.avatarUrl, myUser.displayName);
     };
+
     mx.getProfileInfo(mx.getUserId()).then((info) => {
       setNewProfile(info.avatar_url, info.displayname);
     });
+
     user.on('User.avatarUrl', onAvatarChange);
     return () => {
       user.removeListener('User.avatarUrl', onAvatarChange);
     };
+
   }, []);
 
   return (
@@ -83,6 +89,7 @@ function ProfileAvatarMenu() {
       )}
     />
   );
+
 }
 
 function CrossSigninAlert() {

@@ -19,6 +19,7 @@ import initMatrix from '../../../client/initMatrix';
 import navigation from '../../../client/state/navigation';
 import cons from '../../../client/state/cons';
 import DragDrop from '../../organisms/drag-drop/DragDrop';
+import Alert from './Alert';
 
 function Client() {
   const [isLoading, changeLoading] = useState(true);
@@ -172,6 +173,7 @@ function Client() {
       <Dialogs />
       <EmojiBoardOpener />
       <ReusableContextMenu />
+      <Alert />
       <DragDrop isOpen={dragCounter !== 0} />
     </div>
   );

@@ -143,7 +143,17 @@ function ProfileEditor({ userId }) {
       <div ref={spaceProfileRef} className='very-small'>{profileId ?
         <>
 
-          <div className='fake-a d-inline-block' onClick={() => { openSpaceSettings(profileId, null, true); }}>
+          <div className='fake-a d-inline-block' onClick={() => {
+
+            const room = mx.getRoom(profileId);
+
+            if (room && room.roomId) {
+              openSpaceSettings(profileId, null, true);
+            } else {
+              alert('Profile space not found.');
+            }
+
+          }}>
             {profileId}
           </div>
 
