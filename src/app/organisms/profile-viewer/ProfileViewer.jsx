@@ -374,11 +374,13 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
-          if (content && profileBanner.current) {
+          if (content && content.presenceStatusMsg && profileBanner.current) {
 
-            // Get Profile Data
-            const bannerDOM = profileBanner.current;
-            // bannerDOM.style.backgroundImage = `url("${profileData.banner}")`;
+            // Get Banner Data
+            if (typeof content.presenceStatusMsg.banner === 'string') {
+              const bannerDOM = profileBanner.current;
+              bannerDOM.style.backgroundImage = `url("${content.presenceStatusMsg.banner}")`;
+            }
 
             // Banner
             console.log(content, tinyUser);
