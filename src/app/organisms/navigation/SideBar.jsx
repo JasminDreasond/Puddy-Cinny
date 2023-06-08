@@ -27,7 +27,6 @@ import { useSelectedTab } from '../../hooks/useSelectedTab';
 import { useDeviceList } from '../../hooks/useDeviceList';
 
 import { tabText as settingTabText } from '../settings/Settings';
-import { getStatusIcon } from '../../../util/onlineStatus';
 
 const notificationClasses = 'position-absolute top-0 start-100 translate-middle badge rounded-pill sidebar-mode';
 
@@ -57,63 +56,26 @@ function ProfileAvatarMenu() {
 
   useEffect(() => {
 
-    // Get New User Status
+    // Get User and update data
+    const user = mx.getUser(mx.getUserId());
+
+    // Set New User Status
     const onProfileUpdate = (event = {}) => {
       if (event) {
 
-        // Prepare Data
-        let newPresence = '';
+        const eventJSON = JSON.stringify(event);
 
-        // Status Icon
-        if (typeof event.type === 'string') {
-          const type = getStatusIcon(event.type.trim());
-          if (typeof type === 'string' && type.length > 0) {
-            newPresence = type;
-          } else { newPresence = '🟢'; }
-        } else { newPresence = '🟢'; }
-
-        // Message Prepare
-        if (typeof event.status === 'string') {
-
-          // Fix Status
-          const status = event.status.trim();
-          if (status.length > 0) newPresence += ` - ${status}`;
-
-          // Insert Room Id
-          if (typeof event.roomId === 'string') {
-            const roomId = event.roomId.trim();
-            if (roomId.length > 0) newPresence += ` - ${roomId}`;
-          }
-
-        }
-
-        // Insert Room Id
-        else if (typeof event.roomId === 'string') {
-          const roomId = event.roomId.trim();
-          if (roomId.length > 0) newPresence += ` -  - ${roomId}`;
-        }
-
-        // Insert Status
-        /*
-        if (newPresence.length > 0) {
+        if (eventJSON.length > 0 && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON)) {
           mx.setPresence({
             presence: 'online',
-            status_msg: newPresence,
-          });
-        } else {
-          mx.setPresence({
-            presence: 'online',
+            status_msg: eventJSON,
           });
         }
-        */
 
       }
     };
 
-    // Get User and update data
-    const user = mx.getUser(mx.getUserId());
     onProfileUpdate(mx.getAccountData('pony.house.profile')?.getContent() ?? {});
-
     const setNewProfile = (avatarUrl, displayName) => setProfile({
       avatarUrl: avatarUrl || null,
       displayName: displayName || profile.displayName,
