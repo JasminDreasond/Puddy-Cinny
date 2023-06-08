@@ -356,7 +356,6 @@ function DonateSection() {
 function ProfileSection() {
 
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
-  console.log(userProfile);
 
   const customStatusRef = useRef(null);
   const bioRef = useRef(null);
