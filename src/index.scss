@@ -530,18 +530,23 @@ a {
 
 /* Presence */
 .user-presence-offline,
-.user-presence-unavailable {
+.user-presence-unavailable,
+.user-presence-offline:before,
+.user-presence-unavailable:before {
   color: #bdbdbd !important;
 }
 
-.user-presence-dnd {
+.user-presence-dnd,
+.user-presence-dnd:before {
   color: #b83b3b !important;
 }
 
-.user-presence-online {
+.user-presence-online,
+.user-presence-online:before {
   color: #45b83b !important;
 }
 
-.user-presence-idle {
+.user-presence-idle,
+.user-presence-idle:before {
   color: #b8913b !important;
 }

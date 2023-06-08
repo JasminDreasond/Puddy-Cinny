@@ -354,6 +354,7 @@ function DonateSection() {
 
 function ProfileSection() {
 
+  const [activeType, setNotification] = useState('online');
   const status = useRef(null);
   const customStatus = useRef(null);
   const about = useRef(null);
@@ -363,8 +364,7 @@ function ProfileSection() {
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
 
-  // userProfile.status
-  // 
+
 
   const submitStatus = () => {
     alert('Presence updated!');
@@ -395,7 +395,7 @@ function ProfileSection() {
 
   let bannerSrc;
   if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
-    bannerSrc = mx.mxcUrlToHttp(userProfile.banner, 400, 227);
+    bannerSrc = initMatrix.matrixClient.mxcUrlToHttp(userProfile.banner, 400, 227);
   }
 
   return (
@@ -410,15 +410,15 @@ function ProfileSection() {
 
         {items.map((item) => (
           <MenuItem
-            className={'' === item.type ? 'text-start btn-text-success' : 'text-start'}
+            className={activeType === item.type ? 'text-start btn-text-success' : 'text-start'}
             faSrc={item.faSrc}
             key={item.type}
-            onClick={() => { }}
+            onClick={() => setNotification(item.type)}
           >
 
             {item.text}
             <span className='ms-4 float-end'>
-              <RadioButton isActive={'activeType' === item.type} />
+              <RadioButton isActive={activeType === item.type} />
             </span>
 
           </MenuItem>
@@ -487,15 +487,15 @@ const tabItems = [{
   disabled: false,
   render: () => <SecuritySection />,
 }, {
-  text: tabText.DONATE,
-  faSrc: "fa-solid fa-coins",
-  disabled: false,
-  render: () => <DonateSection />,
-}, {
   text: tabText.PROFILE,
   faSrc: "fa-solid fa-id-card",
   disabled: false,
   render: () => <ProfileSection />,
+}, {
+  text: tabText.DONATE,
+  faSrc: "fa-solid fa-coins",
+  disabled: false,
+  render: () => <DonateSection />,
 }, {
   text: tabText.ABOUT,
   faSrc: "fa-solid fa-circle-info",
