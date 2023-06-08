@@ -66,10 +66,17 @@ function ProfileAvatarMenu() {
         const eventJSON = JSON.stringify(event);
 
         if (eventJSON.length > 0 && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON)) {
+
+          let presenceStatus = 'online';
+          if (typeof event.status === 'string' && (event.status === 'offline' || event.status === 'unavailable')) {
+            presenceStatus = 'offline';
+          }
+
           mx.setPresence({
-            presence: 'online',
+            presence: presenceStatus,
             status_msg: eventJSON,
           });
+
         }
 
       }
