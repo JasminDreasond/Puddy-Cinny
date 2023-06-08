@@ -435,7 +435,7 @@ function ProfileSection() {
       initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
       emitUpdateProfile(userProfile);
 
-      if (bannerPlace) bannerPlace.style.backgroundImage = `url('${initMatrix.matrixClient.mxcUrlToHttp(url, 400, 227)}')`; bannerPlace.classList.add('banner-added');
+      if (bannerPlace) bannerPlace.style.backgroundImage = `url('${initMatrix.matrixClient.mxcUrlToHttp(url, 660, 227)}')`; bannerPlace.classList.add('banner-added');
       if (bannerImg) bannerImg.src = initMatrix.matrixClient.mxcUrlToHttp(url, 400, 227);
 
     }
@@ -486,7 +486,7 @@ function ProfileSection() {
           <div className='small'>Banner</div>
           <div className='very-small text-gray'>Set the banner of your profile.</div>
           <ImageUpload
-            className='space-banner'
+            className='space-banner profile-banner'
             text='Banner'
             imageSrc={bannerSrc}
             onUpload={handleBannerUpload}

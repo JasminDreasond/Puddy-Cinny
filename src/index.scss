@@ -485,6 +485,28 @@ a {
   height: 225px;
 }
 
+.space-banner.profile-banner,
+.space-banner.profile-banner img,
+.space-banner.profile-banner .avatar-container {
+  width: 660px;
+}
+
+@media (max-width: 991px) {
+  .space-banner.profile-banner,
+  .space-banner.profile-banner img,
+  .space-banner.profile-banner .avatar-container {
+    width: 370px;
+  }
+}
+
+@media (max-width: 768px) {
+  .space-banner.profile-banner,
+  .space-banner.profile-banner img,
+  .space-banner.profile-banner .avatar-container {
+    width: 460px;
+  }
+}
+
 @media (max-width: 576px) {
   .space-banner,
   .space-banner img {
@@ -495,6 +517,12 @@ a {
   .space-banner img,
   .space-banner .avatar-container {
     width: 300px;
+  }
+
+  .space-banner.profile-banner,
+  .space-banner.profile-banner img,
+  .space-banner.profile-banner .avatar-container {
+    width: 360px;
   }
 
   .space-banner .avatar-container {
