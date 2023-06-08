@@ -381,21 +381,10 @@ function ProfileViewer() {
 
             // Get Profile Data
             const bannerDOM = profileBanner.current;
-            const profileData = getUserProfile(content);
+            // bannerDOM.style.backgroundImage = `url("${profileData.banner}")`;
 
             // Banner
-            if (profileData.banner) {
-              bannerDOM.style.backgroundImage = `url("${profileData.banner}")`;
-            } else {
-              bannerDOM.style.backgroundImage = '';
-            }
-
-            // Bio
-            if (profileData.topic) {
-
-            }
-
-            console.log(profileData, profileBanner);
+            console.log(content);
 
           }
 

@@ -94,16 +94,18 @@ function ProfileAvatarMenu() {
         }
 
         // Insert Status
+        /*
         if (newPresence.length > 0) {
           mx.setPresence({
             presence: 'online',
-            status_msg: newPresence
+            status_msg: newPresence,
           });
         } else {
           mx.setPresence({
             presence: 'online',
           });
         }
+        */
 
       }
     };

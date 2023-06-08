@@ -1,6 +1,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
+
+// Status Builder
 const statusList = {
     online: 'fa-solid fa-circle',
     offline: 'bi bi-record-circle-fill',
@@ -43,39 +45,36 @@ export function validatorStatusIcon(presence) {
     return null;
 }
 
+// Parse Status
 export function parsePresenceStatus(presence) {
     if (typeof presence === 'string') {
 
-        const tinyResult = {};
-        const tinyParse = presence.split(' - ');
-        if (tinyParse.length > 1) {
+        const tinyResult = { status: null, msg: null, bio: null };
+        try {
+            const tinyParse = JSON.parse(presence);
+            if (tinyParse) {
 
-            tinyResult.status = validatorStatusIcon(tinyParse[0]);
-            if (tinyParse[1].length) {
-                tinyResult.msg = tinyParse[1];
-            } else {
-                tinyResult.msg = null;
+                // Status Profile
+                if (typeof tinyParse.status === 'string' && tinyParse.status.length === 1) {
+                    const validateIcon = validatorStatusIcon(tinyParse.status);
+                    if (typeof validateIcon === 'string') {
+                        tinyResult.status = validateIcon;
+                    }
+                }
+
+                // Message
+                if (typeof tinyParse.msg === 'string' && tinyParse.msg.length > 0) {
+                    tinyResult.msg = tinyParse.msg.substring(0, 100);
+                }
+
+                // Profile Bio
+                if (typeof tinyParse.bio === 'string' && tinyParse.bio.length > 0) {
+                    tinyResult.bio = tinyParse.bio.substring(0, 190);
+                }
+
             }
-
-            if (tinyParse.length > 2 && tinyParse[2].length > 0) {
-                tinyResult.roomId = tinyParse[2];
-            } else {
-                tinyResult.roomId = null;
-            }
-
-        } else {
-
-            tinyResult.status = 'online';
-            tinyResult.roomId = null;
-
-            const validateIcon = validatorStatusIcon(tinyParse[0]);
-            if (typeof validateIcon !== 'string') {
-                tinyResult.msg = tinyParse[0];
-            } else {
-                tinyResult.status = validateIcon;
-                tinyResult.msg = null;
-            }
-
+        } catch (err) {
+            tinyResult.msg = presence.substring(0, 100);
         }
 
         return tinyResult;
@@ -84,6 +83,7 @@ export function parsePresenceStatus(presence) {
     return null;
 }
 
+// Get Presence Data
 export function getPresence(user, canStatus = true, canPresence = true) {
 
     if (user) {
@@ -136,7 +136,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
         if (typeof content.presenceStatusMsg === 'string') {
             content.presenceStatusMsg = parsePresenceStatus(content.presenceStatusMsg);
-            if (content.presenceStatusMsg.status) {
+            if (content.presence !== 'offline' && content.presence !== 'unavailable' && content.presenceStatusMsg.status) {
                 content.presence = content.presenceStatusMsg.status;
                 delete content.presenceStatusMsg.status;
             };
@@ -150,6 +150,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
 
 }
 
+// Get Status CSS
 export function getUserStatus(user, tinyData) {
 
     if (user) {
@@ -179,6 +180,7 @@ export function getUserStatus(user, tinyData) {
 
 }
 
+// Update Status Icon
 export function updateUserStatusIcon(status, user, tinyData, canStatus = true, canPresence = true) {
 
     let useData;
