@@ -63,14 +63,15 @@ function ProfileAvatarMenu() {
     const onProfileUpdate = (event = {}) => {
       if (event) {
 
-        const eventJSON = JSON.stringify(event);
+        const tinyEvent = event;
+        const eventJSON = JSON.stringify(tinyEvent);
 
         if (eventJSON.length > 0 && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON)) {
 
           let presenceStatus = 'online';
-          if (typeof event.status === 'string') {
-            event.status = event.status.trim();
-            if (event.status === '🔘') presenceStatus = 'offline';
+          if (typeof tinyEvent.status === 'string') {
+            tinyEvent.status = tinyEvent.status.trim();
+            if (tinyEvent.status === '🔘') presenceStatus = 'offline';
           }
 
           mx.setPresence({
