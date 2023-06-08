@@ -376,10 +376,16 @@ function ProfileSection() {
   const sendCustomStatus = () => {
     if (customStatusRef && customStatusRef.current) {
 
-      const value = customStatusRef.current.value;
+      const { value } = customStatusRef.current;
       if (typeof value === 'string' && value.length > 0) {
-        alert(value);
+        setCustomStatus(value);
+        userProfile.msg = value;
       }
+
+      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+      emitUpdateProfile(userProfile);
+
+      alert('The custom status of your profile has been successfully defined.');
 
     }
   };
@@ -387,10 +393,16 @@ function ProfileSection() {
   const sendBio = () => {
     if (bioRef && bioRef.current) {
 
-      const value = bioRef.current.value;
+      const { value } = bioRef.current;
       if (typeof value === 'string' && value.length > 0) {
-        alert(value);
+        setUserBio(value);
+        userProfile.bio = value;
       }
+
+      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+      emitUpdateProfile(userProfile);
+
+      alert('The biography of your profile has been successfully updated.');
 
     }
   };
