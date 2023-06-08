@@ -52,7 +52,7 @@ export function parsePresenceStatus(presence) {
     if (typeof presence === 'string') {
 
         const mx = initMatrix.matrixClient;
-        const tinyResult = { status: null, msg: null, bio: null };
+        const tinyResult = { status: null, msg: null, bio: null, banner: null };
         try {
             const tinyParse = JSON.parse(presence);
             if (tinyParse) {
