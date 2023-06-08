@@ -18,6 +18,8 @@ import { openSpaceSettings, emitUpdateProfile } from '../../../client/action/nav
 
 import './ProfileEditor.scss';
 
+/*
+
 const getProfileID = () => {
 
   const profileSetting = initMatrix.matrixClient.getAccountData('pony.house.profile');
@@ -29,6 +31,8 @@ const getProfileID = () => {
 
 };
 
+*/
+
 function ProfileEditor({ userId }) {
 
   // Values
@@ -38,11 +42,10 @@ function ProfileEditor({ userId }) {
 
   // Config Base
   const displayNameRef = useRef(null);
-  const spaceProfileRef = useRef(null);
   const [avatarSrc, setAvatarSrc] = useState(user.avatarUrl ? mx.mxcUrlToHttp(user.avatarUrl) : null);
   const [username, setUsername] = useState(user.displayName);
   const [disabled, setDisabled] = useState(true);
-  const [profileId, setProfileId] = useState(null);
+  // const [profileId, setProfileId] = useState(null);
 
   // User Effect
   useEffect(() => {
@@ -55,12 +58,14 @@ function ProfileEditor({ userId }) {
     });
 
     if (user) {
+      /*
       const profileSetting = getProfileID();
       if (profileSetting && typeof profileSetting.roomId === 'string') {
         setProfileId(profileSetting.roomId);
       } else {
         setProfileId(null);
       }
+      */
     }
 
     return () => {
@@ -140,56 +145,6 @@ function ProfileEditor({ userId }) {
         />
       </div>
       <div className='small'>{mx.getUserId()}</div>
-      <div ref={spaceProfileRef} className='very-small'>{profileId ?
-        <>
-
-          <div className='d-inline-block'>
-            {profileId}
-          </div>
-
-          <br />
-
-          <div className='fake-a--text-danger d-inline-block' onClick={async () => {
-
-            const isConfirmed = await confirmDialog(
-              'Unlink profile room',
-              'Are you sure that you want to unlink the profile room?',
-              'Remove',
-              'warning',
-            );
-
-            if (isConfirmed) {
-
-              mx.setAccountData('pony.house.profile', {});
-
-              try {
-                leave(profileId);
-              } catch (err) { }
-
-              setProfileId(null);
-
-            }
-
-          }}>
-            Unlink profile space
-          </div>
-
-        </> : <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
-
-          mx.createRoom({
-            name: `${userId}'s Profile`,
-            visibility: 'private',
-            preset: 'public_chat',
-          }).then(data => {
-            mx.setAccountData('pony.house.profile', { roomId: data.room_id });
-            emitUpdateProfile({ roomId: data.room_id });
-            setProfileId(data.room_id);
-          });
-
-        }}>
-          Create Profile
-        </Button>
-      }</div>
     </div>
   );
 
