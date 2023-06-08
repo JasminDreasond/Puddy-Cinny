@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -28,6 +28,9 @@ import ProfileEditor from '../profile-editor/ProfileEditor';
 import CrossSigning from './CrossSigning';
 import KeyBackup from './KeyBackup';
 import DeviceManage from './DeviceManage';
+import { MenuItem } from '../../atoms/context-menu/ContextMenu';
+import RadioButton from '../../atoms/button/RadioButton';
+import { getStatusCSS } from '../../../util/onlineStatus';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 
@@ -348,7 +351,11 @@ function DonateSection() {
 
 function ProfileSection() {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const status = useRef(null);
+  const customStatus = useRef(null);
+  const about = useRef(null);
+  const banner = useRef(null);
+
 
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
@@ -357,25 +364,71 @@ function ProfileSection() {
     alert('Presence updated!');
   };
 
+  const items = [
+    {
+      type: 'online',
+      text: 'Online',
+      faSrc: `${getStatusCSS('online')} user-presence-online`,
+    },
+    {
+      type: 'idle',
+      text: 'Idle',
+      faSrc: `${getStatusCSS('idle')} user-presence-idle`,
+    },
+    {
+      type: 'dnd',
+      text: 'Do not disturb',
+      faSrc: `${getStatusCSS('dnd')} user-presence-dnd`,
+    },
+    {
+      type: 'offline',
+      text: 'Invisible',
+      faSrc: `${getStatusCSS('offline')} user-presence-offline`,
+    }
+  ];
+
   return (
     <div className="card noselect">
       <ul className="list-group list-group-flush">
         <li className="list-group-item very-small text-gray">Profile</li>
 
         <li className="list-group-item border-0">
-          Status
+          <div className='small'>Status</div>
+          <div className='very-small text-gray'>Choose the current status of your profile.</div>
+        </li>
+
+        {items.map((item) => (
+          <MenuItem
+            className={'' === item.type ? 'text-start btn-text-success' : 'text-start'}
+            faSrc={item.faSrc}
+            key={item.type}
+            onClick={() => { }}
+          >
+
+            {item.text}
+            <span className='ms-4 float-end'>
+              <RadioButton isActive={'activeType' === item.type} />
+            </span>
+
+          </MenuItem>
+        ))}
+
+        <li className="list-group-item border-0">
+          <div className='small'>Custom Status</div>
+          <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
+          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.msg} />
         </li>
 
         <li className="list-group-item border-0">
-          Custom Status
+          <div className='small'>About me</div>
+          <div className='very-small text-gray'>Enter a small biography about you.</div>
+          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.bio} />
         </li>
 
         <li className="list-group-item border-0">
-          About me
-        </li>
-
-        <li className="list-group-item border-0">
-          Banner
+          <div className='small'>Banner</div>
+          <div className='very-small text-gray'>Set the banner of your profile.</div>
+          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.banner} />
         </li>
 
         <li className="list-group-item border-0">

@@ -10,7 +10,7 @@ const statusList = {
     offline: 'bi bi-record-circle-fill',
     unavailable: 'bi bi-record-circle-fill',
     dnd: 'fa-solid fa-circle-minus',
-    afk: 'fa-solid fa-moon',
+    idle: 'fa-solid fa-moon',
 };
 
 const statusIcons = {
@@ -18,12 +18,19 @@ const statusIcons = {
     offline: '🔘',
     unavailable: '🔘',
     dnd: '🔴',
-    afk: '🟠',
+    idle: '🟠',
 };
 
 const statusIcons2 = {};
 for (const item in statusIcons) {
     statusIcons2[statusIcons[item]] = item;
+}
+
+export function getStatusCSS(presence) {
+    if (statusList[presence]) {
+        return statusList[presence];
+    }
+    return null;
 }
 
 export function getStatusIcon(presence) {
@@ -120,7 +127,7 @@ export function getPresence(user, canStatus = true, canPresence = true) {
                 content.lastActiveAgo = data.last_active_ago;
             }
 
-            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'afk')) {
+            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'idle')) {
                 content.presence = data.presence;
             }
 

@@ -531,17 +531,17 @@ a {
 /* Presence */
 .user-presence-offline,
 .user-presence-unavailable {
-  color: #bdbdbd;
+  color: #bdbdbd !important;
 }
 
 .user-presence-dnd {
-  color: #b83b3b;
+  color: #b83b3b !important;
 }
 
 .user-presence-online {
-  color: #45b83b;
+  color: #45b83b !important;
 }
 
-.user-presence-afk {
-  color: #b8913b;
+.user-presence-idle {
+  color: #b8913b !important;
 }

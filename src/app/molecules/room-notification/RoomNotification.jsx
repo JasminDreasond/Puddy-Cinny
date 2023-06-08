@@ -5,7 +5,6 @@ import './RoomNotification.scss';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
 
-import Text from '../../atoms/text/Text';
 import RadioButton from '../../atoms/button/RadioButton';
 import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 
