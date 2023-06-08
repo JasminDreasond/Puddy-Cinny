@@ -17,8 +17,6 @@ import {
 import { getEventCords } from '../../../util/common';
 import { colorMXID, cssColorMXID } from '../../../util/colorMXID';
 
-import { getUserProfile } from '../../../util/getUserProfile';
-
 import Text from '../../atoms/text/Text';
 import Chip from '../../atoms/chip/Chip';
 import Input from '../../atoms/input/Input';
@@ -384,7 +382,7 @@ function ProfileViewer() {
             // bannerDOM.style.backgroundImage = `url("${profileData.banner}")`;
 
             // Banner
-            console.log(content);
+            console.log(content, tinyUser);
 
           }
 

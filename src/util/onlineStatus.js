@@ -2,6 +2,8 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 
+import initMatrix from '../client/initMatrix';
+
 // Status Builder
 const statusList = {
     online: 'fa-solid fa-circle',
@@ -49,6 +51,7 @@ export function validatorStatusIcon(presence) {
 export function parsePresenceStatus(presence) {
     if (typeof presence === 'string') {
 
+        const mx = initMatrix.matrixClient;
         const tinyResult = { status: null, msg: null, bio: null };
         try {
             const tinyParse = JSON.parse(presence);
@@ -65,6 +68,10 @@ export function parsePresenceStatus(presence) {
                 // Message
                 if (typeof tinyParse.msg === 'string' && tinyParse.msg.length > 0) {
                     tinyResult.msg = tinyParse.msg.substring(0, 100);
+                }
+
+                if (typeof tinyParse.banner === 'string' && tinyParse.banner.length > 0) {
+                    tinyResult.banner = mx.mxcUrlToHttp(tinyParse.banner);
                 }
 
                 // Profile Bio
