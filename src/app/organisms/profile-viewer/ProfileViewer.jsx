@@ -369,7 +369,7 @@ function ProfileViewer() {
     if (user) {
 
       // Update Status Profile
-      const updateProfileStatus = async (mEvent, tinyUser) => {
+      const updateProfileStatus = (mEvent, tinyUser) => {
         if (statusRef && statusRef.current) {
 
           // Get Status
@@ -381,7 +381,7 @@ function ProfileViewer() {
 
             // Get Profile Data
             const bannerDOM = profileBanner.current;
-            const profileData = await getUserProfile(content);
+            const profileData = getUserProfile(content);
 
             // Banner
             if (profileData.banner) {

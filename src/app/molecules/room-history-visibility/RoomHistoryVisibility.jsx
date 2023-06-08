@@ -4,7 +4,6 @@ import './RoomHistoryVisibility.scss';
 
 import initMatrix from '../../../client/initMatrix';
 
-import Text from '../../atoms/text/Text';
 import RadioButton from '../../atoms/button/RadioButton';
 import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 
