@@ -345,6 +345,39 @@ function DonateSection() {
   );
 }
 
+
+function ProfileSection() {
+
+  const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
+  console.log(userProfile);
+
+  return (
+    <div className="card noselect">
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item very-small text-gray">Profile</li>
+
+        <li className="list-group-item border-0">
+          Status
+        </li>
+
+        <li className="list-group-item border-0">
+          Custom Status
+        </li>
+
+        <li className="list-group-item border-0">
+          About me
+        </li>
+
+        <li className="list-group-item border-0">
+          Banner
+        </li>
+
+      </ul>
+    </div>
+  );
+
+}
+
 export const tabText = {
   APPEARANCE: 'Appearance',
   NOTIFICATIONS: 'Notifications',
@@ -352,6 +385,7 @@ export const tabText = {
   SECURITY: 'Security',
   ABOUT: 'About',
   DONATE: 'Donate',
+  PROFILE: 'Profile',
   LOGOUT: 'Logout',
 };
 const tabItems = [{
@@ -379,6 +413,11 @@ const tabItems = [{
   faSrc: "fa-solid fa-coins",
   disabled: false,
   render: () => <DonateSection />,
+}, {
+  text: tabText.PROFILE,
+  faSrc: "fa-solid fa-id-card",
+  disabled: false,
+  render: () => <ProfileSection />,
 }, {
   text: tabText.ABOUT,
   faSrc: "fa-solid fa-circle-info",
