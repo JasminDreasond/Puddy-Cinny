@@ -348,8 +348,14 @@ function DonateSection() {
 
 function ProfileSection() {
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
+
+  const submitStatus = () => {
+    alert('Presence updated!');
+  };
 
   return (
     <div className="card noselect">
@@ -370,6 +376,12 @@ function ProfileSection() {
 
         <li className="list-group-item border-0">
           Banner
+        </li>
+
+        <li className="list-group-item border-0">
+          <center>
+            <Button className='ms-1' onClick={submitStatus} variant="success">Submit</Button>
+          </center>
         </li>
 
       </ul>

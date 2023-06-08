@@ -27,6 +27,8 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'no-underscore-dangle': 0,
+    'no-console': 0,
+    'no-alert': 0,
 
     "import/prefer-default-export": "off",
     "import/extensions": "off",

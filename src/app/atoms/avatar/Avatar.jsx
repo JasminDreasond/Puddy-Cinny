@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable no-console */
 
 import React from 'react';
 import PropTypes from 'prop-types';

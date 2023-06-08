@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 
 import initMatrix from "../client/initMatrix";
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 let deferredPrompt;
 window.matchMedia('(display-mode: standalone)').addEventListener('change', (evt) => {
 
