@@ -1,3 +1,4 @@
+import ReactDOMServer from 'react-dom/server';
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -352,6 +353,7 @@ function useRerenderOnProfileChange(roomId, userId) {
 function ProfileViewer() {
 
   // Prepare
+  const bioRef = useRef(null);
   const statusRef = useRef(null);
   const profileBanner = useRef(null);
   const [isOpen, roomId, userId, closeDialog, handleAfterClose] = useToggleDialog();
@@ -374,16 +376,38 @@ function ProfileViewer() {
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);
-          if (content && content.presenceStatusMsg && profileBanner.current) {
+          if (content && content.presenceStatusMsg) {
 
             // Get Banner Data
-            if (typeof content.presenceStatusMsg.banner === 'string') {
+            if (profileBanner.current) {
               const bannerDOM = profileBanner.current;
-              bannerDOM.style.backgroundImage = `url("${content.presenceStatusMsg.banner}")`;
+              if (bannerDOM) {
+                if (typeof content.presenceStatusMsg.banner === 'string' && content.presenceStatusMsg.banner.length > 0) {
+                  bannerDOM.style.backgroundImage = `url("${content.presenceStatusMsg.banner}")`;
+                } else {
+                  bannerDOM.style.backgroundImage = '';
+                }
+              }
             }
 
-            // Banner
-            console.log(content, tinyUser);
+            // Get Bio Data
+            if (bioRef.current) {
+              const bioDOM = bioRef.current;
+              if (bioDOM) {
+                const tinyBio = bioDOM.querySelector('#tiny-bio');
+                if (tinyBio) {
+                  bioDOM.classList.remove('d-none');
+                  if (typeof content.presenceStatusMsg.bio === 'string' && content.presenceStatusMsg.bio.length > 0) {
+                    tinyBio.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.bio, undefined, true, false, true));
+                  } else {
+                    bioDOM.classList.add('d-none');
+                    tinyBio.innerHTML = '';
+                  }
+                } else {
+                  bioDOM.classList.add('d-none');
+                }
+              }
+            }
 
           }
 
@@ -500,6 +524,15 @@ function ProfileViewer() {
 
               <h6 className='emoji-size-fix m-0 mb-1'><strong>{twemojify(username)}</strong></h6>
               <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
+
+              <div ref={bioRef} className='d-none'>
+
+                <hr />
+
+                <div className='text-gray emoji-size-fix text-uppercase fw-bold very-small mb-2'>About me</div>
+                <div id='tiny-bio' className='text-gray emoji-size-fix very-small text-freedom' />
+
+              </div>
 
             </div>
 
