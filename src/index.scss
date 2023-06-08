@@ -407,6 +407,27 @@ a {
     background-size: 100% auto;
   }
 
+  @media (max-width: 991px) {
+    .profile-banner {
+      height: 166px;
+      min-height: 166px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile-banner {
+      height: 161px;
+      min-height: 161px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .profile-banner {
+      height: 161px;
+      min-height: 161px;
+    }
+  }
+
   .avatar-container {
     position: relative;
     top: 0px;
