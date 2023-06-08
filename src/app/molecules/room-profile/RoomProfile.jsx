@@ -310,7 +310,9 @@ function RoomProfile({ roomId, profileMode, isSpace }) {
       <div className="row">
 
         <div className='col-md-1 p-0'>
-          {!canChangeAvatar && <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />}
+          {!canChangeAvatar && <center>
+            <Avatar imageSrc={avatarSrc} text={roomName} bgColor={colorMXID(roomId)} size="large" />
+          </center>}
           {canChangeAvatar && (
             <ImageUpload
               text={roomName}
