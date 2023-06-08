@@ -8,6 +8,7 @@ import {
   toggleSystemTheme, toggleMarkdown, toggleMembershipEvents, toggleNickAvatarEvents,
   toggleNotifications, toggleNotificationSounds,
 } from '../../../client/action/settings';
+import { emitUpdateProfile } from '../../../client/action/navigation';
 import { usePermission } from '../../hooks/usePermission';
 
 import Button from '../../atoms/button/Button';
@@ -366,6 +367,7 @@ function ProfileSection() {
     setProfileStatus(item.type);
     userProfile.status = item.type;
     initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+    emitUpdateProfile(userProfile);
   };
 
   const submitStatus = () => {
