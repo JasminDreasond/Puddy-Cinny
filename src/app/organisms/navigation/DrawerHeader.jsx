@@ -117,6 +117,12 @@ function DrawerHeader({ selectedTab, spaceId }) {
   let avatarSrc = '';
   if (bannerCfg && typeof bannerCfg?.url === 'string' && bannerCfg?.url.length > 0) {
     avatarSrc = mx.mxcUrlToHttp(bannerCfg.url, 960, 540);
+  } else {
+    const spaceHeader = document.querySelector('#space-header > .navbar');
+    if (spaceHeader) {
+      spaceHeader.classList.remove('banner-mode');
+      spaceHeader.style.backgroundImage = '';
+    }
   }
 
   const openSpaceOptions = (e) => {

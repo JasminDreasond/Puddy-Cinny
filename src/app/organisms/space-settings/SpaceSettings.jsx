@@ -84,39 +84,41 @@ function GeneralSettings({ roomId, profileMode }) {
     const bannerPlace = document.querySelector('.space-banner .avatar__border');
     const bannerImg = document.querySelector('.space-banner img');
 
-    if (spaceHeader) {
-      if (url === null) {
+    if (url === null) {
 
-        const isConfirmed = await confirmDialog(
-          'Remove space banner',
-          'Are you sure that you want to remove room banner?',
-          'Remove',
-          'warning',
-        );
+      const isConfirmed = await confirmDialog(
+        'Remove space banner',
+        'Are you sure that you want to remove room banner?',
+        'Remove',
+        'warning',
+      );
 
-        if (isConfirmed) {
-
-          await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
-
-          spaceHeader.classList.remove('banner-mode');
-          spaceHeader.style.backgroundImage = '';
-
-          if (bannerPlace) bannerPlace.style.backgroundImage = ''; bannerPlace.classList.remove('banner-added');
-          if (bannerImg) bannerImg.src = '';
-
-        }
-
-      } else {
+      if (isConfirmed) {
 
         await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
 
-        spaceHeader.classList.add('banner-mode');
-        spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
+        if (spaceHeader) {
+          spaceHeader.classList.remove('banner-mode');
+          spaceHeader.style.backgroundImage = '';
+        }
 
-        if (bannerPlace) bannerPlace.style.backgroundImage = `url('${mx.mxcUrlToHttp(url, 400, 227)}')`; bannerPlace.classList.add('banner-added');
-        if (bannerImg) bannerImg.src = mx.mxcUrlToHttp(url, 400, 227);
+        if (bannerPlace) bannerPlace.style.backgroundImage = ''; bannerPlace.classList.remove('banner-added');
+        if (bannerImg) bannerImg.src = '';
 
       }
+
+    } else {
+
+      await mx.sendStateEvent(roomId, 'pony.house.settings', { url }, 'banner');
+
+      if (spaceHeader) {
+        spaceHeader.classList.add('banner-mode');
+        spaceHeader.style.backgroundImage = `url("${mx.mxcUrlToHttp(url, 960, 540)}")`;
+      }
+
+      if (bannerPlace) bannerPlace.style.backgroundImage = `url('${mx.mxcUrlToHttp(url, 400, 227)}')`; bannerPlace.classList.add('banner-added');
+      if (bannerImg) bannerImg.src = mx.mxcUrlToHttp(url, 400, 227);
+
     }
 
   };
