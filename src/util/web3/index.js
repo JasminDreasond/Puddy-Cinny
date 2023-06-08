@@ -21,8 +21,8 @@ const startWeb3 = () => {
     contracts: {},
 
     errors: Object.freeze({
-      noWallet: () => { return new Error('No wallet connected detected.'); },
-      noProvider: () => { return new Error('No provider connected detected.'); },
+      noWallet: () => new Error('No wallet connected detected.'),
+      noProvider: () => new Error('No provider connected detected.'),
     }),
 
     decimals: Object.freeze({
