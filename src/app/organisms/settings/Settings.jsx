@@ -354,16 +354,19 @@ function DonateSection() {
 
 function ProfileSection() {
 
-  const [profileStatus, setProfileStatus] = useState('online');
-  const [banner, setBanner] = useState(null);
-  const [customStatus, setCustomStatus] = useState(null);
-  const [userBio, setUserBio] = useState(null);
-
-
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
 
+  const [profileStatus, setProfileStatus] = useState(userProfile.status ? userProfile.status : 'online');
+  const [banner, setBanner] = useState(userProfile.banner);
+  const [customStatus, setCustomStatus] = useState(userProfile.msg);
+  const [userBio, setUserBio] = useState(userProfile.bio);
 
+  const sendSetStatus = (item) => {
+    setProfileStatus(item.type);
+    userProfile.status = item.type;
+    initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+  };
 
   const submitStatus = () => {
     alert('Presence updated!');
@@ -393,17 +396,8 @@ function ProfileSection() {
   ];
 
   let bannerSrc;
-  if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
-    setBanner(userProfile.banner);
-    bannerSrc = initMatrix.matrixClient.mxcUrlToHttp(userProfile.banner, 400, 227);
-  }
-
-  if (typeof userProfile?.msg === 'string' && userProfile?.msg.length > 0) {
-    setCustomStatus(userProfile.msg);
-  }
-
-  if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
-    setUserBio(userProfile.bio);
+  if (typeof banner === 'string' && banner.length > 0) {
+    bannerSrc = initMatrix.matrixClient.mxcUrlToHttp(banner, 400, 227);
   }
 
   return (
@@ -421,7 +415,7 @@ function ProfileSection() {
             className={profileStatus === item.type ? 'text-start btn-text-success' : 'text-start'}
             faSrc={item.faSrc}
             key={item.type}
-            onClick={() => setProfileStatus(item.type)}
+            onClick={() => sendSetStatus(item)}
           >
 
             {item.text}
@@ -435,14 +429,14 @@ function ProfileSection() {
         <li className="list-group-item border-0">
           <div className='small'>Custom Status</div>
           <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
-          <input className="form-control form-control-bg" type="text" placeholder="" value={customStatus} />
+          <input className="form-control form-control-bg" type="text" placeholder="" maxLength="100" value={customStatus} />
           <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>About me</div>
           <div className='very-small text-gray'>Enter a small biography about you.</div>
-          <textarea className="form-control form-control-bg" placeholder="">{userBio}</textarea>
+          <textarea className="form-control form-control-bg" placeholder="" rows="7" maxLength="190">{userBio}</textarea>
           <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
