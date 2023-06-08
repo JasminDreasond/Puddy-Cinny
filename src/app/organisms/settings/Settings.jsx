@@ -374,11 +374,25 @@ function ProfileSection() {
   };
 
   const sendCustomStatus = () => {
-    alert('Presence updated!');
+    if (customStatusRef && customStatusRef.current) {
+
+      const value = customStatusRef.current.value;
+      if (typeof value === 'string' && value.length > 0) {
+        alert(value);
+      }
+
+    }
   };
 
   const sendBio = () => {
-    alert('Presence updated!');
+    if (bioRef && bioRef.current) {
+
+      const value = bioRef.current.value;
+      if (typeof value === 'string' && value.length > 0) {
+        alert(value);
+      }
+
+    }
   };
 
   const items = [
