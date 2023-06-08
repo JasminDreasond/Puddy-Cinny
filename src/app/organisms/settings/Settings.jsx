@@ -483,8 +483,14 @@ function ProfileSection() {
         </li>
 
         <li className="list-group-item border-0">
+
           <div className='small'>Banner</div>
-          <div className='very-small text-gray'>Set the banner of your profile.</div>
+
+          <div className="very-small text-gray">
+            <p>This image will display at the top of your profile.</p>
+            The recommended minimum size is 1500x500 and recommended aspect ratio is 16:9.
+          </div>
+
           <ImageUpload
             className='space-banner profile-banner'
             text='Banner'
