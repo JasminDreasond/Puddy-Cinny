@@ -402,6 +402,46 @@ function ProfileSection() {
     bannerSrc = initMatrix.matrixClient.mxcUrlToHttp(banner, 400, 227);
   }
 
+  const handleBannerUpload = async url => {
+
+    const bannerPlace = document.querySelector('.space-banner .avatar__border');
+    const bannerImg = document.querySelector('.space-banner img');
+
+    if (url === null) {
+
+      const isConfirmed = await confirmDialog(
+        'Remove profile banner',
+        'Are you sure that you want to remove banner?',
+        'Remove',
+        'warning',
+      );
+
+      if (isConfirmed) {
+
+        setBanner(null);
+        delete userProfile.banner;
+        initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+        emitUpdateProfile(userProfile);
+
+        if (bannerPlace) bannerPlace.style.backgroundImage = ''; bannerPlace.classList.remove('banner-added');
+        if (bannerImg) bannerImg.src = '';
+
+      }
+
+    } else {
+
+      setBanner(url);
+      userProfile.banner = url;
+      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
+      emitUpdateProfile(userProfile);
+
+      if (bannerPlace) bannerPlace.style.backgroundImage = `url('${initMatrix.matrixClient.mxcUrlToHttp(url, 400, 227)}')`; bannerPlace.classList.add('banner-added');
+      if (bannerImg) bannerImg.src = initMatrix.matrixClient.mxcUrlToHttp(url, 400, 227);
+
+    }
+
+  };
+
   return (
     <div className="card noselect">
       <ul className="list-group list-group-flush">
@@ -449,8 +489,8 @@ function ProfileSection() {
             className='space-banner'
             text='Banner'
             imageSrc={bannerSrc}
-            onUpload={() => { }}
-            onRequestRemove={() => { }}
+            onUpload={handleBannerUpload}
+            onRequestRemove={() => handleBannerUpload(null)}
           />
         </li>
 
