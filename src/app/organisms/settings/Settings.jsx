@@ -358,6 +358,9 @@ function ProfileSection() {
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
 
+  const customStatusRef = useRef(null);
+  const bioRef = useRef(null);
+
   const [profileStatus, setProfileStatus] = useState(userProfile.status ? userProfile.status : 'online');
   const [banner, setBanner] = useState(userProfile.banner);
   const [customStatus, setCustomStatus] = useState(userProfile.msg);
@@ -370,7 +373,11 @@ function ProfileSection() {
     emitUpdateProfile(userProfile);
   };
 
-  const submitStatus = () => {
+  const sendCustomStatus = () => {
+    alert('Presence updated!');
+  };
+
+  const sendBio = () => {
     alert('Presence updated!');
   };
 
@@ -471,15 +478,15 @@ function ProfileSection() {
         <li className="list-group-item border-0">
           <div className='small'>Custom Status</div>
           <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
-          <input className="form-control form-control-bg" type="text" placeholder="" maxLength="100" value={customStatus} />
-          <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
+          <input ref={customStatusRef} className="form-control form-control-bg" type="text" placeholder="" maxLength="100" value={customStatus} />
+          <Button className='mt-2' onClick={sendCustomStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>About me</div>
           <div className='very-small text-gray'>Enter a small biography about you.</div>
-          <textarea className="form-control form-control-bg" placeholder="" rows="7" maxLength="190">{userBio}</textarea>
-          <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
+          <textarea ref={bioRef} className="form-control form-control-bg" placeholder="" rows="7" maxLength="190">{userBio}</textarea>
+          <Button className='mt-2' onClick={sendBio} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
