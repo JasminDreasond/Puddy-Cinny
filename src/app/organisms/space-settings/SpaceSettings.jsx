@@ -24,7 +24,7 @@ import RoomAliases from '../../molecules/room-aliases/RoomAliases';
 import RoomPermissions from '../../molecules/room-permissions/RoomPermissions';
 import RoomMembers from '../../molecules/room-members/RoomMembers';
 import RoomEmojis from '../../molecules/room-emojis/RoomEmojis';
-import ImageUpload from '../../molecules/image-upload/ImageUpload.jsx';
+import ImageUpload from '../../molecules/image-upload/ImageUpload';
 import Avatar from '../../atoms/avatar/Avatar';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';

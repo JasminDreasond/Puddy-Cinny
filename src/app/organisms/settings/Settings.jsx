@@ -28,8 +28,11 @@ import ProfileEditor from '../profile-editor/ProfileEditor';
 import CrossSigning from './CrossSigning';
 import KeyBackup from './KeyBackup';
 import DeviceManage from './DeviceManage';
+
 import { MenuItem } from '../../atoms/context-menu/ContextMenu';
 import RadioButton from '../../atoms/button/RadioButton';
+import ImageUpload from '../../molecules/image-upload/ImageUpload';
+
 import { getStatusCSS } from '../../../util/onlineStatus';
 
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
@@ -360,6 +363,9 @@ function ProfileSection() {
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
   console.log(userProfile);
 
+  // userProfile.status
+  // 
+
   const submitStatus = () => {
     alert('Presence updated!');
   };
@@ -386,6 +392,11 @@ function ProfileSection() {
       faSrc: `${getStatusCSS('offline')} user-presence-offline`,
     }
   ];
+
+  let bannerSrc;
+  if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
+    bannerSrc = mx.mxcUrlToHttp(userProfile.banner, 400, 227);
+  }
 
   return (
     <div className="card noselect">
@@ -417,24 +428,26 @@ function ProfileSection() {
           <div className='small'>Custom Status</div>
           <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
           <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.msg} />
+          <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>About me</div>
           <div className='very-small text-gray'>Enter a small biography about you.</div>
-          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.bio} />
+          <textarea className="form-control form-control-bg" placeholder="">{userProfile.bio}</textarea>
+          <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>Banner</div>
           <div className='very-small text-gray'>Set the banner of your profile.</div>
-          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.banner} />
-        </li>
-
-        <li className="list-group-item border-0">
-          <center>
-            <Button className='ms-1' onClick={submitStatus} variant="success">Submit</Button>
-          </center>
+          <ImageUpload
+            className='space-banner'
+            text='Banner'
+            imageSrc={bannerSrc}
+            onUpload={() => { }}
+            onRequestRemove={() => { }}
+          />
         </li>
 
       </ul>
