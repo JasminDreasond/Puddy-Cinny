@@ -55,7 +55,8 @@
     "react-modal": "3.16.1",
     "sanitize-html": "2.8.0",
     "tippy.js": "6.3.7",
-    "twemoji": "14.0.2"
+    "twemoji": "14.0.2",
+    "web3": "4.0.1"
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "0.2.3",

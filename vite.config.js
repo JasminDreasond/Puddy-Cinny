@@ -9,6 +9,10 @@ import { svgLoader } from './viteSvgLoader';
 const copyFiles = {
   targets: [
     {
+      src: 'node_modules/web3/dist/web3.min.js',
+      dest: 'node_modules/web3/dist/web3.min.js',
+    },
+    {
       src: 'node_modules/@matrix-org/olm/olm.wasm',
       dest: '',
     },
