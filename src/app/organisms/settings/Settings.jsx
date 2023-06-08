@@ -354,11 +354,10 @@ function DonateSection() {
 
 function ProfileSection() {
 
-  const [activeType, setNotification] = useState('online');
-  const status = useRef(null);
-  const customStatus = useRef(null);
-  const about = useRef(null);
-  const banner = useRef(null);
+  const [profileStatus, setProfileStatus] = useState('online');
+  const [banner, setBanner] = useState(null);
+  const [customStatus, setCustomStatus] = useState(null);
+  const [userBio, setUserBio] = useState(null);
 
 
   const userProfile = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
@@ -395,7 +394,16 @@ function ProfileSection() {
 
   let bannerSrc;
   if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
+    setBanner(userProfile.banner);
     bannerSrc = initMatrix.matrixClient.mxcUrlToHttp(userProfile.banner, 400, 227);
+  }
+
+  if (typeof userProfile?.msg === 'string' && userProfile?.msg.length > 0) {
+    setCustomStatus(userProfile.msg);
+  }
+
+  if (typeof userProfile?.banner === 'string' && userProfile?.banner.length > 0) {
+    setUserBio(userProfile.bio);
   }
 
   return (
@@ -410,15 +418,15 @@ function ProfileSection() {
 
         {items.map((item) => (
           <MenuItem
-            className={activeType === item.type ? 'text-start btn-text-success' : 'text-start'}
+            className={profileStatus === item.type ? 'text-start btn-text-success' : 'text-start'}
             faSrc={item.faSrc}
             key={item.type}
-            onClick={() => setNotification(item.type)}
+            onClick={() => setProfileStatus(item.type)}
           >
 
             {item.text}
             <span className='ms-4 float-end'>
-              <RadioButton isActive={activeType === item.type} />
+              <RadioButton isActive={profileStatus === item.type} />
             </span>
 
           </MenuItem>
@@ -427,14 +435,14 @@ function ProfileSection() {
         <li className="list-group-item border-0">
           <div className='small'>Custom Status</div>
           <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
-          <input className="form-control form-control-bg" type="text" placeholder="" value={userProfile.msg} />
+          <input className="form-control form-control-bg" type="text" placeholder="" value={customStatus} />
           <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>About me</div>
           <div className='very-small text-gray'>Enter a small biography about you.</div>
-          <textarea className="form-control form-control-bg" placeholder="">{userProfile.bio}</textarea>
+          <textarea className="form-control form-control-bg" placeholder="">{userBio}</textarea>
           <Button className='mt-2' onClick={submitStatus} variant="primary">Submit</Button>
         </li>
 
