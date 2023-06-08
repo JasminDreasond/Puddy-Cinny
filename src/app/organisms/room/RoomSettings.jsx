@@ -159,6 +159,7 @@ SecuritySettings.propTypes = {
 function RoomSettings({ roomId }) {
   const [, forceUpdate] = useForceUpdate();
   const [selectedTab, setSelectedTab] = useState(tabItems[0]);
+  const [isProfile, setIsProfile] = useState(false);
   const room = initMatrix.matrixClient.getRoom(roomId);
 
   const handleTabChange = (tabItem) => {
@@ -166,6 +167,9 @@ function RoomSettings({ roomId }) {
   };
 
   useEffect(() => {
+
+    const profileSetting = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
+
     let mounted = true;
     const settingsToggle = (isVisible, tab) => {
       if (!mounted) return;
@@ -175,11 +179,25 @@ function RoomSettings({ roomId }) {
         forceUpdate();
       } else setTimeout(() => forceUpdate(), 200);
     };
+
+    const onProfileUpdate = (event = {}) => {
+      if (event) {
+        setIsProfile((event.roomId === roomId));
+      }
+    };
+
+    onProfileUpdate(profileSetting);
     navigation.on(cons.events.navigation.ROOM_SETTINGS_TOGGLED, settingsToggle);
+    navigation.on(cons.events.navigation.PROFILE_UPDATED, onProfileUpdate);
     return () => {
       mounted = false;
       navigation.removeListener(cons.events.navigation.ROOM_SETTINGS_TOGGLED, settingsToggle);
+      navigation.removeListener(
+        cons.events.navigation.PROFILE_UPDATED,
+        onProfileUpdate,
+      );
     };
+
   }, []);
 
   if (!navigation.isRoomSettings) return null;
@@ -206,7 +224,7 @@ function RoomSettings({ roomId }) {
         </ul>
       </Header>
 
-      <RoomProfile roomId={roomId} />
+      <RoomProfile profileMode={isProfile} roomId={roomId} />
       <Tabs
         className='px-3'
         items={tabItems}

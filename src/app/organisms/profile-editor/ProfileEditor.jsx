@@ -143,17 +143,7 @@ function ProfileEditor({ userId }) {
       <div ref={spaceProfileRef} className='very-small'>{profileId ?
         <>
 
-          <div className='fake-a d-inline-block' onClick={() => {
-
-            const room = mx.getRoom(profileId);
-
-            if (room && room.roomId) {
-              openSpaceSettings(profileId, null, true);
-            } else {
-              alert('Profile space not found.');
-            }
-
-          }}>
+          <div className='d-inline-block'>
             {profileId}
           </div>
 
@@ -162,8 +152,8 @@ function ProfileEditor({ userId }) {
           <div className='fake-a--text-danger d-inline-block' onClick={async () => {
 
             const isConfirmed = await confirmDialog(
-              'Unlink profile space',
-              'Are you sure that you want to unlink the profile space?',
+              'Unlink profile room',
+              'Are you sure that you want to unlink the profile room?',
               'Remove',
               'warning',
             );
@@ -187,8 +177,7 @@ function ProfileEditor({ userId }) {
         </> : <Button className='mt-2 btn-sm' variant='primary' onClick={() => {
 
           mx.createRoom({
-            name: `Pony-House -> ${userId}'s Profile`,
-            creation_content: { type: 'm.space' },
+            name: `${userId}'s Profile`,
             visibility: 'private',
             preset: 'public_chat',
           }).then(data => {

@@ -18,7 +18,7 @@ import { useStore } from '../../hooks/useStore';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { confirmDialog } from '../confirm-dialog/ConfirmDialog';
 
-function RoomProfile({ roomId, profileMode }) {
+function RoomProfile({ roomId, profileMode, isSpace }) {
 
   // First Data
   const isMountStore = useStore();
@@ -117,20 +117,24 @@ function RoomProfile({ roomId, profileMode }) {
         // New Name
         let newName = `${roomNameInput.value}`;
 
-        // Check Index
-        if (typeof roomCategory.value === 'string' && roomCategory.value.length > 0) {
-          newName = `${roomCategory.value} - ${newName}`;
-        }
+        if (!isSpace) {
 
-        if (
-          (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) ||
-          (typeof roomCategory.value === 'string' && roomCategory.value.length > 0)
-        ) {
+          // Check Index
+          if (typeof roomCategory.value === 'string' && roomCategory.value.length > 0) {
+            newName = `${roomCategory.value} - ${newName}`;
+          }
 
-          if (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) {
-            newName = `${roomIndex.value} - ${newName}`;
-          } else {
-            newName = `0 - ${newName}`;
+          if (
+            (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) ||
+            (typeof roomCategory.value === 'string' && roomCategory.value.length > 0)
+          ) {
+
+            if (typeof roomIndex.value === 'string' && roomIndex.value.length > 0) {
+              newName = `${roomIndex.value} - ${newName}`;
+            } else {
+              newName = `0 - ${newName}`;
+            }
+
           }
 
         }
@@ -224,8 +228,8 @@ function RoomProfile({ roomId, profileMode }) {
     <form className="room-profile__edit-form" onSubmit={handleOnSubmit}>
 
       {canChangeName && <div><Input className='mb-3' onKeyDown={inputValidator} onChange={inputValidator} value={roomName} name="room-name" disabled={status.type === cons.status.IN_FLIGHT} label="Name" /></div>}
-      {canChangeName && <div><Input className='mb-3' value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" /></div>}
-      {canChangeName && <div><Input className='mb-3' onKeyDown={inputValidator} onChange={inputValidator} value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" /></div>}
+      {!isSpace && canChangeName && <div><Input className='mb-3' value={nameCinny.index} type="number" name="room-index" disabled={status.type === cons.status.IN_FLIGHT} label="Index" /></div>}
+      {!isSpace && canChangeName && <div><Input className='mb-3' onKeyDown={inputValidator} onChange={inputValidator} value={nameCinny.category} name="room-category" disabled={status.type === cons.status.IN_FLIGHT} label="Category" /></div>}
       {canChangeTopic && <div><Input className='mb-3' value={roomTopic} name="room-topic" disabled={status.type === cons.status.IN_FLIGHT} minHeight={100} resizable label="Topic" /></div>}
 
       {(!canChangeName || !canChangeTopic) && <div className="very-small text-gray">{`You have permission to change ${room.isSpaceRoom() ? 'space' : 'room'} ${canChangeName ? 'name' : 'topic'} only.`}</div>}
@@ -332,6 +336,7 @@ function RoomProfile({ roomId, profileMode }) {
 RoomProfile.propTypes = {
   roomId: PropTypes.string.isRequired,
   profileMode: PropTypes.bool,
+  isSpace: PropTypes.bool,
 };
 
 export default RoomProfile;

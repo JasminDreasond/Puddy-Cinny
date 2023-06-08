@@ -63,6 +63,7 @@ export async function getUserProfileAsync(content) {
         // Profile Room
         try {
 
+            const mx = initMatrix.matrixClient;
             const roomTopic = await getStateEvent(content.presenceStatusMsg.roomId, 'm.room.topic');
             const bannerCfg = await getStateEvent(content.presenceStatusMsg.roomId, 'pony.house.settings', 'banner');
 
