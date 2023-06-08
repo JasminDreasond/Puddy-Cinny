@@ -68,7 +68,7 @@ function ProfileAvatarMenu() {
         if (eventJSON.length > 0 && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON)) {
 
           let presenceStatus = 'online';
-          if (typeof event.status === 'string' && (event.status === 'offline' || event.status === 'unavailable')) {
+          if (typeof event.status === 'string' && event.status === '🔘') {
             presenceStatus = 'offline';
           }
 

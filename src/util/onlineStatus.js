@@ -65,7 +65,8 @@ export function parsePresenceStatus(presence) {
             if (tinyParse) {
 
                 // Status Profile
-                if (typeof tinyParse.status === 'string' && tinyParse.status.length === 1) {
+                if (typeof tinyParse.status === 'string') {
+                    tinyParse.status = tinyParse.status.trim();
                     const validateIcon = validatorStatusIcon(tinyParse.status);
                     if (typeof validateIcon === 'string') {
                         tinyResult.status = validateIcon;

@@ -376,22 +376,22 @@ function ProfileSection() {
 
   const items = [
     {
-      type: 'online',
+      type: '🟢',
       text: 'Online',
       faSrc: `${getStatusCSS('online')} user-presence-online`,
     },
     {
-      type: 'idle',
+      type: '🟠',
       text: 'Idle',
       faSrc: `${getStatusCSS('idle')} user-presence-idle`,
     },
     {
-      type: 'dnd',
+      type: '🔴',
       text: 'Do not disturb',
       faSrc: `${getStatusCSS('dnd')} user-presence-dnd`,
     },
     {
-      type: 'offline',
+      type: '🔘',
       text: 'Invisible',
       faSrc: `${getStatusCSS('offline')} user-presence-offline`,
     }
