@@ -58,7 +58,7 @@ const startWeb3 = () => {
     // Calls
 
     // Account Change
-    tinyCrypto.call.accountsChanged = new Promise((resolve, reject) => {
+    tinyCrypto.call.accountsChanged = (accounts) => new Promise((resolve, reject) => {
       tinyCrypto.get.signerAddress().then(address => {
 
         tinyCrypto.address = address;
