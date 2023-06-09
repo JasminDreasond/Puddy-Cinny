@@ -15,6 +15,7 @@ function PeopleSelector({
 }) {
 
   const statusRef = React.useRef(null);
+  const customStatusRef = React.useRef(null);
   React.useEffect(() => {
     if (user) {
 
@@ -51,12 +52,17 @@ function PeopleSelector({
       onClick={onClick}
       type="button"
     >
-      <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="extra-small" />
+
+      <Avatar imageSrc={avatarSrc} text={name} bgColor={color} size="small" />
       {!disableStatus ? <i ref={statusRef} className={getUserStatus(user)} /> : ''}
-      <Text className="people-selector__name emoji-size-fix" variant="b1">
+
+      <div className="small people-selector__name emoji-size-fix text-start">
         {twemojify(name)}
-      </Text>
+        <div ref={customStatusRef} className='very-small' />
+      </div>
+
       {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
+
     </button>
   );
 
