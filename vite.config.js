@@ -10,7 +10,7 @@ const copyFiles = {
   targets: [
     {
       src: 'node_modules/web3/dist/web3.min.js',
-      dest: 'node_modules/web3/dist/web3.min.js',
+      dest: 'node_modules/web3/dist/',
     },
     {
       src: 'node_modules/@matrix-org/olm/olm.wasm',
