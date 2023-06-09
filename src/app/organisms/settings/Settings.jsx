@@ -503,14 +503,14 @@ function ProfileSection() {
         <li className="list-group-item border-0">
           <div className='small'>Custom Status</div>
           <div className='very-small text-gray'>Enter a status that will appear next to your name.</div>
-          <input ref={customStatusRef} className="form-control form-control-bg" type="text" placeholder="" maxLength="100" value={customStatus} />
+          <input ref={customStatusRef} className="form-control form-control-bg" type="text" placeholder="" maxLength="100" defaultValue={customStatus} />
           <Button className='mt-2' onClick={sendCustomStatus} variant="primary">Submit</Button>
         </li>
 
         <li className="list-group-item border-0">
           <div className='small'>About me</div>
           <div className='very-small text-gray'>Enter a small biography about you.</div>
-          <textarea ref={bioRef} className="form-control form-control-bg" placeholder="" rows="7" maxLength="190">{userBio}</textarea>
+          <textarea ref={bioRef} className="form-control form-control-bg" placeholder="" rows="7" maxLength="190" defaultValue={userBio} />
           <Button className='mt-2' onClick={sendBio} variant="primary">Submit</Button>
         </li>
 
