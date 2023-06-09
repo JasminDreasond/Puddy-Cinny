@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PeopleSelector.scss';
 
+import ReactDOMServer from 'react-dom/server';
 import { twemojify } from '../../../util/twemojify';
 
 import { blurOnBubbling } from '../../atoms/button/script';
 
 import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
-import { getUserStatus, updateUserStatusIcon } from '../../../util/onlineStatus';
+import { getUserStatus, updateUserStatusIcon, getPresence } from '../../../util/onlineStatus';
 
 function PeopleSelector({
   avatarSrc, name, color, peopleRole, onClick, user, disableStatus
@@ -16,6 +17,29 @@ function PeopleSelector({
 
   const statusRef = React.useRef(null);
   const customStatusRef = React.useRef(null);
+
+  const getCustomStatus = (content) => {
+
+    // Custom Status
+    if (customStatusRef && customStatusRef.current) {
+
+      // Get Status
+      const customStatus = customStatusRef.current;
+
+      if (content && content.presenceStatusMsg && typeof content.presenceStatusMsg.msg === 'string' && content.presenceStatusMsg.msg.length > 0) {
+        customStatus.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.msg.substring(0, 100), undefined, true, false, true));
+      } else {
+        customStatus.innerHTML = '';
+      }
+
+    }
+
+  };
+
+  if (user) {
+    getCustomStatus(getPresence(user));
+  }
+
   React.useEffect(() => {
     if (user) {
 
@@ -27,7 +51,7 @@ function PeopleSelector({
           const status = statusRef.current;
 
           // Update Status Icon
-          updateUserStatusIcon(status, tinyUser);
+          getCustomStatus(updateUserStatusIcon(status, tinyUser));
 
         }
       };
@@ -58,7 +82,7 @@ function PeopleSelector({
 
       <div className="small people-selector__name emoji-size-fix text-start">
         {twemojify(name)}
-        <div ref={customStatusRef} className='very-small' />
+        <div ref={customStatusRef} className='very-small text-gray text-truncate' />
       </div>
 
       {peopleRole !== null && <Text className="people-selector__role" variant="b3">{peopleRole}</Text>}
