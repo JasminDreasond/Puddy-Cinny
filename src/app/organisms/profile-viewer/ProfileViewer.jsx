@@ -354,6 +354,7 @@ function ProfileViewer() {
 
   // Prepare
   const bioRef = useRef(null);
+  const customStatusRef = useRef(null);
   const statusRef = useRef(null);
   const profileBanner = useRef(null);
   const [isOpen, roomId, userId, closeDialog, handleAfterClose] = useToggleDialog();
@@ -398,13 +399,27 @@ function ProfileViewer() {
                 if (tinyBio) {
                   bioDOM.classList.remove('d-none');
                   if (typeof content.presenceStatusMsg.bio === 'string' && content.presenceStatusMsg.bio.length > 0) {
-                    tinyBio.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.bio, undefined, true, false, true));
+                    tinyBio.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.bio.substring(0, 190), undefined, true, false, true));
                   } else {
                     bioDOM.classList.add('d-none');
                     tinyBio.innerHTML = '';
                   }
                 } else {
                   bioDOM.classList.add('d-none');
+                }
+              }
+            }
+
+            // Get Custom Status Data
+            if (customStatusRef.current) {
+              const customStatusDOM = customStatusRef.current;
+              if (customStatusDOM) {
+                customStatusDOM.classList.remove('d-none');
+                if (typeof content.presenceStatusMsg.msg === 'string' && content.presenceStatusMsg.msg.length > 0) {
+                  customStatusDOM.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.msg.substring(0, 100), undefined, true, false, true));
+                } else {
+                  customStatusDOM.classList.add('d-none');
+                  customStatusDOM.innerHTML = '';
                 }
               }
             }
@@ -525,12 +540,14 @@ function ProfileViewer() {
               <h6 className='emoji-size-fix m-0 mb-1'><strong>{twemojify(username)}</strong></h6>
               <small className='text-gray emoji-size-fix'>{twemojify(userId)}</small>
 
+              <div ref={customStatusRef} className='d-none mt-2 emoji-size-fix small' />
+
               <div ref={bioRef} className='d-none'>
 
                 <hr />
 
                 <div className='text-gray emoji-size-fix text-uppercase fw-bold very-small mb-2'>About me</div>
-                <div id='tiny-bio' className='text-gray emoji-size-fix very-small text-freedom' />
+                <div id='tiny-bio' className='emoji-size-fix small text-freedom' />
 
               </div>
 
