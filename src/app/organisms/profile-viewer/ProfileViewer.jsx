@@ -369,11 +369,18 @@ function ProfileViewer() {
     if (user) {
 
       // Update Status Profile
-      const updateProfileStatus = (mEvent, tinyUser) => {
+      const updateProfileStatus = (mEvent, tinyData) => {
         if (statusRef && statusRef.current) {
 
           // Get Status
+          const tinyUser = tinyData;
           const status = statusRef.current;
+
+          // Is You
+          if (tinyUser.userId === mx.getUserId()) {
+            const yourData = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+            tinyUser.presenceStatusMsg = JSON.stringify(yourData);
+          }
 
           // Update Status Icon
           const content = updateUserStatusIcon(status, tinyUser);

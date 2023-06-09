@@ -10,6 +10,7 @@ import { blurOnBubbling } from '../../atoms/button/script';
 import Text from '../../atoms/text/Text';
 import Avatar from '../../atoms/avatar/Avatar';
 import { getUserStatus, updateUserStatusIcon, getPresence } from '../../../util/onlineStatus';
+import initMatrix from '../../../client/initMatrix';
 
 function PeopleSelector({
   avatarSrc, name, color, peopleRole, onClick, user, disableStatus
@@ -48,11 +49,19 @@ function PeopleSelector({
     if (user) {
 
       // Update Status Profile
-      const updateProfileStatus = (mEvent, tinyUser) => {
+      const updateProfileStatus = (mEvent, tinyData) => {
         if (statusRef && statusRef.current) {
 
           // Get Status
+          const mx = initMatrix.matrixClient;
           const status = statusRef.current;
+          const tinyUser = tinyData;
+
+          // Is You
+          if (tinyUser.userId === mx.getUserId()) {
+            const yourData = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+            tinyUser.presenceStatusMsg = JSON.stringify(yourData);
+          }
 
           // Update Status Icon
           getCustomStatus(updateUserStatusIcon(status, tinyUser));
