@@ -26,7 +26,11 @@ function PeopleSelector({
       // Get Status
       const customStatus = customStatusRef.current;
 
-      if (content && content.presenceStatusMsg && typeof content.presenceStatusMsg.msg === 'string' && content.presenceStatusMsg.msg.length > 0) {
+      if (
+        content && content.presenceStatusMsg &&
+        content.presenceStatusMsg.status !== 'offline' && content.presenceStatusMsg.status !== 'unavailable' &&
+        typeof content.presenceStatusMsg.msg === 'string' && content.presenceStatusMsg.msg.length > 0
+      ) {
         customStatus.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.msg.substring(0, 100), undefined, true, false, true));
       } else {
         customStatus.innerHTML = '';
