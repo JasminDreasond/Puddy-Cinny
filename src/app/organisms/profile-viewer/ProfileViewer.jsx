@@ -419,7 +419,7 @@ function ProfileViewer() {
                   content.presence !== 'offline' && content.presence !== 'unavailable' &&
                   typeof content.presenceStatusMsg.msg === 'string' && content.presenceStatusMsg.msg.length > 0
                 ) {
-                  customStatusDOM.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.msg.substring(0, 100), undefined, true, false, true));
+                  customStatusDOM.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(content.presenceStatusMsg.msg.substring(0, 100)));
                 } else {
                   customStatusDOM.classList.add('d-none');
                   customStatusDOM.innerHTML = '';
