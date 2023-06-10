@@ -9,6 +9,14 @@ import { svgLoader } from './viteSvgLoader';
 const copyFiles = {
   targets: [
     {
+      src: 'public/404/404.html',
+      dest: '',
+    },
+    {
+      src: 'public/404/matrix.js',
+      dest: '',
+    },
+    {
       src: 'node_modules/web3/dist/web3.min.js',
       dest: 'public/js/',
     },
@@ -39,6 +47,10 @@ const copyFiles = {
     {
       src: 'public/img/page',
       dest: 'public/img/',
+    },
+    {
+      src: 'public/img/404',
+      dest: 'public/img/404/',
     }
   ],
 }
