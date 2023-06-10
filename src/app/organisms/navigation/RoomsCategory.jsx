@@ -190,20 +190,16 @@ function RoomsCategory({
   return (
     <div className="p-3 pe-2">
       {!hideHeader && (
-        <div>
+        <>
           <button className="py-2" onClick={() => setIsOpen(!isOpen)} type="button">
             <RawIcon fa={isOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-right"} size="extra-small" />
             <span className="text-gray very-small text-uppercase ms-2" >{name}</span>
           </button>
           {spaceId && <IconButton onClick={openSpaceOptions} tooltip="Space options" fa="bi bi-three-dots" size="extra-small" />}
           {spaceId && <IconButton onClick={openHomeSpaceOptions} tooltip="Add rooms/spaces" fa="fa-solid fa-plus" size="extra-small" />}
-        </div>
+        </>
       )}
-      {(isOpen || hideHeader) && (
-        <div>
-          {rooms}
-        </div>
-      )}
+      {(isOpen || hideHeader) && rooms}
     </div>
   );
 }

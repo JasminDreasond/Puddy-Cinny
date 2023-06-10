@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import navigation from '../../../client/state/navigation';
 import Avatar from '../../atoms/avatar/Avatar';
 import cons from '../../../client/state/cons';
-import SidebarAvatar from '../../molecules/sidebar-avatar/SidebarAvatar';
+
 import { colorMXID } from '../../../util/colorMXID';
 
 import initMatrix from '../../../client/initMatrix';
