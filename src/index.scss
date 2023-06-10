@@ -118,6 +118,11 @@ audio:not([controls]) {
   --bs-modal-bg: var(--bg-surface);
   --bs-modal-header-border-color: var(--bg-surface-border);
   --bs-modal-footer-border-color: var(--bg-surface-border);
+
+  .modal-body {
+    background: var(--bg-surface);
+    background: var(--bg-surface-gradient);
+  }
 }
 
 .btn-close {

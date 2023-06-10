@@ -6,6 +6,8 @@
   height: 100%;
 
   &__content {
+    background: var(--bg-surface);
+    background: var(--bg-surface-gradient);
     @extend .cp-fx__item-one;
     position: relative;
     overflow: hidden;
