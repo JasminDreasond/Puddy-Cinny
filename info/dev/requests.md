@@ -38,6 +38,6 @@ Made by Me
 
     user.emit('user.status', { presence: 'online' });
 
-
+    mx.getUrlPreview(url, ts)
 
     O upload de imagens está desregulado
