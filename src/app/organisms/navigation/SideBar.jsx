@@ -22,8 +22,6 @@ import ScrollView from '../../atoms/scroll/ScrollView';
 import SidebarAvatar from '../../molecules/sidebar-avatar/SidebarAvatar';
 import SpaceOptions from '../../molecules/space-options/SpaceOptions';
 
-import ProfileAvatarMenu from './ProfileAvatarMenu';
-
 import { useSelectedTab } from '../../hooks/useSelectedTab';
 import { useDeviceList } from '../../hooks/useDeviceList';
 
@@ -339,7 +337,6 @@ function SideBar() {
             onClick={() => openSearch()}
             avatar={<Avatar faSrc="fa-solid fa-magnifying-glass" size="normal" />}
           />
-          <ProfileAvatarMenu />
         </div>
       </center>
     </>

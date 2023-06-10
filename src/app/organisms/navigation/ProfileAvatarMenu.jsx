@@ -83,12 +83,28 @@ function ProfileAvatarMenu() {
             onClick={openSettings}
             tooltip="Settings"
             avatar={(
-                <Avatar
-                    text={profile.displayName}
-                    bgColor={colorMXID(mx.getUserId())}
-                    size="normal"
-                    imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
-                />
+                <table className="table table-borderless align-middle m-0" id="chatbox">
+                    <tbody>
+                        <tr>
+
+                            <td className="align-top text-center chat-base">
+                                <Avatar
+                                    text={profile.displayName}
+                                    bgColor={colorMXID(mx.getUserId())}
+                                    size="normal"
+                                    imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
+                                />
+                            </td>
+
+                            <td className="p-0 pe-3 py-1">
+
+                            </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
             )}
         />
     );

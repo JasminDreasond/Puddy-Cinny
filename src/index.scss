@@ -552,7 +552,7 @@ a {
 }
 
 #space-header .navbar.banner-mode {
-  height: 163px;
+  height: 138px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -564,7 +564,7 @@ a {
 }
 
 #space-header {
-  padding-bottom: 163px !important;
+  padding-bottom: 198px !important;
 }
 
 .space-banner .avatar__border {
@@ -575,6 +575,15 @@ a {
 
 .space-banner .banner-added > * {
   display: none;
+}
+
+/* Profile Sidebar */
+
+#profile-sidebar {
+  position: relative;
+  top: -60px;
+  margin-left: 64px;
+  border-top: 1px solid #fff;
 }
 
 /* Presence */
