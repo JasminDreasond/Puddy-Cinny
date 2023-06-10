@@ -5,7 +5,7 @@ import Text from '../../atoms/text/Text';
 
 function Welcome() {
   return (
-    <div className="p-3 border-0 rounded d-flex justify-content-center w-100 h-100 noselect" style={{ alignItems: 'center' }}>
+    <div className="tiny-welcome p-3 border-0 rounded d-flex justify-content-center w-100 h-100 noselect" style={{ alignItems: 'center' }}>
       <center>
         <img className="app-welcome__logo noselect" src="./public/favicon.ico" alt="Cinny logo" />
 
