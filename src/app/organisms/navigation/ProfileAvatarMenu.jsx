@@ -79,34 +79,28 @@ function ProfileAvatarMenu() {
 
     // Complete
     return (
-        <SidebarAvatar
-            onClick={openSettings}
-            tooltip="Settings"
-            avatar={(
-                <table className="table table-borderless align-middle m-0" id="chatbox">
-                    <tbody>
-                        <tr>
+        <table className="table table-borderless align-middle m-0" id="chatbox">
+            <tbody>
+                <tr onClick={openSettings}>
 
-                            <td className="align-top text-center chat-base">
-                                <Avatar
-                                    text={profile.displayName}
-                                    bgColor={colorMXID(mx.getUserId())}
-                                    size="normal"
-                                    imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
-                                />
-                            </td>
+                    <td className="align-top text-center chat-base">
+                        <Avatar
+                            text={profile.displayName}
+                            bgColor={colorMXID(mx.getUserId())}
+                            size="normal"
+                            imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
+                        />
+                    </td>
 
-                            <td className="p-0 pe-3 py-1">
+                    <td className="p-0 pe-3 py-1">
 
-                            </td>
-                        </tr>
+                    </td>
+                </tr>
 
 
 
-                    </tbody>
-                </table>
-            )}
-        />
+            </tbody>
+        </table>
     );
 
 }

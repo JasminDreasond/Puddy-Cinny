@@ -5,7 +5,7 @@
 }
 
 .sidebar-1 {
-  width: 64px;
+  width: 80px;
   background-color: var(--bg-surface-extra-low);
   position: absolute;
 }
@@ -13,7 +13,7 @@
 .sidebar-2 {
   display: inline-block;
   width: 100%;
-  padding-left: 64px;
+  padding-left: 80px;
   padding-bottom: 49px;
 }
 
@@ -71,6 +71,6 @@
 #profile-sidebar {
   position: relative;
   top: -60px;
-  margin-left: 64px;
+  margin-left: 80px;
   border-top: 1px solid #fff;
 }

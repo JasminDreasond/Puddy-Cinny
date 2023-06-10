@@ -563,6 +563,18 @@ a {
   }
 }
 
+@media (max-width: 1124px) {
+  #space-header .navbar.banner-mode {
+    background-size: 110% auto;
+  }
+}
+
+@media (max-width: 768px) {
+  #space-header .navbar.banner-mode {
+    background-size: 100% auto;
+  }
+}
+
 #space-header {
   padding-bottom: 198px !important;
 }
