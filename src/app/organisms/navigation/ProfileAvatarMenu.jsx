@@ -93,7 +93,7 @@ function ProfileAvatarMenu() {
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
-                            <span className="text-gray very-small text-uppercase ms-2" >Yay</span>
+                            <span className="text-gray very-small text-uppercase ms-2" >{profile.displayName}</span>
                         </button>
 
 
