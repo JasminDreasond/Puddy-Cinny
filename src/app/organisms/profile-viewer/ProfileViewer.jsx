@@ -75,7 +75,7 @@ function ModerationTools({
         <form onSubmit={handleBan}>
           <div className="input-group mb-3">
             <Input placeholder="Ban reason" name="ban-reason" />
-            <Button className="border-bg" variant='outline-secondary' type="submit">Kick</Button>
+            <Button className="border-bg" variant='outline-secondary' type="submit">Ban</Button>
           </div>
         </form>
       )}
