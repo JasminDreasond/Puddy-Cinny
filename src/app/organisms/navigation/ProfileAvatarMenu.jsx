@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import ReactDOMServer from 'react-dom/server';
+
+import { twemojify } from '../../../util/twemojify';
 import navigation from '../../../client/state/navigation';
 import Avatar from '../../atoms/avatar/Avatar';
 import cons from '../../../client/state/cons';
@@ -14,6 +17,7 @@ import {
 function ProfileAvatarMenu() {
     const mx = initMatrix.matrixClient;
     const user = mx.getUser(mx.getUserId());
+    const customStatusRef = useRef(null);
 
     // Get Display
     const [profile, setProfile] = useState({
@@ -25,6 +29,7 @@ function ProfileAvatarMenu() {
     useEffect(() => {
 
         // Get User and update data
+        // eslint-disable-next-line no-shadow
         const user = mx.getUser(mx.getUserId());
 
         // Set New User Status
@@ -47,6 +52,10 @@ function ProfileAvatarMenu() {
                         status_msg: eventJSON,
                     });
 
+                }
+
+                if (customStatusRef && customStatusRef.current && typeof event.msg === 'string' && event.msg.length > 0) {
+                    customStatusRef.current.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(event.msg.substring(0, 100)))
                 }
 
             }
@@ -82,7 +91,7 @@ function ProfileAvatarMenu() {
 
     // Complete
     return (
-        <table className="table table-borderless align-middle m-0">
+        <table className="table table-borderless align-middle m-0" id='user-menu'>
             <tbody>
                 <tr>
 
@@ -96,8 +105,9 @@ function ProfileAvatarMenu() {
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
-                            <div className="very-small ps-2 text-truncate" >{profile.displayName}</div>
-                            <div className="very-small ps-2 text-truncate" >{profile.userId}</div>
+                            <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='display-name' >{profile.displayName}</div>
+                            <div ref={customStatusRef} className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-presence' >{profile.userId}</div>
+                            <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-id' >{profile.userId}</div>
                         </button>
 
 

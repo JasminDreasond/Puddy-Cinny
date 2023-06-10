@@ -299,6 +299,11 @@ a {
   max-height: 21px !important;
 }
 
+.emoji-size-fix-2 img.emoji,
+.message-body.emoji-size-fix-2 [data-mx-emoticon] {
+  max-height: 15px !important;
+}
+
 .btn > span.ic-base {
   position: relative;
   top: 4px;
@@ -617,4 +622,25 @@ a {
 .user-presence-idle,
 .user-presence-idle:before {
   color: #b8913b !important;
+}
+
+/* Tiny User Menu */
+#user-menu {
+  #user-presence {
+    display: block;
+  }
+
+  #user-id {
+    display: none;
+  }
+}
+
+#user-menu:hover {
+  #user-presence {
+    display: none;
+  }
+
+  #user-id {
+    display: block;
+  }
 }
