@@ -79,17 +79,24 @@ function ProfileAvatarMenu() {
 
     // Complete
     return (
-        <table className="table table-borderless align-middle m-0" id="chatbox">
+        <table className="table table-borderless align-middle m-0">
             <tbody>
-                <tr onClick={openSettings}>
+                <tr>
 
-                    <td className="align-top text-center chat-base">
-                        <Avatar
-                            text={profile.displayName}
-                            bgColor={colorMXID(mx.getUserId())}
-                            size="normal"
-                            imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
-                        />
+                    <td className="sidebar-photo p-0">
+
+                        <button className="btn btn-bg btn-sm ms-2" onClick={openSettings} type="button">
+                            <Avatar
+                                className='d-inline-block'
+                                text={profile.displayName}
+                                bgColor={colorMXID(mx.getUserId())}
+                                size="normal"
+                                imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
+                            />
+                            <span className="text-gray very-small text-uppercase ms-2" >Yay</span>
+                        </button>
+
+
                     </td>
 
                     <td className="p-0 pe-3 py-1">

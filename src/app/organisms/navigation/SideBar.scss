@@ -73,4 +73,22 @@
   top: -60px;
   margin-left: 80px;
   border-top: 1px solid #fff;
+
+  .sidebar-photo,
+  .sidebar-photo button {
+    height: 45px !important;
+    width: 120px;
+  }
+
+  .sidebar-photo button {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .avatar-container,
+  .avatar-container img,
+  .avatar-container canvas {
+    height: 35px !important;
+    width: 35px !important;
+  }
 }
