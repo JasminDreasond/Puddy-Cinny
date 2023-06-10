@@ -18,11 +18,11 @@
 }
 
 .sidebar-item-1 {
-  padding-bottom: 132px;
+  padding-bottom: 69px;
 }
 
 .sidebar-item-2 {
-  margin-top: -122px;
+  margin-top: -69px;
 }
 
 .space-container > button,
@@ -64,4 +64,13 @@
   to {
     transform: translateX(0) scale(1);
   }
+}
+
+/* Profile Sidebar */
+
+#profile-sidebar {
+  position: relative;
+  top: -60px;
+  margin-left: 64px;
+  border-top: 1px solid #fff;
 }
