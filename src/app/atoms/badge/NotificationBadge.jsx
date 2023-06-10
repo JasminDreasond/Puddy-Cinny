@@ -26,7 +26,7 @@ function NotificationBadge({ alert, content, className, bgColor }) {
 }
 
 NotificationBadge.defaultProps = {
-  bgColor: 'light',
+  bgColor: 'bg',
   alert: false,
   content: null,
   className: null,
