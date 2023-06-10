@@ -354,7 +354,7 @@
 @mixin dark-mode() {
   /* background color | --bg-[background type]: value */
   --bg-surface: hsl(0, 2%, 11%);
-  --bg-surface-gradient: linear-gradient(180deg, rgba(29, 27, 27, 1) 0%, rgb(35, 35, 35) 100%);
+  --bg-surface-gradient: linear-gradient(180deg, rgba(27, 27, 27, 1) 0%, rgb(35, 35, 35) 100%);
   --bg-surface-transparent: hsla(0, 0%, 21%, 0);
   --bg-surface-low: hsl(0, 0%, 13%);
   --bg-surface-low-transparent: hsla(0, 0%, 18%, 0);
