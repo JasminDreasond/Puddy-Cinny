@@ -85,7 +85,7 @@ function ProfileAvatarMenu() {
 
                     <td className="sidebar-photo p-0">
 
-                        <button className="btn btn-bg btn-sm ms-2" onClick={openSettings} type="button">
+                        <button className="btn btn-bg btn-link btn-sm ms-2" onClick={openSettings} type="button">
                             <Avatar
                                 className='d-inline-block'
                                 text={profile.displayName}
