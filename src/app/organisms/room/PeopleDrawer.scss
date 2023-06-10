@@ -2,6 +2,9 @@
 @use '../../partials/dir';
 
 .people-drawer {
+  background: var(--bg-surface);
+  background: var(--bg-surface-gradient-2);
+
   @extend .cp-fx__column;
   width: var(--people-drawer-width);
   background-color: var(--bg-surface-low);
