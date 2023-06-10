@@ -102,8 +102,8 @@ function RoomViewFloating({
         </Button>
       </div>
       <div className={`room-view__typing${typingMembers.size > 0 ? ' room-view__typing--open' : ''}`}>
-        <div className="bouncing-loader"><div /></div>
-        <Text variant="b2">{getUsersActionJsx(roomId, [...typingMembers], 'typing...')}</Text>
+        <div className="ms-3 bouncing-loader"><div /></div>
+        <div className='ms-2 mt-1 mb-2 small'>{getUsersActionJsx(roomId, [...typingMembers], 'typing...')}</div>
       </div>
       <div className={`room-view__STB${isAtBottom ? '' : ' room-view__STB--open'}`}>
         <Button faSrc="bi bi-chat-left-fill" onClick={handleScrollToBottom}>

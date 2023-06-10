@@ -4,9 +4,8 @@
 
 .room-view {
   &__typing {
-    display: flex;
+    display: none;
     padding: var(--sp-ultra-tight) var(--sp-normal);
-    background: var(--bg-surface);
     transition: transform 200ms ease-in-out;
 
     & b {
@@ -21,6 +20,9 @@
     }
 
     &--open {
+      display: flex;
+      background: var(--bg-surface);
+      height: 30px;
       transform: translateY(-99%);
       box-shadow: 0 4px 0 0 var(--bg-surface);
       & .bouncing-loader {
