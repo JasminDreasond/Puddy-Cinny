@@ -6,8 +6,9 @@
 
 .sidebar-1 {
   width: 80px;
-  background-color: var(--bg-surface-extra-low);
   position: absolute;
+  background: var(--bg-surface-extra-low);
+  background: var(--bg-surface-gradient-3);
 }
 
 .sidebar-2 {
