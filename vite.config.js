@@ -13,6 +13,14 @@ const copyFiles = {
       dest: '',
     },
     {
+      src: 'public/404/ipfs-404.html',
+      dest: '',
+    },
+    {
+      src: 'public/404/404.md',
+      dest: '',
+    },
+    {
       src: 'public/404/matrix.js',
       dest: '',
     },
