@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
+import IconButton from '../../atoms/button/IconButton';
 import { twemojify } from '../../../util/twemojify';
 import navigation from '../../../client/state/navigation';
 import Avatar from '../../atoms/avatar/Avatar';
@@ -9,6 +10,7 @@ import cons from '../../../client/state/cons';
 import { colorMXID } from '../../../util/colorMXID';
 
 import initMatrix from '../../../client/initMatrix';
+import { tabText as settingTabText } from '../settings/Settings';
 
 import {
     openSettings,
@@ -97,7 +99,7 @@ function ProfileAvatarMenu() {
 
                     <td className="sidebar-photo p-0">
 
-                        <button className="btn btn-bg btn-link btn-sm ms-2 text-truncate text-start " onClick={openSettings} type="button">
+                        <button className="btn btn-bg btn-link btn-sm ms-2 text-truncate text-start " onClick={() => openSettings(settingTabText.PROFILE)} type="button">
                             <Avatar
                                 className='d-inline-block float-start'
                                 text={profile.displayName}
@@ -113,8 +115,8 @@ function ProfileAvatarMenu() {
 
                     </td>
 
-                    <td className="p-0 pe-3 py-1">
-
+                    <td className="p-0 pe-3 py-1 text-end">
+                        <IconButton fa="fa-solid fa-gear" onClick={openSettings} />
                     </td>
                 </tr>
 
