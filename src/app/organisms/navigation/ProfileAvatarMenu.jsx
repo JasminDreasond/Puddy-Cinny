@@ -13,11 +13,13 @@ import {
 
 function ProfileAvatarMenu() {
     const mx = initMatrix.matrixClient;
+    const user = mx.getUser(mx.getUserId());
 
     // Get Display
     const [profile, setProfile] = useState({
+        userId: user.userId,
         avatarUrl: null,
-        displayName: mx.getUser(mx.getUserId()).displayName,
+        displayName: user.displayName,
     });
 
     useEffect(() => {
@@ -51,17 +53,18 @@ function ProfileAvatarMenu() {
         };
 
         onProfileUpdate(mx.getAccountData('pony.house.profile')?.getContent() ?? {});
-        const setNewProfile = (avatarUrl, displayName) => setProfile({
+        const setNewProfile = (avatarUrl, displayName, userId) => setProfile({
             avatarUrl: avatarUrl || null,
             displayName: displayName || profile.displayName,
+            userId: userId || profile.userId
         });
 
         const onAvatarChange = (event, myUser) => {
-            setNewProfile(myUser.avatarUrl, myUser.displayName);
+            setNewProfile(myUser.avatarUrl, myUser.displayName, myUser.userId);
         };
 
         mx.getProfileInfo(mx.getUserId()).then((info) => {
-            setNewProfile(info.avatar_url, info.displayname);
+            setNewProfile(info.avatar_url, info.displayname, info.userId);
         });
 
         // Socket
@@ -85,15 +88,16 @@ function ProfileAvatarMenu() {
 
                     <td className="sidebar-photo p-0">
 
-                        <button className="btn btn-bg btn-link btn-sm ms-2" onClick={openSettings} type="button">
+                        <button className="btn btn-bg btn-link btn-sm ms-2 text-truncate text-start " onClick={openSettings} type="button">
                             <Avatar
-                                className='d-inline-block'
+                                className='d-inline-block float-start'
                                 text={profile.displayName}
                                 bgColor={colorMXID(mx.getUserId())}
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
-                            <span className="text-gray very-small text-uppercase ms-2" >{profile.displayName}</span>
+                            <div className="very-small ps-2 text-truncate" >{profile.displayName}</div>
+                            <div className="very-small ps-2 text-truncate" >{profile.userId}</div>
                         </button>
 
 
