@@ -3,6 +3,7 @@
 :root {
   /* background color | --bg-[background type]: value */
   --bg-surface: #ffffff;
+  --bg-surface-semi-transparent: rgba(255, 255, 255, 0.9);
   --bg-surface-gradient: linear-gradient(
     180deg,
     rgba(246, 246, 246, 1) 0%,
@@ -18,6 +19,7 @@
   --bg-surface-gradient-3: linear-gradient(180deg, rgb(223, 223, 223) 0%, rgb(255, 255, 255) 100%);
   --bg-surface-transparent: #ffffff00;
   --bg-surface-low: #f6f6f6;
+  --bg-surface-low-semi-transparent: rgba(246, 246, 246, 0.9);
   --bg-surface-low-transparent: #f6f6f600;
   --bg-surface-extra-low: #f6f6f6;
   --bg-surface-extra-low-transparent: #f6f6f600;
@@ -215,6 +217,12 @@
   --fluid-push: cubic-bezier(0, 0.8, 0.67, 0.97);
   --fluid-slide-down: cubic-bezier(0.02, 0.82, 0.4, 0.96);
   --fluid-slide-up: cubic-bezier(0.13, 0.56, 0.25, 0.99);
+
+  .avatar-container,
+  .avatar-container img,
+  .avatar-container canvas {
+    background-color: #f3f3f3;
+  }
 }
 
 .btn-theme {
@@ -356,17 +364,26 @@
 .silver-theme {
   /* background color | --bg-[background type]: value */
   --bg-surface: hsl(0, 0%, 95%);
+  --bg-surface-semi-transparent: rgba(242, 242, 242, 0.9);
   --bg-surface-transparent: hsla(0, 0%, 95%, 0);
   --bg-surface-low: hsl(0, 0%, 91%);
+  --bg-surface-low-semi-transparent: rgb(232, 232, 232, 0.9);
   --bg-surface-low-transparent: hsla(0, 0%, 91%, 0);
   --bg-surface-extra-low: hsl(0, 0%, 91%);
   --bg-surface-extra-low-transparent: hsla(0, 0%, 91%, 0);
   --invert-filter: invert(0);
+
+  .avatar-container,
+  .avatar-container img,
+  .avatar-container canvas {
+    background-color: #f6f6f6;
+  }
 }
 
 @mixin dark-mode() {
   /* background color | --bg-[background type]: value */
   --bg-surface: hsl(0, 2%, 11%);
+  --bg-surface-semi-transparent: rgba(29, 27, 27, 0.9);
   --bg-surface-gradient: linear-gradient(
     180deg,
     rgba(27, 27, 27, 1) 0%,
@@ -382,6 +399,7 @@
   --bg-surface-gradient-3: linear-gradient(180deg, rgba(44, 44, 44, 1) 0%, rgb(50, 50, 60) 100%);
   --bg-surface-transparent: hsla(0, 0%, 21%, 0);
   --bg-surface-low: hsl(0, 0%, 13%);
+  --bg-surface-low-semi-transparent: rgba(33, 33, 33, 0.9);
   --bg-surface-low-transparent: hsla(0, 0%, 18%, 0);
   --bg-surface-extra-low: hsl(0, 0%, 21%);
   --bg-surface-extra-low-transparent: hsla(208, 8%, 14%, 0);
@@ -681,6 +699,12 @@
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: transparent;
     --bs-gradient: none;
+  }
+
+  .avatar-container,
+  .avatar-container img,
+  .avatar-container canvas {
+    background-color: #1b1b1b;
   }
 }
 

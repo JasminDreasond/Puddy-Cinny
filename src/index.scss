@@ -166,11 +166,11 @@ audio:not([controls]) {
 }
 
 .bg-bg2 {
-  background-color: var(--bg-surface-low) !important;
+  background-color: var(--bg-surface-low-semi-transparent) !important;
 }
 
 .bg-bg3 {
-  background-color: var(--bg-surface) !important;
+  background-color: var(--bg-surface-semi-transparent) !important;
 }
 
 .text-gray {
@@ -182,11 +182,11 @@ audio:not([controls]) {
 }
 
 .card {
-  --bs-card-bg: var(--bg-surface);
+  --bs-card-bg: var(--bg-surface-semi-transparent);
 }
 
 .list-group {
-  --bs-list-group-bg: var(--bg-surface);
+  --bs-list-group-bg: var(--bg-surface-semi-transparent);
   --bs-list-group-color: var(--tc-surface-normal);
 }
 
@@ -462,7 +462,6 @@ a {
   .avatar-container canvas {
     height: 140px;
     width: 140px;
-    background-color: var(--bg-surface-low);
   }
 
   .avatar-container img,
