@@ -399,6 +399,9 @@ function ProfileSection() {
       if (typeof value === 'string' && value.length > 0) {
         setUserBio(value);
         userProfile.bio = value;
+      } else {
+        setUserBio(null);
+        userProfile.bio = null;
       }
 
       initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
