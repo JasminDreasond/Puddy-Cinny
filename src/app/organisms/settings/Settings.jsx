@@ -379,6 +379,9 @@ function ProfileSection() {
       if (typeof value === 'string' && value.length > 0) {
         setCustomStatus(value);
         userProfile.msg = value;
+      } else {
+        setCustomStatus(null);
+        userProfile.msg = null;
       }
 
       initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);

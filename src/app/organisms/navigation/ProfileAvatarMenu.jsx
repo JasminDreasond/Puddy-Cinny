@@ -11,7 +11,7 @@ import { colorMXID } from '../../../util/colorMXID';
 
 import initMatrix from '../../../client/initMatrix';
 import { tabText as settingTabText } from '../settings/Settings';
-import { getUserStatus, updateUserStatusIcon } from '../../../util/onlineStatus';
+import { getUserStatus } from '../../../util/onlineStatus';
 
 import {
     openSettings,
@@ -60,6 +60,8 @@ function ProfileAvatarMenu() {
 
                 if (customStatusRef && customStatusRef.current && typeof event.msg === 'string' && event.msg.length > 0) {
                     customStatusRef.current.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(event.msg.substring(0, 100)));
+                } else {
+                    customStatusRef.current.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(user.userId));
                 }
 
                 if (statusRef && statusRef.current && typeof event.status === 'string' && event.status.length > 0) {
