@@ -648,3 +648,17 @@ a {
     display: block;
   }
 }
+
+.sidebar-photo {
+  .ps-2 {
+    margin-left: 40px;
+  }
+  i {
+    position: relative;
+    display: block;
+    margin-top: -12px;
+    top: 37px;
+    left: -8px;
+    font-size: 12px;
+  }
+}

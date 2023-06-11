@@ -11,6 +11,7 @@ import { colorMXID } from '../../../util/colorMXID';
 
 import initMatrix from '../../../client/initMatrix';
 import { tabText as settingTabText } from '../settings/Settings';
+import { getUserStatus, updateUserStatusIcon, getPresence } from '../../../util/onlineStatus';
 
 import {
     openSettings,
@@ -20,6 +21,7 @@ function ProfileAvatarMenu() {
     const mx = initMatrix.matrixClient;
     const user = mx.getUser(mx.getUserId());
     const customStatusRef = useRef(null);
+    const statusRef = useRef(null);
 
     // Get Display
     const [profile, setProfile] = useState({
@@ -107,6 +109,7 @@ function ProfileAvatarMenu() {
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
+                            <i ref={statusRef} className={getUserStatus(user)} />
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='display-name' >{profile.displayName}</div>
                             <div ref={customStatusRef} className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-presence' >{profile.userId}</div>
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-id' >{profile.userId}</div>
