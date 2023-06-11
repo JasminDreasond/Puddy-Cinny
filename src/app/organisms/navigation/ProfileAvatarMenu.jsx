@@ -94,6 +94,18 @@ function ProfileAvatarMenu() {
 
     }, []);
 
+    const statusEmulator = {
+        displayName: user.displayName,
+        lastActiveAgo: user.lastActiveAgo,
+        lastPresenceTs: user.lastPresenceTs,
+        rawDisplayName: user.rawDisplayName,
+        userId: user.userId,
+        modified: user.modified,
+        presenceStatusMsg: mx.getAccountData('pony.house.profile')?.getContent() ?? {},
+        presence: 'online'
+    };
+    statusEmulator.presenceStatusMsg = JSON.stringify(statusEmulator.presenceStatusMsg);
+
     // Complete
     return (
         <table className="table table-borderless align-middle m-0" id='user-menu'>
@@ -110,7 +122,7 @@ function ProfileAvatarMenu() {
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
-                            <i ref={statusRef} className={getUserStatus(user)} />
+                            <i ref={statusRef} className={getUserStatus()} />
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='display-name' >{profile.displayName}</div>
                             <div ref={customStatusRef} className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-presence' >{profile.userId}</div>
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-id' >{profile.userId}</div>
