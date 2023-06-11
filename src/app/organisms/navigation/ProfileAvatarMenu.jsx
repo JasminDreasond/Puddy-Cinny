@@ -104,7 +104,9 @@ function ProfileAvatarMenu() {
         presenceStatusMsg: mx.getAccountData('pony.house.profile')?.getContent() ?? {},
         presence: 'online'
     };
+
     statusEmulator.presenceStatusMsg = JSON.stringify(statusEmulator.presenceStatusMsg);
+    const newStatus = getUserStatus(statusEmulator);
 
     // Complete
     return (
@@ -122,7 +124,7 @@ function ProfileAvatarMenu() {
                                 size="normal"
                                 imageSrc={profile.avatarUrl !== null ? mx.mxcUrlToHttp(profile.avatarUrl, 42, 42, 'crop') : null}
                             />
-                            <i ref={statusRef} className={getUserStatus()} />
+                            <i ref={statusRef} className={newStatus} />
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='display-name' >{profile.displayName}</div>
                             <div ref={customStatusRef} className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-presence' >{profile.userId}</div>
                             <div className="very-small ps-2 text-truncate emoji-size-fix-2" id='user-id' >{profile.userId}</div>
