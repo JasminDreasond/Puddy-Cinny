@@ -30,7 +30,6 @@ Made by Me
 
 
 
-    const user = mx.getUser(mx.getUserId());
 
     user.on('user.status', (data) => {
       console.log('user.status', data);
@@ -40,4 +39,19 @@ Made by Me
 
     mx.getUrlPreview(url, ts)
 
-    O upload de imagens está desregulado
+    Criar novo ícone de avatares padrões
+    Criar Video Chamada e Chamada de Voz
+
+    Criar sistema de titulos (Algo parecido com cargos)
+
+    Fazer o sistema web3
+    Criar o app desktop e mobile
+    Criar o sistema de gravação de voz
+
+    Criar leitor de mensagens fixadas
+
+    Criar canais de galeria
+    Criar sistema de calendário
+    Criar Forums
+
+    Criar i18
