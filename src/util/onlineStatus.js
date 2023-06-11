@@ -112,41 +112,17 @@ export function getPresence(user, canStatus = true, canPresence = true) {
             content.currentlyActive = false;
         }
 
-        if (user.events && user.events.presence) {
+        if (canStatus && typeof user.presence === 'string') {
+            content.presence = user.presence;
+        }
 
-            const data = user.events.presence?.getContent();
+        if (canStatus && typeof user.lastActiveAgo === 'number') {
+            content.lastActiveAgo = user.lastActiveAgo;
+            content.currentlyActive = true;
+        }
 
-            if (canPresence && typeof data.status_msg === 'string') {
-                content.presenceStatusMsg = data.status_msg;
-            }
-
-            if (canStatus && typeof data.currently_active === 'boolean') {
-                content.currentlyActive = data.currently_active;
-            }
-
-            if (canStatus && typeof data.last_active_ago === 'number') {
-                content.lastActiveAgo = data.last_active_ago;
-            }
-
-            if (canStatus && typeof data.presence === 'string' && (data.presence === 'online' || data.presence === 'offline' || data.presence === 'unavailable' || data.presence === 'dnd' || data.presence === 'idle')) {
-                content.presence = data.presence;
-            }
-
-        } else {
-
-            if (canStatus && typeof user.presence === 'string') {
-                content.presence = user.presence;
-            }
-
-            if (canStatus && typeof user.lastActiveAgo === 'number') {
-                content.lastActiveAgo = user.lastActiveAgo;
-                content.currentlyActive = true;
-            }
-
-            if (canPresence && typeof user.presenceStatusMsg === 'string') {
-                content.presenceStatusMsg = user.presenceStatusMsg;
-            }
-
+        if (canPresence && typeof user.presenceStatusMsg === 'string') {
+            content.presenceStatusMsg = user.presenceStatusMsg;
         }
 
         if (typeof content.presenceStatusMsg === 'string') {

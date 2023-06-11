@@ -40,7 +40,6 @@ function ProfileAvatarMenu() {
         const onProfileUpdate = (event = {}) => {
             if (event) {
 
-                updateUserStatusIcon(statusRef.current, user, event);
                 const tinyEvent = event;
                 const eventJSON = JSON.stringify(tinyEvent);
 
@@ -61,6 +60,12 @@ function ProfileAvatarMenu() {
 
                 if (customStatusRef && customStatusRef.current && typeof event.msg === 'string' && event.msg.length > 0) {
                     customStatusRef.current.innerHTML = ReactDOMServer.renderToStaticMarkup(twemojify(event.msg.substring(0, 100)));
+                }
+
+                if (statusRef && statusRef.current && typeof event.status === 'string' && event.status.length > 0) {
+                    const tinyUser = mx.getUser(mx.getUserId());
+                    tinyUser.presenceStatusMsg = JSON.stringify(event);
+                    statusRef.current.className = getUserStatus(user);
                 }
 
             }
@@ -94,19 +99,10 @@ function ProfileAvatarMenu() {
 
     }, []);
 
-    const statusEmulator = {
-        displayName: user.displayName,
-        lastActiveAgo: user.lastActiveAgo,
-        lastPresenceTs: user.lastPresenceTs,
-        rawDisplayName: user.rawDisplayName,
-        userId: user.userId,
-        modified: user.modified,
-        presenceStatusMsg: mx.getAccountData('pony.house.profile')?.getContent() ?? {},
-        presence: 'online'
-    };
-
-    statusEmulator.presenceStatusMsg = JSON.stringify(statusEmulator.presenceStatusMsg);
-    const newStatus = getUserStatus(statusEmulator);
+    const content = mx.getAccountData('pony.house.profile')?.getContent() ?? {};
+    user.presence = 'online';
+    user.presenceStatusMsg = JSON.stringify(content);
+    const newStatus = getUserStatus(user);
 
     // Complete
     return (
