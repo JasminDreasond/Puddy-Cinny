@@ -218,9 +218,7 @@
   --fluid-slide-down: cubic-bezier(0.02, 0.82, 0.4, 0.96);
   --fluid-slide-up: cubic-bezier(0.13, 0.56, 0.25, 0.99);
 
-  .avatar-container,
-  .avatar-container img,
-  .avatar-container canvas {
+  .avatar-container {
     background-color: #f3f3f3;
   }
 }
@@ -373,9 +371,7 @@
   --bg-surface-extra-low-transparent: hsla(0, 0%, 91%, 0);
   --invert-filter: invert(0);
 
-  .avatar-container,
-  .avatar-container img,
-  .avatar-container canvas {
+  .avatar-container {
     background-color: #f6f6f6;
   }
 }
@@ -701,9 +697,7 @@
     --bs-gradient: none;
   }
 
-  .avatar-container,
-  .avatar-container img,
-  .avatar-container canvas {
+  .avatar-container {
     background-color: #1b1b1b;
   }
 }
