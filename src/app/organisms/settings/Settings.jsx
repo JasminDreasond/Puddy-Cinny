@@ -366,26 +366,29 @@ function ProfileSection() {
   const [userBio, setUserBio] = useState(userProfile.bio);
 
   const sendSetStatus = (item) => {
+    const content = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
     setProfileStatus(item.type);
-    userProfile.status = item.type;
-    initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
-    emitUpdateProfile(userProfile);
+    content.status = item.type;
+    initMatrix.matrixClient.setAccountData('pony.house.profile', content);
+    emitUpdateProfile(content);
   };
 
   const sendCustomStatus = () => {
     if (customStatusRef && customStatusRef.current) {
 
+      const content = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
+
       const { value } = customStatusRef.current;
       if (typeof value === 'string' && value.length > 0) {
         setCustomStatus(value);
-        userProfile.msg = value;
+        content.msg = value;
       } else {
         setCustomStatus(null);
-        userProfile.msg = null;
+        content.msg = null;
       }
 
-      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
-      emitUpdateProfile(userProfile);
+      initMatrix.matrixClient.setAccountData('pony.house.profile', content);
+      emitUpdateProfile(content);
 
       alert('The custom status of your profile has been successfully defined.');
 
@@ -395,17 +398,19 @@ function ProfileSection() {
   const sendBio = () => {
     if (bioRef && bioRef.current) {
 
+      const content = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
+
       const { value } = bioRef.current;
       if (typeof value === 'string' && value.length > 0) {
         setUserBio(value);
-        userProfile.bio = value;
+        content.bio = value;
       } else {
         setUserBio(null);
-        userProfile.bio = null;
+        content.bio = null;
       }
 
-      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
-      emitUpdateProfile(userProfile);
+      initMatrix.matrixClient.setAccountData('pony.house.profile', content);
+      emitUpdateProfile(content);
 
       alert('The biography of your profile has been successfully updated.');
 
@@ -442,6 +447,8 @@ function ProfileSection() {
 
   const handleBannerUpload = async url => {
 
+    const content = initMatrix.matrixClient.getAccountData('pony.house.profile')?.getContent() ?? {};
+
     const bannerPlace = document.querySelector('.space-banner .avatar__border');
     const bannerImg = document.querySelector('.space-banner img');
 
@@ -457,9 +464,9 @@ function ProfileSection() {
       if (isConfirmed) {
 
         setBanner(null);
-        delete userProfile.banner;
-        initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
-        emitUpdateProfile(userProfile);
+        content.banner = null;
+        initMatrix.matrixClient.setAccountData('pony.house.profile', content);
+        emitUpdateProfile(content);
 
         if (bannerPlace) bannerPlace.style.backgroundImage = ''; bannerPlace.classList.remove('banner-added');
         if (bannerImg) bannerImg.src = '';
@@ -469,9 +476,9 @@ function ProfileSection() {
     } else {
 
       setBanner(url);
-      userProfile.banner = url;
-      initMatrix.matrixClient.setAccountData('pony.house.profile', userProfile);
-      emitUpdateProfile(userProfile);
+      content.banner = url;
+      initMatrix.matrixClient.setAccountData('pony.house.profile', content);
+      emitUpdateProfile(content);
 
       if (bannerPlace) bannerPlace.style.backgroundImage = `url('${initMatrix.matrixClient.mxcUrlToHttp(url, 660, 227)}')`; bannerPlace.classList.add('banner-added');
       if (bannerImg) bannerImg.src = initMatrix.matrixClient.mxcUrlToHttp(url, 400, 227);
