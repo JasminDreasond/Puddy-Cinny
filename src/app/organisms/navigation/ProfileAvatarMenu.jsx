@@ -43,7 +43,7 @@ function ProfileAvatarMenu() {
                 const tinyEvent = event;
                 const eventJSON = JSON.stringify(tinyEvent);
 
-                if (eventJSON.length > 0 && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON)) {
+                if (eventJSON.length > 0 /* && (typeof user.presenceStatusMsg !== 'string' || user.presenceStatusMsg !== eventJSON) */) {
 
                     let presenceStatus = 'online';
                     if (typeof tinyEvent.status === 'string') {
