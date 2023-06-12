@@ -44,7 +44,6 @@ Made by Me
 
     Criar sistema de titulos (Algo parecido com cargos)
 
-    Fazer o sistema web3
     Criar o app desktop e mobile
     Criar o sistema de gravação de voz
 
@@ -62,3 +61,8 @@ Made by Me
 
     Falha na sincronização de emojis
     Concertar envio de notificação. A notificação precisa apitar quando o usuário está na mesma página, mas está com a janela minimizada
+
+
+    Fazer o sistema web3
+    O banco de dados vai guarda a chave de assinatura, a chave publica da web3, e a sessão que foi usada para fazer a integração.
+    Esses dados são usados para fazer uma validação rápida da conexão do usuário.
