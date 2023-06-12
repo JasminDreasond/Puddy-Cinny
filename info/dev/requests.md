@@ -55,3 +55,10 @@ Made by Me
     Criar Forums
 
     Criar i18
+
+
+
+
+
+    Falha na sincronização de emojis
+    Concertar envio de notificação. A notificação precisa apitar quando o usuário está na mesma página, mas está com a janela minimizada
