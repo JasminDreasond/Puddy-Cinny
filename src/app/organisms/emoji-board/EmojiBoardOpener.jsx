@@ -215,64 +215,23 @@ function EmojiListBuilder(whereRead, whereGet, emojiSize, perLine, emojiButtonSi
   // Send Result
   return {
     custom: customEmojis,
-    categoryIcons
+    categoryIcons,
+    categories: tinyCache.categories.items
   };
 
 }
 
 // Request Action
 let requestEmoji = null;
-let emojiDom = null;
 const closeDetector = { normal: false, delay: false };
-
-function setEmojiList(closeEmojiBoard, insertEmoji, isOpen) {
-
-  // Get Items
-  let tinyItems;
-  if (emojiDom === 'emoji') {
-    tinyItems = EmojiListBuilder('emoticons', 'getEmojis', 24, 9, 36);
-  } else if (emojiDom === 'sticker') {
-    tinyItems = EmojiListBuilder('stickers', 'getStickers', 64, 4, 76, 'none', []);
-  }
-
-  if (isOpen) {
-
-    tinyCache.items.custom = tinyItems.custom;
-    tinyCache.items.categoryIcons = tinyItems.categoryIcons;
-
-    return (
-      <Picker
-
-        theme={selectButton()}
-        set='twitter'
-
-        custom={tinyCache.items.custom}
-        categoryIcons={tinyCache.items.categoryIcons}
-        categories={tinyCache.categories.items}
-        locale={tinyCache.config.locale}
-
-        skinTonePosition={tinyCache.config.skinTonePosition}
-        previewPosition={tinyCache.config.previewPosition}
-        emojiButtonSize={tinyCache.config.emojiButtonSize}
-        emojiSize={tinyCache.config.emojiSize}
-        maxFrequentRows={tinyCache.config.maxFrequentRows}
-        perLine={tinyCache.config.perLine}
-
-        onClickOutside={closeEmojiBoard}
-        onEmojiSelect={insertEmoji}
-
-      />
-    );
-
-  }
-
-  return '';
-
-};
 
 // Open Emoji List
 function EmojiBoardOpener() {
   const [isOpen, setIsOpen] = useState(false);
+  const [emojiList, setEmojiList] = useState([]);
+  const [emojiCategories, setEmojiCategories] = useState([]);
+  const [emojiCategoriesIcon, setEmojiCategoriesIcon] = useState({});
+  const [emojiLocate, setLocate] = useState('en');
 
   useEffect(() => {
 
@@ -280,8 +239,22 @@ function EmojiBoardOpener() {
     const openEmojiList = (cords, requestEmojiCallback, dom) => {
       if (!closeDetector.normal && !closeDetector.delay) {
 
+        // Get Items
+        let tinyItems;
+        if (dom === 'emoji') {
+          tinyItems = EmojiListBuilder('emoticons', 'getEmojis', 24, 9, 36);
+        } else if (dom === 'sticker') {
+          tinyItems = EmojiListBuilder('stickers', 'getStickers', 64, 4, 76, 'none', []);
+        }
+
+        tinyCache.items.custom = tinyItems.custom;
+        setEmojiList(tinyItems.custom);
+
+        tinyCache.items.categoryIcons = tinyItems.categoryIcons;
+        setEmojiCategoriesIcon(tinyItems.categoryIcons);
+        setEmojiCategories(tinyItems.categories);
+
         // Set is Open
-        emojiDom = dom;
         setIsOpen(true);
         closeDetector.normal = true;
         closeDetector.delay = true;
@@ -372,7 +345,29 @@ function EmojiBoardOpener() {
   };
 
   // HTML
-  return setEmojiList(closeEmojiBoard, insertEmoji, isOpen);
+  return (isOpen && (
+    <Picker
+
+      theme={selectButton()}
+      set='twitter'
+
+      custom={emojiList}
+      categoryIcons={emojiCategoriesIcon}
+      categories={emojiCategories}
+      locale={emojiLocate}
+
+      skinTonePosition={tinyCache.config.skinTonePosition}
+      previewPosition={tinyCache.config.previewPosition}
+      emojiButtonSize={tinyCache.config.emojiButtonSize}
+      emojiSize={tinyCache.config.emojiSize}
+      maxFrequentRows={tinyCache.config.maxFrequentRows}
+      perLine={tinyCache.config.perLine}
+
+      onClickOutside={closeEmojiBoard}
+      onEmojiSelect={insertEmoji}
+
+    />
+  ));
 
 }
 
