@@ -139,10 +139,25 @@ function SearchedEmoji() {
     );
 }
 
-function EmojiBoard({ onSelect, searchRef }) {
+function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
     const scrollEmojisRef = useRef(null);
     const emojiInfo = useRef(null);
     let tinyTimeoutEmoji = null;
+
+    const getFunctionEmoji = () => {
+
+        const boardType = emojiBoardRef.current.getAttribute('board-type');
+        if (boardType === 'emoji') {
+            return 'getEmojis';
+        }
+
+        if (boardType === 'sticker') {
+            return 'getStickers';
+        }
+
+        return 'emoji';
+
+    };
 
     // Check Emoji Visible
     function onScroll(event) {
@@ -257,6 +272,9 @@ function EmojiBoard({ onSelect, searchRef }) {
 
     useEffect(() => {
         const updateAvailableEmoji = (selectedRoomId) => {
+
+            const boardType = getFunctionEmoji();
+
             if (!selectedRoomId) {
                 setAvailableEmojis([]);
                 return;
@@ -267,8 +285,9 @@ function EmojiBoard({ onSelect, searchRef }) {
             const parentIds = initMatrix.roomList.getAllParentSpaces(room.roomId);
             const parentRooms = [...parentIds].map((id) => mx.getRoom(id));
             if (room) {
+
                 const packs = getRelevantPacks(room.client, [room, ...parentRooms]).filter(
-                    (pack) => pack.getEmojis().length !== 0
+                    (pack) => pack[boardType]().length !== 0
                 );
 
                 // Set an index for each pack so that we know where to jump when the user uses the nav
@@ -277,6 +296,7 @@ function EmojiBoard({ onSelect, searchRef }) {
                 }
                 setAvailableEmojis(packs);
             }
+
         };
 
         const onOpen = () => {
@@ -305,8 +325,10 @@ function EmojiBoard({ onSelect, searchRef }) {
         $emojiContent.children[tabIndex].scrollIntoView();
     }
 
+    const boardType = getFunctionEmoji();
+
     return (
-        <div id="emoji-board" className="emoji-board">
+        <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>
             <ScrollView invisible>
                 <div className="emoji-board__nav">
                     {recentEmojis.length > 0 && (
@@ -320,7 +342,7 @@ function EmojiBoard({ onSelect, searchRef }) {
                     <div className="emoji-board__nav-custom">
                         {availableEmojis.map((pack) => {
                             const src = initMatrix.matrixClient.mxcUrlToHttp(
-                                pack.avatarUrl ?? pack.getEmojis()[0].mxc
+                                pack.avatarUrl ?? pack[boardType]()[0].mxc
                             );
                             return (
                                 <IconButton
@@ -372,7 +394,7 @@ function EmojiBoard({ onSelect, searchRef }) {
                                 <EmojiGroup
                                     name={pack.displayName ?? 'Unknown'}
                                     key={pack.packIndex}
-                                    groupEmojis={pack.getEmojis()}
+                                    groupEmojis={pack[boardType]()}
                                     className="custom-emoji-group"
                                 />
                             ))}
@@ -394,6 +416,7 @@ function EmojiBoard({ onSelect, searchRef }) {
 EmojiBoard.propTypes = {
     onSelect: PropTypes.func.isRequired,
     searchRef: PropTypes.shape({}).isRequired,
+    emojiBoardRef: PropTypes.shape({}).isRequired,
 };
 
 export default EmojiBoard;
