@@ -142,43 +142,49 @@ function SearchedEmoji() {
 function EmojiBoard({ onSelect, searchRef }) {
     const scrollEmojisRef = useRef(null);
     const emojiInfo = useRef(null);
+    let tinyTimeoutEmoji = null;
 
     // Check Emoji Visible
     function onScroll(event) {
 
         // Read Data
-        const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
-        const elements = Array.from(target);
-        elements.map(emojiGroup => {
+        if (tinyTimeoutEmoji) clearTimeout(tinyTimeoutEmoji);
+        tinyTimeoutEmoji = setTimeout(() => {
+
+            const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
+            const elements = Array.from(target);
+            elements.map(emojiGroup => {
 
 
-            const emojis = Array.from(emojiGroup.querySelectorAll('emoji'));
+                const emojis = Array.from(emojiGroup.querySelectorAll('emoji'));
 
-            // Is Visible
-            if (checkVisible(emojiGroup)) {
+                // Is Visible
+                if (checkVisible(emojiGroup)) {
 
-                emojiGroup.style.opacity = 1;
-                emojis.map(emoji => {
-                    emoji.style.backgroundImage = `url("${emoji.getAttribute('srcdata')}")`;
-                    return emoji;
-                });
+                    emojiGroup.style.opacity = 1;
+                    emojis.map(emoji => {
+                        emoji.style.backgroundImage = `url("${emoji.getAttribute('srcdata')}")`;
+                        return emoji;
+                    });
 
-            }
+                }
 
-            // Nope
-            else {
+                // Nope
+                else {
 
-                emojiGroup.style.opacity = 0;
-                emojis.map(emoji => {
-                    emoji.style.backgroundImage = '';
-                    return emoji;
-                });
+                    emojiGroup.style.opacity = 0;
+                    emojis.map(emoji => {
+                        emoji.style.backgroundImage = '';
+                        return emoji;
+                    });
 
-            }
+                }
 
-            return emojiGroup;
+                return emojiGroup;
 
-        });
+            });
+
+        }, 10);
 
     }
 
