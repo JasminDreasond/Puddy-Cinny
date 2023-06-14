@@ -359,7 +359,6 @@ function EmojiBoard({ onSelect, searchRef }) {
             </ScrollView>
             <div className="emoji-board__content">
                 <div className="emoji-board__content__search">
-                    <RawIcon size="small" fa='fa-solid fa-magnifying-glass' />
                     <Input onChange={handleSearchChange} forwardRef={searchRef} placeholder="Search" />
                 </div>
                 <div className="emoji-board__content__emojis">
