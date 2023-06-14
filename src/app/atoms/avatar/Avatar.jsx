@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.scss';

@@ -1,6 +1,4 @@
 /* eslint-disable prefer-destructuring */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 
 import initMatrix from '../client/initMatrix';
 

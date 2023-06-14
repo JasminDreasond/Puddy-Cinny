@@ -1,5 +1,4 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable no-restricted-syntax */
 
 const mimeTypeCache = {};
 setInterval(() => {

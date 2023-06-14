@@ -144,6 +144,20 @@ function EmojiBoard({ onSelect, searchRef }) {
     const scrollEmojisRef = useRef(null);
     const emojiInfo = useRef(null);
 
+    function checkVisible(elm) {
+        const rect = elm.getBoundingClientRect();
+        const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+        return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+    }
+
+    function onScroll(event) {
+
+        const target = event.target.childNodes[0];
+        const elements = Array.from(target.childNodes);
+        console.log(checkVisible(elements[1]));
+
+    }
+
     function isTargetNotEmoji(target) {
         return target.classList.contains('emoji') === false;
     }
@@ -318,7 +332,7 @@ function EmojiBoard({ onSelect, searchRef }) {
                     <Input onChange={handleSearchChange} forwardRef={searchRef} placeholder="Search" />
                 </div>
                 <div className="emoji-board__content__emojis">
-                    <ScrollView ref={scrollEmojisRef} autoHide>
+                    <ScrollView ref={scrollEmojisRef} onScroll={onScroll} autoHide>
                         <div onMouseMove={hoverEmoji} onClick={selectEmoji}>
                             <SearchedEmoji />
                             {recentEmojis.length > 0 && (
