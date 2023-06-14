@@ -49,7 +49,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                                 shortcodes={emoji.shortcodes?.toString()}
 
                                 hexcode={emoji.hexcode}
-                                // src={TWEMOJI_BASE_URL}
+                                srcData={TWEMOJI_BASE_URL}
                                 src=''
 
                             />
@@ -65,7 +65,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                                 unicode={`:${emoji.shortcode}:`}
                                 shortcodes={emoji.shortcode}
 
-                                // src={initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}
+                                srcData={initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}
                                 src=''
 
                                 data-mx-emoticon={emoji.mxc}
@@ -76,7 +76,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                 );
             }
             emojiBoard.push(
-                <div key={r} className="emoji-row">
+                <div key={r} className="emoji-row" style={{ opacity: 0 }}>
                     {emojiRow}
                 </div>
             );

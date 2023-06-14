@@ -33,7 +33,6 @@ function ProfileAvatarMenu() {
     useEffect(() => {
 
         // Get User and update data
-        // eslint-disable-next-line no-shadow
         const user = mx.getUser(mx.getUserId());
 
         // Set New User Status
