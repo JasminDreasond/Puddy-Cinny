@@ -14,6 +14,7 @@ import navigation from '../../../client/state/navigation';
 import AsyncSearch from '../../../util/AsyncSearch';
 import { addRecentEmoji, getRecentEmojis } from './recent';
 import { TWEMOJI_BASE_URL } from '../../../util/twemojify';
+import { checkVisible } from '../../../util/tools';
 
 import Text from '../../atoms/text/Text';
 import RawIcon from '../../atoms/system-icons/RawIcon';
@@ -144,17 +145,38 @@ function EmojiBoard({ onSelect, searchRef }) {
     const scrollEmojisRef = useRef(null);
     const emojiInfo = useRef(null);
 
-    function checkVisible(elm) {
-        const rect = elm.getBoundingClientRect();
-        const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-        return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
-    }
-
+    // Check Emoji Visible
     function onScroll(event) {
 
-        const target = event.target.childNodes[0];
-        const elements = Array.from(target.childNodes);
-        console.log(checkVisible(elements[1]));
+        // Read Data
+        const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
+        const elements = Array.from(target);
+        elements.map(emojiGroup => {
+
+
+            const emojis = Array.from(emojiGroup.querySelectorAll('img'));
+
+            // Is Visible
+            if (checkVisible(emojiGroup)) {
+
+                emojiGroup.style.opacity = 1;
+
+
+
+            }
+
+            // Nope
+            else {
+
+                emojiGroup.style.opacity = 0;
+
+
+
+            }
+
+            return emojiGroup;
+
+        });
 
     }
 
