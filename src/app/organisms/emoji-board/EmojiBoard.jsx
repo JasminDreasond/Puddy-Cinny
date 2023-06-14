@@ -22,6 +22,16 @@ import Input from '../../atoms/input/Input';
 import ScrollView from '../../atoms/scroll/ScrollView';
 
 let ROW_EMOJIS_COUNT = 7;
+const cateogoryList = [
+    [0, 'fa-solid fa-face-smile', 'Smilies'],
+    [1, 'fa-solid fa-dog', 'Animals'],
+    [2, 'fa-solid fa-mug-saucer', 'Food'],
+    [3, 'fa-solid fa-futbol', 'Activities'],
+    [4, 'fa-solid fa-camera', 'Travel'],
+    [5, 'fa-solid fa-building', 'Objects'],
+    [6, 'fa-solid fa-peace', 'Symbols'],
+    [7, 'fa-solid fa-flag', 'Flags'],
+];
 
 const EmojiGroup = React.memo(({ name, groupEmojis }) => {
     function getEmojiBoard() {
@@ -145,18 +155,20 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
 
     const getFunctionEmoji = () => {
 
-        const boardType = emojiBoardRef.current.getAttribute('board-type');
-        if (boardType === 'emoji') {
-            ROW_EMOJIS_COUNT = 7;
-            return 'getEmojis';
+        if (emojiBoardRef.current) {
+            const boardType = emojiBoardRef.current.getAttribute('board-type');
+            if (boardType === 'emoji') {
+                ROW_EMOJIS_COUNT = 7;
+                return 'getEmojis';
+            }
+
+            if (boardType === 'sticker') {
+                ROW_EMOJIS_COUNT = 3;
+                return 'getStickers';
+            }
         }
 
-        if (boardType === 'sticker') {
-            ROW_EMOJIS_COUNT = 3;
-            return 'getStickers';
-        }
-
-        return 'emoji';
+        return 'getEmojis';
 
     };
 
@@ -327,6 +339,17 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
     }
 
     const boardType = getFunctionEmoji();
+    const categoryReader = ([indx, ico, name]) => (
+        <IconButton
+            onClick={() => openGroup(recentOffset + availableEmojis.length + indx)}
+            key={indx}
+            fa={ico}
+            tooltip={name}
+            tooltipPlacement="left"
+        />
+    );
+
+    setTimeout(() => { onScroll({ target: scrollEmojisRef.current }); }, 500);
 
     return (
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>
@@ -359,24 +382,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
                         })}
                     </div>
                     <div className="emoji-board__nav-twemoji">
-                        {[
-                            [0, 'fa-solid fa-face-smile', 'Smilies'],
-                            [1, 'fa-solid fa-dog', 'Animals'],
-                            [2, 'fa-solid fa-mug-saucer', 'Food'],
-                            [3, 'fa-solid fa-futbol', 'Activities'],
-                            [4, 'fa-solid fa-camera', 'Travel'],
-                            [5, 'fa-solid fa-building', 'Objects'],
-                            [6, 'fa-solid fa-peace', 'Symbols'],
-                            [7, 'fa-solid fa-flag', 'Flags'],
-                        ].map(([indx, ico, name]) => (
-                            <IconButton
-                                onClick={() => openGroup(recentOffset + availableEmojis.length + indx)}
-                                key={indx}
-                                fa={ico}
-                                tooltip={name}
-                                tooltipPlacement="left"
-                            />
-                        ))}
+                        {boardType === 'getEmojis' ? cateogoryList.map(categoryReader) : [].map(categoryReader)}
                     </div>
                 </div>
             </ScrollView>
