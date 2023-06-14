@@ -17,12 +17,11 @@ import { TWEMOJI_BASE_URL } from '../../../util/twemojify';
 import { checkVisible } from '../../../util/tools';
 
 import Text from '../../atoms/text/Text';
-import RawIcon from '../../atoms/system-icons/RawIcon';
 import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import ScrollView from '../../atoms/scroll/ScrollView';
 
-const ROW_EMOJIS_COUNT = 7;
+let ROW_EMOJIS_COUNT = 7;
 
 const EmojiGroup = React.memo(({ name, groupEmojis }) => {
     function getEmojiBoard() {
@@ -148,10 +147,12 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
 
         const boardType = emojiBoardRef.current.getAttribute('board-type');
         if (boardType === 'emoji') {
+            ROW_EMOJIS_COUNT = 7;
             return 'getEmojis';
         }
 
         if (boardType === 'sticker') {
+            ROW_EMOJIS_COUNT = 3;
             return 'getStickers';
         }
 
