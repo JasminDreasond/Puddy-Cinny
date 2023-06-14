@@ -32,6 +32,16 @@
     & .ic-btn-surface {
       opacity: 0.8;
     }
+    .emoji-group-button > span {
+      display: inline-block;
+      height: 25px;
+      width: 25px;
+      background-size: 100%;
+      left: 0px;
+      position: relative;
+      margin-top: -7px;
+      top: 7px;
+    }
   }
   &__nav-custom,
   &__nav-twemoji {

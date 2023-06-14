@@ -324,6 +324,7 @@ function EmojiBoard({ onSelect, searchRef }) {
                             );
                             return (
                                 <IconButton
+                                    className='emoji-group-button'
                                     onClick={() => openGroup(recentOffset + pack.packIndex)}
                                     src={src}
                                     key={pack.packIndex}
