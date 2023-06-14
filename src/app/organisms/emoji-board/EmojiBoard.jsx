@@ -228,7 +228,7 @@ function EmojiBoard({ onSelect, searchRef }) {
 
         const emoji = e.target;
         const { shortcodes, unicode } = getEmojiDataFromTarget(emoji);
-        const { src } = e.target;
+        const src = e.target.getAttribute('srcdata');
 
         if (typeof shortcodes === 'undefined') {
             searchRef.current.placeholder = 'Search';
