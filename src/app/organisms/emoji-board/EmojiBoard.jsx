@@ -39,7 +39,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                     <span key={emojiIndex}>
                         {emoji.hexcode ? (
                             // This is a unicode emoji, and should be rendered with twemoji
-                            <img
+                            <emoji
 
                                 className="emoji"
                                 draggable="false"
@@ -50,13 +50,12 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                                 shortcodes={emoji.shortcodes?.toString()}
 
                                 hexcode={emoji.hexcode}
-                                srcData={TWEMOJI_BASE_URL}
-                                src=''
+                                srcdata={`${TWEMOJI_BASE_URL}72x72/${emoji.hexcode.toLowerCase()}.png`}
 
                             />
                         ) : (
                             // This is a custom emoji, and should be render as an mxc
-                            <img
+                            <emoji
 
                                 className="emoji"
                                 draggable="false"
@@ -66,8 +65,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
                                 unicode={`:${emoji.shortcode}:`}
                                 shortcodes={emoji.shortcode}
 
-                                srcData={initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}
-                                src=''
+                                srcdata={initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}
 
                                 data-mx-emoticon={emoji.mxc}
 
@@ -154,14 +152,16 @@ function EmojiBoard({ onSelect, searchRef }) {
         elements.map(emojiGroup => {
 
 
-            const emojis = Array.from(emojiGroup.querySelectorAll('img'));
+            const emojis = Array.from(emojiGroup.querySelectorAll('emoji'));
 
             // Is Visible
             if (checkVisible(emojiGroup)) {
 
                 emojiGroup.style.opacity = 1;
-
-
+                emojis.map(emoji => {
+                    emoji.style.backgroundImage = `url("${emoji.getAttribute('srcdata')}")`;
+                    return emoji;
+                });
 
             }
 
@@ -169,8 +169,10 @@ function EmojiBoard({ onSelect, searchRef }) {
             else {
 
                 emojiGroup.style.opacity = 0;
-
-
+                emojis.map(emoji => {
+                    emoji.style.backgroundImage = '';
+                    return emoji;
+                });
 
             }
 

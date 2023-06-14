@@ -121,8 +121,14 @@
     @include dir.side(margin, var(--left-margin), var(--right-margin));
   }
   & .emoji {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 66%;
+    display: inline-block;
     max-width: 38px;
     max-height: 38px;
+    min-width: 38px;
+    min-height: 38px;
     width: 100%;
     height: 100%;
     overflow: hidden;
