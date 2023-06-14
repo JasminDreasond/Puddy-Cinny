@@ -29,6 +29,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-console': 0,
     'no-alert': 0,
+    "no-shadow": "off",
 
     "import/prefer-default-export": "off",
     "import/extensions": "off",
@@ -56,6 +57,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
 
+    "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": "error",
   },
 };
