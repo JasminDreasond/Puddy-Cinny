@@ -7,6 +7,9 @@ import settings from '../../../client/state/settings';
 import ContextMenu from '../../atoms/context-menu/ContextMenu';
 import EmojiBoard from './EmojiBoard';
 
+import { addDefaultEmojisToList } from './emoji';
+addDefaultEmojisToList();
+
 let requestCallback = null;
 let isEmojiBoardVisible = false;
 function EmojiBoardOpener() {

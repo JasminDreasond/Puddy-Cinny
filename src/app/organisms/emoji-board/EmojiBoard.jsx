@@ -6,7 +6,7 @@ import './EmojiBoard.scss';
 
 import parse from 'html-react-parser';
 import twemoji from 'twemoji';
-import { emojiGroups, defaultEmojis } from './emoji';
+import { emojiGroups, emojis } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -120,8 +120,8 @@ EmojiGroup.propTypes = {
 
 // Search Emoji
 const asyncSearch = new AsyncSearch();
-asyncSearch.setup(defaultEmojis, { keys: ['shortcode'], isContain: true, limit: 40 });
-function SearchedEmoji() {
+asyncSearch.setup(emojis, { keys: ['shortcode'], isContain: true, limit: 40 });
+function SearchedEmoji({ scrollEmojisRef }) {
 
     // Searched
     const [searchedEmojis, setSearchedEmojis] = useState(null);
@@ -134,6 +134,9 @@ function SearchedEmoji() {
             return;
         }
         setSearchedEmojis({ emojis: resultEmojis });
+        if (scrollEmojisRef.current) {
+            setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
+        }
     }
 
     // Effect
@@ -157,6 +160,10 @@ function SearchedEmoji() {
     );
 
 }
+
+SearchedEmoji.propTypes = {
+    scrollEmojisRef: PropTypes.shape({}).isRequired,
+};
 
 // Board
 function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
@@ -408,7 +415,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                 <div className="emoji-board__content__emojis">
                     <ScrollView ref={scrollEmojisRef} onScroll={onScroll} autoHide>
                         <div onMouseMove={hoverEmoji} onClick={selectEmoji}>
-                            <SearchedEmoji />
+                            <SearchedEmoji scrollEmojisRef={scrollEmojisRef} />
                             {boardType === 'getEmojis' ? (recentEmojis.length > 0 && (
                                 <EmojiGroup name="Recently used" groupEmojis={recentEmojis} />
                             )) : ''}

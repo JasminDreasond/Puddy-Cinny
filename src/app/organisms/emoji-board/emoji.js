@@ -77,7 +77,7 @@ const removeEmojiFromList = data => {
   }
 };
 
-const resetEmojisList = data => {
+const resetEmojisList = () => {
   for (let i = 0; i < emojis.length; i++) {
     if (emojis.length > 0) {
       emojis.shift();
@@ -85,7 +85,7 @@ const resetEmojisList = data => {
   }
 };
 
-const addDefaultEmojisToList = data => {
+const addDefaultEmojisToList = () => {
   defaultEmojis.map(emoji => {
     emojis.push(emoji);
     return emoji;
