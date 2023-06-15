@@ -52,14 +52,13 @@ const EmojiGroup = React.memo(({ name, groupEmojis, className }) => {
 
                                 className="emoji"
                                 draggable="false"
-                                loading="lazy"
 
                                 alt={emoji.shortcodes?.toString()}
                                 unicode={emoji.unicode}
                                 shortcodes={emoji.shortcodes?.toString()}
 
                                 hexcode={emoji.hexcode}
-                                srcdata={`${TWEMOJI_BASE_URL}72x72/${emoji.hexcode.toLowerCase()}.png`}
+                                style={{ backgroundImage: `url("${TWEMOJI_BASE_URL}72x72/${emoji.hexcode.toLowerCase()}.png")` }}
 
                             />
                         ) : (
@@ -68,13 +67,13 @@ const EmojiGroup = React.memo(({ name, groupEmojis, className }) => {
 
                                 className="emoji"
                                 draggable="false"
-                                loading="lazy"
+
 
                                 alt={emoji.shortcode}
                                 unicode={`:${emoji.shortcode}:`}
                                 shortcodes={emoji.shortcode}
 
-                                srcdata={initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}
+                                style={{ backgroundImage: `url("${initMatrix.matrixClient.mxcUrlToHttp(emoji.mxc)}")` }}
 
                                 data-mx-emoticon={emoji.mxc}
 
@@ -84,7 +83,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis, className }) => {
                 );
             }
             emojiBoard.push(
-                <div key={r} className="emoji-row" style={{ opacity: 0 }}>
+                <div key={r} className="emoji-row hide-emoji">
                     {emojiRow}
                 </div>
             );
@@ -184,29 +183,14 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
             const elements = Array.from(target);
             elements.map(emojiGroup => {
 
-
-                const emojis = Array.from(emojiGroup.querySelectorAll('emoji'));
-
                 // Is Visible
                 if (checkVisible(emojiGroup)) {
-
-                    emojiGroup.style.opacity = 1;
-                    emojis.map(emoji => {
-                        emoji.style.backgroundImage = `url("${emoji.getAttribute('srcdata')}")`;
-                        return emoji;
-                    });
-
+                    emojiGroup.classList.remove('hide-emoji');
                 }
 
                 // Nope
                 else {
-
-                    emojiGroup.style.opacity = 0;
-                    emojis.map(emoji => {
-                        emoji.style.backgroundImage = '';
-                        return emoji;
-                    });
-
+                    emojiGroup.classList.add('hide-emoji');
                 }
 
                 return emojiGroup;
@@ -257,9 +241,14 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
 
         const emoji = e.target;
         const { shortcodes, unicode } = getEmojiDataFromTarget(emoji);
-        const src = e.target.getAttribute('srcdata');
 
-        if (typeof shortcodes === 'undefined') {
+        let src;
+
+        if (e.target.style.backgroundImage) {
+            src = e.target.style.backgroundImage.substring(5, e.target.style.backgroundImage.length - 2);
+        }
+
+        if (!src || typeof shortcodes === 'undefined') {
             searchRef.current.placeholder = 'Search';
             setEmojiInfo({
                 unicode: '🙂',

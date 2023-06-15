@@ -146,6 +146,10 @@
       border-radius: var(--bo-radius);
     }
   }
+
+  .hide-emoji .emoji {
+    background-image: none !important;
+  }
 }
 
 [board-type='emoji'] .emoji-group {
