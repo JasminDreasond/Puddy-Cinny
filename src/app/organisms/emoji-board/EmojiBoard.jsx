@@ -357,14 +357,14 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>
             <ScrollView invisible>
                 <div className="emoji-board__nav">
-                    {recentEmojis.length > 0 && (
+                    {boardType === 'getEmojis' ? (recentEmojis.length > 0 && (
                         <IconButton
                             onClick={() => openGroup(0)}
                             fa='fa-solid fa-clock-rotate-left'
                             tooltip="Recent"
                             tooltipPlacement="left"
                         />
-                    )}
+                    )) : ''}
                     <div className="emoji-board__nav-custom">
                         {availableEmojis.map((pack) => {
                             const src = initMatrix.matrixClient.mxcUrlToHttp(
@@ -396,9 +396,9 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                     <ScrollView ref={scrollEmojisRef} onScroll={onScroll} autoHide>
                         <div onMouseMove={hoverEmoji} onClick={selectEmoji}>
                             <SearchedEmoji />
-                            {recentEmojis.length > 0 && (
+                            {boardType === 'getEmojis' ? (recentEmojis.length > 0 && (
                                 <EmojiGroup name="Recently used" groupEmojis={recentEmojis} />
-                            )}
+                            )) : ''}
                             {availableEmojis.map((pack) => (
                                 <EmojiGroup
                                     name={pack.displayName ?? 'Unknown'}
