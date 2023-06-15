@@ -78,10 +78,8 @@ const removeEmojiFromList = data => {
 };
 
 const resetEmojisList = () => {
-  for (let i = 0; i < emojis.length; i++) {
-    if (emojis.length > 0) {
-      emojis.shift();
-    }
+  while (emojis.length > 0) {
+    emojis.shift();
   }
 };
 

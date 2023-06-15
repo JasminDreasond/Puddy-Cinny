@@ -6,7 +6,7 @@ import './EmojiBoard.scss';
 
 import parse from 'html-react-parser';
 import twemoji from 'twemoji';
-import { emojiGroups, emojis } from './emoji';
+import { emojiGroups, emojis, addDefaultEmojisToList, resetEmojisList } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -135,7 +135,7 @@ function SearchedEmoji({ scrollEmojisRef }) {
         }
         setSearchedEmojis({ emojis: resultEmojis });
         if (scrollEmojisRef.current) {
-            setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
+            // setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
         }
     }
 
@@ -373,6 +373,10 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
         />
     );
 
+    resetEmojisList();
+    addDefaultEmojisToList();
+    console.log(emojis);
+
     return (
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>
             <ScrollView invisible>
@@ -387,6 +391,8 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                     )) : ''}
                     <div className="emoji-board__nav-custom">
                         {availableEmojis.map((pack) => {
+                            console.log(pack);
+                            // addEmojiToList
                             const src = initMatrix.matrixClient.mxcUrlToHttp(
                                 pack.avatarUrl ?? pack[boardType]()[0].mxc
                             );
