@@ -493,11 +493,17 @@ function RoomViewInput({
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
 
-              openEmojiBoard(cords, 'sticker', data => handleSendSticker({
-                body: data.unicode.substring(1, data.unicode.length - 1),
-                httpUrl: initMatrix.matrixClient.mxcUrlToHttp(data.mxc),
-                mxc: data.mxc
-              }));
+              openEmojiBoard(cords, 'sticker', data => {
+
+                handleSendSticker({
+                  body: data.unicode.substring(1, data.unicode.length - 1),
+                  httpUrl: initMatrix.matrixClient.mxcUrlToHttp(data.mxc),
+                  mxc: data.mxc
+                });
+
+                e.target.click();
+
+              });
 
             }}
             tooltip="Sticker"
@@ -511,7 +517,12 @@ function RoomViewInput({
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
 
-              openEmojiBoard(cords, 'emoji', addEmoji);
+              openEmojiBoard(cords, 'emoji', emoji => {
+
+                addEmoji(emoji);
+                e.target.click();
+
+              });
 
             }}
             tooltip="Emoji"
