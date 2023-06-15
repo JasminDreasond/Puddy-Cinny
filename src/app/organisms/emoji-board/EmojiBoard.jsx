@@ -33,7 +33,7 @@ const cateogoryList = [
     [7, 'fa-solid fa-flag', 'Flags'],
 ];
 
-const EmojiGroup = React.memo(({ name, groupEmojis }) => {
+const EmojiGroup = React.memo(({ name, groupEmojis, className }) => {
     function getEmojiBoard() {
         const emojiBoard = [];
         const totalEmojis = groupEmojis.length;
@@ -93,7 +93,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
     }
 
     return (
-        <div className="emoji-group">
+        <div className={`emoji-group${className ? ` ${className}` : ''}`}>
             <Text className="emoji-group__header" variant="b2" weight="bold">
                 {name}
             </Text>
@@ -103,6 +103,7 @@ const EmojiGroup = React.memo(({ name, groupEmojis }) => {
 });
 
 EmojiGroup.propTypes = {
+    className: PropTypes.string,
     name: PropTypes.string.isRequired,
     groupEmojis: PropTypes.arrayOf(
         PropTypes.shape({
@@ -406,7 +407,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
                                 />
                             ))}
                             {emojiGroups.map((group) => (
-                                <EmojiGroup key={group.name} name={group.name} groupEmojis={group.emojis} />
+                                <EmojiGroup className={boardType === 'getStickers' ? 'd-none' : null} key={group.name} name={group.name} groupEmojis={group.emojis} />
                             ))}
                         </div>
                     </ScrollView>
