@@ -10,12 +10,15 @@ import EmojiBoard from './EmojiBoard';
 let requestCallback = null;
 let isEmojiBoardVisible = false;
 function EmojiBoardOpener() {
+  const scrollEmojisRef = useRef(null);
   const openerRef = useRef(null);
   const searchRef = useRef(null);
   const emojiBoardRef = useRef(null);
 
   function openEmojiBoard(cords, requestEmojiCallback, dom) {
+
     emojiBoardRef.current.setAttribute('board-type', dom);
+
     if (requestCallback !== null || isEmojiBoardVisible) {
       requestCallback = null;
       if (cords.detail === 0) openerRef.current.click();
@@ -25,6 +28,11 @@ function EmojiBoardOpener() {
     openerRef.current.style.transform = `translate(${cords.x}px, ${cords.y}px)`;
     requestCallback = requestEmojiCallback;
     openerRef.current.click();
+
+    if (scrollEmojisRef.current) {
+      setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
+    }
+
   }
 
   function afterEmojiBoardToggle(isVisible) {
@@ -52,7 +60,7 @@ function EmojiBoardOpener() {
   return (
     <ContextMenu
       content={(
-        <EmojiBoard onSelect={addEmoji} searchRef={searchRef} emojiBoardRef={emojiBoardRef} />
+        <EmojiBoard onSelect={addEmoji} searchRef={searchRef} emojiBoardRef={emojiBoardRef} scrollEmojisRef={scrollEmojisRef} />
       )}
       afterToggle={afterEmojiBoardToggle}
       render={(toggleMenu) => (

@@ -148,8 +148,7 @@ function SearchedEmoji() {
     );
 }
 
-function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
-    const scrollEmojisRef = useRef(null);
+function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
     const emojiInfo = useRef(null);
     let tinyTimeoutEmoji = null;
 
@@ -339,8 +338,6 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
         />
     );
 
-    // setTimeout(() => { onScroll({ target: scrollEmojisRef.current }); }, 1000);
-
     return (
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>
             <ScrollView invisible>
@@ -414,6 +411,7 @@ EmojiBoard.propTypes = {
     onSelect: PropTypes.func.isRequired,
     searchRef: PropTypes.shape({}).isRequired,
     emojiBoardRef: PropTypes.shape({}).isRequired,
+    scrollEmojisRef: PropTypes.shape({}).isRequired,
 };
 
 export default EmojiBoard;
