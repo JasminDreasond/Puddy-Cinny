@@ -203,7 +203,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                             emojiGroup.classList.add('hide-emoji');
                         }
 
-                    }, 1));
+                    }, 500));
 
                     return emojiGroup;
 
