@@ -51,7 +51,7 @@ function addToGroup(emoji) {
   else if (emoji.group === 9) addEmoji(emoji, 7);
 }
 
-const emojis = [];
+const defaultEmojis = [];
 emojisData.forEach((emoji) => {
   const myShortCodes = joypixels[emoji.hexcode] || emojibase[emoji.hexcode];
   if (!myShortCodes) return;
@@ -61,9 +61,22 @@ emojisData.forEach((emoji) => {
     shortcodes: myShortCodes,
   };
   addToGroup(em);
-  emojis.push(em);
+  defaultEmojis.push(em);
 });
 
+const emojis = [];
+
+const addEmojiToList = data => {
+  emojis.push(data);
+};
+
+const removeEmojiFromList = data => {
+  const index = emojis.indexOf(data);
+  if (index > -1) {
+    emojis.splice(index, 1);
+  }
+};
+
 export {
-  emojis, emojiGroups,
+  emojis, defaultEmojis, emojiGroups, addEmojiToList, removeEmojiFromList,
 };

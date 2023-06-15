@@ -1,4 +1,4 @@
-import { emojis } from './emoji';
+import { defaultEmojis } from './emoji';
 
 // https://github.com/Sorunome/matrix-doc/blob/soru/emotes/proposals/2545-emotes.md
 
@@ -217,7 +217,7 @@ function getRelevantPacks(mx, rooms) {
 function getShortcodeToEmoji(mx, rooms) {
   const allEmoji = new Map();
 
-  emojis.forEach((emoji) => {
+  defaultEmojis.forEach((emoji) => {
     if (Array.isArray(emoji.shortcodes)) {
       emoji.shortcodes.forEach((shortcode) => {
         allEmoji.set(shortcode, emoji);
@@ -256,7 +256,7 @@ function getEmojiForCompletion(mx, rooms) {
       allEmoji.set(emoji.shortcode, emoji);
     });
 
-  return Array.from(allEmoji.values()).concat(emojis.filter((e) => !allEmoji.has(e.shortcode)));
+  return Array.from(allEmoji.values()).concat(defaultEmojis.filter((e) => !allEmoji.has(e.shortcode)));
 }
 
 export {

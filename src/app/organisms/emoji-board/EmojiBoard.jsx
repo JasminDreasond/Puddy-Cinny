@@ -6,7 +6,7 @@ import './EmojiBoard.scss';
 
 import parse from 'html-react-parser';
 import twemoji from 'twemoji';
-import { emojiGroups, emojis } from './emoji';
+import { emojiGroups, defaultEmojis } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -120,7 +120,7 @@ EmojiGroup.propTypes = {
 
 // Search Emoji
 const asyncSearch = new AsyncSearch();
-asyncSearch.setup(emojis, { keys: ['shortcode'], isContain: true, limit: 40 });
+asyncSearch.setup(defaultEmojis, { keys: ['shortcode'], isContain: true, limit: 40 });
 function SearchedEmoji() {
 
     // Searched
