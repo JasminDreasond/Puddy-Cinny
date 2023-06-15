@@ -339,7 +339,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef }) {
         />
     );
 
-    setTimeout(() => { onScroll({ target: scrollEmojisRef.current }); }, 500);
+    // setTimeout(() => { onScroll({ target: scrollEmojisRef.current }); }, 1000);
 
     return (
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>

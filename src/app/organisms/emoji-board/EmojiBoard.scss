@@ -149,6 +149,8 @@
 
   .hide-emoji .emoji {
     background-image: none !important;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
