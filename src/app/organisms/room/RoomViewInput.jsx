@@ -520,7 +520,6 @@ function RoomViewInput({
               cords.y -= 460;
 
               if (window.matchMedia('screen and (max-width: 479px)').matches) {
-                cords.y += 220;
                 cords.x -= 50;
               }
 
