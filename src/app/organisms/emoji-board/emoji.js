@@ -77,6 +77,21 @@ const removeEmojiFromList = data => {
   }
 };
 
+const resetEmojisList = data => {
+  for (let i = 0; i < emojis.length; i++) {
+    if (emojis.length > 0) {
+      emojis.shift();
+    }
+  }
+};
+
+const addDefaultEmojisToList = data => {
+  defaultEmojis.map(emoji => {
+    emojis.push(emoji);
+    return emoji;
+  });
+};
+
 export {
-  emojis, defaultEmojis, emojiGroups, addEmojiToList, removeEmojiFromList,
+  emojis, defaultEmojis, emojiGroups, addEmojiToList, removeEmojiFromList, resetEmojisList, addDefaultEmojisToList,
 };
