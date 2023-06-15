@@ -151,6 +151,7 @@ function SearchedEmoji() {
 function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
     const emojiInfo = useRef(null);
     let tinyTimeoutEmoji = null;
+    const tinyTimeoutCollection = [];
 
     const getFunctionEmoji = () => {
 
@@ -176,27 +177,43 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
 
         // Read Data
         if (tinyTimeoutEmoji) clearTimeout(tinyTimeoutEmoji);
+
+        for (let i = 0; i < tinyTimeoutCollection.length; i++) {
+            const tinyTimeoutLoad = tinyTimeoutCollection.shift();
+            clearTimeout(tinyTimeoutLoad);
+        }
+
         tinyTimeoutEmoji = setTimeout(() => {
 
             const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
             const elements = Array.from(target);
-            elements.map(emojiGroup => {
 
-                // Is Visible
-                if (checkVisible(emojiGroup)) {
-                    emojiGroup.classList.remove('hide-emoji');
-                }
+            if (document.getElementById('emoji-board')) {
+                elements.map(emojiGroup => {
 
-                // Nope
-                else {
-                    emojiGroup.classList.add('hide-emoji');
-                }
+                    tinyTimeoutCollection.push(setTimeout(() => {
 
-                return emojiGroup;
+                        // Is Visible
+                        if (document.getElementById('emoji-board') && checkVisible(emojiGroup)) {
+                            console.log(true);
+                            // emojiGroup.classList.remove('hide-emoji');
+                        }
 
-            });
+                        // Nope
+                        else {
+                            console.log(false);
+                            // emojiGroup.classList.add('hide-emoji');
+                        }
 
-        }, 10);
+                    }, 1));
+
+                    return emojiGroup;
+
+                });
+            }
+
+        }, 500);
+
 
     }
 
