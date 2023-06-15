@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './RoomViewInput.scss';
@@ -69,7 +68,6 @@ function RoomViewInput({
       roomsInput.removeListener(cons.events.roomsInput.ATTACHMENT_SET, setAttachment);
       viewEvent.removeListener('focus_msg_input', requestFocusInput);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sendIsTyping = (isT) => {
@@ -204,9 +202,7 @@ function RoomViewInput({
 
       const msg = textAreaRef.current.value;
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       textAreaRef.current.style.height = 'unset';
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       inputBaseRef.current.style.backgroundImage = 'unset';
 
       if (msg.trim() === '') {
@@ -217,7 +213,6 @@ function RoomViewInput({
 
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   // Send Body

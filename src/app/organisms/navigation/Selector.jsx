@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -58,7 +57,6 @@ function Selector({
       unSub1();
       unSub2();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Options

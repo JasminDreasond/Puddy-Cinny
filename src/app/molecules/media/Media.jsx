@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Media.scss';
@@ -79,7 +78,6 @@ function FileHeader({
               size="extra-small"
               tooltip="Download"
               fa="fa-solid fa-download"
-              // eslint-disable-next-line react/jsx-no-bind
               onClick={handleDownload}
             />
           </a>
@@ -139,7 +137,6 @@ function Image({
     return () => {
       unmounted = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleLightbox = () => {
@@ -249,7 +246,6 @@ function Sticker({
     return () => {
       unmounted = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -336,7 +332,6 @@ function Video({
     return () => {
       unmounted = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadVideo = async () => {

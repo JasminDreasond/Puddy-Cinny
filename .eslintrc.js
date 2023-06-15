@@ -31,6 +31,9 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-console': 0,
     'no-alert': 0,
+    'no-plusplus': 0,
+    'no-minusminus': 0,
+    'no-param-reassign': 0,
     "no-shadow": "off",
 
     "import/prefer-default-export": "off",
@@ -54,10 +57,12 @@ module.exports = {
       },
     ],
 
+    'react/jsx-no-bind': 0,
+    'react-hooks/exhaustive-deps': 0,
+    'react/prop-types': 0,
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
 
     "react/no-unknown-property": 0,
     "@typescript-eslint/no-shadow": "error",

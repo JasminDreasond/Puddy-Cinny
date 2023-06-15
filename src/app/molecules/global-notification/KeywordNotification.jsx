@@ -82,7 +82,6 @@ function useKeywordNotif() {
     } else {
       const keyRules = ct.filter((r) => r.rule_id !== USERNAME);
       keyRules.forEach((r) => {
-        // eslint-disable-next-line no-param-reassign
         r.actions = getTypeActions(type, true);
       });
     }

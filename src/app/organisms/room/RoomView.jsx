@@ -17,7 +17,6 @@ const viewEvent = new EventEmitter();
 
 function RoomView({ roomTimeline, eventId }) {
   const roomViewRef = useRef(null);
-  // eslint-disable-next-line react/prop-types
   const { roomId } = roomTimeline;
 
   useEffect(() => {

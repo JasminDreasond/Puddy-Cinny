@@ -177,7 +177,6 @@ function DraggableSpaceShortcut({
         return;
       }
       moveShortcut(dragIndex, hoverIndex);
-      // eslint-disable-next-line no-param-reassign
       item.index = hoverIndex;
     },
   });
