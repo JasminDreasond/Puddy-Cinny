@@ -21,6 +21,7 @@ import IconButton from '../../atoms/button/IconButton';
 import Input from '../../atoms/input/Input';
 import ScrollView from '../../atoms/scroll/ScrollView';
 
+// Emoji Config
 let ROW_EMOJIS_COUNT = 7;
 const cateogoryList = [
     [0, 'fa-solid fa-face-smile', 'Smilies'],
@@ -33,6 +34,7 @@ const cateogoryList = [
     [7, 'fa-solid fa-flag', 'Flags'],
 ];
 
+// Emoji Groups
 const EmojiGroup = React.memo(({ name, groupEmojis, className }) => {
     function getEmojiBoard() {
         const emojiBoard = [];
@@ -116,11 +118,15 @@ EmojiGroup.propTypes = {
     ).isRequired,
 };
 
+// Search Emoji
 const asyncSearch = new AsyncSearch();
 asyncSearch.setup(emojis, { keys: ['shortcode'], isContain: true, limit: 40 });
 function SearchedEmoji() {
+
+    // Searched
     const [searchedEmojis, setSearchedEmojis] = useState(null);
 
+    // Set Search
     function handleSearchEmoji(resultEmojis, term) {
         if (term === '' || resultEmojis.length === 0) {
             if (term === '') setSearchedEmojis(null);
@@ -130,6 +136,7 @@ function SearchedEmoji() {
         setSearchedEmojis({ emojis: resultEmojis });
     }
 
+    // Effect
     useEffect(() => {
         asyncSearch.on(asyncSearch.RESULT_SENT, handleSearchEmoji);
         return () => {
@@ -137,8 +144,10 @@ function SearchedEmoji() {
         };
     }, []);
 
+    // Nothing
     if (searchedEmojis === null) return false;
 
+    // Complete
     return (
         <EmojiGroup
             key="-1"
@@ -146,13 +155,18 @@ function SearchedEmoji() {
             groupEmojis={searchedEmojis.emojis}
         />
     );
+
 }
 
+// Board
 function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
+
+    // First Values
     const emojiInfo = useRef(null);
-    let tinyTimeoutEmoji = null;
+    // let tinyTimeoutEmoji = null;
     const tinyTimeoutCollection = [];
 
+    // Get Function
     const getFunctionEmoji = () => {
 
         if (emojiBoardRef.current) {
@@ -179,11 +193,15 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
         // if (tinyTimeoutEmoji) clearTimeout(tinyTimeoutEmoji);
 
         for (let i = 0; i < tinyTimeoutCollection.length; i++) {
-            const tinyTimeoutLoad = tinyTimeoutCollection.shift();
-            clearTimeout(tinyTimeoutLoad);
+            if (tinyTimeoutCollection.length > 0) {
+                const tinyTimeoutLoad = tinyTimeoutCollection.shift();
+                clearTimeout(tinyTimeoutLoad);
+            }
         }
 
-        tinyTimeoutEmoji = setTimeout(() => {
+        // tinyTimeoutEmoji = 
+
+        setTimeout(() => {
 
             const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
             const elements = Array.from(target);
