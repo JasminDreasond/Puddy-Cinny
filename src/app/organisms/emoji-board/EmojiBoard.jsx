@@ -195,14 +195,12 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
 
                         // Is Visible
                         if (document.getElementById('emoji-board') && checkVisible(emojiGroup)) {
-                            console.log(true);
-                            // emojiGroup.classList.remove('hide-emoji');
+                            emojiGroup.classList.remove('hide-emoji');
                         }
 
                         // Nope
                         else {
-                            console.log(false);
-                            // emojiGroup.classList.add('hide-emoji');
+                            emojiGroup.classList.add('hide-emoji');
                         }
 
                     }, 1));
