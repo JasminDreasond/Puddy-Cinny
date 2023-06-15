@@ -176,7 +176,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
     function onScroll(event) {
 
         // Read Data
-        if (tinyTimeoutEmoji) clearTimeout(tinyTimeoutEmoji);
+        // if (tinyTimeoutEmoji) clearTimeout(tinyTimeoutEmoji);
 
         for (let i = 0; i < tinyTimeoutCollection.length; i++) {
             const tinyTimeoutLoad = tinyTimeoutCollection.shift();
@@ -196,11 +196,6 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                         // Is Visible
                         if (document.getElementById('emoji-board') && checkVisible(emojiGroup)) {
                             emojiGroup.classList.remove('hide-emoji');
-                        }
-
-                        // Nope
-                        else {
-                            emojiGroup.classList.add('hide-emoji');
                         }
 
                     }, 500));
