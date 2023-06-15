@@ -364,13 +364,14 @@ function pickEmoji(e, roomId, eventId, roomTimeline, extraX = 0, extraX2 = 0) {
   const cords = getEventCords(e);
 
   // Mobile Screen - Viewport
+  cords.y -= 170;
   if (window.matchMedia('screen and (max-width: 479px)').matches) {
     cords.x -= 230 + extraX2;
   }
 
   // Normal Screen
   else {
-    cords.x -= 395 + extraX;
+    cords.x -= 430 + extraX;
   }
 
   if (Math.round(cords.y) >= document.body.offsetHeight - 340) {

@@ -493,6 +493,10 @@ function RoomViewInput({
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
 
+              if (window.matchMedia('screen and (max-width: 479px)').matches) {
+                cords.y += 220;
+              }
+
               openEmojiBoard(cords, 'sticker', data => {
 
                 handleSendSticker({
@@ -516,6 +520,11 @@ function RoomViewInput({
               const cords = getEventCords(e);
               cords.x -= (document.dir === 'rtl' ? -80 : 280);
               cords.y -= 460;
+
+              if (window.matchMedia('screen and (max-width: 479px)').matches) {
+                cords.y += 220;
+                cords.x -= 50;
+              }
 
               openEmojiBoard(cords, 'emoji', emoji => {
 
