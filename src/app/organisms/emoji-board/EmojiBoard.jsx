@@ -135,7 +135,7 @@ function SearchedEmoji({ scrollEmojisRef }) {
         }
         setSearchedEmojis({ emojis: resultEmojis });
         if (scrollEmojisRef.current) {
-            // setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
+            setTimeout(() => { scrollEmojisRef.current.dispatchEvent(new CustomEvent('scroll')); }, 500);
         }
     }
 
