@@ -12,17 +12,23 @@ export function getRecentEmojis(limit) {
   getRecentEmojisRaw()
     .sort((a, b) => b[1] - a[1])
     .find(([unicode]) => {
+
       const emoji = emojis.find((e) => e.unicode === unicode);
       if (emoji) return res.push(emoji) >= limit;
+
       return false;
+
     });
   return res;
 }
 
 export function addRecentEmoji(unicode) {
+
   const recent = getRecentEmojisRaw();
   const i = recent.findIndex(([u]) => u === unicode);
+
   let entry;
+
   if (i < 0) {
     entry = [unicode, 1];
   } else {
@@ -30,7 +36,9 @@ export function addRecentEmoji(unicode) {
     entry[1] += 1;
   }
   recent.unshift(entry);
+
   initMatrix.matrixClient.setAccountData(eventType, {
     recent_emoji: recent.slice(0, 100),
   });
+
 }
