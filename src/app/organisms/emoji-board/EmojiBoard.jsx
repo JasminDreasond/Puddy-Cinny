@@ -374,8 +374,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
     );
 
     resetEmojisList();
-    addDefaultEmojisToList();
-    console.log(emojis);
+    if (boardType === 'getEmojis') addDefaultEmojisToList();
 
     return (
         <div id="emoji-board" className="emoji-board" ref={emojiBoardRef}>

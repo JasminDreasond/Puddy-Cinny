@@ -1,5 +1,5 @@
 import initMatrix from '../../../client/initMatrix';
-import { defaultEmojis } from './emoji';
+import { emojis } from './emoji';
 
 const eventType = 'io.element.recent_emoji';
 
@@ -12,7 +12,7 @@ export function getRecentEmojis(limit) {
   getRecentEmojisRaw()
     .sort((a, b) => b[1] - a[1])
     .find(([unicode]) => {
-      const emoji = defaultEmojis.find((e) => e.unicode === unicode);
+      const emoji = emojis.find((e) => e.unicode === unicode);
       if (emoji) return res.push(emoji) >= limit;
       return false;
     });
