@@ -166,6 +166,7 @@ function RoomViewCmdBar({ roomId, roomTimeline, viewEvent }) {
 
     asyncSearch.search(searchTerm);
   }
+
   function activateCmd(prefix) {
     cmdPrefix = prefix;
     cmdPrefix = undefined;
@@ -202,29 +203,40 @@ function RoomViewCmdBar({ roomId, roomTimeline, viewEvent }) {
     };
     setupSearch[prefix]?.();
   }
+
   function deactivateCmd() {
     setCmd(null);
     cmdOption = undefined;
     cmdPrefix = undefined;
   }
+
   function fireCmd(myCmd) {
+
     if (myCmd.prefix === '/') {
       viewEvent.emit('cmd_fired', {
         replace: `/${myCmd.result.name}`,
       });
     }
+
     if (myCmd.prefix === ':') {
-      if (!myCmd.result.mxc) addRecentEmoji(myCmd.result.unicode);
+      if (!myCmd.result.mxc) {
+        addRecentEmoji({ isCustom: false, unicode: myCmd.result.unicode, mxc: null });
+      } else {
+        addRecentEmoji({ isCustom: true, unicode: null, mxc: myCmd.result.mxc });
+      }
       viewEvent.emit('cmd_fired', {
         replace: myCmd.result.mxc ? `:${myCmd.result.shortcode}: ` : myCmd.result.unicode,
       });
     }
+
     if (myCmd.prefix === '@') {
       viewEvent.emit('cmd_fired', {
         replace: `@${myCmd.result.userId}`,
       });
     }
+
     deactivateCmd();
+
   }
 
   function listenKeyboard(event) {

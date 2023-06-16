@@ -11,9 +11,16 @@ export function getRecentEmojis(limit) {
   const res = [];
   getRecentEmojisRaw()
     .sort((a, b) => b[1] - a[1])
-    .find(([unicode]) => {
+    .find(([emojiData]) => {
 
-      const emoji = emojis.find((e) => e.unicode === unicode);
+      let emoji;
+
+      if (!emojiData.isCustom) {
+        emoji = emojis.find((e) => e.unicode === emojiData.unicode);
+      } else {
+        emoji = emojis.find((e) => e.mxc === emojiData.mxc);
+      }
+
       if (emoji) return res.push(emoji) >= limit;
 
       return false;
@@ -22,15 +29,15 @@ export function getRecentEmojis(limit) {
   return res;
 }
 
-export function addRecentEmoji(unicode) {
+export function addRecentEmoji(emojiData) {
 
   const recent = getRecentEmojisRaw();
-  const i = recent.findIndex(([u]) => u === unicode);
+  const i = recent.findIndex(([u]) => u && u.isCustom === emojiData.isCustom && u.mxc === emojiData.mxc && u.unicode === emojiData.unicode);
 
   let entry;
 
   if (i < 0) {
-    entry = [unicode, 1];
+    entry = [emojiData, 1];
   } else {
     [entry] = recent.splice(i, 1);
     entry[1] += 1;
