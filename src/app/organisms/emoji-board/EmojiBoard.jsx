@@ -6,7 +6,7 @@ import './EmojiBoard.scss';
 
 import parse from 'html-react-parser';
 import twemoji from 'twemoji';
-import { emojiGroups, emojis, addDefaultEmojisToList, resetEmojisList } from './emoji';
+import { emojiGroups, emojis, addDefaultEmojisToList, resetEmojisList, addEmojiToList } from './emoji';
 import { getRelevantPacks } from './custom-emoji';
 import initMatrix from '../../../client/initMatrix';
 import cons from '../../../client/state/cons';
@@ -391,11 +391,28 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                     )) : ''}
                     <div className="emoji-board__nav-custom">
                         {availableEmojis.map((pack) => {
-                            console.log(pack);
-                            // addEmojiToList
+
+                            const packItems = pack[boardType]();
+                            for (const item in packItems) {
+                                addEmojiToList({
+                                    group: null,
+                                    hexcode: null,
+                                    label: packItems[item].shortcode,
+                                    order: null,
+                                    shortcode: packItems[item].shortcode,
+                                    shortcodes: [packItems[item].shortcode],
+                                    tags: [packItems[item].shortcode, 'custom'],
+                                    src: initMatrix.matrixClient.mxcUrlToHttp(packItems[item].mxc),
+                                    mxc: packItems[item].mxc,
+                                    unicode: null
+                                });
+                            }
+
+
                             const src = initMatrix.matrixClient.mxcUrlToHttp(
-                                pack.avatarUrl ?? pack[boardType]()[0].mxc
+                                pack.avatarUrl ?? packItems[0].mxc
                             );
+
                             return (
                                 <IconButton
                                     className='emoji-group-button'
@@ -407,6 +424,7 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
                                     isImage
                                 />
                             );
+
                         })}
                     </div>
                     <div className="emoji-board__nav-twemoji">
