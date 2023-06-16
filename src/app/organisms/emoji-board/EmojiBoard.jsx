@@ -208,29 +208,29 @@ function EmojiBoard({ onSelect, searchRef, emojiBoardRef, scrollEmojisRef }) {
 
         // tinyTimeoutEmoji = 
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
-            const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
-            const elements = Array.from(target);
+        const target = event.target.childNodes[0].querySelectorAll('.emoji-row');
+        const elements = Array.from(target);
 
-            if (document.getElementById('emoji-board')) {
-                elements.map(emojiGroup => {
+        if (document.getElementById('emoji-board')) {
+            elements.map(emojiGroup => {
 
-                    tinyTimeoutCollection.push(setTimeout(() => {
+                tinyTimeoutCollection.push(setTimeout(() => {
 
-                        // Is Visible
-                        if (document.getElementById('emoji-board') && checkVisible(emojiGroup)) {
-                            emojiGroup.classList.remove('hide-emoji');
-                        }
+                    // Is Visible
+                    if (document.getElementById('emoji-board') && checkVisible(emojiGroup)) {
+                        emojiGroup.classList.remove('hide-emoji');
+                    }
 
-                    }, 500));
+                }, 500));
 
-                    return emojiGroup;
+                return emojiGroup;
 
-                });
-            }
+            });
+        }
 
-        }, 500);
+        // }, 500);
 
 
     }
